@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/fr.inria.sed.gpfl.model/src-gen" creationIcons="false"
+    editDirectory="/fr.inria.sed.gpfl.model.edit/src-gen" editorDirectory="/fr.inria.sed.gpfl.model.editor/src-gen"
+    modelPluginID="fr.inria.sed.gpfl.model" modelName="Gpfl" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
+    copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>Gpfl.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="Gpfl" basePackage="fr.inria.sed" disposableProviderFactory="true"
+      ecorePackage="Gpfl.ecore#/">
+    <genClasses ecoreClass="Gpfl.ecore#//Program">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Program/statements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Program/runtimeContext"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Program/prologues"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//ProloguesElt">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//ProloguesElt/automataDefinition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//ProloguesElt/init"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//InitSeq">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//InitSeq/statement"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//AutomataDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//AutomataDef/nameAutomata"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//AutomataDef/automataDefinitionDetail"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//AutomataDefTail">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//AutomataDefTail/aStateId"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//AutomataDefTail/ATransition"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//ATransition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//ATransition/from"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//ATransition/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//ATransition/to"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//Node">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//Node/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//Fields">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//Fields/time"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//Fields/port"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//Fields/pkType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//Fields/clientId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//Fields/ressourceId"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//Stmt"/>
+    <genClasses ecoreClass="Gpfl.ecore#//Cmd"/>
+    <genClasses ecoreClass="Gpfl.ecore#//Expression"/>
+    <genClasses ecoreClass="Gpfl.ecore#//Or">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Or/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Or/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//And">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//And/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//And/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//Equality">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Equality/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Equality/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//Greater">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Greater/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Greater/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//Plus">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Plus/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Plus/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//Minus">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Minus/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Minus/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//Mult">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Mult/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Mult/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//Not">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Not/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//IntConstant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//IntConstant/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//StringConstant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//StringConstant/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//BoolConstant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//BoolConstant/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//PortConstant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//PortConstant/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//BuiltInIdConstant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//BuiltInIdConstant/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//FieldIdConstant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//FieldIdConstant/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//AutomatonIdConstant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//AutomatonIdConstant/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//AVarId">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//AVarId/value"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Gpfl.ecore#//RuntimeContext"/>
+    <genClasses ecoreClass="Gpfl.ecore#//NewAutomata">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//NewAutomata/nameAutomata"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//NewAutomata/automatonId"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//Alarm">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//Alarm/message"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//Send">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//Send/port"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Send/fields"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//Set">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//Set/id"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Set/newState"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//StepAutomata">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//StepAutomata/statment"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//StepAutomata/automatonId"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//StepAutomata/transition"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//Nop"/>
+    <genClasses ecoreClass="Gpfl.ecore#//Accept"/>
+    <genClasses ecoreClass="Gpfl.ecore#//Drop"/>
+    <genClasses ecoreClass="Gpfl.ecore#//Condition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Condition/checkCond"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Condition/statementCond"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//Iteration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Iteration/checkIter"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Iteration/statementIter"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//NewInterruption">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//NewInterruption/time"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//NewInterruption/loop"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//NewInterruption/statementInterrupt"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//Div">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Div/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Div/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//Inequality">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Inequality/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Inequality/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//Lower">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Lower/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Lower/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//GreaterOrEqual">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//GreaterOrEqual/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//GreaterOrEqual/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//LowerOrEqual">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//LowerOrEqual/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//LowerOrEqual/right"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

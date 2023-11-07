@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" name="gpfl" version="12.0.0.2017041100">
+  <ownedViewpoints name="GPFLLogoBlockViewPoint">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="GPFLBlockDiagram" initialisation="true" showOnStartup="true" domainClass="Program" enablePopupBars="true">
+      <defaultLayer name="Default">
+        <nodeMappings name="AutomataNode" semanticCandidatesExpression="aql:self.eAllContents()->filter(gpfl::AutomataDefTail)->distinctNode()" domainClass="gpfl::Node">
+          <style xsi:type="style:DotDescription" labelSize="12" labelExpression="aql:self.name" labelPosition="node" resizeKind="NSEW">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='yellow']"/>
+          </style>
+          <conditionnalStyles predicateExpression="aql:self.eContainer().oclIsKindOf(gpfl::AutomataDefTail)">
+            <style xsi:type="style:DotDescription" labelSize="12" labelExpression="aql:self.name" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_orange']"/>
+            </style>
+          </conditionnalStyles>
+        </nodeMappings>
+        <edgeMappings name="AutomataLink" sourceMapping="//@ownedViewpoints[name='GPFLLogoBlockViewPoint']/@ownedRepresentations[name='GPFLBlockDiagram']/@defaultLayer/@nodeMappings[name='AutomataNode']" targetMapping="//@ownedViewpoints[name='GPFLLogoBlockViewPoint']/@ownedRepresentations[name='GPFLBlockDiagram']/@defaultLayer/@nodeMappings[name='AutomataNode']" targetFinderExpression="aql: let type = self.eContainer()  in if type.oclIsKindOf(gpfl::ATransition) if type.to != self then  type.to.getCorrespondingNode() else self.eContainer().eContainer().ATransition->select(trans | trans.from.name = self.name).to.getCorrespondingNode() endif else type.ATransition->select(node | node.from.name = type.aStateId.name).to.getCorrespondingNode()  endif">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription labelSize="12" labelExpression="aql:let type = if self.eContainer().oclIsKindOf(gpfl::ATransition) then self.eContainer().eContainer() else self.eContainer() endif in type.ATransition->select(trans | trans.from.name = view.sourceNode.eCrossReferences()->first().name and trans.to.name = view.targetNode.eCrossReferences()->first().name).type">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+      </defaultLayer>
+    </ownedRepresentations>
+    <ownedJavaExtensions qualifiedClassName="fr.inria.sed.gpfl.design.Services"/>
+  </ownedViewpoints>
+</description:Group>

@@ -1,0 +1,170 @@
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.CmdAspect
+		if (_self instanceof fr.inria.sed.gpfl.Cmd){
+			fr.inria.sed.gpfl.k3dsa.gpfl.aspects.CmdAspect.run((fr.inria.sed.gpfl.Cmd)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.CmdAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.MultAspect
+		if (_self instanceof fr.inria.sed.gpfl.Mult){
+			result = fr.inria.sed.gpfl.k3dsa.gpfl.aspects.MultAspect.eval((fr.inria.sed.gpfl.Mult)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.MultAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.CmdAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.SendAspect
+		if (_self instanceof fr.inria.sed.gpfl.Send){
+			fr.inria.sed.gpfl.k3dsa.gpfl.aspects.SendAspect.run((fr.inria.sed.gpfl.Send)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.CmdAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.SendAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.CmdAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.AlarmAspect
+		if (_self instanceof fr.inria.sed.gpfl.Alarm){
+			fr.inria.sed.gpfl.k3dsa.gpfl.aspects.AlarmAspect.run((fr.inria.sed.gpfl.Alarm)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.CmdAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.AlarmAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ConditionAspect
+		if (_self instanceof fr.inria.sed.gpfl.Condition){
+			fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ConditionAspect.run((fr.inria.sed.gpfl.Condition)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ConditionAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.MinusAspect
+		if (_self instanceof fr.inria.sed.gpfl.Minus){
+			result = fr.inria.sed.gpfl.k3dsa.gpfl.aspects.MinusAspect.eval((fr.inria.sed.gpfl.Minus)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.MinusAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.GreaterOrEqualAspect
+		if (_self instanceof fr.inria.sed.gpfl.GreaterOrEqual){
+			result = fr.inria.sed.gpfl.k3dsa.gpfl.aspects.GreaterOrEqualAspect.eval((fr.inria.sed.gpfl.GreaterOrEqual)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.GreaterOrEqualAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.DropAspect
+		if (_self instanceof fr.inria.sed.gpfl.Drop){
+			fr.inria.sed.gpfl.k3dsa.gpfl.aspects.DropAspect.run((fr.inria.sed.gpfl.Drop)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.DropAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.NewInterruptionAspect
+		if (_self instanceof fr.inria.sed.gpfl.NewInterruption){
+			fr.inria.sed.gpfl.k3dsa.gpfl.aspects.NewInterruptionAspect.run((fr.inria.sed.gpfl.NewInterruption)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.NewInterruptionAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.CmdAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.SetAspect
+		if (_self instanceof fr.inria.sed.gpfl.Set){
+			fr.inria.sed.gpfl.k3dsa.gpfl.aspects.SetAspect.run((fr.inria.sed.gpfl.Set)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.CmdAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.SetAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.CmdAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StepAutomataAspect
+		if (_self instanceof fr.inria.sed.gpfl.StepAutomata){
+			fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StepAutomataAspect.run((fr.inria.sed.gpfl.StepAutomata)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.CmdAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StepAutomataAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.LowerAspect
+		if (_self instanceof fr.inria.sed.gpfl.Lower){
+			result = fr.inria.sed.gpfl.k3dsa.gpfl.aspects.LowerAspect.eval((fr.inria.sed.gpfl.Lower)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.LowerAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.CmdAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.AcceptAspect
+		if (_self instanceof fr.inria.sed.gpfl.Accept){
+			fr.inria.sed.gpfl.k3dsa.gpfl.aspects.AcceptAspect.run((fr.inria.sed.gpfl.Accept)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.CmdAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.AcceptAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.PlusAspect
+		if (_self instanceof fr.inria.sed.gpfl.Plus){
+			result = fr.inria.sed.gpfl.k3dsa.gpfl.aspects.PlusAspect.eval((fr.inria.sed.gpfl.Plus)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.PlusAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.OrAspect
+		if (_self instanceof fr.inria.sed.gpfl.Or){
+			result = fr.inria.sed.gpfl.k3dsa.gpfl.aspects.OrAspect.eval((fr.inria.sed.gpfl.Or)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.OrAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.GreaterAspect
+		if (_self instanceof fr.inria.sed.gpfl.Greater){
+			result = fr.inria.sed.gpfl.k3dsa.gpfl.aspects.GreaterAspect.eval((fr.inria.sed.gpfl.Greater)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.GreaterAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.CmdAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.NewAutomataAspect
+		if (_self instanceof fr.inria.sed.gpfl.NewAutomata){
+			fr.inria.sed.gpfl.k3dsa.gpfl.aspects.NewAutomataAspect.run((fr.inria.sed.gpfl.NewAutomata)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.CmdAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.NewAutomataAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.AcceptAspect
+		if (_self instanceof fr.inria.sed.gpfl.Accept){
+			fr.inria.sed.gpfl.k3dsa.gpfl.aspects.AcceptAspect.run((fr.inria.sed.gpfl.Accept)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.AcceptAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.SetAspect
+		if (_self instanceof fr.inria.sed.gpfl.Set){
+			fr.inria.sed.gpfl.k3dsa.gpfl.aspects.SetAspect.run((fr.inria.sed.gpfl.Set)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.SetAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.IntConstantAspect
+		if (_self instanceof fr.inria.sed.gpfl.IntConstant){
+			result = fr.inria.sed.gpfl.k3dsa.gpfl.aspects.IntConstantAspect.eval((fr.inria.sed.gpfl.IntConstant)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.IntConstantAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.AndAspect
+		if (_self instanceof fr.inria.sed.gpfl.And){
+			result = fr.inria.sed.gpfl.k3dsa.gpfl.aspects.AndAspect.eval((fr.inria.sed.gpfl.And)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.AndAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.NotAspect
+		if (_self instanceof fr.inria.sed.gpfl.Not){
+			result = fr.inria.sed.gpfl.k3dsa.gpfl.aspects.NotAspect.eval((fr.inria.sed.gpfl.Not)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.NotAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.IterationAspect
+		if (_self instanceof fr.inria.sed.gpfl.Iteration){
+			fr.inria.sed.gpfl.k3dsa.gpfl.aspects.IterationAspect.run((fr.inria.sed.gpfl.Iteration)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.IterationAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.CmdAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.NopAspect
+		if (_self instanceof fr.inria.sed.gpfl.Nop){
+			fr.inria.sed.gpfl.k3dsa.gpfl.aspects.NopAspect.run((fr.inria.sed.gpfl.Nop)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.CmdAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.NopAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.SendAspect
+		if (_self instanceof fr.inria.sed.gpfl.Send){
+			fr.inria.sed.gpfl.k3dsa.gpfl.aspects.SendAspect.run((fr.inria.sed.gpfl.Send)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.SendAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.NewAutomataAspect
+		if (_self instanceof fr.inria.sed.gpfl.NewAutomata){
+			fr.inria.sed.gpfl.k3dsa.gpfl.aspects.NewAutomataAspect.run((fr.inria.sed.gpfl.NewAutomata)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.NewAutomataAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.InequalityAspect
+		if (_self instanceof fr.inria.sed.gpfl.Inequality){
+			result = fr.inria.sed.gpfl.k3dsa.gpfl.aspects.InequalityAspect.eval((fr.inria.sed.gpfl.Inequality)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.InequalityAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.LowerOrEqualAspect
+		if (_self instanceof fr.inria.sed.gpfl.LowerOrEqual){
+			result = fr.inria.sed.gpfl.k3dsa.gpfl.aspects.LowerOrEqualAspect.eval((fr.inria.sed.gpfl.LowerOrEqual)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.LowerOrEqualAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.DivAspect
+		if (_self instanceof fr.inria.sed.gpfl.Div){
+			result = fr.inria.sed.gpfl.k3dsa.gpfl.aspects.DivAspect.eval((fr.inria.sed.gpfl.Div)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.DivAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.CmdAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.DropAspect
+		if (_self instanceof fr.inria.sed.gpfl.Drop){
+			fr.inria.sed.gpfl.k3dsa.gpfl.aspects.DropAspect.run((fr.inria.sed.gpfl.Drop)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.CmdAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.DropAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.AlarmAspect
+		if (_self instanceof fr.inria.sed.gpfl.Alarm){
+			fr.inria.sed.gpfl.k3dsa.gpfl.aspects.AlarmAspect.run((fr.inria.sed.gpfl.Alarm)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.AlarmAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.EqualityAspect
+		if (_self instanceof fr.inria.sed.gpfl.Equality){
+			result = fr.inria.sed.gpfl.k3dsa.gpfl.aspects.EqualityAspect.eval((fr.inria.sed.gpfl.Equality)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.EqualityAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StepAutomataAspect
+		if (_self instanceof fr.inria.sed.gpfl.StepAutomata){
+			fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StepAutomataAspect.run((fr.inria.sed.gpfl.StepAutomata)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StepAutomataAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.NopAspect
+		if (_self instanceof fr.inria.sed.gpfl.Nop){
+			fr.inria.sed.gpfl.k3dsa.gpfl.aspects.NopAspect.run((fr.inria.sed.gpfl.Nop)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.NopAspect

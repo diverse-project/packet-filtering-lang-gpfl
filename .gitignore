@@ -1,0 +1,6 @@
+.metadata
+*.class
+xtend-gen/
+bin/
+generated/
+src-gen/

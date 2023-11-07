@@ -1,0 +1,135 @@
+grammar fr.inria.sed.gpfl.xtext.Gpfl with org.eclipse.xtext.common.Terminals
+
+//generate gpfl "http://www.inria.fr/sed/gpfl/xtext/Gpfl"
+import "platform:/resource/fr.inria.sed.gpfl.model/model/Gpfl.ecore"
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+// -------------------------- STRUCTURE -------------------------- //
+
+Program:
+	"PROLOGUE" prologues+=ProloguesElt* "FILTER" statements+=Stmt+;
+	
+ProloguesElt:
+	automataDefinition=AutomataDef | init=InitSeq 
+;
+
+InitSeq:
+	"INIT" statement+=Stmt+
+;
+
+AutomataDef:
+	"AUTOMATA" nameAutomata=STRING automataDefinitionDetail=AutomataDefTail
+;
+
+AutomataDefTail:
+	"init" "=" aStateId=Node ATransition+=ATransition+
+;
+
+// -------------------------- CONTENT -------------------------- //
+
+ATransition:
+	from=Node "-" type=STRING "->" to=Node
+;
+
+Node:
+	name=STRING
+;
+
+Fields:
+	// pkType to get from the automaton def
+	"(" time=TIME ";" port=PORT ";" "pkType" "=" pkType=STRING "," "clientId" "=" clientId=STRING ("," "ressourceId" "=" ressourceId=STRING)?")"
+;
+
+Stmt returns Stmt:
+	Cmd
+	// if *checkCond* then do *statementCond* else do nothing
+	| {Condition}"cond" "(" checkCond=Expression "," statementCond+=Stmt+ ")"
+	// loop on *statementIter* until *checkIter* is false
+	| {Iteration} "iter" "(" checkIter=Expression "," statementIter+=Stmt+ ")"
+	// create an interruption every (if *loop* else once) *time* and execute *statement*
+	| {NewInterruption} "newInterrupt" "(" time=INT "," loop=BOOL "," statementInterrupt+=Stmt+ ")"
+;
+
+Cmd returns Cmd:
+	// does nothing
+	{Nop} "nop" 
+	// accept a packet
+	| {Accept} "accept"
+	// drop a packet 
+	| {Drop} "drop" 
+	// send the *fields* on *port*
+	| {Send} "send" "(" port=PORT "," fields=Fields ")"
+	// A PRECISER
+	| {Alarm} "alarm" "(" message=STRING ")"
+	// set a (new) variable with a new state
+	| {Set} "set" "(" id=ID "," newState=Expression ")"
+	// associate an ID with an Automata previously created and designated by a name
+	| {NewAutomata} "newAutomaton" "(" nameAutomata=STRING "," automatonId=AUTOMATONID ")"
+	// go trough a step of *automatonIdStep* on the *transition*  and execute *statment*
+	| {StepAutomata} "step" "(" automatonId=AUTOMATONID "," transition=Expression "," statment+=Stmt+ ")"
+;
+
+// -------------------------- Expressions -------------------------- //
+
+Expression: Or; 
+Or returns Expression:
+	And ({Or.left=current} "|" right=And)* ; 
+
+And returns Expression: 
+	Equality ({And.left=current} "&" right=Equality)*
+; 
+Equality returns Expression: 
+	Comparison ( ({Equality.left=current} "==" | {Inequality.left=current} "!=") right=Comparison )*
+; 
+Comparison returns Expression: 
+	PlusOrMinus ( ({GreaterOrEqual.left=current} ">="| {LowerOrEqual.left=current} "<="| {Greater.left=current} ">"| {Lower.left=current} "<") right=PlusOrMinus )*
+; 
+PlusOrMinus returns Expression: 
+	MulOrDiv ( ({Plus.left=current} '+' | {Minus.left=current} '-') right=MulOrDiv )*
+; 
+MulOrDiv returns Expression: 
+	Primary ( ({Mult.left=current} '*' | {Div.left=current} '/') right=Primary )*
+; 
+Primary returns Expression: 
+	'(' Expression ')' | {Not} "!" expression=Primary | Atomic 
+;
+
+Atomic returns Expression:
+	{IntConstant} value=INT
+	| {StringConstant} value=STRING
+	| {BoolConstant} value=BOOL
+	| {PortConstant} value=PORT
+	| {BuiltInIdConstant} value=BUILTINID
+	| {FieldIdConstant} value=FIELDID
+	| {AutomatonIdConstant} value=AUTOMATONID
+	| {AVarId} value=ID
+;
+
+// -------------------------- ID -------------------------- //
+
+terminal FIELDID:
+	"$" ID
+;
+
+terminal AUTOMATONID:
+	"#" ID
+;
+
+terminal BUILTINID:
+	"_inPort"
+;
+
+// -------------------------- TYPE -------------------------- //
+
+terminal BOOL:
+	"true" | "false"
+;
+
+terminal PORT:
+	"inSide" | "outSide"
+;
+
+terminal TIME:
+	('0'..'9') ('0'..'9') ('0'..'9')
+;
