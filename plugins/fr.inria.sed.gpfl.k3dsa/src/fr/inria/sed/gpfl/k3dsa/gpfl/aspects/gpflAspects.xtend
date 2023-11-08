@@ -104,6 +104,7 @@ class ProgramAspect {
 	@InitializeModel
 	def void initializeModel(EList<String> args) {
 		val context = VmFactory.eINSTANCE.createInterpreterRuntimeContext
+		context.varMap = VmFactory.eINSTANCE.createParamMap
 
 		// TODO: pass by bytes
 		try {
@@ -169,8 +170,7 @@ class ProgramAspect {
 @Aspect(className=ProloguesElt)
 class ProloguesEltAspect {
 	def void run(InterpreterRuntimeContext context) {
-		// ignore automataDefinition because an automata is created 
-		// in memory only when newAutomaton is called
+		_self.automataDefinition.run(context)
 		_self.init.run(context)
 	}
 }
@@ -253,7 +253,7 @@ class StmtAspect {
 class ConditionAspect extends StmtAspect {
 	// if the condition is true, execute the statements
 	def void run(InterpreterRuntimeContext context) {
-		if (_self.checkCond == 1)
+		if (_self.checkCond.eval(context) == 1)
 			_self.statementCond.forEach[s|if (!context.skip)s.run(context)]
 	}
 }
@@ -262,7 +262,7 @@ class ConditionAspect extends StmtAspect {
 class IterationAspect extends StmtAspect {
 	// while the condition is true, execute the statements
 	def void run(InterpreterRuntimeContext context) {
-		while (_self.checkIter == 1)
+		while (_self.checkIter.eval(context) == 1)
 			_self.statementIter.forEach[s|if (!context.skip) s.run(context)]
 	}
 }
@@ -329,7 +329,7 @@ class AlarmAspect extends CmdAspect {
 	// Raise an error in the error log
 	def void run(InterpreterRuntimeContext context) {
 		context.logger.error(
-			"ALARM @ " + context.currentPacket.entries.findFirst[e|e.key.equals("time")] + ": " + _self.message
+			"ALARM @ " + context.currentPacket.entries.findFirst[e|e.key.equals("time")].value + ": " + _self.message
 			, "Gpfl"
 		)
 	}
@@ -358,19 +358,17 @@ class NewAutomataAspect extends CmdAspect {
 	// create an automata from the previous definition
 	def void run(InterpreterRuntimeContext context) {
 		// get the previously created empty automata
-		val automata = context.automatas.findFirst[a|
-			a.name.equals((_self.eContainer as AutomataDef).nameAutomata)
-		]
+		val automata = context.automatas.findFirst[a|a.name.equals(_self.nameAutomata)]
 		// give it an id
 		automata.id = _self.automatonId
 		// get definition of the previously created automata
-		val definitionAutomata = (_self.eAllContents.
-			findFirst(o|o.eClass().getName().equals("AutomataDef")) as EList<AutomataDef>)
-			.findFirst [a | a.nameAutomata.equals(automata.name)]
+		val definitionAutomata = (context.eContainer as Program).prologues
+			.filter[ p | p.automataDefinition !== null]
+			.findFirst[ p | p.automataDefinition.nameAutomata.equals(automata.name)].automataDefinition
 		// create empty initial state
-		automata.initialState = VmFactory.eINSTANCE.createState
+		automata.initialState = VmFactory.eINSTANCE.createState;
 		// create automata based on detailed definition
-		definitionAutomata.automataDefinitionDetail.run(context, automata)
+		(definitionAutomata as AutomataDef).automataDefinitionDetail.run(context, automata)
 	}
 }
 
@@ -433,7 +431,7 @@ class EqualityAspect extends ExpressionAspect {
 @Aspect(className=Inequality)
 class InequalityAspect extends ExpressionAspect {
 	def Integer eval(InterpreterRuntimeContext context) {
-		if(!_self.left.eval(context).equals(_self.right.eval(context))) return 1 else return 0
+		if(_self.left.eval(context).equals(_self.right.eval(context))) return 0 else return 1
 	}
 }
 
@@ -510,29 +508,33 @@ class IntConstantAspect extends ExpressionAspect {
 
 @Aspect(className=StringConstant)
 class StringConstantAspect extends ExpressionAspect {
-	def String eval(InterpreterRuntimeContext context) {
-		return _self.value
+	def Integer eval(InterpreterRuntimeContext context) {
+		var sequence = ""
+		val char[] tab = _self.value.toCharArray
+		for (c : tab)
+			sequence+=(c as int)
+		return Integer.parseInt(sequence)
 	}
 }
 
 @Aspect(className=BoolConstant)
 class BoolConstantAspect extends ExpressionAspect {
-	def Boolean eval(InterpreterRuntimeContext context) {
-		return _self.value.equals("true")
+	def Integer eval(InterpreterRuntimeContext context) {
+		return _self.value.equals("true") ? 1:0
 	}
 }
 
 @Aspect(className=PortConstant)
 class PortConstantAspect extends ExpressionAspect {
-	def String eval(InterpreterRuntimeContext context) {
-		return _self.value
+	def Integer eval(InterpreterRuntimeContext context) {
+		return _self.value.equals("inSide") ? 1:0
 	}
 }
 
 @Aspect(className=BuiltInIdConstant)
 class BuiltInIdConstantAspect extends ExpressionAspect {
-	def String eval(InterpreterRuntimeContext context) {
-		return context.currentPacket.entries.findFirst[e | e.key.equals("port")].value as String
+	def Integer eval(InterpreterRuntimeContext context) {
+		return context.currentPacket.entries.findFirst[e | e.key.equals("port")].value.equals("inSide") ? 1:0
 	}
 }
 

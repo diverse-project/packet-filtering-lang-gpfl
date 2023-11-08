@@ -41,7 +41,7 @@ Fields:
 	"(" time=TIME ";" port=PORT ";" "pkType" "=" pkType=STRING "," "clientId" "=" clientId=STRING ("," "ressourceId" "=" ressourceId=STRING)?")"
 ;
 
-Stmt returns Stmt:
+Stmt:
 	Cmd
 	// if *checkCond* then do *statementCond* else do nothing
 	| {Condition}"cond" "(" checkCond=Expression "," statementCond+=Stmt+ ")"
@@ -51,7 +51,7 @@ Stmt returns Stmt:
 	| {NewInterruption} "newInterrupt" "(" time=INT "," loop=BOOL "," statementInterrupt+=Stmt+ ")"
 ;
 
-Cmd returns Cmd:
+Cmd:
 	// does nothing
 	{Nop} "nop" 
 	// accept a packet
@@ -92,7 +92,9 @@ MulOrDiv returns Expression:
 	Primary ( ({Mult.left=current} '*' | {Div.left=current} '/') right=Primary )*
 ; 
 Primary returns Expression: 
-	'(' Expression ')' | {Not} "!" expression=Primary | Atomic 
+	'(' Expression ')' 
+	| {Not} "!" expression=Primary 
+	| Atomic 
 ;
 
 Atomic returns Expression:

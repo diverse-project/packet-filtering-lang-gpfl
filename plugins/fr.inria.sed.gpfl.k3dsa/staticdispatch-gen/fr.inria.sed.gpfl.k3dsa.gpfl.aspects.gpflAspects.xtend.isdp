@@ -18,6 +18,11 @@
 			fr.inria.sed.gpfl.k3dsa.gpfl.aspects.AlarmAspect.run((fr.inria.sed.gpfl.Alarm)_self,context);
 		} else
 		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.CmdAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.AlarmAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.BuiltInIdConstantAspect
+		if (_self instanceof fr.inria.sed.gpfl.BuiltInIdConstant){
+			result = fr.inria.sed.gpfl.k3dsa.gpfl.aspects.BuiltInIdConstantAspect.eval((fr.inria.sed.gpfl.BuiltInIdConstant)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.BuiltInIdConstantAspect
 	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ConditionAspect
 		if (_self instanceof fr.inria.sed.gpfl.Condition){
 			fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ConditionAspect.run((fr.inria.sed.gpfl.Condition)_self,context);
@@ -108,11 +113,21 @@
 			result = fr.inria.sed.gpfl.k3dsa.gpfl.aspects.NotAspect.eval((fr.inria.sed.gpfl.Not)_self,context);
 		} else
 		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.NotAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StringConstantAspect
+		if (_self instanceof fr.inria.sed.gpfl.StringConstant){
+			result = fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StringConstantAspect.eval((fr.inria.sed.gpfl.StringConstant)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StringConstantAspect
 	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.IterationAspect
 		if (_self instanceof fr.inria.sed.gpfl.Iteration){
 			fr.inria.sed.gpfl.k3dsa.gpfl.aspects.IterationAspect.run((fr.inria.sed.gpfl.Iteration)_self,context);
 		} else
 		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.IterationAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.PortConstantAspect
+		if (_self instanceof fr.inria.sed.gpfl.PortConstant){
+			result = fr.inria.sed.gpfl.k3dsa.gpfl.aspects.PortConstantAspect.eval((fr.inria.sed.gpfl.PortConstant)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.PortConstantAspect
 	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.CmdAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.NopAspect
 		if (_self instanceof fr.inria.sed.gpfl.Nop){
 			fr.inria.sed.gpfl.k3dsa.gpfl.aspects.NopAspect.run((fr.inria.sed.gpfl.Nop)_self,context);
@@ -153,6 +168,11 @@
 			fr.inria.sed.gpfl.k3dsa.gpfl.aspects.AlarmAspect.run((fr.inria.sed.gpfl.Alarm)_self,context);
 		} else
 		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.AlarmAspect
+	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.BoolConstantAspect
+		if (_self instanceof fr.inria.sed.gpfl.BoolConstant){
+			result = fr.inria.sed.gpfl.k3dsa.gpfl.aspects.BoolConstantAspect.eval((fr.inria.sed.gpfl.BoolConstant)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.BoolConstantAspect
 	// BeginInjectInto fr.inria.sed.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.gpfl.k3dsa.gpfl.aspects.EqualityAspect
 		if (_self instanceof fr.inria.sed.gpfl.Equality){
 			result = fr.inria.sed.gpfl.k3dsa.gpfl.aspects.EqualityAspect.eval((fr.inria.sed.gpfl.Equality)_self,context);

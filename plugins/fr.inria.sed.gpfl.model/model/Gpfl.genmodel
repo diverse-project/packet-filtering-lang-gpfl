@@ -27,8 +27,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//AutomataDef/automataDefinitionDetail"/>
     </genClasses>
     <genClasses ecoreClass="Gpfl.ecore#//AutomataDefTail">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//AutomataDefTail/aStateId"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//AutomataDefTail/ATransition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//AutomataDefTail/aStateId"/>
     </genClasses>
     <genClasses ecoreClass="Gpfl.ecore#//ATransition">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//ATransition/from"/>
