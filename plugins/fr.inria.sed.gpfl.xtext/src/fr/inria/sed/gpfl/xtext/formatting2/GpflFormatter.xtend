@@ -15,8 +15,8 @@ class GpflFormatter extends AbstractFormatter2 {
 
 	def dispatch void format(Program program, extension IFormattableDocument document) {
 		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		program.prologues.format
-		program.statements.format
+//		program.prologues.format
+//		program.statements.format
 	}
 	
 	// TODO: implement for ProloguesElt, InitSeq, AutomataDef, AutomataDefTail, Stmt, Cmd, Or, And, Equality, Comparison, MulOrDiv, Not, Plus, Minus

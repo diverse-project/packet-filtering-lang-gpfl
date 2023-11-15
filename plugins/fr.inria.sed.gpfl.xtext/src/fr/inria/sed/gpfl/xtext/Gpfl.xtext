@@ -8,47 +8,48 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 // -------------------------- STRUCTURE -------------------------- //
 
 Program:
-	"PROLOGUE" prologues+=ProloguesElt* "FILTER" statements+=Stmt+;
+	"PROLOGUE" prologues=Prologue filter=Filter?;
 	
-ProloguesElt:
-	automataDefinition=AutomataDef | init=InitSeq 
+Prologue:
+	automataDefinition+=Automata+ | init=InitSeq 
 ;
 
 InitSeq:
-	"INIT" statement+=Stmt+
+	"INIT" block=Block
 ;
 
-AutomataDef:
-	"AUTOMATA" nameAutomata=STRING automataDefinitionDetail=AutomataDefTail
+Filter:
+	"FILTER" block=Block
 ;
 
-AutomataDefTail:
-	"init" "=" aStateId=Node ATransition+=ATransition+
+// -------------------------- AUTOMATA -------------------------- //
+
+Automata:
+	"AUTOMATA" name=EString "init" "=" initialState=[State|EString] transitions+=Transition*
 ;
 
-// -------------------------- CONTENT -------------------------- //
-
-ATransition:
-	from=Node "-" type=STRING "->" to=Node
+Transition:
+	from=[State|EString] "-" name=EString "->" to=[State|EString]
 ;
 
-Node:
-	name=STRING
+State:
+	name=EString
 ;
 
-Fields:
-	// pkType to get from the automaton def
-	"(" time=TIME ";" port=PORT ";" "pkType" "=" pkType=STRING "," "clientId" "=" clientId=STRING ("," "ressourceId" "=" ressourceId=STRING)?")"
+// -------------------------- BLOCK -------------------------- //
+
+Block:
+	firstStmt=Stmt
 ;
 
 Stmt:
 	Cmd
 	// if *checkCond* then do *statementCond* else do nothing
-	| {Condition}"cond" "(" checkCond=Expression "," statementCond+=Stmt+ ")"
+	| {Condition}"cond" "(" check=Expression "," block=Block ")"
 	// loop on *statementIter* until *checkIter* is false
-	| {Iteration} "iter" "(" checkIter=Expression "," statementIter+=Stmt+ ")"
+	| {Iteration} "iter" "(" check=Expression "," block=Block ")"
 	// create an interruption every (if *loop* else once) *time* and execute *statement*
-	| {NewInterruption} "newInterrupt" "(" time=INT "," loop=BOOL "," statementInterrupt+=Stmt+ ")"
+	| {NewInterruption} "newInterrupt" "(" time=INT "," loop=BoolConstant "," block=Block ")"
 ;
 
 Cmd:
@@ -59,23 +60,23 @@ Cmd:
 	// drop a packet 
 	| {Drop} "drop" 
 	// send the *fields* on *port*
-	| {Send} "send" "(" port=PORT "," fields=Fields ")"
+//	| {Send} "send" "(" port=PORT "," fields=EMap ")"
 	// A PRECISER
-	| {Alarm} "alarm" "(" message=STRING ")"
+	| {Alarm} "alarm" "(" message=EString ")"
 	// set a (new) variable with a new state
-	| {Set} "set" "(" id=ID "," newState=Expression ")"
+	| {Set} "set" "(" name=VarIdConstant "," value=Expression ")"
 	// associate an ID with an Automata previously created and designated by a name
-	| {NewAutomata} "newAutomaton" "(" nameAutomata=STRING "," automatonId=AUTOMATONID ")"
+	| {NewAutomata} "newAutomaton" "(" wordingAutomata=[Automata|EString] "," name=AutomatonIdConstant ")"
 	// go trough a step of *automatonIdStep* on the *transition*  and execute *statment*
-	| {StepAutomata} "step" "(" automatonId=AUTOMATONID "," transition=Expression "," statment+=Stmt+ ")"
+	| {StepAutomata} "step" "(" idAutomata=[NewAutomata|AutomatonIdConstant] "," transitionName=EString "," block=Block ")"
 ;
 
 // -------------------------- Expressions -------------------------- //
 
 Expression: Or; 
 Or returns Expression:
-	And ({Or.left=current} "|" right=And)* ; 
-
+	And ({Or.left=current} "|" right=And)* 
+;
 And returns Expression: 
 	Equality ({And.left=current} "&" right=Equality)*
 ; 
@@ -98,40 +99,22 @@ Primary returns Expression:
 ;
 
 Atomic returns Expression:
-	{IntConstant} value=INT
-	| {StringConstant} value=STRING
-	| {BoolConstant} value=BOOL
-	| {PortConstant} value=PORT
-	| {BuiltInIdConstant} value=BUILTINID
-	| {FieldIdConstant} value=FIELDID
-	| {AutomatonIdConstant} value=AUTOMATONID
-	| {AVarId} value=ID
+	{IntConstant} value=IntConstant
+	| {StringConstant} value=StringConstant
+	| {BoolConstant} value=BoolConstant
+	| {VarIdConstant} value=[Set|VarIdConstant]
+	| {PortConstant} value=PortConstant
+	| {BuiltInIdConstant} value=BuiltInIdConstant
+	| {FieldIdConstant} FieldIdConstant
+	| {AutomatonIdConstant} value=[NewAutomata|AutomatonIdConstant]
 ;
 
-// -------------------------- ID -------------------------- //
-
-terminal FIELDID:
-	"$" ID
-;
-
-terminal AUTOMATONID:
-	"#" ID
-;
-
-terminal BUILTINID:
-	"_inPort"
-;
-
-// -------------------------- TYPE -------------------------- //
-
-terminal BOOL:
-	"true" | "false"
-;
-
-terminal PORT:
-	"inSide" | "outSide"
-;
-
-terminal TIME:
-	('0'..'9') ('0'..'9') ('0'..'9')
-;
+BoolConstant  returns ecore::EBoolean:"true" | "false";
+IntConstant returns ecore::EInt:'-'? INT;
+StringConstant returns ecore::EString: STRING;
+EString returns ecore::EString: STRING;
+VarIdConstant returns ecore::EString: ID;
+FieldIdConstant returns ecore::EString: "$" ID;
+AutomatonIdConstant returns ecore::EString: "#" ID;
+PortConstant returns ecore::EString: "inSide"|"outSide";
+BuiltInIdConstant returns ecore::EString: "_inPort";

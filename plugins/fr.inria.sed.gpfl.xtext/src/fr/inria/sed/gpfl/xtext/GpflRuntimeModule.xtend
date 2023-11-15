@@ -3,10 +3,13 @@
  */
 package fr.inria.sed.gpfl.xtext
 
-
+import fr.inria.sed.gpfl.xtext.linking.GpflLinkingService
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
 class GpflRuntimeModule extends AbstractGpflRuntimeModule {
+	override bindILinkingService() {
+		return GpflLinkingService
+	}
 }
