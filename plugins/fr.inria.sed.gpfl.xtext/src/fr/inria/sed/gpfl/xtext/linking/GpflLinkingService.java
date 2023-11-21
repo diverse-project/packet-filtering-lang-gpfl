@@ -30,11 +30,22 @@ public class GpflLinkingService extends DefaultLinkingService {
 			//
 			State newState = GpflFactory.eINSTANCE.createState();
 			newState.setName(node.getText());
-			automata.getStates().add(newState);
+			automata.getMyStates().add(newState);
 			//
 			// Update the list of resolved references
 			//
 			referencesResolved = Collections.singletonList(newState);
+		}
+		if (referencesResolved.isEmpty()) {
+			if (context instanceof Automata)
+				if (ref.getName().equals("initialState")) {
+					Automata automata = (Automata) context;
+					State newState = GpflFactory.eINSTANCE.createState();
+					newState.setName(node.getText());
+					automata.getMyStates().add(newState);
+					referencesResolved = Collections.singletonList(newState);
+				}
+			
 		}
 		return referencesResolved;
 	}

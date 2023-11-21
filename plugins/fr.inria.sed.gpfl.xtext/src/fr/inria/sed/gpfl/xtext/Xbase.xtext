@@ -1,0 +1,73 @@
+/*******************************************************************************
+ * Copyright (c) 2010, 2017 itemis AG (http://www.itemis.eu) and others.
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *******************************************************************************/
+grammar fr.inria.sed.gpfl.xtext.Gpfl with org.eclipse.xtext.common.Terminals
+
+import "platform:/resource/fr.inria.sed.gpfl.model/model/XBase.ecore"
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+XExpression: OrOperand; 
+OrOperand returns XExpression:
+	AndOperand ({OrOperand.left=current} "|" right=AndOperand)* 
+;
+AndOperand returns XExpression: 
+	EqualityOperand ({AndOperand.left=current} "&" right=EqualityOperand)*
+; 
+EqualityOperand returns XExpression: 
+	ComparisonOperand ( ({EqualityOperand.left=current} "==" | {InequalityOperand.left=current} "!=") right=ComparisonOperand )*
+; 
+ComparisonOperand returns XExpression: 
+	PlusOrMinus ( ({GreaterOrEqualOperand.left=current} ">="| {LowerOrEqualOperand.left=current} "<="| {GreaterOperand.left=current} ">"| {LowerOperand.left=current} "<") right=PlusOrMinus )*
+; 
+PlusOrMinus returns XExpression: 
+	MulOrDiv ( ({PlusOperand.left=current} '+' | {MinusOperand.left=current} '-') right=MulOrDiv )*
+; 
+MulOrDiv returns XExpression: 
+	Primary ( ({MultOperand.left=current} '*' | {DivOperand.left=current} '/') right=Primary )*
+; 
+Primary returns XExpression: 
+	'(' XExpression ')' 
+	| {NotOperand} "!" expression=Primary 
+	| Atomic 
+;
+
+Atomic returns XExpression:
+	XBooleanLiteral
+	| XNumberLiteral
+	| XStringLiteral
+	| PortLiteral
+	| BuiltInId
+	| VariableId
+	| AutomatonId
+	| FieldId
+;
+
+XBooleanLiteral returns XExpression :
+	{XBooleanLiteral} ('false' | isTrue?='true');
+	
+PortLiteral returns XExpression :
+	{PortLiteral} value=('inSide' | 'outSide');
+	
+XNumberLiteral returns XExpression :
+	{XNumberLiteral} value=INT;
+	
+XStringLiteral returns XExpression:
+	{XStringLiteral} value=STRING;
+	
+BuiltInId returns XExpression:
+	{BuiltInId} value='_inPort';
+	
+VariableId returns XEpression:
+	{VariableId} value=STRING;
+
+AutomatonId returns XExpression:
+	{AutomatonId} '#' value=STRING;
+	
+FieldId returns XExpression:
+	{FieldId} '$' value=STRING;
