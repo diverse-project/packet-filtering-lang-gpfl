@@ -14,12 +14,4 @@
             genModel="model/Gpfl.genmodel"/>
    </extension>
 
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated Gpfl -->
-      <package
-            uri="http://www.eclipse.org/xtext/xbase/Xbase"
-            class="xbase.XbasePackage"
-            genModel="model/Gpfl.genmodel"/>
-   </extension>
-
 </plugin>

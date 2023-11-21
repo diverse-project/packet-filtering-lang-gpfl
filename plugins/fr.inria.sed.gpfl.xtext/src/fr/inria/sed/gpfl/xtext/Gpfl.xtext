@@ -1,5 +1,4 @@
 grammar fr.inria.sed.gpfl.xtext.Gpfl with org.eclipse.xtext.common.Terminals
-grammar fr.inria.sed.gpfl.xtext.Gpfl with fr.inria.sed.xtext.XBase
 
 //generate gpfl "http://www.inria.fr/sed/gpfl/xtext/Gpfl"
 import "platform:/resource/fr.inria.sed.gpfl.model/model/Gpfl.ecore"
@@ -9,118 +8,115 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 // -------------------------- STRUCTURE -------------------------- //
 
 Program:
-	{Program} "PROLOGUE" prologues+=Prologue* //filter=Filter?
+	{Program} "PROLOGUE" prologues+=Prologue* filter=Filter?
 ;
 	
 Prologue:
-	{Prologue} automataDefinition+=Automata* //| {Prologue} init=InitSeq?
+	{Prologue} automataDefinition+=Automata* | {Prologue} init=InitSeq?
 ;
 
-//InitSeq:
-//	"INIT" block=Block
-//;
-//
-//Filter:
-//	"FILTER" block=Block
-//;
+InitSeq:
+	"INIT" block=Block
+;
+
+Filter:
+	"FILTER" block=Block
+;
 
 // -------------------------- AUTOMATA -------------------------- //
 
 Automata:
-	"AUTOMATA" name=EString //"init" "=" initialState=[State|EString]? transitions+=Transition*
+	"AUTOMATA" name=STRING "init" "=" initialState=[State]? transitions+=Transition*
 ;
 
-//Transition:
-//	from=[State|EString] "-" name=EString "->" to=[State|EString]
-//;
-//
-//State:
-//	name=EString
-//;
-//
-//// -------------------------- BLOCK -------------------------- //
-//
-//Block:
-//	firstStmt=Stmt
-//;
-//
-//Stmt:
-//	StmtAtomic next=StmtAtomic?
-//;
-//
-//StmtAtomic returns Stmt:
-//	Cmd
-//	// if *checkCond* then do *statementCond* else do nothing
-//	| {Condition}"cond" "(" check=Expression "," block=Block ")"
-//	// loop on *statementIter* until *checkIter* is false
-//	| {Iteration} "iter" "(" check=Expression "," block=Block ")"
-//	// create an interruption every (if *loop* else once) *time* and execute *statement*
-//	| {NewInterruption} "newInterrupt" "(" time=INT "," loop=BoolConstant "," block=Block ")"
-//;
-//
-//Cmd:
-//	// does nothing
-//	{Nop} "nop" 
-//	// accept a packet
-//	| {Accept} "accept"
-//	// drop a packet 
-//	| {Drop} "drop" 
-//	// send the *fields* on *port*
-////	| {Send} "send" "(" port=PORT "," fields=EMap ")"
-//	// A PRECISER
-//	| {Alarm} "alarm" "(" message=EString ")"
-//	// set a (new) variable with a new state
-//	| {Set} "set" "(" name=VarIdConstant "," value=Expression ")"
-//	// associate an ID with an Automata previously created and designated by a name
-//	| {NewAutomata} "newAutomaton" "(" wordingAutomata=[Automata|EString] "," name=AutomatonIdConstant ")"
-//	// go trough a step of *automatonIdStep* on the *transition*  and execute *statment*
-//	| {StepAutomata} "step" "(" idAutomata=[NewAutomata|AutomatonIdConstant] "," transitionName=EString "," block=Block ")"
-//;
-//
-//// -------------------------- Expressions -------------------------- //
-//
-//Expression: Or; 
-//Or returns Expression:
-//	And ({Or.left=current} "|" right=And)* 
-//;
-//And returns Expression: 
-//	Equality ({And.left=current} "&" right=Equality)*
-//; 
-//Equality returns Expression: 
-//	Comparison ( ({Equality.left=current} "==" | {Inequality.left=current} "!=") right=Comparison )*
-//; 
-//Comparison returns Expression: 
-//	PlusOrMinus ( ({GreaterOrEqual.left=current} ">="| {LowerOrEqual.left=current} "<="| {Greater.left=current} ">"| {Lower.left=current} "<") right=PlusOrMinus )*
-//; 
-//PlusOrMinus returns Expression: 
-//	MulOrDiv ( ({Plus.left=current} '+' | {Minus.left=current} '-') right=MulOrDiv )*
-//; 
-//MulOrDiv returns Expression: 
-//	Primary ( ({Mult.left=current} '*' | {Div.left=current} '/') right=Primary )*
-//; 
-//Primary returns Expression: 
-//	'(' Expression ')' 
-//	| {Not} "!" expression=Primary 
-//	| Atomic 
-//;
-//
-//Atomic returns Expression:
-//	{IntConstant} value=IntConstant
-//	| {StringConstant} value=StringConstant
-//	| {BoolConstant} value=BoolConstant
-//	| {VarIdConstant} value=[Set|VarIdConstant]
-//	| {PortConstant} value=PortConstant
+Transition:
+	from=[State] "-" name=STRING "->" to=[State]
+;
+
+State:
+	name=STRING
+;
+
+// -------------------------- BLOCK -------------------------- //
+
+Block:
+	firstStmt=Stmt
+;
+
+Stmt:
+	StmtAtomic next=StmtAtomic?
+;
+
+StmtAtomic returns Stmt:
+	Cmd
+	// if *checkCond* then do *statementCond* else do nothing
+	| {Condition}"cond" "(" if=Expression "," then=Block ")"
+	// loop on *statementIter* until *checkIter* is false
+	| {Iteration} "iter" "(" while=Expression "," then=Block ")"
+	// create an interruption every (if *loop* else once) *time* and execute *statement*
+	| {NewInterruption} "newInterrupt" "(" time=INT "," loop=EBoolean "," block=Block ")"
+;
+
+Cmd:
+	// does nothing
+	{Nop} "nop" 
+	// accept a packet
+	| {Accept} "accept"
+	// drop a packet 
+	| {Drop} "drop" 
+	// send the *fields* on *port*
+//	| {Send} "send" "(" port=PORT "," fields=EMap ")"
+	// A PRECISER
+	| {Alarm} "alarm" "(" message=STRING ")"
+	// set a (new) variable with a new state
+	| {Set} "set" "(" name=ID "," value=Expression ")"
+	// associate an ID with an Automata previously created and designated by a name
+	| {NewAutomata} "newAutomaton" "(" value=[Automata] "," name=ID ")"
+	// go trough a step of *automatonIdStep* on the *transition*  and execute *statment*
+	| {StepAutomata} "step" "(" idAutomata=[NewAutomata] "," transitionName=STRING "," block=Block ")"
+;
+
+// -------------------------- Expressions -------------------------- //
+
+Expression: Or; 
+Or returns Expression:
+	And ({Or.left=current} "|" right=And)* 
+;
+And returns Expression: 
+	Equality ({And.left=current} "&" right=Equality)*
+; 
+Equality returns Expression: 
+	Comparison ( ({Equality.left=current} "==" | {Inequality.left=current} "!=") right=Comparison )*
+; 
+Comparison returns Expression: 
+	PlusOrMinus ( ({GreaterOrEqual.left=current} ">="| {LowerOrEqual.left=current} "<="| {Greater.left=current} ">"| {Lower.left=current} "<") right=PlusOrMinus )*
+; 
+PlusOrMinus returns Expression: 
+	MulOrDiv ( ({Plus.left=current} '+' | {Minus.left=current} '-') right=MulOrDiv )*
+; 
+MulOrDiv returns Expression: 
+	Primary ( ({Mult.left=current} '*' | {Div.left=current} '/') right=Primary )*
+; 
+Primary returns Expression: 
+	'(' Expression ')' 
+	| {Not} "!" expression=Primary 
+	| Atomic
+;
+
+Atomic returns Expression:
+	{IntLiteral} value=INT
+	| {StringLiteral} value=STRING
+	| {BooleanLiteral}"false" | isTrue="true"
+	| {VariableRef} value=[Set]
+	| {AutomataRef} "#" value=[NewAutomata]
+	| {PortLiteral}"outSide"|isInside="inSide"
 //	| {BuiltInIdConstant} value=BuiltInIdConstant
 //	| {FieldIdConstant} FieldIdConstant
-//	| {AutomatonIdConstant} value=[NewAutomata|AutomatonIdConstant]
-//;
-//
-//BoolConstant  returns ecore::EBoolean:"true" | "false";
-//IntConstant returns ecore::EInt:'-'? INT;
-//StringConstant returns ecore::EString: STRING;
-EString returns ecore::EString: STRING;
-//VarIdConstant returns ecore::EString: ID;
+;
+
+
 //FieldIdConstant returns ecore::EString: "$" ID;
-//AutomatonIdConstant returns ecore::EString: "#" ID;
-//PortConstant returns ecore::EString: "inSide"|"outSide";
 //BuiltInIdConstant returns ecore::EString: "_inPort";
+
+EBoolean returns ecore::EBoolean: 'true'|'false';
+EInt returns ecore::EInt: '-'INT;
