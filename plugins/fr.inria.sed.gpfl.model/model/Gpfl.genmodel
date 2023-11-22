@@ -15,8 +15,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Program/prologues"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Program/filter"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//Program/currentTime"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Program/packets"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Program/packets"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Program/interruptions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Program/variables"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Program/ports"/>
     </genClasses>
     <genClasses ecoreClass="Gpfl.ecore#//Prologue">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Prologue/automataDefinition"/>
@@ -45,16 +47,17 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//Alarm/message"/>
     </genClasses>
     <genClasses ecoreClass="Gpfl.ecore#//Send">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Send/port"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Send/port"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Send/packet"/>
     </genClasses>
     <genClasses ecoreClass="Gpfl.ecore#//Set">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Set/value"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//Set/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Set/declaration"/>
     </genClasses>
     <genClasses ecoreClass="Gpfl.ecore#//StepAutomata">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//StepAutomata/transitionName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//StepAutomata/block"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Gpfl.ecore#//StepAutomata/idAutomata"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//StepAutomata/transitionName"/>
     </genClasses>
     <genClasses ecoreClass="Gpfl.ecore#//Nop"/>
     <genClasses ecoreClass="Gpfl.ecore#//Accept"/>
@@ -94,12 +97,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//Packet/fields"/>
     </genClasses>
     <genClasses ecoreClass="Gpfl.ecore#//Expression"/>
-    <genClasses ecoreClass="Gpfl.ecore#//VariableRef">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//VariableRef/variable"/>
-    </genClasses>
-    <genClasses ecoreClass="Gpfl.ecore#//AutomataRef">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//AutomataRef/automata"/>
-    </genClasses>
     <genClasses ecoreClass="Gpfl.ecore#//UnaryOp">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//UnaryOp/expression"/>
     </genClasses>
@@ -107,8 +104,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//BinaryOp/left"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//BinaryOp/right"/>
     </genClasses>
-    <genClasses ecoreClass="Gpfl.ecore#//PortLiteral">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//PortLiteral/isInside"/>
+    <genClasses ecoreClass="Gpfl.ecore#//PortRef">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//PortRef/port"/>
     </genClasses>
     <genClasses ecoreClass="Gpfl.ecore#//StringLiteral">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//StringLiteral/value"/>
@@ -132,5 +129,24 @@
     <genClasses ecoreClass="Gpfl.ecore#//Minus"/>
     <genClasses ecoreClass="Gpfl.ecore#//Mult"/>
     <genClasses ecoreClass="Gpfl.ecore#//Div"/>
+    <genClasses ecoreClass="Gpfl.ecore#//Neg"/>
+    <genClasses ecoreClass="Gpfl.ecore#//VariableDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//VariableDeclaration/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//VariableRef">
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference Gpfl.ecore#//VariableRef/variableDeclaration"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//BooleanDec">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//BooleanDec/isTrue"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//IntegerDec">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//IntegerDec/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//StringDec">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//StringDec/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//Port">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//Port/name"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>
