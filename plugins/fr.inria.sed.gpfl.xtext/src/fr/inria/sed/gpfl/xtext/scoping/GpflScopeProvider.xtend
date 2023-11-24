@@ -3,6 +3,8 @@
  */
 package fr.inria.sed.gpfl.xtext.scoping
 
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EReference
 
 /**
  * This class contains custom scoping description.
@@ -11,5 +13,8 @@ package fr.inria.sed.gpfl.xtext.scoping
  * on how and when to use it.
  */
 class GpflScopeProvider extends AbstractGpflScopeProvider {
-
+	override getScope(EObject context, EReference reference) {
+		println("class from scop "+context)
+		super.getScope(context, reference)
+	}
 }

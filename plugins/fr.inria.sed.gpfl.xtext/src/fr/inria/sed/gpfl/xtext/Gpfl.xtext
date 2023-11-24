@@ -8,15 +8,15 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 // -------------------------- STRUCTURE -------------------------- //
 
 Program:
-	{Program} "PROLOGUE" prologues+=Prologue* filter=Filter?
+	{Program}  prologue=Prologue? filter=Filter?
 ;
 	
 Prologue:
-	{Prologue} automataDefinition+=Automata* | {Prologue} init=InitSeq?
+	{Prologue} "PROLOGUE" automataDefinition+=Automata* init=InitSeq?
 ;
 
 InitSeq:
-	"INIT" block=Block
+	{InitSeq} "INIT" block=Block?
 ;
 
 Filter:
@@ -26,15 +26,11 @@ Filter:
 // -------------------------- AUTOMATA -------------------------- //
 
 Automata:
-	"AUTOMATA" name=STRING "init" "=" initialState=[State]? transitions+=Transition*
+	"AUTOMATA" name=STRING "init" "=" initialState=[State|STRING]? transitions+=Transition*
 ;
 
 Transition:
-	from=[State] "-" name=STRING "->" to=[State]
-;
-
-State:
-	name=STRING
+	from=[State|STRING] "-" name=STRING "->" to=[State|STRING]
 ;
 
 // -------------------------- BLOCK -------------------------- //
@@ -44,7 +40,7 @@ Block:
 ;
 
 Stmt:
-	StmtAtomic next=StmtAtomic?
+	StmtAtomic next=Stmt?
 ;
 
 StmtAtomic returns Stmt:
@@ -69,11 +65,11 @@ Cmd:
 	// A PRECISER
 	| {Alarm} "alarm" "(" message=STRING ")"
 	// set a (new) variable with a new state
-	| {Set} "set" "(" name=ID "," value=Expression ")"
+	| {Set} "set" "(" declaration=[VariableDeclaration|ID] "," value=Expression ")"
 	// associate an ID with an Automata previously created and designated by a name
-	| {NewAutomata} "newAutomaton" "(" value=[Automata] "," name=ID ")"
+	| {NewAutomata} "newAutomaton" "(" value=[Automata|STRING] "," name=AUTOMATA_ID ")"
 	// go trough a step of *automatonIdStep* on the *transition*  and execute *statment*
-	| {StepAutomata} "step" "(" idAutomata=[NewAutomata] "," transitionName=STRING "," block=Block ")"
+	| {StepAutomata} "step" "(" idAutomata=[NewAutomata|AUTOMATA_ID] "," transitionName=[Transition|STRING] "," block=Block ")"
 ;
 
 // -------------------------- Expressions -------------------------- //
@@ -106,17 +102,15 @@ Primary returns Expression:
 Atomic returns Expression:
 	{IntLiteral} value=INT
 	| {StringLiteral} value=STRING
-	| {BooleanLiteral}"false" | isTrue="true"
-	| {VariableRef} value=[Set]
-	| {AutomataRef} "#" value=[NewAutomata]
-	| {PortLiteral}"outSide"|isInside="inSide"
-//	| {BuiltInIdConstant} value=BuiltInIdConstant
-//	| {FieldIdConstant} FieldIdConstant
+	| {BooleanLiteral}isTrue=EBoolean
+	| {VariableRef} variableDeclaration=[VariableDeclaration|ID]
+	| {PortRef} "_inPort" "==" port=[Port|Port]
+	| {FieldRef} field=[Field|FIELD_ID]
 ;
 
-
-//FieldIdConstant returns ecore::EString: "$" ID;
-//BuiltInIdConstant returns ecore::EString: "_inPort";
-
+Port:"inSide" | "outSide";
 EBoolean returns ecore::EBoolean: 'true'|'false';
-EInt returns ecore::EInt: '-'INT;
+@Override
+terminal INT returns ecore::EInt: "0" | "-"?('1'..'9')+;
+terminal AUTOMATA_ID returns ecore::EString: '#'ID;
+terminal FIELD_ID returns ecore::EString: '$'ID;

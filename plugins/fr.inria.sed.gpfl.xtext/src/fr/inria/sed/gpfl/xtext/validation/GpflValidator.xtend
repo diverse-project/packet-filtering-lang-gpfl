@@ -4,7 +4,6 @@
 package fr.inria.sed.gpfl.xtext.validation
 
 import org.eclipse.xtext.validation.Check
-import fr.inria.sed.gpfl.FieldIdConstant
 import fr.inria.sed.gpfl.GpflPackage
 
 /**
