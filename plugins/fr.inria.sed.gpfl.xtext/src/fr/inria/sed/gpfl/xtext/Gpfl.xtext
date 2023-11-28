@@ -65,10 +65,10 @@ Cmd:
 	// A PRECISER
 	| {Alarm} "alarm" "(" message=STRING ")"
 	// set a (new) variable with a new state
-	| {Set} "set" "(" declaration=[VariableDeclaration|ID] "," value=Expression ")"
+	| {SetVariable} "set" "(" declaration=[VariableDeclaration|ID] "," value=Expression ")"
 	// associate an ID with an Automata previously created and designated by a name
 	| {NewAutomata} "newAutomaton" "(" value=[Automata|STRING] "," name=AUTOMATA_ID ")"
-	// go trough a step of *automatonIdStep* on the *transition*  and execute *statment*
+	// go trough a step of *NewAutomata* on the *transition* and execute *block*
 	| {StepAutomata} "step" "(" idAutomata=[NewAutomata|AUTOMATA_ID] "," transitionName=[Transition|STRING] "," block=Block ")"
 ;
 

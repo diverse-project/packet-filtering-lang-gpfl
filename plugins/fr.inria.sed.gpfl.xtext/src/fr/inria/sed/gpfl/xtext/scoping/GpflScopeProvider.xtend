@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EReference
  */
 class GpflScopeProvider extends AbstractGpflScopeProvider {
 	override getScope(EObject context, EReference reference) {
-		println("class from scop "+context)
 		super.getScope(context, reference)
 	}
 }
