@@ -1,12 +1,12 @@
 PROLOGUE
 	AUTOMATA "DHCP incoming controller"
-		init = "0" 
-		"0" -"Disc" -> "1" 
-		"1" -"Req" -> "2" 
-		"1" -"Rej" -> "2"
-		"2" -"Ack" -> "0"
-		"0" -"Rel" -> "3"
-		"3" -"Ack" -> "0" 
+		init = "\"0\"" 
+		"\"0\"" -"Disc" -> "\"1\""
+		"\"1\"" -"Req" -> "\"2\"" 
+		"\"1\"" -"Rej" -> "\"2\""
+		"\"2\"" -"Ack" -> "\"0\""
+		"\"0\"" -"Rel" -> "\"3\""
+		"\"3\"" -"Ack" -> "\"0\"" 
 	INIT
 		newAutomaton("DHCP incoming controller", #A)
 		set(ignoredPktCnt, 0) 
@@ -16,14 +16,14 @@ PROLOGUE
 FILTER
 	cond(_inPort == inSide, 
 		cond(($pktType == "Ack") & ($clientId == currentClient),
-			step(#A, "Ack", nop) 
+			step(#A, "DHCP incoming controller.Ack", nop) 
 			set(currentClient, "")
 		)
 		accept
 	) 
 	cond( _inPort == outSide,
 		cond($pktType == "Disc",
-			step(#A, "Disc",
+			step(#A, "DHCP incoming controller.Disc",
 				set(ignoredPktCnt, ignoredPktCnt+1) 
 				cond(ignoredPktCnt >= ignoredPktThreshold,
 					alarm("Many external messages ignored!") 
@@ -54,7 +54,7 @@ FILTER
 			accept
 		)
 		cond($pktType == "Rel",
-			step(#A, "Rel",
+			step(#A, "DHCP incoming controller.Rel",
 				set(ignoredPktCnt, ignoredPktCnt+1)
 				cond(ignoredPktCnt >= ignoredPktThreshold,
 					alarm("Many external messages ignored!")
