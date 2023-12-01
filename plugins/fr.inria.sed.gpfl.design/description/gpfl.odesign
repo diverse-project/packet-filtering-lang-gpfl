@@ -3,7 +3,7 @@
   <ownedViewpoints name="GPFLAutomataViewPoint">
     <ownedRepresentations xsi:type="description_1:DiagramDescription" name="GPFLAutomataDiagram" domainClass="gpfl::Program" enablePopupBars="true">
       <defaultLayer name="Default">
-        <nodeMappings name="AutomataState" domainClass="gpfl::State">
+        <nodeMappings name="AutomataState" semanticCandidatesExpression="aql:self.eAllContents(gpfl::State)->select(s | self.eAllContents(gpfl::NewAutomata).value.eContents(gpfl::State)->excludes(s))" domainClass="gpfl::State">
           <style xsi:type="style:DotDescription" labelSize="12" sizeComputationExpression="5" labelPosition="node" resizeKind="NSEW" strokeSizeComputationExpression="3">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -17,15 +17,37 @@
             </style>
           </conditionnalStyles>
         </nodeMappings>
-        <edgeMappings name="AutomataTransition" sourceMapping="//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@nodeMappings[name='AutomataState']" targetMapping="//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@nodeMappings[name='AutomataState']" targetFinderExpression="aql:self.to">
+        <edgeMappings name="AutomataTransition" sourceMapping="//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@nodeMappings[name='AutomataState']" targetMapping="//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@nodeMappings[name='AutomataState']" targetFinderExpression="aql:self.eContainer().eContents()->filter(gpfl::Transition)->select(t |t.from == self).to">
           <style sizeComputationExpression="2">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
-            <centerLabelStyleDescription labelSize="12" labelExpression="aql:self.name">
+            <centerLabelStyleDescription labelSize="12" labelExpression="aql:self.eContainer().eContents()->filter(gpfl::Transition)->select(t | t.from == self).event.name.value">
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <containerMappings name="NewAutomata" domainClass="gpfl::NewAutomata" reusedNodeMappings="//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@nodeMappings[name='AutomataState']">
+        <edgeMappings name="InstanceAutomataTransition" sourceMapping="//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']" targetMapping="//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']" targetFinderExpression="aql:self.eContainer().eContents()->filter(gpfl::Transition)->select(t |t.from == self).to">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription labelSize="12" labelExpression="aql:self.eContainer().eContents()->filter(gpfl::Transition)->select(t | t.from == self).event.name.value">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <containerMappings name="NewAutomata" domainClass="gpfl::NewAutomata">
+          <subNodeMappings name="InstanceAutomataState" semanticCandidatesExpression="aql: self.value.states" domainClass="gpfl::State">
+            <style xsi:type="style:DotDescription" labelSize="12" sizeComputationExpression="5" labelPosition="node" resizeKind="NSEW" strokeSizeComputationExpression="3">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='yellow']"/>
+            </style>
+            <conditionnalStyles predicateExpression="aql:self.eContainer().initialState.name == self.name">
+              <style xsi:type="style:DotDescription" labelSize="12" sizeComputationExpression="5" labelPosition="node" resizeKind="NSEW" strokeSizeComputationExpression="3">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='orange']"/>
+              </style>
+            </conditionnalStyles>
+          </subNodeMappings>
           <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>

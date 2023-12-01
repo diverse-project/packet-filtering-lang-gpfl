@@ -5,6 +5,7 @@ package fr.inria.sed.gpfl.xtext
 
 import fr.inria.sed.gpfl.xtext.linking.GpflLinkingService
 import fr.inria.sed.gpfl.xtext.transientv.GpflTransientVariable
+import fr.inria.sed.gpfl.xtext.ast.GpflAstFactory
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -16,5 +17,9 @@ class GpflRuntimeModule extends AbstractGpflRuntimeModule {
 	
 	override bindITransientValueService(){
 		return GpflTransientVariable
+	}
+	
+	override bindIAstFactory() {
+		return GpflAstFactory
 	}
 }

@@ -1,0 +1,1182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:gpfl="http://www.inria.fr/sed/gpfl" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style">
+  <viewpoint:DAnalysis uid="_uNd00I9pEe6AcvBFpPyy7g" selectedViews="_ur3BAI9pEe6AcvBFpPyy7g" version="15.0.0.202201261500">
+    <semanticResources>complet.gpfl</semanticResources>
+    <semanticResources>basic.gpfl</semanticResources>
+    <ownedViews xmi:type="viewpoint:DView" uid="_ur3BAI9pEe6AcvBFpPyy7g">
+      <viewpoint xmi:type="description:Viewpoint" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']"/>
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_Z4iJwI9uEe6KnaH4AMqQvA" name="complet" repPath="#_Z4hisI9uEe6KnaH4AMqQvA" changeId="9932e140-8dc4-4daf-b176-29e91c97c7e4">
+        <description xmi:type="description_1:DiagramDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']"/>
+        <target xmi:type="gpfl:Program" href="complet.gpfl#/"/>
+      </ownedRepresentationDescriptors>
+    </ownedViews>
+  </viewpoint:DAnalysis>
+  <diagram:DSemanticDiagram uid="_Z4hisI9uEe6KnaH4AMqQvA">
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_Z4iw0I9uEe6KnaH4AMqQvA" source="GMF_DIAGRAMS">
+      <data xmi:type="notation:Diagram" xmi:id="_Z4iw0Y9uEe6KnaH4AMqQvA" type="Sirius" element="_Z4hisI9uEe6KnaH4AMqQvA" measurementUnit="Pixel">
+        <children xmi:type="notation:Node" xmi:id="_Z42S0I9uEe6KnaH4AMqQvA" type="2002" element="_Z4oQYI9uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z4254I9uEe6KnaH4AMqQvA" type="5006"/>
+          <children xmi:type="notation:Node" xmi:id="_Z4254Y9uEe6KnaH4AMqQvA" type="7001">
+            <children xmi:type="notation:Node" xmi:id="_Z44IBI9uEe6KnaH4AMqQvA" type="3007" element="_Z4pegI9uEe6KnaH4AMqQvA">
+              <children xmi:type="notation:Node" xmi:id="_Z44IB49uEe6KnaH4AMqQvA" type="5003">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_Z44ICI9uEe6KnaH4AMqQvA" y="5"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_Z44vF49uEe6KnaH4AMqQvA" type="3002" element="_Z4pegY9uEe6KnaH4AMqQvA">
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_Z44vGI9uEe6KnaH4AMqQvA" fontName="Noto Sans"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z44vGY9uEe6KnaH4AMqQvA"/>
+              </children>
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_Z44IBY9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z44IBo9uEe6KnaH4AMqQvA" x="31" y="114" width="50" height="50"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_Z44ICY9uEe6KnaH4AMqQvA" type="3007" element="_Z4peg49uEe6KnaH4AMqQvA">
+              <children xmi:type="notation:Node" xmi:id="_Z44IDI9uEe6KnaH4AMqQvA" type="5003">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_Z44IDY9uEe6KnaH4AMqQvA" y="5"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_Z44vGo9uEe6KnaH4AMqQvA" type="3002" element="_Z4qFkI9uEe6KnaH4AMqQvA">
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_Z44vG49uEe6KnaH4AMqQvA" fontName="Noto Sans"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z44vHI9uEe6KnaH4AMqQvA"/>
+              </children>
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_Z44ICo9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z44IC49uEe6KnaH4AMqQvA" x="139" y="30" width="50" height="50"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_Z44IDo9uEe6KnaH4AMqQvA" type="3007" element="_Z4qFko9uEe6KnaH4AMqQvA">
+              <children xmi:type="notation:Node" xmi:id="_Z44vEI9uEe6KnaH4AMqQvA" type="5003">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_Z44vEY9uEe6KnaH4AMqQvA" y="5"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_Z44vHY9uEe6KnaH4AMqQvA" type="3002" element="_Z4qFk49uEe6KnaH4AMqQvA">
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_Z44vHo9uEe6KnaH4AMqQvA" fontName="Noto Sans"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z44vH49uEe6KnaH4AMqQvA"/>
+              </children>
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_Z44ID49uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z44IEI9uEe6KnaH4AMqQvA" x="139" y="222" width="50" height="50"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_Z44vEo9uEe6KnaH4AMqQvA" type="3007" element="_Z4qFlY9uEe6KnaH4AMqQvA">
+              <children xmi:type="notation:Node" xmi:id="_Z44vFY9uEe6KnaH4AMqQvA" type="5003">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_Z44vFo9uEe6KnaH4AMqQvA" y="5"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_Z45WII9uEe6KnaH4AMqQvA" type="3002" element="_Z4qFlo9uEe6KnaH4AMqQvA">
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_Z45WIY9uEe6KnaH4AMqQvA" fontName="Noto Sans"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z45WIo9uEe6KnaH4AMqQvA"/>
+              </children>
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_Z44vE49uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z44vFI9uEe6KnaH4AMqQvA" x="31" y="30" width="50" height="50"/>
+            </children>
+            <styles xmi:type="notation:SortingStyle" xmi:id="_Z4254o9uEe6KnaH4AMqQvA"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_Z425449uEe6KnaH4AMqQvA"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_Z42S0Y9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z42S0o9uEe6KnaH4AMqQvA" x="720" y="360"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_Z4255I9uEe6KnaH4AMqQvA" type="2002" element="_Z4o3cI9uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z43g8I9uEe6KnaH4AMqQvA" type="5006"/>
+          <children xmi:type="notation:Node" xmi:id="_Z43g8Y9uEe6KnaH4AMqQvA" type="7001">
+            <children xmi:type="notation:Node" xmi:id="_Z45WI49uEe6KnaH4AMqQvA" type="3007" element="_Z4qsoI9uEe6KnaH4AMqQvA">
+              <children xmi:type="notation:Node" xmi:id="_Z45WJo9uEe6KnaH4AMqQvA" type="5003">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_Z45WJ49uEe6KnaH4AMqQvA" y="5"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_Z459Mo9uEe6KnaH4AMqQvA" type="3002" element="_Z4qsoY9uEe6KnaH4AMqQvA">
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_Z459M49uEe6KnaH4AMqQvA" fontName="Noto Sans"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z459NI9uEe6KnaH4AMqQvA"/>
+              </children>
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_Z45WJI9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z45WJY9uEe6KnaH4AMqQvA" x="31" y="114" width="50" height="50"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_Z45WKI9uEe6KnaH4AMqQvA" type="3007" element="_Z4qso49uEe6KnaH4AMqQvA">
+              <children xmi:type="notation:Node" xmi:id="_Z45WK49uEe6KnaH4AMqQvA" type="5003">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_Z45WLI9uEe6KnaH4AMqQvA" y="5"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_Z459NY9uEe6KnaH4AMqQvA" type="3002" element="_Z4qspI9uEe6KnaH4AMqQvA">
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_Z459No9uEe6KnaH4AMqQvA" fontName="Noto Sans"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z459N49uEe6KnaH4AMqQvA"/>
+              </children>
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_Z45WKY9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z45WKo9uEe6KnaH4AMqQvA" x="139" y="30" width="50" height="50"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_Z45WLY9uEe6KnaH4AMqQvA" type="3007" element="_Z4qspo9uEe6KnaH4AMqQvA">
+              <children xmi:type="notation:Node" xmi:id="_Z45WMI9uEe6KnaH4AMqQvA" type="5003">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_Z45WMY9uEe6KnaH4AMqQvA" y="5"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_Z459OI9uEe6KnaH4AMqQvA" type="3002" element="_Z4qsp49uEe6KnaH4AMqQvA">
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_Z459OY9uEe6KnaH4AMqQvA" fontName="Noto Sans"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z459Oo9uEe6KnaH4AMqQvA"/>
+              </children>
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_Z45WLo9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z45WL49uEe6KnaH4AMqQvA" x="139" y="222" width="50" height="50"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_Z45WMo9uEe6KnaH4AMqQvA" type="3007" element="_Z4rTsY9uEe6KnaH4AMqQvA">
+              <children xmi:type="notation:Node" xmi:id="_Z459MI9uEe6KnaH4AMqQvA" type="5003">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_Z459MY9uEe6KnaH4AMqQvA" y="5"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_Z459O49uEe6KnaH4AMqQvA" type="3002" element="_Z4rTso9uEe6KnaH4AMqQvA">
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_Z459PI9uEe6KnaH4AMqQvA" fontName="Noto Sans"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z459PY9uEe6KnaH4AMqQvA"/>
+              </children>
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_Z45WM49uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z45WNI9uEe6KnaH4AMqQvA" x="31" y="30" width="50" height="50"/>
+            </children>
+            <styles xmi:type="notation:SortingStyle" xmi:id="_Z43g8o9uEe6KnaH4AMqQvA"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_Z43g849uEe6KnaH4AMqQvA"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_Z4255Y9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z4255o9uEe6KnaH4AMqQvA" x="720"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_Z43g9I9uEe6KnaH4AMqQvA" type="2002" element="_Z4o3c49uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z43g949uEe6KnaH4AMqQvA" type="5006"/>
+          <children xmi:type="notation:Node" xmi:id="_Z43g-I9uEe6KnaH4AMqQvA" type="7001">
+            <children xmi:type="notation:Node" xmi:id="_Z46kQI9uEe6KnaH4AMqQvA" type="3007" element="_Z4rTtI9uEe6KnaH4AMqQvA">
+              <children xmi:type="notation:Node" xmi:id="_Z46kQ49uEe6KnaH4AMqQvA" type="5003">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_Z46kRI9uEe6KnaH4AMqQvA" y="5"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_Z47yZ49uEe6KnaH4AMqQvA" type="3002" element="_Z4r6wI9uEe6KnaH4AMqQvA">
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_Z47yaI9uEe6KnaH4AMqQvA" fontName="Noto Sans"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z47yaY9uEe6KnaH4AMqQvA"/>
+              </children>
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_Z46kQY9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z46kQo9uEe6KnaH4AMqQvA" x="139" y="222" width="50" height="50"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_Z46kRY9uEe6KnaH4AMqQvA" type="3007" element="_Z4r6wo9uEe6KnaH4AMqQvA">
+              <children xmi:type="notation:Node" xmi:id="_Z47LUI9uEe6KnaH4AMqQvA" type="5003">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_Z47LUY9uEe6KnaH4AMqQvA" y="5"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_Z47yao9uEe6KnaH4AMqQvA" type="3002" element="_Z4r6w49uEe6KnaH4AMqQvA">
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_Z47ya49uEe6KnaH4AMqQvA" fontName="Noto Sans"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z47ybI9uEe6KnaH4AMqQvA"/>
+              </children>
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_Z46kRo9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z46kR49uEe6KnaH4AMqQvA" x="139" y="30" width="50" height="50"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_Z47LUo9uEe6KnaH4AMqQvA" type="3007" element="_Z4sh0Y9uEe6KnaH4AMqQvA">
+              <children xmi:type="notation:Node" xmi:id="_Z47yYI9uEe6KnaH4AMqQvA" type="5003">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_Z47yYY9uEe6KnaH4AMqQvA" y="5"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_Z48ZcI9uEe6KnaH4AMqQvA" type="3002" element="_Z4sh0o9uEe6KnaH4AMqQvA">
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_Z48ZcY9uEe6KnaH4AMqQvA" fontName="Noto Sans"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z48Zco9uEe6KnaH4AMqQvA"/>
+              </children>
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_Z47LU49uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z47LVI9uEe6KnaH4AMqQvA" x="331" y="330" width="50" height="50"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_Z47yYo9uEe6KnaH4AMqQvA" type="3007" element="_Z4sh1I9uEe6KnaH4AMqQvA">
+              <children xmi:type="notation:Node" xmi:id="_Z47yZY9uEe6KnaH4AMqQvA" type="5003">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_Z47yZo9uEe6KnaH4AMqQvA" y="5"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_Z48Zc49uEe6KnaH4AMqQvA" type="3002" element="_Z4sh1Y9uEe6KnaH4AMqQvA">
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_Z48ZdI9uEe6KnaH4AMqQvA" fontName="Noto Sans"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z48ZdY9uEe6KnaH4AMqQvA"/>
+              </children>
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_Z47yY49uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z47yZI9uEe6KnaH4AMqQvA" x="31" y="114" width="50" height="50"/>
+            </children>
+            <styles xmi:type="notation:SortingStyle" xmi:id="_Z43g-Y9uEe6KnaH4AMqQvA"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_Z43g-o9uEe6KnaH4AMqQvA"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_Z43g9Y9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z43g9o9uEe6KnaH4AMqQvA"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_Z43g-49uEe6KnaH4AMqQvA" type="2002" element="_Z4o3do9uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z44IAI9uEe6KnaH4AMqQvA" type="5006"/>
+          <children xmi:type="notation:Node" xmi:id="_Z44IAY9uEe6KnaH4AMqQvA" type="7001">
+            <children xmi:type="notation:Node" xmi:id="_Z48Zdo9uEe6KnaH4AMqQvA" type="3007" element="_Z4tI4I9uEe6KnaH4AMqQvA">
+              <children xmi:type="notation:Node" xmi:id="_Z48ZeY9uEe6KnaH4AMqQvA" type="5003">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_Z48Zeo9uEe6KnaH4AMqQvA" y="5"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_Z49AjI9uEe6KnaH4AMqQvA" type="3002" element="_Z4tI4Y9uEe6KnaH4AMqQvA">
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_Z49AjY9uEe6KnaH4AMqQvA" fontName="Noto Sans"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z49Ajo9uEe6KnaH4AMqQvA"/>
+              </children>
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_Z48Zd49uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z48ZeI9uEe6KnaH4AMqQvA" x="31" y="114" width="50" height="50"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_Z48Ze49uEe6KnaH4AMqQvA" type="3007" element="_Z4tI449uEe6KnaH4AMqQvA">
+              <children xmi:type="notation:Node" xmi:id="_Z49AgI9uEe6KnaH4AMqQvA" type="5003">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_Z49AgY9uEe6KnaH4AMqQvA" y="5"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_Z49nkI9uEe6KnaH4AMqQvA" type="3002" element="_Z4tI5I9uEe6KnaH4AMqQvA">
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_Z49nkY9uEe6KnaH4AMqQvA" fontName="Noto Sans"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z49nko9uEe6KnaH4AMqQvA"/>
+              </children>
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_Z48ZfI9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z48ZfY9uEe6KnaH4AMqQvA" x="151" y="30" width="50" height="50"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_Z49Ago9uEe6KnaH4AMqQvA" type="3007" element="_Z4tI5o9uEe6KnaH4AMqQvA">
+              <children xmi:type="notation:Node" xmi:id="_Z49AhY9uEe6KnaH4AMqQvA" type="5003">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_Z49Aho9uEe6KnaH4AMqQvA" y="5"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_Z49nk49uEe6KnaH4AMqQvA" type="3002" element="_Z4tv8I9uEe6KnaH4AMqQvA">
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_Z49nlI9uEe6KnaH4AMqQvA" fontName="Noto Sans"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z49nlY9uEe6KnaH4AMqQvA"/>
+              </children>
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_Z49Ag49uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z49AhI9uEe6KnaH4AMqQvA" x="151" y="222" width="50" height="50"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_Z49Ah49uEe6KnaH4AMqQvA" type="3007" element="_Z4tv8o9uEe6KnaH4AMqQvA">
+              <children xmi:type="notation:Node" xmi:id="_Z49Aio9uEe6KnaH4AMqQvA" type="5003">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_Z49Ai49uEe6KnaH4AMqQvA" y="5"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_Z49nlo9uEe6KnaH4AMqQvA" type="3002" element="_Z4tv849uEe6KnaH4AMqQvA">
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_Z49nl49uEe6KnaH4AMqQvA" fontName="Noto Sans"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z49nmI9uEe6KnaH4AMqQvA"/>
+              </children>
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_Z49AiI9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z49AiY9uEe6KnaH4AMqQvA" x="31" y="30" width="50" height="50"/>
+            </children>
+            <styles xmi:type="notation:SortingStyle" xmi:id="_Z44IAo9uEe6KnaH4AMqQvA"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_Z44IA49uEe6KnaH4AMqQvA"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_Z43g_I9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z43g_Y9uEe6KnaH4AMqQvA" x="468"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_YxfN4I-JEe6kLeQ0P7BsVg" type="2001" element="_YwDqgI-JEe6kLeQ0P7BsVg">
+          <children xmi:type="notation:Node" xmi:id="_YxhqII-JEe6kLeQ0P7BsVg" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_YxhqIY-JEe6kLeQ0P7BsVg" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Yxi4QI-JEe6kLeQ0P7BsVg" type="3002" element="_YwFfsI-JEe6kLeQ0P7BsVg">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_Yxi4QY-JEe6kLeQ0P7BsVg" fontName="Noto Sans"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Yxi4Qo-JEe6kLeQ0P7BsVg"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_YxfN4Y-JEe6kLeQ0P7BsVg" fontName="Noto Sans" fontHeight="12"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YxfN4o-JEe6kLeQ0P7BsVg" x="-84" y="-84" width="50" height="50"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_YxiRMI-JEe6kLeQ0P7BsVg" type="2001" element="_YwHU4I-JEe6kLeQ0P7BsVg">
+          <children xmi:type="notation:Node" xmi:id="_YxiRM4-JEe6kLeQ0P7BsVg" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_YxiRNI-JEe6kLeQ0P7BsVg" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Yxi4Q4-JEe6kLeQ0P7BsVg" type="3002" element="_YwHU4Y-JEe6kLeQ0P7BsVg">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_Yxi4RI-JEe6kLeQ0P7BsVg" fontName="Noto Sans"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Yxi4RY-JEe6kLeQ0P7BsVg"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_YxiRMY-JEe6kLeQ0P7BsVg" fontName="Noto Sans" fontHeight="12"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YxiRMo-JEe6kLeQ0P7BsVg" x="-84" y="-192" width="50" height="50"/>
+        </children>
+        <styles xmi:type="notation:DiagramStyle" xmi:id="_Z4iw0o9uEe6KnaH4AMqQvA"/>
+        <edges xmi:type="notation:Edge" xmi:id="_Z4-OoI9uEe6KnaH4AMqQvA" type="4001" element="_Z4uXAI9uEe6KnaH4AMqQvA" source="_Z44IBI9uEe6KnaH4AMqQvA" target="_Z44ICY9uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z4-OpI9uEe6KnaH4AMqQvA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z4-OpY9uEe6KnaH4AMqQvA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z4-Opo9uEe6KnaH4AMqQvA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z4-Op49uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z4-OqI9uEe6KnaH4AMqQvA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z4-OqY9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Z4-OoY9uEe6KnaH4AMqQvA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Z4-Ooo9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z4-Oo49uEe6KnaH4AMqQvA" points="[0, 0, -145, 60]$[145, -60, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z4-Oqo9uEe6KnaH4AMqQvA" id="(0.5,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z4-1sI9uEe6KnaH4AMqQvA" id="(0.5,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Z4-1sY9uEe6KnaH4AMqQvA" type="4001" element="_Z4u-E49uEe6KnaH4AMqQvA" source="_Z44IBI9uEe6KnaH4AMqQvA" target="_Z45WKI9uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z4-1tY9uEe6KnaH4AMqQvA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z4-1to9uEe6KnaH4AMqQvA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z4-1t49uEe6KnaH4AMqQvA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z4-1uI9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z4-1uY9uEe6KnaH4AMqQvA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z4-1uo9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Z4-1so9uEe6KnaH4AMqQvA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Z4-1s49uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z4-1tI9uEe6KnaH4AMqQvA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z4-1u49uEe6KnaH4AMqQvA" id="(0.5,0.5)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z4-1vI9uEe6KnaH4AMqQvA" id="(0.5,0.5)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Z4-1vY9uEe6KnaH4AMqQvA" type="4001" element="_Z4u-GI9uEe6KnaH4AMqQvA" source="_Z44IBI9uEe6KnaH4AMqQvA" target="_Z44vEo9uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z4-1wY9uEe6KnaH4AMqQvA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z4-1wo9uEe6KnaH4AMqQvA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z4_cwI9uEe6KnaH4AMqQvA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z4_cwY9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z4_cwo9uEe6KnaH4AMqQvA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z4_cw49uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Z4-1vo9uEe6KnaH4AMqQvA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Z4-1v49uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z4-1wI9uEe6KnaH4AMqQvA" points="[0, 0, 0, 60]$[0, -60, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z4_cxI9uEe6KnaH4AMqQvA" id="(0.5,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z4_cxY9uEe6KnaH4AMqQvA" id="(0.5,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Z4_cxo9uEe6KnaH4AMqQvA" type="4001" element="_Z4vlJI9uEe6KnaH4AMqQvA" source="_Z44IBI9uEe6KnaH4AMqQvA" target="_Z45WMo9uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z4_cyo9uEe6KnaH4AMqQvA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z4_cy49uEe6KnaH4AMqQvA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z4_czI9uEe6KnaH4AMqQvA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z4_czY9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z4_czo9uEe6KnaH4AMqQvA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z4_cz49uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Z4_cx49uEe6KnaH4AMqQvA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Z4_cyI9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z4_cyY9uEe6KnaH4AMqQvA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5AD0I9uEe6KnaH4AMqQvA" id="(0.5,0.5)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5AD0Y9uEe6KnaH4AMqQvA" id="(0.5,0.5)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Z5AD0o9uEe6KnaH4AMqQvA" type="4001" element="_Z4vlKY9uEe6KnaH4AMqQvA" source="_Z44ICY9uEe6KnaH4AMqQvA" target="_Z44IDo9uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z5AD1o9uEe6KnaH4AMqQvA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5AD149uEe6KnaH4AMqQvA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5AD2I9uEe6KnaH4AMqQvA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5AD2Y9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5AD2o9uEe6KnaH4AMqQvA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5AD249uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Z5AD049uEe6KnaH4AMqQvA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Z5AD1I9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z5AD1Y9uEe6KnaH4AMqQvA" points="[0, 0, 0, -170]$[0, 170, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5Aq4I9uEe6KnaH4AMqQvA" id="(0.5,1.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5Aq4Y9uEe6KnaH4AMqQvA" id="(0.5,0.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Z5Aq4o9uEe6KnaH4AMqQvA" type="4001" element="_Z4vlLo9uEe6KnaH4AMqQvA" source="_Z44ICY9uEe6KnaH4AMqQvA" target="_Z45WLY9uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z5Aq5o9uEe6KnaH4AMqQvA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5Aq549uEe6KnaH4AMqQvA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5Aq6I9uEe6KnaH4AMqQvA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5Aq6Y9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5Aq6o9uEe6KnaH4AMqQvA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5Aq649uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Z5Aq449uEe6KnaH4AMqQvA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Z5Aq5I9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z5Aq5Y9uEe6KnaH4AMqQvA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5Aq7I9uEe6KnaH4AMqQvA" id="(0.5,0.5)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5Aq7Y9uEe6KnaH4AMqQvA" id="(0.5,0.5)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Z5Aq7o9uEe6KnaH4AMqQvA" type="4001" element="_Z4wMMo9uEe6KnaH4AMqQvA" source="_Z44IDo9uEe6KnaH4AMqQvA" target="_Z44IBI9uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z5Aq8o9uEe6KnaH4AMqQvA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5Aq849uEe6KnaH4AMqQvA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5Aq9I9uEe6KnaH4AMqQvA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5Aq9Y9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5Aq9o9uEe6KnaH4AMqQvA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5Aq949uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Z5Aq749uEe6KnaH4AMqQvA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Z5Aq8I9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z5Aq8Y9uEe6KnaH4AMqQvA" points="[0, 0, 145, 60]$[-145, -60, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5BR8I9uEe6KnaH4AMqQvA" id="(0.5,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5BR8Y9uEe6KnaH4AMqQvA" id="(0.5,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Z5BR8o9uEe6KnaH4AMqQvA" type="4001" element="_Z4wMN49uEe6KnaH4AMqQvA" source="_Z44IDo9uEe6KnaH4AMqQvA" target="_Z45WI49uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z5BR9o9uEe6KnaH4AMqQvA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5BR949uEe6KnaH4AMqQvA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5BR-I9uEe6KnaH4AMqQvA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5BR-Y9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5BR-o9uEe6KnaH4AMqQvA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5BR-49uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Z5BR849uEe6KnaH4AMqQvA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Z5BR9I9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z5BR9Y9uEe6KnaH4AMqQvA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5BR_I9uEe6KnaH4AMqQvA" id="(0.5,0.5)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5BR_Y9uEe6KnaH4AMqQvA" id="(0.5,0.5)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Z5BR_o9uEe6KnaH4AMqQvA" type="4001" element="_Z4wMPI9uEe6KnaH4AMqQvA" source="_Z44vEo9uEe6KnaH4AMqQvA" target="_Z44IBI9uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z5BSAo9uEe6KnaH4AMqQvA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5BSA49uEe6KnaH4AMqQvA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5B5AI9uEe6KnaH4AMqQvA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5B5AY9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5B5Ao9uEe6KnaH4AMqQvA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5B5A49uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Z5BR_49uEe6KnaH4AMqQvA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Z5BSAI9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z5BSAY9uEe6KnaH4AMqQvA" points="[0, 0, 0, -60]$[0, 60, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5B5BI9uEe6KnaH4AMqQvA" id="(0.5,1.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5B5BY9uEe6KnaH4AMqQvA" id="(0.5,0.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Z5B5Bo9uEe6KnaH4AMqQvA" type="4001" element="_Z4wzQI9uEe6KnaH4AMqQvA" source="_Z44vEo9uEe6KnaH4AMqQvA" target="_Z45WI49uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z5B5Co9uEe6KnaH4AMqQvA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5B5C49uEe6KnaH4AMqQvA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5B5DI9uEe6KnaH4AMqQvA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5B5DY9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5B5Do9uEe6KnaH4AMqQvA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5B5D49uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Z5B5B49uEe6KnaH4AMqQvA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Z5B5CI9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z5B5CY9uEe6KnaH4AMqQvA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5B5EI9uEe6KnaH4AMqQvA" id="(0.5,0.5)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5B5EY9uEe6KnaH4AMqQvA" id="(0.5,0.5)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Z5B5Eo9uEe6KnaH4AMqQvA" type="4001" element="_Z4wzRY9uEe6KnaH4AMqQvA" source="_Z45WI49uEe6KnaH4AMqQvA" target="_Z44ICY9uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z5CgEI9uEe6KnaH4AMqQvA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5CgEY9uEe6KnaH4AMqQvA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5CgEo9uEe6KnaH4AMqQvA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5CgE49uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5CgFI9uEe6KnaH4AMqQvA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5CgFY9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Z5B5E49uEe6KnaH4AMqQvA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Z5B5FI9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z5B5FY9uEe6KnaH4AMqQvA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5CgFo9uEe6KnaH4AMqQvA" id="(0.5,0.5)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5CgF49uEe6KnaH4AMqQvA" id="(0.5,0.5)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Z5CgGI9uEe6KnaH4AMqQvA" type="4001" element="_Z4wzSo9uEe6KnaH4AMqQvA" source="_Z45WI49uEe6KnaH4AMqQvA" target="_Z45WKI9uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z5CgHI9uEe6KnaH4AMqQvA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5CgHY9uEe6KnaH4AMqQvA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5CgHo9uEe6KnaH4AMqQvA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5CgH49uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5CgII9uEe6KnaH4AMqQvA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5CgIY9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Z5CgGY9uEe6KnaH4AMqQvA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Z5CgGo9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z5CgG49uEe6KnaH4AMqQvA" points="[0, 0, -145, 60]$[145, -60, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5CgIo9uEe6KnaH4AMqQvA" id="(0.5,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5CgI49uEe6KnaH4AMqQvA" id="(0.5,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Z5CgJI9uEe6KnaH4AMqQvA" type="4001" element="_Z4wzT49uEe6KnaH4AMqQvA" source="_Z45WI49uEe6KnaH4AMqQvA" target="_Z44vEo9uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z5DHII9uEe6KnaH4AMqQvA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5DHIY9uEe6KnaH4AMqQvA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5DHIo9uEe6KnaH4AMqQvA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5DHI49uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5DHJI9uEe6KnaH4AMqQvA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5DHJY9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Z5CgJY9uEe6KnaH4AMqQvA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Z5CgJo9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z5CgJ49uEe6KnaH4AMqQvA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5DHJo9uEe6KnaH4AMqQvA" id="(0.5,0.5)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5DHJ49uEe6KnaH4AMqQvA" id="(0.5,0.5)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Z5DHKI9uEe6KnaH4AMqQvA" type="4001" element="_Z4xaVI9uEe6KnaH4AMqQvA" source="_Z45WI49uEe6KnaH4AMqQvA" target="_Z45WMo9uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z5DHLI9uEe6KnaH4AMqQvA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5DHLY9uEe6KnaH4AMqQvA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5DHLo9uEe6KnaH4AMqQvA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5DHL49uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5DHMI9uEe6KnaH4AMqQvA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5DHMY9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Z5DHKY9uEe6KnaH4AMqQvA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Z5DHKo9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z5DHK49uEe6KnaH4AMqQvA" points="[0, 0, 0, 60]$[0, -60, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5DHMo9uEe6KnaH4AMqQvA" id="(0.5,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5DHM49uEe6KnaH4AMqQvA" id="(0.5,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Z5DHNI9uEe6KnaH4AMqQvA" type="4001" element="_Z4xaWY9uEe6KnaH4AMqQvA" source="_Z45WKI9uEe6KnaH4AMqQvA" target="_Z44IDo9uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z5DuMI9uEe6KnaH4AMqQvA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5DuMY9uEe6KnaH4AMqQvA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5DuMo9uEe6KnaH4AMqQvA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5DuM49uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5DuNI9uEe6KnaH4AMqQvA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5DuNY9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Z5DHNY9uEe6KnaH4AMqQvA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Z5DHNo9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z5DHN49uEe6KnaH4AMqQvA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5DuNo9uEe6KnaH4AMqQvA" id="(0.5,0.5)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5DuN49uEe6KnaH4AMqQvA" id="(0.5,0.5)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Z5DuOI9uEe6KnaH4AMqQvA" type="4001" element="_Z4xaXo9uEe6KnaH4AMqQvA" source="_Z45WKI9uEe6KnaH4AMqQvA" target="_Z45WLY9uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z5DuPI9uEe6KnaH4AMqQvA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5DuPY9uEe6KnaH4AMqQvA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5DuPo9uEe6KnaH4AMqQvA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5DuP49uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5DuQI9uEe6KnaH4AMqQvA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5DuQY9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Z5DuOY9uEe6KnaH4AMqQvA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Z5DuOo9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z5DuO49uEe6KnaH4AMqQvA" points="[0, 0, 0, -170]$[0, 170, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5DuQo9uEe6KnaH4AMqQvA" id="(0.5,1.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5DuQ49uEe6KnaH4AMqQvA" id="(0.5,0.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Z5DuRI9uEe6KnaH4AMqQvA" type="4001" element="_Z4yBZI9uEe6KnaH4AMqQvA" source="_Z45WLY9uEe6KnaH4AMqQvA" target="_Z44IBI9uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z5EVQI9uEe6KnaH4AMqQvA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5EVQY9uEe6KnaH4AMqQvA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5EVQo9uEe6KnaH4AMqQvA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5EVQ49uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5EVRI9uEe6KnaH4AMqQvA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5EVRY9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Z5DuRY9uEe6KnaH4AMqQvA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Z5DuRo9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z5DuR49uEe6KnaH4AMqQvA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5EVRo9uEe6KnaH4AMqQvA" id="(0.5,0.5)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5EVR49uEe6KnaH4AMqQvA" id="(0.5,0.5)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Z5EVSI9uEe6KnaH4AMqQvA" type="4001" element="_Z4yBaY9uEe6KnaH4AMqQvA" source="_Z45WLY9uEe6KnaH4AMqQvA" target="_Z45WI49uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z5EVTI9uEe6KnaH4AMqQvA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5EVTY9uEe6KnaH4AMqQvA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5EVTo9uEe6KnaH4AMqQvA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5EVT49uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5EVUI9uEe6KnaH4AMqQvA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5EVUY9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Z5EVSY9uEe6KnaH4AMqQvA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Z5EVSo9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z5EVS49uEe6KnaH4AMqQvA" points="[0, 0, 145, 60]$[-145, -60, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5E8UI9uEe6KnaH4AMqQvA" id="(0.5,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5E8UY9uEe6KnaH4AMqQvA" id="(0.5,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Z5E8Uo9uEe6KnaH4AMqQvA" type="4001" element="_Z4yBbo9uEe6KnaH4AMqQvA" source="_Z45WMo9uEe6KnaH4AMqQvA" target="_Z44IBI9uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z5E8Vo9uEe6KnaH4AMqQvA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5E8V49uEe6KnaH4AMqQvA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5E8WI9uEe6KnaH4AMqQvA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5E8WY9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5E8Wo9uEe6KnaH4AMqQvA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5E8W49uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Z5E8U49uEe6KnaH4AMqQvA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Z5E8VI9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z5E8VY9uEe6KnaH4AMqQvA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5E8XI9uEe6KnaH4AMqQvA" id="(0.5,0.5)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5E8XY9uEe6KnaH4AMqQvA" id="(0.5,0.5)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Z5E8Xo9uEe6KnaH4AMqQvA" type="4001" element="_Z4yocI9uEe6KnaH4AMqQvA" source="_Z45WMo9uEe6KnaH4AMqQvA" target="_Z45WI49uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z5E8Yo9uEe6KnaH4AMqQvA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5E8Y49uEe6KnaH4AMqQvA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5E8ZI9uEe6KnaH4AMqQvA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5E8ZY9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5E8Zo9uEe6KnaH4AMqQvA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5E8Z49uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Z5E8X49uEe6KnaH4AMqQvA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Z5E8YI9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z5E8YY9uEe6KnaH4AMqQvA" points="[0, 0, 0, -60]$[0, 60, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5FjYI9uEe6KnaH4AMqQvA" id="(0.5,1.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5FjYY9uEe6KnaH4AMqQvA" id="(0.5,0.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Z5FjYo9uEe6KnaH4AMqQvA" type="4001" element="_Z4yodY9uEe6KnaH4AMqQvA" source="_Z46kQI9uEe6KnaH4AMqQvA" target="_Z46kRY9uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z5FjZo9uEe6KnaH4AMqQvA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5FjZ49uEe6KnaH4AMqQvA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5FjaI9uEe6KnaH4AMqQvA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5FjaY9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5Fjao9uEe6KnaH4AMqQvA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5Fja49uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Z5FjY49uEe6KnaH4AMqQvA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Z5FjZI9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z5FjZY9uEe6KnaH4AMqQvA" points="[0, 0, 0, 170]$[0, -170, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5FjbI9uEe6KnaH4AMqQvA" id="(0.5,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5FjbY9uEe6KnaH4AMqQvA" id="(0.5,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Z5Fjbo9uEe6KnaH4AMqQvA" type="4001" element="_Z4yoeo9uEe6KnaH4AMqQvA" source="_Z46kQI9uEe6KnaH4AMqQvA" target="_Z47yYo9uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z5Fjco9uEe6KnaH4AMqQvA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5Fjc49uEe6KnaH4AMqQvA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5FjdI9uEe6KnaH4AMqQvA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5FjdY9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5Fjdo9uEe6KnaH4AMqQvA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5Fjd49uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Z5Fjb49uEe6KnaH4AMqQvA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Z5FjcI9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z5FjcY9uEe6KnaH4AMqQvA" points="[0, 0, 145, 60]$[-145, -60, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5FjeI9uEe6KnaH4AMqQvA" id="(0.5,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5FjeY9uEe6KnaH4AMqQvA" id="(0.5,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Z5GKcI9uEe6KnaH4AMqQvA" type="4001" element="_Z4zPgI9uEe6KnaH4AMqQvA" source="_Z46kRY9uEe6KnaH4AMqQvA" target="_Z47LUo9uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z5GKdI9uEe6KnaH4AMqQvA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5GKdY9uEe6KnaH4AMqQvA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5GKdo9uEe6KnaH4AMqQvA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5GKd49uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5GKeI9uEe6KnaH4AMqQvA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5GKeY9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Z5GKcY9uEe6KnaH4AMqQvA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Z5GKco9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z5GKc49uEe6KnaH4AMqQvA" points="[0, 0, -181, -280]$[180, 60, -1, -220]$[181, 280, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5GKeo9uEe6KnaH4AMqQvA" id="(0.5,1.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5GKe49uEe6KnaH4AMqQvA" id="(0.5,0.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Z5GKfI9uEe6KnaH4AMqQvA" type="4001" element="_Z4zPhY9uEe6KnaH4AMqQvA" source="_Z47LUo9uEe6KnaH4AMqQvA" target="_Z46kQI9uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z5GKgI9uEe6KnaH4AMqQvA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5GKgY9uEe6KnaH4AMqQvA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5GKgo9uEe6KnaH4AMqQvA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5GKg49uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5GKhI9uEe6KnaH4AMqQvA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5GKhY9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Z5GKfY9uEe6KnaH4AMqQvA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Z5GKfo9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z5GKf49uEe6KnaH4AMqQvA" points="[0, 0, 181, 60]$[-181, -60, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5GKho9uEe6KnaH4AMqQvA" id="(0.5,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5GKh49uEe6KnaH4AMqQvA" id="(0.5,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Z5GKiI9uEe6KnaH4AMqQvA" type="4001" element="_Z4zPio9uEe6KnaH4AMqQvA" source="_Z47yYo9uEe6KnaH4AMqQvA" target="_Z46kRY9uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z5GxgI9uEe6KnaH4AMqQvA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5GxgY9uEe6KnaH4AMqQvA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5Gxgo9uEe6KnaH4AMqQvA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5Gxg49uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5GxhI9uEe6KnaH4AMqQvA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5GxhY9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Z5GKiY9uEe6KnaH4AMqQvA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Z5GKio9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z5GKi49uEe6KnaH4AMqQvA" points="[0, 0, -145, 60]$[145, -60, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5Gxho9uEe6KnaH4AMqQvA" id="(0.5,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5Gxh49uEe6KnaH4AMqQvA" id="(0.5,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Z5GxiI9uEe6KnaH4AMqQvA" type="4001" element="_Z4z2lI9uEe6KnaH4AMqQvA" source="_Z48Zdo9uEe6KnaH4AMqQvA" target="_Z48Ze49uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z5GxjI9uEe6KnaH4AMqQvA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5GxjY9uEe6KnaH4AMqQvA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5Gxjo9uEe6KnaH4AMqQvA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5Gxj49uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5GxkI9uEe6KnaH4AMqQvA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5GxkY9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Z5GxiY9uEe6KnaH4AMqQvA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Z5Gxio9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z5Gxi49uEe6KnaH4AMqQvA" points="[0, 0, -145, 60]$[145, -60, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5Gxko9uEe6KnaH4AMqQvA" id="(0.5,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5Gxk49uEe6KnaH4AMqQvA" id="(0.5,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Z5GxlI9uEe6KnaH4AMqQvA" type="4001" element="_Z40doI9uEe6KnaH4AMqQvA" source="_Z48Zdo9uEe6KnaH4AMqQvA" target="_Z49Ah49uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z5HYkI9uEe6KnaH4AMqQvA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5HYkY9uEe6KnaH4AMqQvA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5HYko9uEe6KnaH4AMqQvA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5HYk49uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5HYlI9uEe6KnaH4AMqQvA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5HYlY9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Z5GxlY9uEe6KnaH4AMqQvA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Z5Gxlo9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z5Gxl49uEe6KnaH4AMqQvA" points="[0, 0, 0, 60]$[0, -60, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5HYlo9uEe6KnaH4AMqQvA" id="(0.5,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5HYl49uEe6KnaH4AMqQvA" id="(0.5,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Z5HYmI9uEe6KnaH4AMqQvA" type="4001" element="_Z40dpY9uEe6KnaH4AMqQvA" source="_Z48Ze49uEe6KnaH4AMqQvA" target="_Z49Ago9uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z5HYnI9uEe6KnaH4AMqQvA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5HYnY9uEe6KnaH4AMqQvA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5HYno9uEe6KnaH4AMqQvA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5HYn49uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5HYoI9uEe6KnaH4AMqQvA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5HYoY9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Z5HYmY9uEe6KnaH4AMqQvA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Z5HYmo9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z5HYm49uEe6KnaH4AMqQvA" points="[0, 0, 0, -170]$[0, 170, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5HYoo9uEe6KnaH4AMqQvA" id="(0.5,1.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5HYo49uEe6KnaH4AMqQvA" id="(0.5,0.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Z5H_oI9uEe6KnaH4AMqQvA" type="4001" element="_Z40dqo9uEe6KnaH4AMqQvA" source="_Z49Ago9uEe6KnaH4AMqQvA" target="_Z48Zdo9uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z5H_pI9uEe6KnaH4AMqQvA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5H_pY9uEe6KnaH4AMqQvA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5H_po9uEe6KnaH4AMqQvA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5H_p49uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5H_qI9uEe6KnaH4AMqQvA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5H_qY9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Z5H_oY9uEe6KnaH4AMqQvA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Z5H_oo9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z5H_o49uEe6KnaH4AMqQvA" points="[0, 0, 145, 60]$[-145, -60, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5H_qo9uEe6KnaH4AMqQvA" id="(0.5,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5H_q49uEe6KnaH4AMqQvA" id="(0.5,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Z5ImsI9uEe6KnaH4AMqQvA" type="4001" element="_Z41EsI9uEe6KnaH4AMqQvA" source="_Z49Ah49uEe6KnaH4AMqQvA" target="_Z48Zdo9uEe6KnaH4AMqQvA">
+          <children xmi:type="notation:Node" xmi:id="_Z5ImtI9uEe6KnaH4AMqQvA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5ImtY9uEe6KnaH4AMqQvA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5Imto9uEe6KnaH4AMqQvA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5Imt49uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Z5ImuI9uEe6KnaH4AMqQvA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z5ImuY9uEe6KnaH4AMqQvA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Z5ImsY9uEe6KnaH4AMqQvA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Z5Imso9uEe6KnaH4AMqQvA" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z5Ims49uEe6KnaH4AMqQvA" points="[0, 0, 0, -60]$[0, 60, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5Imuo9uEe6KnaH4AMqQvA" id="(0.5,1.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z5Imu49uEe6KnaH4AMqQvA" id="(0.5,0.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_YxkGYI-JEe6kLeQ0P7BsVg" type="4001" element="_YwK_Qo-JEe6kLeQ0P7BsVg" source="_YxfN4I-JEe6kLeQ0P7BsVg" target="_YxiRMI-JEe6kLeQ0P7BsVg">
+          <children xmi:type="notation:Node" xmi:id="_YxkGZI-JEe6kLeQ0P7BsVg" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YxkGZY-JEe6kLeQ0P7BsVg" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_YxktcI-JEe6kLeQ0P7BsVg" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YxktcY-JEe6kLeQ0P7BsVg" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Yxktco-JEe6kLeQ0P7BsVg" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Yxktc4-JEe6kLeQ0P7BsVg" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_YxkGYY-JEe6kLeQ0P7BsVg"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_YxkGYo-JEe6kLeQ0P7BsVg" fontName="Noto Sans" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_YxkGY4-JEe6kLeQ0P7BsVg" points="[0, 0, 0, 60]$[0, -60, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_YxnJsI-JEe6kLeQ0P7BsVg" id="(0.5,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_YxnJsY-JEe6kLeQ0P7BsVg" id="(0.5,1.0)"/>
+        </edges>
+      </data>
+    </ownedAnnotationEntries>
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_Z41EtY9uEe6KnaH4AMqQvA" source="DANNOTATION_CUSTOMIZATION_KEY">
+      <data xmi:type="diagram:ComputedStyleDescriptionRegistry" uid="_Z41Eto9uEe6KnaH4AMqQvA"/>
+    </ownedAnnotationEntries>
+    <ownedDiagramElements xmi:type="diagram:DNodeContainer" uid="_Z4oQYI9uEe6KnaH4AMqQvA" name="#A">
+      <target xmi:type="gpfl:NewAutomata" href="complet.gpfl#//@prologue/@init/@block/@firstStmt"/>
+      <semanticElements xmi:type="gpfl:NewAutomata" href="complet.gpfl#//@prologue/@init/@block/@firstStmt"/>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_Z4oQYY9uEe6KnaH4AMqQvA" labelSize="12" borderSize="1" borderSizeComputationExpression="1">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']"/>
+      <ownedDiagramElements xmi:type="diagram:DNode" uid="_Z4pegI9uEe6KnaH4AMqQvA" name="0" outgoingEdges="_Z4uXAI9uEe6KnaH4AMqQvA _Z4u-E49uEe6KnaH4AMqQvA _Z4u-GI9uEe6KnaH4AMqQvA _Z4vlJI9uEe6KnaH4AMqQvA" incomingEdges="_Z4wMMo9uEe6KnaH4AMqQvA _Z4wMPI9uEe6KnaH4AMqQvA _Z4yBZI9uEe6KnaH4AMqQvA _Z4yBbo9uEe6KnaH4AMqQvA" width="5" height="5" resizeKind="NSEW">
+        <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.0"/>
+        <semanticElements xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.0"/>
+        <ownedStyle xmi:type="diagram:Dot" uid="_Z4pegY9uEe6KnaH4AMqQvA" labelSize="12" labelPosition="node" strokeSizeComputationExpression="3" backgroundColor="252,175,62">
+          <description xmi:type="style:DotDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']/@conditionnalStyles.0/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNode" uid="_Z4peg49uEe6KnaH4AMqQvA" name="1" outgoingEdges="_Z4vlKY9uEe6KnaH4AMqQvA _Z4vlLo9uEe6KnaH4AMqQvA" incomingEdges="_Z4uXAI9uEe6KnaH4AMqQvA _Z4wzRY9uEe6KnaH4AMqQvA" width="5" height="5" resizeKind="NSEW">
+        <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.1"/>
+        <semanticElements xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.1"/>
+        <ownedStyle xmi:type="diagram:Dot" uid="_Z4qFkI9uEe6KnaH4AMqQvA" labelSize="12" labelPosition="node" strokeSizeComputationExpression="3" backgroundColor="252,233,79">
+          <description xmi:type="style:DotDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNode" uid="_Z4qFko9uEe6KnaH4AMqQvA" name="2" outgoingEdges="_Z4wMMo9uEe6KnaH4AMqQvA _Z4wMN49uEe6KnaH4AMqQvA" incomingEdges="_Z4vlKY9uEe6KnaH4AMqQvA _Z4xaWY9uEe6KnaH4AMqQvA" width="5" height="5" resizeKind="NSEW">
+        <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.2"/>
+        <semanticElements xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.2"/>
+        <ownedStyle xmi:type="diagram:Dot" uid="_Z4qFk49uEe6KnaH4AMqQvA" labelSize="12" labelPosition="node" strokeSizeComputationExpression="3" backgroundColor="252,233,79">
+          <description xmi:type="style:DotDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNode" uid="_Z4qFlY9uEe6KnaH4AMqQvA" name="3" outgoingEdges="_Z4wMPI9uEe6KnaH4AMqQvA _Z4wzQI9uEe6KnaH4AMqQvA" incomingEdges="_Z4u-GI9uEe6KnaH4AMqQvA _Z4wzT49uEe6KnaH4AMqQvA" width="5" height="5" resizeKind="NSEW">
+        <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.3"/>
+        <semanticElements xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.3"/>
+        <ownedStyle xmi:type="diagram:Dot" uid="_Z4qFlo9uEe6KnaH4AMqQvA" labelSize="12" labelPosition="node" strokeSizeComputationExpression="3" backgroundColor="252,233,79">
+          <description xmi:type="style:DotDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']"/>
+      </ownedDiagramElements>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNodeContainer" uid="_Z4o3cI9uEe6KnaH4AMqQvA" name="#B">
+      <target xmi:type="gpfl:NewAutomata" href="complet.gpfl#//@prologue/@init/@block/@firstStmt/@next"/>
+      <semanticElements xmi:type="gpfl:NewAutomata" href="complet.gpfl#//@prologue/@init/@block/@firstStmt/@next"/>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_Z4o3cY9uEe6KnaH4AMqQvA" labelSize="12" borderSize="1" borderSizeComputationExpression="1">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']"/>
+      <ownedDiagramElements xmi:type="diagram:DNode" uid="_Z4qsoI9uEe6KnaH4AMqQvA" name="0" outgoingEdges="_Z4wzRY9uEe6KnaH4AMqQvA _Z4wzSo9uEe6KnaH4AMqQvA _Z4wzT49uEe6KnaH4AMqQvA _Z4xaVI9uEe6KnaH4AMqQvA" incomingEdges="_Z4wMN49uEe6KnaH4AMqQvA _Z4wzQI9uEe6KnaH4AMqQvA _Z4yBaY9uEe6KnaH4AMqQvA _Z4yocI9uEe6KnaH4AMqQvA" width="5" height="5" resizeKind="NSEW">
+        <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.0"/>
+        <semanticElements xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.0"/>
+        <ownedStyle xmi:type="diagram:Dot" uid="_Z4qsoY9uEe6KnaH4AMqQvA" labelSize="12" labelPosition="node" strokeSizeComputationExpression="3" backgroundColor="252,175,62">
+          <description xmi:type="style:DotDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']/@conditionnalStyles.0/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNode" uid="_Z4qso49uEe6KnaH4AMqQvA" name="1" outgoingEdges="_Z4xaWY9uEe6KnaH4AMqQvA _Z4xaXo9uEe6KnaH4AMqQvA" incomingEdges="_Z4u-E49uEe6KnaH4AMqQvA _Z4wzSo9uEe6KnaH4AMqQvA" width="5" height="5" resizeKind="NSEW">
+        <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.1"/>
+        <semanticElements xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.1"/>
+        <ownedStyle xmi:type="diagram:Dot" uid="_Z4qspI9uEe6KnaH4AMqQvA" labelSize="12" labelPosition="node" strokeSizeComputationExpression="3" backgroundColor="252,233,79">
+          <description xmi:type="style:DotDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNode" uid="_Z4qspo9uEe6KnaH4AMqQvA" name="2" outgoingEdges="_Z4yBZI9uEe6KnaH4AMqQvA _Z4yBaY9uEe6KnaH4AMqQvA" incomingEdges="_Z4vlLo9uEe6KnaH4AMqQvA _Z4xaXo9uEe6KnaH4AMqQvA" width="5" height="5" resizeKind="NSEW">
+        <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.2"/>
+        <semanticElements xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.2"/>
+        <ownedStyle xmi:type="diagram:Dot" uid="_Z4qsp49uEe6KnaH4AMqQvA" labelSize="12" labelPosition="node" strokeSizeComputationExpression="3" backgroundColor="252,233,79">
+          <description xmi:type="style:DotDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNode" uid="_Z4rTsY9uEe6KnaH4AMqQvA" name="3" outgoingEdges="_Z4yBbo9uEe6KnaH4AMqQvA _Z4yocI9uEe6KnaH4AMqQvA" incomingEdges="_Z4vlJI9uEe6KnaH4AMqQvA _Z4xaVI9uEe6KnaH4AMqQvA" width="5" height="5" resizeKind="NSEW">
+        <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.3"/>
+        <semanticElements xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.3"/>
+        <ownedStyle xmi:type="diagram:Dot" uid="_Z4rTso9uEe6KnaH4AMqQvA" labelSize="12" labelPosition="node" strokeSizeComputationExpression="3" backgroundColor="252,233,79">
+          <description xmi:type="style:DotDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']"/>
+      </ownedDiagramElements>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNodeContainer" uid="_Z4o3c49uEe6KnaH4AMqQvA" name="#C">
+      <target xmi:type="gpfl:NewAutomata" href="complet.gpfl#//@prologue/@init/@block/@firstStmt/@next/@next"/>
+      <semanticElements xmi:type="gpfl:NewAutomata" href="complet.gpfl#//@prologue/@init/@block/@firstStmt/@next/@next"/>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_Z4o3dI9uEe6KnaH4AMqQvA" labelSize="12" borderSize="1" borderSizeComputationExpression="1">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']"/>
+      <ownedDiagramElements xmi:type="diagram:DNode" uid="_Z4rTtI9uEe6KnaH4AMqQvA" name="A" outgoingEdges="_Z4yodY9uEe6KnaH4AMqQvA _Z4yoeo9uEe6KnaH4AMqQvA" incomingEdges="_Z4zPhY9uEe6KnaH4AMqQvA" width="5" height="5" resizeKind="NSEW">
+        <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.1/@states.0"/>
+        <semanticElements xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.1/@states.0"/>
+        <ownedStyle xmi:type="diagram:Dot" uid="_Z4r6wI9uEe6KnaH4AMqQvA" labelSize="12" labelPosition="node" strokeSizeComputationExpression="3" backgroundColor="252,175,62">
+          <description xmi:type="style:DotDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']/@conditionnalStyles.0/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNode" uid="_Z4r6wo9uEe6KnaH4AMqQvA" name="B" outgoingEdges="_Z4zPgI9uEe6KnaH4AMqQvA" incomingEdges="_Z4yodY9uEe6KnaH4AMqQvA _Z4zPio9uEe6KnaH4AMqQvA" width="5" height="5" resizeKind="NSEW">
+        <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.1/@states.1"/>
+        <semanticElements xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.1/@states.1"/>
+        <ownedStyle xmi:type="diagram:Dot" uid="_Z4r6w49uEe6KnaH4AMqQvA" labelSize="12" labelPosition="node" strokeSizeComputationExpression="3" backgroundColor="252,233,79">
+          <description xmi:type="style:DotDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNode" uid="_Z4sh0Y9uEe6KnaH4AMqQvA" name="C" outgoingEdges="_Z4zPhY9uEe6KnaH4AMqQvA" incomingEdges="_Z4zPgI9uEe6KnaH4AMqQvA" width="5" height="5" resizeKind="NSEW">
+        <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.1/@states.2"/>
+        <semanticElements xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.1/@states.2"/>
+        <ownedStyle xmi:type="diagram:Dot" uid="_Z4sh0o9uEe6KnaH4AMqQvA" labelSize="12" labelPosition="node" strokeSizeComputationExpression="3" backgroundColor="252,233,79">
+          <description xmi:type="style:DotDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNode" uid="_Z4sh1I9uEe6KnaH4AMqQvA" name="D" outgoingEdges="_Z4zPio9uEe6KnaH4AMqQvA" incomingEdges="_Z4yoeo9uEe6KnaH4AMqQvA" width="5" height="5" resizeKind="NSEW">
+        <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.1/@states.3"/>
+        <semanticElements xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.1/@states.3"/>
+        <ownedStyle xmi:type="diagram:Dot" uid="_Z4sh1Y9uEe6KnaH4AMqQvA" labelSize="12" labelPosition="node" strokeSizeComputationExpression="3" backgroundColor="252,233,79">
+          <description xmi:type="style:DotDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']"/>
+      </ownedDiagramElements>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNodeContainer" uid="_Z4o3do9uEe6KnaH4AMqQvA" name="#A">
+      <target xmi:type="gpfl:NewAutomata" href="basic.gpfl#//@prologue/@init/@block/@firstStmt"/>
+      <semanticElements xmi:type="gpfl:NewAutomata" href="basic.gpfl#//@prologue/@init/@block/@firstStmt"/>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_Z4o3d49uEe6KnaH4AMqQvA" labelSize="12" borderSize="1" borderSizeComputationExpression="1">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']"/>
+      <ownedDiagramElements xmi:type="diagram:DNode" uid="_Z4tI4I9uEe6KnaH4AMqQvA" name="0" outgoingEdges="_Z4z2lI9uEe6KnaH4AMqQvA _Z40doI9uEe6KnaH4AMqQvA" incomingEdges="_Z40dqo9uEe6KnaH4AMqQvA _Z41EsI9uEe6KnaH4AMqQvA" width="5" height="5" resizeKind="NSEW">
+        <target xmi:type="gpfl:State" href="basic.gpfl#//@prologue/@automataDefinition.0/@states.0"/>
+        <semanticElements xmi:type="gpfl:State" href="basic.gpfl#//@prologue/@automataDefinition.0/@states.0"/>
+        <ownedStyle xmi:type="diagram:Dot" uid="_Z4tI4Y9uEe6KnaH4AMqQvA" labelSize="12" labelPosition="node" strokeSizeComputationExpression="3" backgroundColor="252,175,62">
+          <description xmi:type="style:DotDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']/@conditionnalStyles.0/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNode" uid="_Z4tI449uEe6KnaH4AMqQvA" name="1" outgoingEdges="_Z40dpY9uEe6KnaH4AMqQvA" incomingEdges="_Z4z2lI9uEe6KnaH4AMqQvA" width="5" height="5" resizeKind="NSEW">
+        <target xmi:type="gpfl:State" href="basic.gpfl#//@prologue/@automataDefinition.0/@states.1"/>
+        <semanticElements xmi:type="gpfl:State" href="basic.gpfl#//@prologue/@automataDefinition.0/@states.1"/>
+        <ownedStyle xmi:type="diagram:Dot" uid="_Z4tI5I9uEe6KnaH4AMqQvA" labelSize="12" labelPosition="node" strokeSizeComputationExpression="3" backgroundColor="252,233,79">
+          <description xmi:type="style:DotDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNode" uid="_Z4tI5o9uEe6KnaH4AMqQvA" name="2" outgoingEdges="_Z40dqo9uEe6KnaH4AMqQvA" incomingEdges="_Z40dpY9uEe6KnaH4AMqQvA" width="5" height="5" resizeKind="NSEW">
+        <target xmi:type="gpfl:State" href="basic.gpfl#//@prologue/@automataDefinition.0/@states.2"/>
+        <semanticElements xmi:type="gpfl:State" href="basic.gpfl#//@prologue/@automataDefinition.0/@states.2"/>
+        <ownedStyle xmi:type="diagram:Dot" uid="_Z4tv8I9uEe6KnaH4AMqQvA" labelSize="12" labelPosition="node" strokeSizeComputationExpression="3" backgroundColor="252,233,79">
+          <description xmi:type="style:DotDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNode" uid="_Z4tv8o9uEe6KnaH4AMqQvA" name="3" outgoingEdges="_Z41EsI9uEe6KnaH4AMqQvA" incomingEdges="_Z40doI9uEe6KnaH4AMqQvA" width="5" height="5" resizeKind="NSEW">
+        <target xmi:type="gpfl:State" href="basic.gpfl#//@prologue/@automataDefinition.0/@states.3"/>
+        <semanticElements xmi:type="gpfl:State" href="basic.gpfl#//@prologue/@automataDefinition.0/@states.3"/>
+        <ownedStyle xmi:type="diagram:Dot" uid="_Z4tv849uEe6KnaH4AMqQvA" labelSize="12" labelPosition="node" strokeSizeComputationExpression="3" backgroundColor="252,233,79">
+          <description xmi:type="style:DotDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@containerMappings[name='NewAutomata']/@subNodeMappings[name='InstanceAutomataState']"/>
+      </ownedDiagramElements>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Z4uXAI9uEe6KnaH4AMqQvA" name="[Disc, Rel]" sourceNode="_Z4pegI9uEe6KnaH4AMqQvA" targetNode="_Z4peg49uEe6KnaH4AMqQvA">
+      <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Z4uXAY9uEe6KnaH4AMqQvA" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Z4u-EI9uEe6KnaH4AMqQvA" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Z4u-E49uEe6KnaH4AMqQvA" name="[Disc, Rel]" sourceNode="_Z4pegI9uEe6KnaH4AMqQvA" targetNode="_Z4qso49uEe6KnaH4AMqQvA">
+      <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Z4u-FI9uEe6KnaH4AMqQvA" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Z4u-FY9uEe6KnaH4AMqQvA" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Z4u-GI9uEe6KnaH4AMqQvA" name="[Disc, Rel]" sourceNode="_Z4pegI9uEe6KnaH4AMqQvA" targetNode="_Z4qFlY9uEe6KnaH4AMqQvA">
+      <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Z4vlII9uEe6KnaH4AMqQvA" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Z4vlIY9uEe6KnaH4AMqQvA" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Z4vlJI9uEe6KnaH4AMqQvA" name="[Disc, Rel]" sourceNode="_Z4pegI9uEe6KnaH4AMqQvA" targetNode="_Z4rTsY9uEe6KnaH4AMqQvA">
+      <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Z4vlJY9uEe6KnaH4AMqQvA" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Z4vlJo9uEe6KnaH4AMqQvA" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Z4vlKY9uEe6KnaH4AMqQvA" name="[Req, Rej]" sourceNode="_Z4peg49uEe6KnaH4AMqQvA" targetNode="_Z4qFko9uEe6KnaH4AMqQvA">
+      <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.1"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Z4vlKo9uEe6KnaH4AMqQvA" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Z4vlK49uEe6KnaH4AMqQvA" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Z4vlLo9uEe6KnaH4AMqQvA" name="[Req, Rej]" sourceNode="_Z4peg49uEe6KnaH4AMqQvA" targetNode="_Z4qspo9uEe6KnaH4AMqQvA">
+      <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.1"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Z4vlL49uEe6KnaH4AMqQvA" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Z4vlMI9uEe6KnaH4AMqQvA" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Z4wMMo9uEe6KnaH4AMqQvA" name="[Ack]" sourceNode="_Z4qFko9uEe6KnaH4AMqQvA" targetNode="_Z4pegI9uEe6KnaH4AMqQvA">
+      <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.2"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Z4wMM49uEe6KnaH4AMqQvA" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Z4wMNI9uEe6KnaH4AMqQvA" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Z4wMN49uEe6KnaH4AMqQvA" name="[Ack]" sourceNode="_Z4qFko9uEe6KnaH4AMqQvA" targetNode="_Z4qsoI9uEe6KnaH4AMqQvA">
+      <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.2"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Z4wMOI9uEe6KnaH4AMqQvA" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Z4wMOY9uEe6KnaH4AMqQvA" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Z4wMPI9uEe6KnaH4AMqQvA" name="[Ack]" sourceNode="_Z4qFlY9uEe6KnaH4AMqQvA" targetNode="_Z4pegI9uEe6KnaH4AMqQvA">
+      <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.3"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Z4wMPY9uEe6KnaH4AMqQvA" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Z4wMPo9uEe6KnaH4AMqQvA" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Z4wzQI9uEe6KnaH4AMqQvA" name="[Ack]" sourceNode="_Z4qFlY9uEe6KnaH4AMqQvA" targetNode="_Z4qsoI9uEe6KnaH4AMqQvA">
+      <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.3"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Z4wzQY9uEe6KnaH4AMqQvA" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Z4wzQo9uEe6KnaH4AMqQvA" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Z4wzRY9uEe6KnaH4AMqQvA" name="[Disc, Rel]" sourceNode="_Z4qsoI9uEe6KnaH4AMqQvA" targetNode="_Z4peg49uEe6KnaH4AMqQvA">
+      <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Z4wzRo9uEe6KnaH4AMqQvA" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Z4wzR49uEe6KnaH4AMqQvA" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Z4wzSo9uEe6KnaH4AMqQvA" name="[Disc, Rel]" sourceNode="_Z4qsoI9uEe6KnaH4AMqQvA" targetNode="_Z4qso49uEe6KnaH4AMqQvA">
+      <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Z4wzS49uEe6KnaH4AMqQvA" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Z4wzTI9uEe6KnaH4AMqQvA" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Z4wzT49uEe6KnaH4AMqQvA" name="[Disc, Rel]" sourceNode="_Z4qsoI9uEe6KnaH4AMqQvA" targetNode="_Z4qFlY9uEe6KnaH4AMqQvA">
+      <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Z4xaUI9uEe6KnaH4AMqQvA" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Z4xaUY9uEe6KnaH4AMqQvA" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Z4xaVI9uEe6KnaH4AMqQvA" name="[Disc, Rel]" sourceNode="_Z4qsoI9uEe6KnaH4AMqQvA" targetNode="_Z4rTsY9uEe6KnaH4AMqQvA">
+      <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Z4xaVY9uEe6KnaH4AMqQvA" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Z4xaVo9uEe6KnaH4AMqQvA" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Z4xaWY9uEe6KnaH4AMqQvA" name="[Req, Rej]" sourceNode="_Z4qso49uEe6KnaH4AMqQvA" targetNode="_Z4qFko9uEe6KnaH4AMqQvA">
+      <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.1"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Z4xaWo9uEe6KnaH4AMqQvA" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Z4xaW49uEe6KnaH4AMqQvA" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Z4xaXo9uEe6KnaH4AMqQvA" name="[Req, Rej]" sourceNode="_Z4qso49uEe6KnaH4AMqQvA" targetNode="_Z4qspo9uEe6KnaH4AMqQvA">
+      <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.1"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Z4yBYI9uEe6KnaH4AMqQvA" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Z4yBYY9uEe6KnaH4AMqQvA" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Z4yBZI9uEe6KnaH4AMqQvA" name="[Ack]" sourceNode="_Z4qspo9uEe6KnaH4AMqQvA" targetNode="_Z4pegI9uEe6KnaH4AMqQvA">
+      <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.2"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Z4yBZY9uEe6KnaH4AMqQvA" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Z4yBZo9uEe6KnaH4AMqQvA" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Z4yBaY9uEe6KnaH4AMqQvA" name="[Ack]" sourceNode="_Z4qspo9uEe6KnaH4AMqQvA" targetNode="_Z4qsoI9uEe6KnaH4AMqQvA">
+      <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.2"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Z4yBao9uEe6KnaH4AMqQvA" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Z4yBa49uEe6KnaH4AMqQvA" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Z4yBbo9uEe6KnaH4AMqQvA" name="[Ack]" sourceNode="_Z4rTsY9uEe6KnaH4AMqQvA" targetNode="_Z4pegI9uEe6KnaH4AMqQvA">
+      <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.3"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Z4yBb49uEe6KnaH4AMqQvA" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Z4yBcI9uEe6KnaH4AMqQvA" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Z4yocI9uEe6KnaH4AMqQvA" name="[Ack]" sourceNode="_Z4rTsY9uEe6KnaH4AMqQvA" targetNode="_Z4qsoI9uEe6KnaH4AMqQvA">
+      <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.0/@states.3"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Z4yocY9uEe6KnaH4AMqQvA" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Z4yoco9uEe6KnaH4AMqQvA" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Z4yodY9uEe6KnaH4AMqQvA" name="[Disc, Rel]" sourceNode="_Z4rTtI9uEe6KnaH4AMqQvA" targetNode="_Z4r6wo9uEe6KnaH4AMqQvA">
+      <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.1/@states.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Z4yodo9uEe6KnaH4AMqQvA" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Z4yod49uEe6KnaH4AMqQvA" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Z4yoeo9uEe6KnaH4AMqQvA" name="[Disc, Rel]" sourceNode="_Z4rTtI9uEe6KnaH4AMqQvA" targetNode="_Z4sh1I9uEe6KnaH4AMqQvA">
+      <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.1/@states.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Z4yoe49uEe6KnaH4AMqQvA" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Z4yofI9uEe6KnaH4AMqQvA" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Z4zPgI9uEe6KnaH4AMqQvA" name="[Req, Rej]" sourceNode="_Z4r6wo9uEe6KnaH4AMqQvA" targetNode="_Z4sh0Y9uEe6KnaH4AMqQvA">
+      <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.1/@states.1"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Z4zPgY9uEe6KnaH4AMqQvA" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Z4zPgo9uEe6KnaH4AMqQvA" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Z4zPhY9uEe6KnaH4AMqQvA" name="[Ack]" sourceNode="_Z4sh0Y9uEe6KnaH4AMqQvA" targetNode="_Z4rTtI9uEe6KnaH4AMqQvA">
+      <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.1/@states.2"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Z4zPho9uEe6KnaH4AMqQvA" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Z4zPh49uEe6KnaH4AMqQvA" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Z4zPio9uEe6KnaH4AMqQvA" name="[Ack]" sourceNode="_Z4sh1I9uEe6KnaH4AMqQvA" targetNode="_Z4r6wo9uEe6KnaH4AMqQvA">
+      <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.1/@states.3"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Z4z2kI9uEe6KnaH4AMqQvA" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Z4z2kY9uEe6KnaH4AMqQvA" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Z4z2lI9uEe6KnaH4AMqQvA" name="[Disc, Rel]" sourceNode="_Z4tI4I9uEe6KnaH4AMqQvA" targetNode="_Z4tI449uEe6KnaH4AMqQvA">
+      <target xmi:type="gpfl:State" href="basic.gpfl#//@prologue/@automataDefinition.0/@states.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Z4z2lY9uEe6KnaH4AMqQvA" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Z4z2lo9uEe6KnaH4AMqQvA" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Z40doI9uEe6KnaH4AMqQvA" name="[Disc, Rel]" sourceNode="_Z4tI4I9uEe6KnaH4AMqQvA" targetNode="_Z4tv8o9uEe6KnaH4AMqQvA">
+      <target xmi:type="gpfl:State" href="basic.gpfl#//@prologue/@automataDefinition.0/@states.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Z40doY9uEe6KnaH4AMqQvA" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Z40doo9uEe6KnaH4AMqQvA" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Z40dpY9uEe6KnaH4AMqQvA" name="[Req, Rej]" sourceNode="_Z4tI449uEe6KnaH4AMqQvA" targetNode="_Z4tI5o9uEe6KnaH4AMqQvA">
+      <target xmi:type="gpfl:State" href="basic.gpfl#//@prologue/@automataDefinition.0/@states.1"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Z40dpo9uEe6KnaH4AMqQvA" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Z40dp49uEe6KnaH4AMqQvA" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Z40dqo9uEe6KnaH4AMqQvA" name="[Ack]" sourceNode="_Z4tI5o9uEe6KnaH4AMqQvA" targetNode="_Z4tI4I9uEe6KnaH4AMqQvA">
+      <target xmi:type="gpfl:State" href="basic.gpfl#//@prologue/@automataDefinition.0/@states.2"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Z40dq49uEe6KnaH4AMqQvA" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Z40drI9uEe6KnaH4AMqQvA" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Z41EsI9uEe6KnaH4AMqQvA" name="[Ack]" sourceNode="_Z4tv8o9uEe6KnaH4AMqQvA" targetNode="_Z4tI4I9uEe6KnaH4AMqQvA">
+      <target xmi:type="gpfl:State" href="basic.gpfl#//@prologue/@automataDefinition.0/@states.3"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Z41EsY9uEe6KnaH4AMqQvA" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Z41Eso9uEe6KnaH4AMqQvA" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='InstanceAutomataTransition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_YwDqgI-JEe6kLeQ0P7BsVg" name="12" outgoingEdges="_YwK_Qo-JEe6kLeQ0P7BsVg" width="5" height="5" resizeKind="NSEW">
+      <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.2/@states.0"/>
+      <semanticElements xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.2/@states.0"/>
+      <ownedStyle xmi:type="diagram:Dot" uid="_YwFfsI-JEe6kLeQ0P7BsVg" labelSize="12" labelPosition="node" strokeSizeComputationExpression="3" backgroundColor="252,175,62">
+        <description xmi:type="style:DotDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@nodeMappings[name='AutomataState']/@conditionnalStyles.0/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@nodeMappings[name='AutomataState']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_YwHU4I-JEe6kLeQ0P7BsVg" name="14" incomingEdges="_YwK_Qo-JEe6kLeQ0P7BsVg" width="5" height="5" resizeKind="NSEW">
+      <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.2/@states.1"/>
+      <semanticElements xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.2/@states.1"/>
+      <ownedStyle xmi:type="diagram:Dot" uid="_YwHU4Y-JEe6kLeQ0P7BsVg" labelSize="12" labelPosition="node" strokeSizeComputationExpression="3" backgroundColor="252,233,79">
+        <description xmi:type="style:DotDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@nodeMappings[name='AutomataState']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@nodeMappings[name='AutomataState']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_YwK_Qo-JEe6kLeQ0P7BsVg" name="[gaaah]" sourceNode="_YwDqgI-JEe6kLeQ0P7BsVg" targetNode="_YwHU4I-JEe6kLeQ0P7BsVg">
+      <target xmi:type="gpfl:State" href="complet.gpfl#//@prologue/@automataDefinition.2/@states.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_YwLmUI-JEe6kLeQ0P7BsVg" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='AutomataTransition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_YwLmUY-JEe6kLeQ0P7BsVg" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer/@edgeMappings[name='AutomataTransition']"/>
+    </ownedDiagramElements>
+    <description xmi:type="description_1:DiagramDescription" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']"/>
+    <filterVariableHistory xmi:type="diagram:FilterVariableHistory" uid="_Z4hisY9uEe6KnaH4AMqQvA"/>
+    <activatedLayers xmi:type="description_1:Layer" href="platform:/resource/fr.inria.sed.gpfl.design/description/gpfl.odesign#//@ownedViewpoints[name='GPFLAutomataViewPoint']/@ownedRepresentations[name='GPFLAutomataDiagram']/@defaultLayer"/>
+    <target xmi:type="gpfl:Program" href="complet.gpfl#/"/>
+  </diagram:DSemanticDiagram>
+</xmi:XMI>

@@ -30,7 +30,7 @@ Automata:
 ;
 
 Transition:
-	from=[State|STRING] "-" name=STRING "->" to=[State|STRING]
+	from=[State|STRING] "-" event=[Event|STRING] "->" to=[State|STRING]
 ;
 
 // -------------------------- BLOCK -------------------------- //
@@ -51,6 +51,10 @@ StmtAtomic returns Stmt:
 	| {Iteration} "iter" "(" while=Expression "," then=Block ")"
 	// create an interruption every (if *loop* else once) *time* and execute *statement*
 	| {NewInterruption} "newInterrupt" "(" time=INT "," loop=EBoolean "," block=Block ")"
+	// go trough a step of *NewAutomata* on the *transition* and execute *block*
+	| {StepAutomata} "step" "(" idAutomata=[NewAutomata|AUTOMATA_ID] "," eventName=[Event|EventType] "," block=Block ")"
+	// create a new instance *name* for an event *value*
+	| {NewEventRef} "newEventRef" "(" name=ID "," value=[Event|EventType] ")"
 ;
 
 Cmd:
@@ -61,15 +65,21 @@ Cmd:
 	// drop a packet 
 	| {Drop} "drop" 
 	// send the *fields* on *port*
-//	| {Send} "send" "(" port=PORT "," fields=EMap ")"
+	| {Send} "send" "(" port=[Port|ID] "," packet=Packet ")" 
 	// A PRECISER
-	| {Alarm} "alarm" "(" message=STRING ")"
+	| {Alarm} "alarm" "(" (type=STRING",")? message=Expression ")"
 	// set a (new) variable with a new state
-	| {SetVariable} "set" "(" declaration=[VariableDeclaration|ID] "," value=Expression ")"
+	| {SetVariable} "set" "(" declaration=[SetType|SetType] "," value=Expression ")"
 	// associate an ID with an Automata previously created and designated by a name
 	| {NewAutomata} "newAutomaton" "(" value=[Automata|STRING] "," name=AUTOMATA_ID ")"
-	// go trough a step of *NewAutomata* on the *transition* and execute *block*
-	| {StepAutomata} "step" "(" idAutomata=[NewAutomata|AUTOMATA_ID] "," transitionName=[Transition|STRING] "," block=Block ")"
+;
+
+Packet:
+	"("(fields+=Field",")* fields+=Field")"
+;
+
+Field:
+	"("name=STRING","value=STRING")"
 ;
 
 // -------------------------- Expressions -------------------------- //
@@ -95,7 +105,8 @@ MulOrDiv returns Expression:
 ; 
 Primary returns Expression: 
 	'(' Expression ')' 
-	| {Not} "!" expression=Primary 
+	| {Not} "!" expression=Primary
+	| {Neg} "--" expression=Primary
 	| Atomic
 ;
 
@@ -103,14 +114,14 @@ Atomic returns Expression:
 	{IntLiteral} value=INT
 	| {StringLiteral} value=STRING
 	| {BooleanLiteral}isTrue=EBoolean
-	| {VariableRef} variableDeclaration=[VariableDeclaration|ID]
-	| {PortRef} "_inPort" "==" port=[Port|Port]
+	| {VariableRef} variable=[VariableDeclaration|ID]
+	| {PortRef} "_inPort" "==" port=[Port|ID]
 	| {FieldRef} field=[Field|FIELD_ID]
 ;
-
-Port:"inSide" | "outSide";
 EBoolean returns ecore::EBoolean: 'true'|'false';
+EventType returns ecore::EString: STRING | ID;
+SetType returns ecore::EString: FIELD_ID | ID;
 @Override
-terminal INT returns ecore::EInt: "0" | "-"?('1'..'9')+;
+terminal INT returns ecore::EInt: "0" | "-"?('1'..'9')('0'..'9')*;
 terminal AUTOMATA_ID returns ecore::EString: '#'ID;
 terminal FIELD_ID returns ecore::EString: '$'ID;

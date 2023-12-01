@@ -1,19 +1,34 @@
 PROLOGUE
 	AUTOMATA "DHCP incoming controller"
-		init = "0"
+		init = "0" 
 		"0" -"Disc" -> "1"
 		"1" -"Req" -> "2" 
-		"1" -"Rej" -> "2" 
+		"1" -"Rej" -> "2"
 		"2" -"Ack" -> "0"
-		"0" -"Rel" -> "3" 
-		"3" -"Ack" -> "0"
+		"0" -"Rel" -> "3"
+		"3" -"Ack" -> "0" 
+	AUTOMATA "DHCP incoming controller2"
+		init = "A" 
+		"A" -"Disc" -> "B"
+		"B" -"Req" -> "C" 
+		"B" -"Rej" -> "C"
+		"C" -"Ack" -> "A" 
+		"A" -"Rel" -> "D"
+		"D" -"Ack" -> "B" 
+	AUTOMATA "Prout"
+		init = "12"
+		"12" -"gaaah" -> "14"
 	INIT
 		newAutomaton("DHCP incoming controller", #A)
+		newAutomaton("DHCP incoming controller", #B)
+		newAutomaton("DHCP incoming controller2", #C)
 		set(ignoredPktCnt, 0)
 		set(ignoredPktThreshold, 5) 
-		newInterrupt(60, true, set(ignoredPktCnt, 0))
+		newInterrupt(60, true, set(ignoredPktCnt, 0)) 
 		
 FILTER
+	set($pkType, "prout")
+//	send(inSide, (("pktType","nope"), ("", ""))) 
 	cond(_inPort == inSide, 
 		cond(($pktType == "Ack") & ($clientId == currentClient),
 			step(#A, "Ack", nop) 
@@ -43,16 +58,14 @@ FILTER
 				)
 				drop
 			) 
-//			cond ($pktType == "Rel",newEventRef(evt,"Rel"))
-//			cond ($pktType == "Rej",newEventRef(evt,"Rej")) 
-//			step(#A, evt,
-//				set(ignoredPktCnt, ignoredPktCnt+1)
-//				cond(ignoredPktCnt >= ignoredPktThreshold,
-//					alarm("Many external messages ignored!")
-//					set(ignoredPktCnt, 0)
-//				)
-//				drop
-//			) 
+			step(#A, $pktType,
+				set(ignoredPktCnt, ignoredPktCnt+1)
+				cond(ignoredPktCnt >= ignoredPktThreshold,
+					alarm("Many external messages ignored!")
+					set(ignoredPktCnt, 0)
+				)
+				drop
+			) 
 			accept
 		)
 		cond($pktType == "Rel",
