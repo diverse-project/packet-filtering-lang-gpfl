@@ -17,7 +17,6 @@ import org.eclipse.xtext.linking.impl.DefaultLinkingService
 import org.eclipse.xtext.linking.impl.IllegalNodeException
 import org.eclipse.xtext.nodemodel.INode
 import fr.inria.sed.gpfl.StepAutomata
-import fr.inria.sed.gpfl.NewEventRef
 
 class GpflLinkingService extends DefaultLinkingService {
 	def getStringValue(String string) {

@@ -9,24 +9,29 @@ PROLOGUE
 		"3" -"Ack" -> "0"
 	INIT
 		newAutomaton("DHCP incoming controller", #A)
-		set(ignoredPktCnt, 0)
+		set(ignoredPktCnt, 0) 
 		set(ignoredPktThreshold, 5) 
-		newInterrupt(60, true, 
+		
+		newInterrupt(0, true,
+			set(ignoredPktCnt, 0) 
+		)
+		newInterrupt(-1, true, 
 			set(ignoredPktCnt, 0) 
 		)
 		
 FILTER
+	drop
 	cond(_inPort == inSide, 
-		cond(($pktType == "Ack") & ($clientId == currentClient),
+		cond(("Ack" == "Ack") & ($clientId == currentClient),
 			step(#A, "Ack", nop) 
 			set(currentClient, "") 
 		) 
 		accept
 	) 
 	cond( _inPort == outSide,
-		cond($pktType == "Disc", 
+		cond(0 == "Disc", 
 			step(#A, "Disc", 
-				set(ignoredPktCnt, ignoredPktCnt+1) 
+				set(ignoredPktCnt, ignoredPktCnt+1)
 				cond(ignoredPktCnt >= ignoredPktThreshold,
 					alarm("Many external messages ignored!") 
 					set(ignoredPktCnt, 0)

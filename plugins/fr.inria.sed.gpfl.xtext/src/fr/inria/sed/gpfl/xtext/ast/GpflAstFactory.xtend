@@ -1,12 +1,11 @@
 package fr.inria.sed.gpfl.xtext.ast
 
+import fr.inria.sed.gpfl.GpflFactory
+import fr.inria.sed.gpfl.Program
+import java.util.Collections
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.nodemodel.INode
 import org.eclipse.xtext.parser.DefaultEcoreElementFactory
-import fr.inria.sed.gpfl.Program
-import fr.inria.sed.gpfl.GpflFactory
-import java.util.Collections
-import fr.inria.sed.gpfl.Send
 
 class GpflAstFactory extends DefaultEcoreElementFactory {
 	override set(EObject object, String feature, Object value, String ruleName, INode node) {
