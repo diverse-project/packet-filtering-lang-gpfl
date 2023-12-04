@@ -28,25 +28,6 @@ class GpflLinkingService extends DefaultLinkingService {
 		var referencesResolved = super.getLinkedObjects(context, ref, node);
 		val root = EcoreUtil2.getRootContainer(context) as Program;
 		
-		//------------------- PORT CREATION -------------------//
-		
-		if (root.ports.length !==  2) {
-			root.ports.clear()
-			var portIn = GpflFactory.eINSTANCE.createPort()
-			portIn.setName("inSide")
-			var portOut = GpflFactory.eINSTANCE.createPort()
-			portOut.setName("outSide")
-			Collections.addAll(root.ports, portIn, portOut)
-		}
-		
-		//------------------- EMPTY PACKET CREATION -------------------//
-		if (root.packets.isEmpty) {
-			var emptyPacket = GpflFactory.eINSTANCE.createPacket
-			emptyPacket.time = -1
-			emptyPacket.inPort = root.ports.get(0)
-			root.packets.add(emptyPacket)
-		}
-		
 		// if the node does not has any linked object
 		if (referencesResolved.isEmpty()) {
 			
@@ -62,15 +43,15 @@ class GpflLinkingService extends DefaultLinkingService {
 				}
 				if (ref == GpflPackage.Literals.TRANSITION__FROM)transition.from = state
 				else if (ref == GpflPackage.Literals.TRANSITION__TO)transition.to = state
+				referencesResolved = Collections.singletonList(state)
 				//------------------- EVENT CREATION -------------------//
-				var event = automata.events.findFirst[e | e.name.equals(node.text)]
-				if (event === null) {
-					event = GpflFactory.eINSTANCE.createEvent()
+				if (ref == GpflPackage.Literals.TRANSITION__EVENT) {
+					var event = GpflFactory.eINSTANCE.createEvent()
 					event.name = node.text.getStringValue
 					automata.events.add(event)
+					transition.event = event
+					referencesResolved = Collections.singletonList(event)
 				}
-				if (ref == GpflPackage.Literals.TRANSITION__EVENT) transition.event = event
-				referencesResolved = Collections.singletonList(state);
 			} else if (context instanceof Automata && ref == GpflPackage.Literals.AUTOMATA__INITIAL_STATE) {
 				//------------------- INITIAL STATE CREATION -------------------//
 				val automata = context as Automata;
@@ -129,7 +110,7 @@ class GpflLinkingService extends DefaultLinkingService {
 				}
 			}
 			if (ref == GpflPackage.Literals.NEW_EVENT_REF__VALUE) {
-				
+//				referencesResolved = Collections.singletonList(step.idAutomata.value.events.findFirst[e | e.name.equals(node.text.getStringValue)])
 			}
 			
 			//------------------- FIELD REFERENCE -------------------//

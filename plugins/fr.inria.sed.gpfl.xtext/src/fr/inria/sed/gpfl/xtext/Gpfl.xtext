@@ -65,7 +65,7 @@ Cmd:
 	// drop a packet 
 	| {Drop} "drop" 
 	// send the *fields* on *port*
-	| {Send} "send" "(" port=[Port|ID] "," packet=Packet ")" 
+	| {Send} "send" "(" port=[Port|ID] "," packet=Packet ")"
 	// A PRECISER
 	| {Alarm} "alarm" "(" (type=STRING",")? message=Expression ")"
 	// set a (new) variable with a new state
