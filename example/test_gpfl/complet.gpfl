@@ -14,7 +14,7 @@ PROLOGUE
 		"B" -"Rej" -> "C"
 		"C" -"Ack" -> "A" 
 		"A" -"Rel" -> "D" 
-		"D" -"Ack" -> "B" 
+		"D" -"Ack" -> "B"
 	AUTOMATA "Prout"
 		init = "12"
 		"12" -"gaaah" -> "14"
@@ -69,7 +69,7 @@ FILTER
 			accept
 		)
 		cond($pktType == "Rel",
-			step(#A, "Rel",
+			step(#A, "Rel", 
 				set(ignoredPktCnt, ignoredPktCnt+1) 
 				cond(ignoredPktCnt >= ignoredPktThreshold,
 					alarm("Many external messages ignored!")

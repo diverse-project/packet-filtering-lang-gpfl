@@ -29,7 +29,7 @@
         eType="#//VariableDeclaration" transient="true" containment="true">
       <eAnnotations source="aspect"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ports" lowerBound="2" upperBound="2"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ports" lowerBound="2" upperBound="-1"
         eType="#//Port" transient="true" containment="true">
       <eAnnotations source="aspect"/>
     </eStructuralFeatures>

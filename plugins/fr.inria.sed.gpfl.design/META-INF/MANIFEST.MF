@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: fr.inria.sed.gpfl.design;singleton:=true
+Bundle-SymbolicName: fr.inria.diverse.gpfl.design;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: fr.inria.sed.gpfl.design.Activator
+Bundle-Activator: fr.inria.diverse.gpfl.design.Activator
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -13,8 +13,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.ide;bundle-version="3.19.0",
  org.eclipse.ui.workbench.texteditor;bundle-version="3.16.500",
  org.eclipse.xtext;bundle-version="2.27.0",
- fr.inria.sed.gpfl.model;bundle-version="0.1.0"
+ fr.inria.diverse.gpfl.model;bundle-version="0.1.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-Vendor: %providerName
-Automatic-Module-Name: fr.inria.sed.gpfl.design
+Automatic-Module-Name: fr.inria.diverse.gpfl.design
