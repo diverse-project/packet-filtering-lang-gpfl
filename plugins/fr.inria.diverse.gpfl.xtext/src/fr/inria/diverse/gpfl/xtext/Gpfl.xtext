@@ -52,9 +52,7 @@ StmtAtomic returns Stmt:
 	// create an interruption every (if *loop* else once) *time* and execute *statement*
 	| {NewInterruption} "newInterrupt" "(" time=INT "," loop=EBoolean "," block=Block ")"
 	// go trough a step of *NewAutomata* on the *transition* and execute *block*
-	| {StepAutomata} "step" "(" idAutomata=[NewAutomata|AUTOMATA_ID] "," eventName=[Event|EventType] "," block=Block ")"
-	// create a new instance *name* for an event *value*
-	| {NewEventRef} "newEventRef" "(" name=ID "," value=[Event|EventType] ")"
+	| {StepAutomata} "step" "(" idAutomata=[NewAutomata|AUTOMATA_ID] "," eventOccurence=[EventOccurence|ID] "," block=Block ")"
 ;
 
 Cmd:
@@ -72,6 +70,8 @@ Cmd:
 	| {SetVariable} "set" "(" declaration=[SetType|SetType] "," value=Expression ")"
 	// associate an ID with an Automata previously created and designated by a name
 	| {NewAutomata} "newAutomaton" "(" value=[Automata|STRING] "," name=AUTOMATA_ID ")"
+	// create a new instance *name* for an event *value*
+	| {NewEventOccurence} "newEventOccurence" "(" occurence=[EventOccurence|ID] "," value=[Event|ID] ")"
 ;
 
 Packet:
@@ -119,7 +119,6 @@ Atomic returns Expression:
 	| {FieldRef} field=[Field|FIELD_ID]
 ;
 EBoolean returns ecore::EBoolean: 'true'|'false';
-EventType returns ecore::EString: STRING | ID;
 SetType returns ecore::EString: FIELD_ID | ID;
 @Override
 terminal INT returns ecore::EInt: "0" | "-"?('1'..'9')('0'..'9')*;

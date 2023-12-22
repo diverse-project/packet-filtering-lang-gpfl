@@ -6,7 +6,6 @@ k3 = fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ProgramAspect, \
   fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.AutomataAspect, \
   fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.StmtAspect, \
   fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.CmdAspect, \
-  fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.RuntimeContextAspect, \
   fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NewAutomataAspect, \
   fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.AlarmAspect, \
   fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.SendAspect, \
@@ -54,5 +53,5 @@ k3 = fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ProgramAspect, \
   fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.FieldRefAspect, \
   fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.EventAspect, \
   fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.SetTypeAspect, \
-  fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NewEventRefAspect
+  fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NewEventOccurenceAspect
 metaprog=org.eclipse.gemoc.metaprog.kermeta3

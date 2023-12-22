@@ -17,6 +17,8 @@ import org.eclipse.xtext.linking.impl.DefaultLinkingService
 import org.eclipse.xtext.linking.impl.IllegalNodeException
 import org.eclipse.xtext.nodemodel.INode
 import fr.inria.diverse.gpfl.StepAutomata
+import fr.inria.diverse.gpfl.EventOccurence
+import fr.inria.diverse.gpfl.NewEventOccurence
 
 class GpflLinkingService extends DefaultLinkingService {
 	def getStringValue(String string) {
@@ -35,11 +37,18 @@ class GpflLinkingService extends DefaultLinkingService {
 				val automata = transition.eContainer() as Automata;
 				//------------------- EVENT CREATION -------------------//
 				if (ref == GpflPackage.Literals.TRANSITION__EVENT) {
-					var event = GpflFactory.eINSTANCE.createEvent
-					event.name = node.text.getStringValue
-					automata.events.add(event)
-					transition.event = event
-					referencesResolved = Collections.singletonList(event)
+					var eventOcc = root.prologue.eventPool.findFirst[e | e.name === node.text.getStringValue]
+					if (eventOcc === null) {
+						var event = GpflFactory.eINSTANCE.createEvent
+						event.name = node.text.getStringValue
+						transition.event = event
+						eventOcc = GpflFactory.eINSTANCE.createEventOccurence
+						eventOcc.name = event.name
+						eventOcc.event = event
+						automata.events.add(event)
+						root.prologue.eventPool.add(eventOcc)
+					}
+					referencesResolved = Collections.singletonList(eventOcc.event)
 				} else {
 					//------------------- STATE CREATION -------------------//
 					var state = automata.states.findFirst[s | s.name.equals(node.text)]
@@ -52,7 +61,7 @@ class GpflLinkingService extends DefaultLinkingService {
 					else if (ref == GpflPackage.Literals.TRANSITION__TO)transition.to = state
 					referencesResolved = Collections.singletonList(state)
 				}
-			} else if (context instanceof Automata && ref == GpflPackage.Literals.AUTOMATA__INITIAL_STATE) {
+			} else if (ref == GpflPackage.Literals.AUTOMATA__INITIAL_STATE) {
 				//------------------- INITIAL STATE CREATION -------------------//
 				val automata = context as Automata;
 				val state = GpflFactory.eINSTANCE.createState()
@@ -64,7 +73,7 @@ class GpflLinkingService extends DefaultLinkingService {
 			
 			//------------------- VARIABLE DECLARATION CREATION AND REFERENCE -------------------//
 		
-			if (context instanceof SetVariable && ref == GpflPackage.Literals.SET_VARIABLE__DECLARATION) {
+			else if (context instanceof SetVariable && ref == GpflPackage.Literals.SET_VARIABLE__DECLARATION) {
 				var set = context as SetVariable
 				if (node.text.startsWith("$")) { // if we set a field
 					var field = root.packets.get(0).fields.findFirst[p | p.name.equals(node.text)]
@@ -74,7 +83,6 @@ class GpflLinkingService extends DefaultLinkingService {
 						field.value = ""
 						root.packets.get(0).fields.add(field)
 					}
-					referencesResolved = Collections.singletonList(field)
 				} else {// if we set a variable
 					var vardec = root.variables.findFirst[v | v.name.equals(node.text)]
 					if (vardec === null) {
@@ -89,9 +97,9 @@ class GpflLinkingService extends DefaultLinkingService {
 			
 			//------------------- PORT REFERENCE -------------------//
 			
-			if (context instanceof PortRef) {
+			else if (context instanceof PortRef) {
 				var portRef = context as PortRef
-				var port = root.ports.findFirst[p | p.name.equals(node.text)]
+				var port = root.inPorts.findFirst[p | p.name.equals(node.text)]
 				if (port !== null) {
 					portRef.port = port
 					referencesResolved = Collections.singletonList(port)
@@ -99,31 +107,40 @@ class GpflLinkingService extends DefaultLinkingService {
 			}
 			
 			//------------------- EVENT REFERENCE -------------------//
-			
-			if (ref == GpflPackage.Literals.STEP_AUTOMATA__EVENT_NAME ) {
+			else if (ref == GpflPackage.Literals.STEP_AUTOMATA__EVENT_OCCURENCE) {
 				val step = context as StepAutomata
-				if (node.text.contains('"')) { // if it's a string literal
-					referencesResolved = Collections.singletonList(step.idAutomata.value.events.findFirst[e | e.name.equals(node.text.getStringValue)])
-				} else {
-//					var NewEventRef newER
-//					newER = EcoreUtil2.getAllContentsOfType(root, newER.class).findFirst[n | n.name.equals()]
+				val eventOcc = root.prologue.eventPool.findFirst[e | e.name.equals(node.text)]
+				if (eventOcc !== null) {					
+					step.eventOccurence = eventOcc
+					referencesResolved = Collections.singletonList(eventOcc)
 				}
 			}
-			if (ref == GpflPackage.Literals.NEW_EVENT_REF__VALUE) {
-//				referencesResolved = Collections.singletonList(step.idAutomata.value.events.findFirst[e | e.name.equals(node.text.getStringValue)])
+			
+			else if (context instanceof NewEventOccurence) {
+				val newEventOccurence = context as NewEventOccurence
+				var eventOcc = null as EventOccurence
+				if (ref == GpflPackage.Literals.NEW_EVENT_OCCURENCE__VALUE) {
+					eventOcc = root.prologue.eventPool.findFirst[e | e.name.equals(node.text)]
+					if (eventOcc.event !== null) {						
+						newEventOccurence.occurence.event = eventOcc.event
+						referencesResolved = Collections.singletonList(eventOcc.event)
+					}
+				}
+				else if (ref == GpflPackage.Literals.NEW_EVENT_OCCURENCE__OCCURENCE){		
+					eventOcc = GpflFactory.eINSTANCE.createEventOccurence
+					eventOcc.name = node.text
+					root.prologue.eventPool.add(eventOcc)
+				}
 			}
 			
 			//------------------- FIELD REFERENCE -------------------//
-			if (context instanceof FieldRef) {
+			else if (context instanceof FieldRef) {
 				val Field field = GpflFactory.eINSTANCE.createField;
 				field.name = node.text
 				field.value = ""
 				root.packets.get(0).fields.add(field)
-				Collections.singletonList(field)
 			}
 		}
-
-//		EcoreUtil2.getAllContentsOfType(root, Set.class)
 		
 		return referencesResolved;
 	}

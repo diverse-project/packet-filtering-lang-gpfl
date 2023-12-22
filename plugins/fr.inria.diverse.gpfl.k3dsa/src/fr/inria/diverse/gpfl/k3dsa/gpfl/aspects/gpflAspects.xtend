@@ -7,7 +7,6 @@ import fr.inria.diverse.gpfl.InitSeq
 import fr.inria.diverse.gpfl.Automata
 import fr.inria.diverse.gpfl.Stmt
 import fr.inria.diverse.gpfl.Cmd
-import fr.inria.diverse.gpfl.RuntimeContext
 import fr.inria.diverse.gpfl.NewAutomata
 import fr.inria.diverse.gpfl.Alarm
 import fr.inria.diverse.gpfl.Send
@@ -55,7 +54,7 @@ import fr.inria.diverse.gpfl.Field
 import fr.inria.diverse.gpfl.FieldRef
 import fr.inria.diverse.gpfl.Event
 import fr.inria.diverse.gpfl.SetType
-import fr.inria.diverse.gpfl.NewEventRef
+import fr.inria.diverse.gpfl.NewEventOccurence
 
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ProgramAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.PrologueAspect.*
@@ -63,7 +62,7 @@ import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.InitSeqAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.AutomataAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.StmtAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.CmdAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.RuntimeContextAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ProgramAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NewAutomataAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.AlarmAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.SendAspect.*
@@ -79,7 +78,6 @@ import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.FilterAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.StateAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.TransitionAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BlockAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.PacketAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ExpressionAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.UnaryOpAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BinaryOpAspect.*
@@ -101,116 +99,77 @@ import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.MinusAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.MultAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.DivAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NegAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.VariableDeclarationAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.VariableRefAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BooleanDecAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.IntegerDecAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.StringDecAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.PortAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.FieldAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.FieldRefAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.EventAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.SetTypeAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NewEventRefAspect.*
-import java.util.List
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NewEventOccurenceAspect.*
+
 import fr.inria.diverse.k3.al.annotationprocessor.Main
+import fr.inria.diverse.k3.al.annotationprocessor.InitializeModel
+import org.eclipse.emf.common.util.EList
+import fr.inria.diverse.gpfl.GpflFactory
+import fr.inria.diverse.gpfl.Program
+import java.io.File
+import java.util.Scanner
+import org.eclipse.core.resources.ResourcesPlugin
+import org.eclipse.core.resources.IWorkspace
+import org.eclipse.gemoc.commons.eclipse.messagingsystem.api.MessagingSystem
+import org.eclipse.gemoc.commons.eclipse.messagingsystem.api.MessagingSystemManager
 
 @Aspect(className=Program)
 class ProgramAspect {
-
-@Main
- def void main(List<String> args){
- 	
- }
+	var MessagingSystem internalLogger  
+	def MessagingSystem logger(){
+		if (_self.internalLogger === null) { 
+			val MessagingSystemManager msManager = new MessagingSystemManager
+			_self.internalLogger = msManager.createBestPlatformMessagingSystem("Gpfl","Simple Gpfl interpreter")
+			
+		} 
+		return _self.internalLogger
+	}
+	@InitializeModel
+	def void initializeModel(EList<String> args) {
+		
+		// ------------ Read input file and create the packets ------------ //
+		try {
+			val IWorkspace workspace = ResourcesPlugin.getWorkspace()
+			val input = new Scanner(new File(workspace.root.findMember(args.get(0)).locationURI.path))
+			while (input.hasNextLine) {
+				val line = input.nextLine
+				var packet = GpflFactory.eINSTANCE.createPacket
+				val String[] packet_data = line.substring(1, line.length-1).split(";")
+				packet.time = Integer.valueOf(packet_data.get(0))
+				packet.inPort = _self.inPorts.findFirst[p | p.name.equals(packet_data.get(1))]
+				for (field_data : packet_data.get(2).split(",")) {
+					val field = GpflFactory.eINSTANCE.createField
+					field.name = "$"+field_data.substring(0, field_data.indexOf("="))
+					field.value = field_data.split('"').get(1)
+					packet.fields.add(field)
+				}
+				_self.packets.add(packet)
+			}
+		} catch(NullPointerException e) {
+			_self.logger.error("Input file " + args.get(0) + " not found\nGo check run configurations", "Gpfl")
+			e.printStackTrace();
+		}
+	}
+	
+	@Main
+	def void run() {
+ 		_self.prologue.run(_self)
+ 		_self.filter.run(_self)
+	}
 }
 
 @Aspect(className=Prologue)
 class PrologueAspect {
-
-}
-
-@Aspect(className=InitSeq)
-class InitSeqAspect {
-
+	def void run(Program root) {
+		_self.init.run(root)
+	}
 }
 
 @Aspect(className=Automata)
 class AutomataAspect {
-
-}
-
-@Aspect(className=Stmt)
-abstract class StmtAspect {
-
-}
-
-@Aspect(className=Cmd)
-abstract class CmdAspect extends StmtAspect {
-
-}
-
-@Aspect(className=RuntimeContext)
-abstract class RuntimeContextAspect {
-
-}
-
-@Aspect(className=NewAutomata)
-class NewAutomataAspect extends CmdAspect {
-
-}
-
-@Aspect(className=Alarm)
-class AlarmAspect extends CmdAspect {
-
-}
-
-@Aspect(className=Send)
-class SendAspect extends CmdAspect {
-
-}
-
-@Aspect(className=SetVariable)
-class SetVariableAspect extends CmdAspect {
-
-}
-
-@Aspect(className=StepAutomata)
-class StepAutomataAspect extends StmtAspect {
-
-}
-
-@Aspect(className=Nop)
-class NopAspect extends CmdAspect {
-
-}
-
-@Aspect(className=Accept)
-class AcceptAspect extends CmdAspect {
-
-}
-
-@Aspect(className=Drop)
-class DropAspect extends CmdAspect {
-
-}
-
-@Aspect(className=Condition)
-class ConditionAspect extends StmtAspect {
-
-}
-
-@Aspect(className=Iteration)
-class IterationAspect extends StmtAspect {
-
-}
-
-@Aspect(className=NewInterruption)
-class NewInterruptionAspect extends StmtAspect {
-
-}
-
-@Aspect(className=Filter)
-class FilterAspect {
 
 }
 
@@ -224,118 +183,386 @@ class TransitionAspect {
 
 }
 
-@Aspect(className=Block)
-class BlockAspect {
+@Aspect(className=Event)
+class EventAspect {
 
 }
 
-@Aspect(className=Packet)
-class PacketAspect {
+@Aspect(className=InitSeq)
+class InitSeqAspect {
+	def void run(Program root) {
+		_self.block.run(root)
+	}
+}
 
+@Aspect(className=Filter)
+class FilterAspect {
+	def void run(Program root) {
+		_self.block.run(root)
+	}
+}
+
+@Aspect(className=Block)
+class BlockAspect {
+	def void run(Program root) {
+		_self.currentStmt = _self.firstStmt
+		while (_self.currentStmt !== null) {
+			_self.currentStmt.run(root)
+			_self.currentStmt = _self.currentStmt.next
+		}
+	}
+}
+
+@Aspect(className=Stmt)
+abstract class StmtAspect {
+	def void run(Program root) {
+		root.logger.error("run of " +_self +" should never occur, please write method run for this class", "Gpfl")
+	}
+}
+
+@Aspect(className=Condition)
+class ConditionAspect extends StmtAspect {
+	def void run(Program root) {
+		root.logger.debug(_self +" not implemented yet", "Gpfl")
+	}
+}
+
+@Aspect(className=Iteration)
+class IterationAspect extends StmtAspect {
+	def void run(Program root) {
+		root.logger.debug(_self +" not implemented yet", "Gpfl")
+	}
+}
+
+@Aspect(className=NewInterruption)
+class NewInterruptionAspect extends StmtAspect {
+	def void run(Program root) {
+		root.logger.debug(_self +" not implemented yet", "Gpfl")
+	}
+}
+
+@Aspect(className=StepAutomata)
+class StepAutomataAspect extends StmtAspect {
+	def void run(Program root) {
+		root.logger.debug(_self +" not implemented yet", "Gpfl")
+	}
+}
+
+@Aspect(className=Cmd)
+abstract class CmdAspect extends StmtAspect {
+	def void run(Program root) {
+		root.logger.error("run of " +_self +" should never occur, please write method run for this class", "Gpfl")
+	}
+}
+
+@Aspect(className=NewAutomata)
+class NewAutomataAspect extends CmdAspect {
+	def void run(Program root) {
+		root.logger.debug(_self +" not implemented yet", "Gpfl")
+	}
+}
+
+@Aspect(className=Alarm)
+class AlarmAspect extends CmdAspect {
+	def void run(Program root) {
+		root.logger.debug(_self +" not implemented yet", "Gpfl")
+	}
+}
+
+@Aspect(className=Send)
+class SendAspect extends CmdAspect {
+	def void run(Program root) {
+		root.logger.debug(_self +" not implemented yet", "Gpfl")
+	}
+}
+
+@Aspect(className=SetVariable)
+class SetVariableAspect extends CmdAspect {
+	def void run(Program root) {
+		root.logger.debug(_self +" not implemented yet", "Gpfl")
+	}
+}
+
+@Aspect(className=Nop)
+class NopAspect extends CmdAspect {
+	def void run(Program root) {
+		root.logger.debug(_self +" not implemented yet", "Gpfl")
+	}
+}
+
+@Aspect(className=Accept)
+class AcceptAspect extends CmdAspect {
+	def void run(Program root) {
+		root.logger.debug(_self +" not implemented yet", "Gpfl")
+	}
+}
+
+@Aspect(className=Drop)
+class DropAspect extends CmdAspect {
+	def void run(Program root) {
+		root.logger.debug(_self +" not implemented yet", "Gpfl")
+	}
+}
+
+@Aspect(className=NewEventOccurence)
+class NewEventOccurenceAspect extends CmdAspect {
+	def void run(Program root) {
+		root.logger.debug(_self +" not implemented yet", "Gpfl")
+	}
 }
 
 @Aspect(className=Expression)
 abstract class ExpressionAspect {
-
+	def Object eval(Program root) {
+		root.logger.error("eval of " + _self + " should never occur, please write method run for this class", "Gpfl")
+		return 0;
+	}
 }
 
-@Aspect(className=UnaryOp)
-abstract class UnaryOpAspect extends ExpressionAspect {
 
+@Aspect(className=VariableRef)
+class VariableRefAspect extends ExpressionAspect {
+	def Object eval(Program root) {
+//		return _self.variable.eval(root)
+	}
 }
 
-@Aspect(className=BinaryOp)
-abstract class BinaryOpAspect extends ExpressionAspect {
-
+@Aspect(className=FieldRef)
+class FieldRefAspect extends ExpressionAspect {
+	def Object eval(Program root) {
+//		return _self.field.eval(root)
+	}
 }
 
 @Aspect(className=PortRef)
 class PortRefAspect extends ExpressionAspect {
-
+	// a port ref can be called only to check if it's the current port, so it's a boolean
+	def Boolean eval(Program root) {
+		return root.currentPacket.inPort === _self.port
+	}
 }
 
 @Aspect(className=StringLiteral)
 class StringLiteralAspect extends ExpressionAspect {
-
+	def String eval(Program root) {
+		return _self.value
+	}
 }
 
 @Aspect(className=IntLiteral)
 class IntLiteralAspect extends ExpressionAspect {
-
+	def Integer eval(Program root) {
+		return _self.value
+	}
 }
 
 @Aspect(className=BooleanLiteral)
 class BooleanLiteralAspect extends ExpressionAspect {
+	def Boolean eval(Program root) {
+		return _self.isIsTrue
+	}
+}
 
+@Aspect(className=UnaryOp)
+abstract class UnaryOpAspect extends ExpressionAspect {
+	def Object eval(Program root) {
+		root.logger.error("eval of " + _self + " should never occur, please write method run for this class", "Gpfl")
+		return null
+	}
 }
 
 @Aspect(className=Not)
 class NotAspect extends UnaryOpAspect {
-
-}
-
-@Aspect(className=Or)
-class OrAspect extends BinaryOpAspect {
-
-}
-
-@Aspect(className=And)
-class AndAspect extends BinaryOpAspect {
-
-}
-
-@Aspect(className=Equality)
-class EqualityAspect extends BinaryOpAspect {
-
-}
-
-@Aspect(className=Inequality)
-class InequalityAspect extends BinaryOpAspect {
-
-}
-
-@Aspect(className=GreaterOrEqual)
-class GreaterOrEqualAspect extends BinaryOpAspect {
-
-}
-
-@Aspect(className=LowerOrEqual)
-class LowerOrEqualAspect extends BinaryOpAspect {
-
-}
-
-@Aspect(className=Greater)
-class GreaterAspect extends BinaryOpAspect {
-
-}
-
-@Aspect(className=Lower)
-class LowerAspect extends BinaryOpAspect {
-
-}
-
-@Aspect(className=Plus)
-class PlusAspect extends BinaryOpAspect {
-
-}
-
-@Aspect(className=Minus)
-class MinusAspect extends BinaryOpAspect {
-
-}
-
-@Aspect(className=Mult)
-class MultAspect extends BinaryOpAspect {
-
-}
-
-@Aspect(className=Div)
-class DivAspect extends BinaryOpAspect {
-
+	def Boolean eval(Program root) {
+		try {
+			return !(_self.expression.eval(root) as Boolean)
+		} catch (ClassCastException e) {
+			root.logger.error("Type mismatch: Cannot invert " + _self.expression.eval(root) + " because it's not a boolean", "Gpfl")
+			e.printStackTrace
+			return null
+		}
+	}
 }
 
 @Aspect(className=Neg)
 class NegAspect extends UnaryOpAspect {
+	def Integer eval(Program root) {
+		try {
+			return -(_self.expression.eval(root) as Integer)
+		} catch (ClassCastException e) {
+			root.logger.error("Type mismatch: Cannot neg " + _self.expression.eval(root) + " because it's not an integer", "Gpfl")
+			e.printStackTrace
+			return null
+		}
+	}
+}
+
+@Aspect(className=BinaryOp)
+abstract class BinaryOpAspect extends ExpressionAspect {
+	def Object eval(Program root) {
+		root.logger.error("eval of " + _self + " should never occur, please write method run for this class", "Gpfl")
+		return null
+	}
+}
+
+@Aspect(className=Or)
+class OrAspect extends BinaryOpAspect {
+	def Boolean eval(Program root) {
+		try {
+			return (_self.left.eval(root) as Boolean) || (_self.right.eval(root) as Boolean)
+		} catch (ClassCastException e) {
+			root.logger.error("Type mismatch: Cannot evaluate " + _self.left.eval(root) + " and " + _self.right.eval(root) + " because they are not Boolean", "Gpfl")
+			e.printStackTrace
+			return null
+		}
+	}
+}
+
+@Aspect(className=And)
+class AndAspect extends BinaryOpAspect {
+	def Boolean eval(Program root) {
+		try {
+			return (_self.left.eval(root) as Boolean) && (_self.right.eval(root) as Boolean)
+		} catch (ClassCastException e) {
+			root.logger.error("Type mismatch: Cannot evaluate " + _self.left.eval(root) + " and " + _self.right.eval(root) + " because they are not Boolean", "Gpfl")
+			e.printStackTrace
+			return null
+		}
+	}
+}
+
+@Aspect(className=Equality)
+class EqualityAspect extends BinaryOpAspect {
+	def Boolean eval(Program root) {
+		try {
+			return (_self.left.eval(root) as Boolean) == (_self.right.eval(root) as Boolean)
+		} catch (ClassCastException e) {
+			root.logger.error("Type mismatch: Cannot compare " + _self.left.eval(root) + " and " + _self.right.eval(root) + " because they are not Boolean", "Gpfl")
+			e.printStackTrace
+			return null
+		}
+	}
+}
+
+@Aspect(className=Inequality)
+class InequalityAspect extends BinaryOpAspect {
+	def Boolean eval(Program root) {
+		try {
+			return (_self.left.eval(root) as Boolean) != (_self.right.eval(root) as Boolean)
+		} catch (ClassCastException e) {
+			root.logger.error("Type mismatch: Cannot compare " + _self.left.eval(root) + " and " + _self.right.eval(root) + " because they are not Boolean", "Gpfl")
+			e.printStackTrace
+			return null
+		}
+	}
+}
+
+@Aspect(className=GreaterOrEqual)
+class GreaterOrEqualAspect extends BinaryOpAspect {
+	def Boolean eval(Program root) {
+		try {
+			return (_self.left.eval(root) as Boolean) >= (_self.right.eval(root) as Boolean)
+		} catch (ClassCastException e) {
+			root.logger.error("Type mismatch: Cannot compare " + _self.left.eval(root) + "and" + _self.right.eval(root) + " because they are not Boolean", "Gpfl")
+			e.printStackTrace
+			return null
+		}
+	}
+}
+
+@Aspect(className=LowerOrEqual)
+class LowerOrEqualAspect extends BinaryOpAspect {
+	def Boolean eval(Program root) {
+		try {
+			return (_self.left.eval(root) as Boolean) <= (_self.right.eval(root) as Boolean)
+		} catch (ClassCastException e) {
+			root.logger.error("Type mismatch: Cannot compare " + _self.left.eval(root) + " and " + _self.right.eval(root) + " because they are not Boolean", "Gpfl")
+			e.printStackTrace
+			return null
+		}
+	}
+}
+
+@Aspect(className=Greater)
+class GreaterAspect extends BinaryOpAspect {
+	def Boolean eval(Program root) {
+		try {
+			return (_self.left.eval(root) as Boolean) > (_self.right.eval(root) as Boolean)
+		} catch (ClassCastException e) {
+			root.logger.error("Type mismatch: Cannot compare " + _self.left.eval(root) + " and " + _self.right.eval(root) + " because they are not Boolean", "Gpfl")
+			e.printStackTrace
+			return null
+		}
+	}
+}
+
+@Aspect(className=Lower)
+class LowerAspect extends BinaryOpAspect {
+	def Boolean eval(Program root) {
+		try {
+			return (_self.left.eval(root) as Boolean) < (_self.right.eval(root) as Boolean)
+		} catch (ClassCastException e) {
+			root.logger.error("Type mismatch: Cannot compare " + _self.left.eval(root) + " and " + _self.right.eval(root) + " because they are not Boolean", "Gpfl")
+			e.printStackTrace
+			return null
+		}
+	}
+}
+
+@Aspect(className=Plus)
+class PlusAspect extends BinaryOpAspect {
+	def Object eval(Program root) {
+		if (_self.left.eval(root) instanceof Integer && _self.right.eval(root) instanceof Integer) {
+			return (_self.left.eval(root) as Integer) + (_self.right.eval(root) as Integer)
+		} else if (_self.left.eval(root) instanceof String) {
+			return (_self.left.eval(root) as String) + _self.right.eval(root)
+		} else if (_self.right.eval(root) instanceof String) {
+			return _self.left.eval(root) + (_self.right.eval(root) as String)
+		}
+		root.logger.error("Type mismatch: Cannot add " + _self.left.eval(root) + " and " + _self.right.eval(root), "Gpfl")
+		return null
+	}
+}
+
+@Aspect(className=Minus)
+class MinusAspect extends BinaryOpAspect {
+	def Integer eval(Program root) {
+		if (_self.left.eval(root) instanceof Integer && _self.right.eval(root) instanceof Integer) {
+			return (_self.left.eval(root) as Integer) - (_self.right.eval(root) as Integer)
+		}
+		root.logger.error("Type mismatch: Cannot minus " + _self.left.eval(root) + " by " + _self.right.eval(root), "Gpfl")
+		return null
+	}
+}
+
+@Aspect(className=Mult)
+class MultAspect extends BinaryOpAspect {
+	def Integer eval(Program root) {
+		if (_self.left.eval(root) instanceof Integer && _self.right.eval(root) instanceof Integer) {
+			return (_self.left.eval(root) as Integer) * (_self.right.eval(root) as Integer)
+		}
+		root.logger.error("Type mismatch: Cannot multiply " + _self.left.eval(root) + " by " + _self.right.eval(root), "Gpfl")
+		return null
+	}
+}
+
+@Aspect(className=Div)
+class DivAspect extends BinaryOpAspect {
+	def Integer eval(Program root) {
+		if (_self.left.eval(root) instanceof Integer && _self.right.eval(root) instanceof Integer) {
+			if (_self.right.eval(root) == 0) {
+				root.logger.error("You cannot divide by 0", "Gpfl")
+				return null
+			}
+			return (_self.left.eval(root) as Integer) - (_self.right.eval(root) as Integer)
+		}
+		root.logger.error("Type mismatch: Cannot divid " + _self.left.eval(root) + " by " + _self.right.eval(root), "Gpfl")
+		return null
+	}
+}
+
+@Aspect(className=SetType)
+class SetTypeAspect {
 
 }
 
@@ -344,8 +571,8 @@ class VariableDeclarationAspect extends SetTypeAspect {
 
 }
 
-@Aspect(className=VariableRef)
-class VariableRefAspect extends ExpressionAspect {
+@Aspect(className=StringDec)
+class StringDecAspect extends VariableDeclarationAspect {
 
 }
 
@@ -359,40 +586,17 @@ class IntegerDecAspect extends VariableDeclarationAspect {
 
 }
 
-@Aspect(className=StringDec)
-class StringDecAspect extends VariableDeclarationAspect {
-
-}
-
 @Aspect(className=Port)
 class PortAspect {
 
 }
 
+@Aspect(className=Packet)
+class PacketAspect {
+
+}
+
 @Aspect(className=Field)
-class FieldAspect extends SetTypeAspect {
+class FieldAspect extends SetTypeAspect{
 
 }
-
-@Aspect(className=FieldRef)
-class FieldRefAspect extends ExpressionAspect {
-
-}
-
-@Aspect(className=Event)
-class EventAspect {
-
-}
-
-@Aspect(className=SetType)
-abstract class SetTypeAspect {
-
-}
-
-@Aspect(className=NewEventRef)
-class NewEventRefAspect extends CmdAspect {
-
-}
-
-
-

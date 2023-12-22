@@ -12,24 +12,24 @@ class GpflAstFactory extends DefaultEcoreElementFactory {
 		super.set(object, feature, value, ruleName, node)
 		
 		if (object instanceof Program) {
-			var root = object as Program
+			val root = object as Program
 			
 			//------------------- PORT CREATION -------------------//
 		
-			if (root.ports.length !==  2) {
-				root.ports.clear()
+			if (root.inPorts.length !==  2) {
+				root.inPorts.clear()
 				var portIn = GpflFactory.eINSTANCE.createPort()
 				portIn.setName("inSide")
 				var portOut = GpflFactory.eINSTANCE.createPort()
 				portOut.setName("outSide")
-				Collections.addAll(root.ports, portIn, portOut)
+				Collections.addAll(root.inPorts, portIn, portOut)
 			}
 			
 			//------------------- EMPTY PACKET CREATION -------------------//
 			if (root.packets.isEmpty) {
 				var emptyPacket = GpflFactory.eINSTANCE.createPacket
 				emptyPacket.time = -1
-				emptyPacket.inPort = root.ports.get(0)
+				emptyPacket.inPort = root.inPorts.get(0)
 				root.packets.add(emptyPacket)
 			}
 		}

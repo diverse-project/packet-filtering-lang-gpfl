@@ -18,7 +18,7 @@ PROLOGUE
 	AUTOMATA "Prout"
 		init = "12"
 		"12" -"gaaah" -> "14"
-	INIT
+	INIT 
 		newAutomaton("DHCP incoming controller", #A)
 		newAutomaton("DHCP incoming controller", #B)
 		newAutomaton("DHCP incoming controller2", #C)

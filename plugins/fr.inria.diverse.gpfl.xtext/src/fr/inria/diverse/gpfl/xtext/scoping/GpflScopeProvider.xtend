@@ -3,6 +3,9 @@
  */
 package fr.inria.diverse.gpfl.xtext.scoping
 
+import org.eclipse.xtext.scoping.IScope
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EReference
 
 /**
  * This class contains custom scoping description.
@@ -12,4 +15,8 @@ package fr.inria.diverse.gpfl.xtext.scoping
  */
 class GpflScopeProvider extends AbstractGpflScopeProvider {
 
+	override IScope getScope(EObject context, EReference reference) {
+		val scop = super.getScope(context, reference)
+		return scop
+	}
 }
