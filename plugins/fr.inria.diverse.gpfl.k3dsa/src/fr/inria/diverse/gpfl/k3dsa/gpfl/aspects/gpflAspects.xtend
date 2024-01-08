@@ -115,6 +115,8 @@ import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.core.resources.IWorkspace
 import org.eclipse.gemoc.commons.eclipse.messagingsystem.api.MessagingSystem
 import org.eclipse.gemoc.commons.eclipse.messagingsystem.api.MessagingSystemManager
+import org.eclipse.emf.ecore.EObject
+import fr.inria.diverse.k3.al.annotationprocessor.Step
 
 @Aspect(className=Program)
 class ProgramAspect {
@@ -131,6 +133,8 @@ class ProgramAspect {
 	def void initializeModel(EList<String> args) {
 		
 		// ------------ Read input file and create the packets ------------ //
+		_self.packets.clear
+		_self.currentTime = 0
 		try {
 			val IWorkspace workspace = ResourcesPlugin.getWorkspace()
 			val input = new Scanner(new File(workspace.root.findMember(args.get(0)).locationURI.path))
@@ -150,23 +154,23 @@ class ProgramAspect {
 			}
 		} catch(NullPointerException e) {
 			_self.logger.error("Input file " + args.get(0) + " not found\nGo check run configurations", "Gpfl")
-			e.printStackTrace();
+			e.printStackTrace
 		}
 	}
 	
 	@Main
+	@Step
 	def void run() {
  		_self.prologue.run(_self)
- 		_self.filter.run(_self)
+ 		for (packet : _self.packets) {
+			_self.currentPacket = packet			
+	 		_self.filter.run(_self)
+		}
 	}
 }
 
-@Aspect(className=Prologue)
-class PrologueAspect {
-	def void run(Program root) {
-		_self.init.run(root)
-	}
-}
+
+// --------------- AUTOMATA  --------------- //
 
 @Aspect(className=Automata)
 class AutomataAspect {
@@ -188,6 +192,15 @@ class EventAspect {
 
 }
 
+// --------------- STRUCUTURE  --------------- //
+
+@Aspect(className=Prologue)
+class PrologueAspect {
+	def void run(Program root) {
+		_self.init.run(root)
+	}
+}
+
 @Aspect(className=InitSeq)
 class InitSeqAspect {
 	def void run(Program root) {
@@ -199,6 +212,17 @@ class InitSeqAspect {
 class FilterAspect {
 	def void run(Program root) {
 		_self.block.run(root)
+		val oldTime = root.currentTime
+		root.currentTime = root.currentPacket.time
+		// handle interruptions
+		for (interrupt : root.interruptions) {
+			if ((!interrupt.loop && root.currentTime >= interrupt.time && interrupt.time > oldTime)
+			|| (interrupt.loop 
+				&& Math.floor(root.currentTime/interrupt.time)*interrupt.time > oldTime 
+				&& Math.floor(root.currentTime/interrupt.time)*interrupt.time <= root.currentTime
+			))
+				interrupt.block.run(root)
+		}
 	}
 }
 
@@ -213,6 +237,8 @@ class BlockAspect {
 	}
 }
 
+// --------------- STATEMENT  --------------- //
+
 @Aspect(className=Stmt)
 abstract class StmtAspect {
 	def void run(Program root) {
@@ -223,30 +249,43 @@ abstract class StmtAspect {
 @Aspect(className=Condition)
 class ConditionAspect extends StmtAspect {
 	def void run(Program root) {
-		root.logger.debug(_self +" not implemented yet", "Gpfl")
+		if(_self.getIf.eval(root) as Boolean) {
+			_self.then.run(root)
+		}
 	}
 }
 
 @Aspect(className=Iteration)
 class IterationAspect extends StmtAspect {
 	def void run(Program root) {
-		root.logger.debug(_self +" not implemented yet", "Gpfl")
+		while (_self.getWhile.eval(root) as Boolean) {
+			_self.then.run(root)
+		}
 	}
 }
 
 @Aspect(className=NewInterruption)
 class NewInterruptionAspect extends StmtAspect {
 	def void run(Program root) {
-		root.logger.debug(_self +" not implemented yet", "Gpfl")
+		root.interruptions.add(_self)
 	}
 }
 
 @Aspect(className=StepAutomata)
 class StepAutomataAspect extends StmtAspect {
 	def void run(Program root) {
-		root.logger.debug(_self +" not implemented yet", "Gpfl")
+		val activableTrans = _self.idAutomata.value.transitions.findFirst[t | 
+			t.from === _self.idAutomata.currentState && t.event === _self.eventOccurence.event
+		]
+		if (activableTrans === null) {
+			_self.block.run(root)
+		} else {
+			_self.idAutomata.currentState = activableTrans.to
+		}
 	}
 }
+
+// --------------- COMMAND  --------------- //
 
 @Aspect(className=Cmd)
 abstract class CmdAspect extends StmtAspect {
@@ -258,58 +297,98 @@ abstract class CmdAspect extends StmtAspect {
 @Aspect(className=NewAutomata)
 class NewAutomataAspect extends CmdAspect {
 	def void run(Program root) {
-		root.logger.debug(_self +" not implemented yet", "Gpfl")
+		_self.currentState = _self.value.initialState
 	}
 }
 
 @Aspect(className=Alarm)
 class AlarmAspect extends CmdAspect {
 	def void run(Program root) {
-		root.logger.debug(_self +" not implemented yet", "Gpfl")
+		println("ALARM @ "+ root.currentTime+ ": " + _self.message.eval(root) as String)
 	}
 }
 
 @Aspect(className=Send)
 class SendAspect extends CmdAspect {
 	def void run(Program root) {
-		root.logger.debug(_self +" not implemented yet", "Gpfl")
+		var packet = "("+_self.packet.time+";"+ _self.port.name+"; "
+		for (field : _self.packet.fields) {
+			packet+=field.name+'="'+field.value+'", '
+		}
+		packet.substring(0, packet.length-1)
+		packet+=")\n"
+		println(packet)
 	}
 }
 
 @Aspect(className=SetVariable)
 class SetVariableAspect extends CmdAspect {
 	def void run(Program root) {
-		root.logger.debug(_self +" not implemented yet", "Gpfl")
+		val value = _self.value.eval(root)
+		if (_self.declaration instanceof VariableDeclaration){			
+			if (value instanceof Integer) {
+				val dec = GpflFactory.eINSTANCE.createIntegerDec
+				dec.value = value
+				_self.declaration = dec
+			} else if (value instanceof String) {
+				val dec = GpflFactory.eINSTANCE.createStringDec
+				dec.value = value
+				_self.declaration = dec
+			} else if (value instanceof Boolean) {
+				val dec = GpflFactory.eINSTANCE.createBooleanDec
+				dec.isTrue = value
+				_self.declaration = dec
+			}
+		} else if (_self.declaration instanceof Field) {
+			var field = root.currentPacket.fields.findFirst[f | f.name.equals(_self.declaration.name)]
+			if (field === null) {
+				field = GpflFactory.eINSTANCE.createField
+				field.name = _self.declaration.name
+			}
+			field.value = _self.value.eval(root) as String
+		}
 	}
 }
 
 @Aspect(className=Nop)
 class NopAspect extends CmdAspect {
 	def void run(Program root) {
-		root.logger.debug(_self +" not implemented yet", "Gpfl")
+		root.logger.debug(_self +" not yet implemented", "Gpfl")
 	}
 }
 
 @Aspect(className=Accept)
 class AcceptAspect extends CmdAspect {
 	def void run(Program root) {
-		root.logger.debug(_self +" not implemented yet", "Gpfl")
+		// TODO: factorise with send
+		var packet = "("+root.currentPacket.time+";"+ root.currentPacket.inPort.name+"; "
+		for (field : root.currentPacket.fields) {
+			packet+=field.name+'="'+field.value+'", '
+		}
+		packet.substring(0, packet.length-1)
+		packet+=")\n"
+		println(packet)
 	}
 }
 
 @Aspect(className=Drop)
 class DropAspect extends CmdAspect {
 	def void run(Program root) {
-		root.logger.debug(_self +" not implemented yet", "Gpfl")
+		root.logger.debug(_self +" not yet implemented", "Gpfl")
 	}
 }
 
 @Aspect(className=NewEventOccurence)
 class NewEventOccurenceAspect extends CmdAspect {
 	def void run(Program root) {
-		root.logger.debug(_self +" not implemented yet", "Gpfl")
+		var eventOcc = GpflFactory.eINSTANCE.createEventOccurence
+		eventOcc.name = _self.occurence.name
+		eventOcc.event = _self.value
+		root.prologue.eventPool.add(eventOcc)
 	}
 }
+
+// --------------- EXPRESSION  --------------- //
 
 @Aspect(className=Expression)
 abstract class ExpressionAspect {
@@ -338,7 +417,7 @@ class FieldRefAspect extends ExpressionAspect {
 class PortRefAspect extends ExpressionAspect {
 	// a port ref can be called only to check if it's the current port, so it's a boolean
 	def Boolean eval(Program root) {
-		return root.currentPacket.inPort === _self.port
+		return root.currentPacket.inPort.equals(_self.port)
 	}
 }
 
@@ -512,14 +591,18 @@ class LowerAspect extends BinaryOpAspect {
 @Aspect(className=Plus)
 class PlusAspect extends BinaryOpAspect {
 	def Object eval(Program root) {
-		if (_self.left.eval(root) instanceof Integer && _self.right.eval(root) instanceof Integer) {
-			return (_self.left.eval(root) as Integer) + (_self.right.eval(root) as Integer)
-		} else if (_self.left.eval(root) instanceof String) {
-			return (_self.left.eval(root) as String) + _self.right.eval(root)
-		} else if (_self.right.eval(root) instanceof String) {
-			return _self.left.eval(root) + (_self.right.eval(root) as String)
+		val left = _self.left.eval(root)
+		val right = _self.right.eval(root)
+		if ((left instanceof Integer && right instanceof Integer)
+			|| (left instanceof String && right instanceof String)
+		) {
+			return (left as Integer) + (right as Integer)
+		} else if (left instanceof String) {
+			return (left as String) + right
+		} else if (right instanceof String) {
+			return left + (right as String)
 		}
-		root.logger.error("Type mismatch: Cannot add " + _self.left.eval(root) + " and " + _self.right.eval(root), "Gpfl")
+		root.logger.error("Type mismatch: Cannot add " + left + " and " + right, "Gpfl")
 		return null
 	}
 }

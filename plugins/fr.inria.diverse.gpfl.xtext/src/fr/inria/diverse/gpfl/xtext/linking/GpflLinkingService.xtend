@@ -86,7 +86,7 @@ class GpflLinkingService extends DefaultLinkingService {
 				} else {// if we set a variable
 					var vardec = root.variables.findFirst[v | v.name.equals(node.text)]
 					if (vardec === null) {
-						vardec = GpflFactory.eINSTANCE.createVariableDeclaration()
+						vardec = GpflFactory.eINSTANCE.createVariableDeclaration
 						vardec.name = node.text
 						root.variables.add(vardec)
 						set.declaration = vardec
