@@ -161,7 +161,7 @@
     <genClasses ecoreClass="Gpfl.ecore#//VariableDeclaration"/>
     <genClasses ecoreClass="Gpfl.ecore#//Packet">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//Packet/time"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Packet/inPort"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Gpfl.ecore#//Packet/inPort"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Packet/fields"/>
     </genClasses>
     <genClasses ecoreClass="Gpfl.ecore#//Field">

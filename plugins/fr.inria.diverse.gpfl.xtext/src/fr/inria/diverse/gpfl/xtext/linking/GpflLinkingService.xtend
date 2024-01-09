@@ -88,8 +88,8 @@ class GpflLinkingService extends DefaultLinkingService {
 					if (vardec === null) {
 						vardec = GpflFactory.eINSTANCE.createVariableDeclaration
 						vardec.name = node.text
-						root.variables.add(vardec)
 						set.declaration = vardec
+						root.variables.add(vardec)
 					}
 					referencesResolved = Collections.singletonList(vardec)
 				}
