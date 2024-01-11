@@ -74,6 +74,9 @@ class GpflLinkingService extends DefaultLinkingService {
 			//------------------- VARIABLE DECLARATION CREATION AND REFERENCE -------------------//
 		
 			else if (context instanceof SetVariable && ref == GpflPackage.Literals.SET_VARIABLE__DECLARATION) {
+				var actualvarname = node.text
+				var rootRes = root.eResource
+				var rootResSet = root.eResource.resourceSet
 				var set = context as SetVariable
 				if (node.text.startsWith("$")) { // if we set a field
 					var field = root.packets.get(0).fields.findFirst[p | p.name.equals(node.text)]

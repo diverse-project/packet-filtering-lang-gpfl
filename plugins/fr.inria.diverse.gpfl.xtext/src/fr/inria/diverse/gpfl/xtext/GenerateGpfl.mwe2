@@ -54,7 +54,9 @@ Workflow {
 			    backtrack = true
 			  }
 			}
-			
+			scopeProvider =  scoping.ImportNamespacesScopingFragment2 auto-inject {
+				generateXtendStub = true
+			}
 			// formatter API   
 			fragment = formatting.Formatter2Fragment2 {}
 			

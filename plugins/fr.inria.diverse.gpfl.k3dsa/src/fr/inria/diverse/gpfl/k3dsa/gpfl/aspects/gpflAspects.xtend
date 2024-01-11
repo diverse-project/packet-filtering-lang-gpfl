@@ -133,7 +133,9 @@ class ProgramAspect {
 		} 
 		return _self.internalLogger
 	}
+	
 	public static var endOfFilter = false
+	
 	@InitializeModel
 	def void initializeModel(EList<String> args) {
 		endOfFilter = false
