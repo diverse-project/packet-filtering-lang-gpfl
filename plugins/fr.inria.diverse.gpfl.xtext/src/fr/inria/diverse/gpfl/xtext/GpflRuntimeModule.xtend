@@ -6,6 +6,7 @@ package fr.inria.diverse.gpfl.xtext
 import fr.inria.diverse.gpfl.xtext.linking.GpflLinkingService
 import fr.inria.diverse.gpfl.xtext.transientvariables.GpflTransientVariable
 import fr.inria.diverse.gpfl.xtext.ast.GpflAstFactory
+import org.eclipse.xtext.scoping.impl.ImportUriGlobalScopeProvider
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -21,5 +22,9 @@ class GpflRuntimeModule extends AbstractGpflRuntimeModule {
 	
 	override bindIAstFactory() {
 		return GpflAstFactory
+	}
+	
+	override bindIGlobalScopeProvider() {
+		return ImportUriGlobalScopeProvider
 	}
 }

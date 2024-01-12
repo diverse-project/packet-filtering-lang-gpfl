@@ -1,0 +1,2 @@
+(2;outSide; pktType="Disc",clientId="A")
+(5;inSide; pktType="Off",clientId="A",ressourceId="D")

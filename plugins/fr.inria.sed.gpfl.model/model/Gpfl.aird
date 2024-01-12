@@ -6,7 +6,7 @@
     <semanticResources>Xbase.ecore</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_cvu7cHQGEe6fnP_wBKWEiw">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_0KWLcI3TEe6b56wEsKlOmQ" name="gpfl" repPath="#_0KR6AI3TEe6b56wEsKlOmQ" changeId="87a61335-0bf0-4326-a1d8-c5f71ffcdbc6">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_0KWLcI3TEe6b56wEsKlOmQ" name="gpfl" repPath="#_0KR6AI3TEe6b56wEsKlOmQ" changeId="14fb5736-dcd4-4a7b-b348-98c2a7e41fcf">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="Gpfl.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -1868,7 +1868,7 @@
         </edges>
         <edges xmi:type="notation:Edge" xmi:id="_5MtfQJmeEe6z6aSEmvgYHQ" type="4001" element="_0gOU5Y3TEe6b56wEsKlOmQ" source="_3Ns04JmeEe6z6aSEmvgYHQ" target="_njWYsJmaEe6z6aSEmvgYHQ">
           <children xmi:type="notation:Node" xmi:id="_5MtfRJmeEe6z6aSEmvgYHQ" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5MtfRZmeEe6z6aSEmvgYHQ" x="10"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5MtfRZmeEe6z6aSEmvgYHQ" x="23" y="39"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_5MtfRpmeEe6z6aSEmvgYHQ" type="6002">
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5MtfR5meEe6z6aSEmvgYHQ" x="-10"/>
