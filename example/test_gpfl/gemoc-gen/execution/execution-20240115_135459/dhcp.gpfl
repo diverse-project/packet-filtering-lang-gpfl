@@ -29,7 +29,7 @@ FILTER
 				set(ignoredPktCnt, ignoredPktCnt+1) 
 				cond(ignoredPktCnt >= ignoredPktThreshold,
 					alarm("Many external messages ignored!") 
-					set(ignoredPktCnt, 0)
+					set(ignoredPktThreshold, 0)
 				)
 				drop 
 			) 
@@ -41,7 +41,7 @@ FILTER
 				set(ignoredPktCnt, ignoredPktCnt+1)
 				cond(ignoredPktCnt >= ignoredPktThreshold,
 					alarm("Many external messages ignored!")
-					set(ignoredPktCnt, 0)
+					set(ignoredPktThreshold, 0)
 				)
 				drop
 			) 
@@ -62,7 +62,7 @@ FILTER
 				set(ignoredPktCnt, ignoredPktCnt+1) 
 				cond(ignoredPktCnt >= ignoredPktThreshold,
 					alarm("Many external messages ignored!")
-					set(ignoredPktCnt, 0)
+					set(ignoredPktThreshold, 0)
 				)
 				drop
 			)

@@ -12,7 +12,7 @@ PROLOGUE
 		set(ignoredPktCnt, 0)
 		set(ignoredPktThreshold, 5)
 		newInterrupt(60, true, 
-			set(ignoredPktCnt, 0)
+			set(ignoredPktThreshold, 0)
 		) 
 
 FILTER
@@ -29,7 +29,7 @@ FILTER
 				set(ignoredPktCnt, ignoredPktCnt+1) 
 				cond(ignoredPktCnt >= ignoredPktThreshold,
 					alarm("Many external messages ignored!") 
-					set(ignoredPktCnt, 0)
+					set(ignoredPktThreshold, 0)
 				)
 				drop 
 			) 
@@ -41,11 +41,11 @@ FILTER
 				set(ignoredPktCnt, ignoredPktCnt+1)
 				cond(ignoredPktCnt >= ignoredPktThreshold,
 					alarm("Many external messages ignored!")
-					set(ignoredPktCnt, 0)
+					set(ignoredPktThreshold, 0)
 				)
 				drop
 			) 
-			cond ($pktType == "Req",newEventOccurence(evt,Req))
+			cond ($pktType == "Rel",newEventOccurence(evt,Rel))
 			cond ($pktType == "Rej",newEventOccurence(evt,Rej)) 
 			step(#A, evt, 
 				set(ignoredPktCnt, ignoredPktCnt+1)
@@ -62,7 +62,7 @@ FILTER
 				set(ignoredPktCnt, ignoredPktCnt+1) 
 				cond(ignoredPktCnt >= ignoredPktThreshold,
 					alarm("Many external messages ignored!")
-					set(ignoredPktCnt, 0)
+					set(ignoredPktThreshold, 0)
 				)
 				drop
 			)

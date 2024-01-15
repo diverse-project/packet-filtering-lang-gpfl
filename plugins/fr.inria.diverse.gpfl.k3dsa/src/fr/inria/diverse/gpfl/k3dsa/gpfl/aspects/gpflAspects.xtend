@@ -330,6 +330,7 @@ class NewAutomataAspect extends CmdAspect {
 class AlarmAspect extends CmdAspect {
 	def void run(Program root) {
 		root.logger.error("ALARM @ "+ root.currentTime+ ": " + _self.message.eval(root) as String, "Gpfl")
+		output.write(("ALARM @ "+ root.currentTime+ ": " + _self.message.eval(root) as String + "\n").getBytes)
 	}
 }
 
@@ -444,6 +445,7 @@ class VariableRefAspect extends ExpressionAspect {
 		return _self.variable.eval(root)
 	}
 }
+
 
 @Aspect(className=FieldRef)
 class FieldRefAspect extends ExpressionAspect {
@@ -700,8 +702,16 @@ class SetTypeAspect {
 @Aspect(className=VariableDeclaration)
 class VariableDeclarationAspect extends SetTypeAspect {
 	def Object eval(Program root) {
-		root.logger.error("Vardec: eval of " + _self + " should never occur, please tell the developer to write a method run for this class", "Gpfl")
-		return null
+		var variable = root.variables.findFirst[v | v.name.equals(_self.name)]
+		if (variable instanceof IntegerDec) {
+			return variable.value
+		} else if (variable instanceof StringDec) {
+			return variable.value
+		} else if (variable instanceof BooleanDec) {
+			return variable.isTrue
+		} else {
+			return null
+		}
 	}
 }
 

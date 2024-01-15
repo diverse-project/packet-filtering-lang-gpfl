@@ -1,2 +1,12 @@
 (2;outSide; pktType="Disc",clientId="A")
 (5;inSide; pktType="Off",clientId="A",ressourceId="D")
+(15;outSide; pktType="Req",clientId="A",ressourceId="D")
+(18;inSide; pktType="Ack",clientId="A")
+(102;outSide; pktType="Disc",clientId="B")
+(105;inSide; pktType="Off",clientId="B",ressourceId="E")
+(115;outSide; pktType="Rej",clientId="B",ressourceId="E")
+(138;inSide; pktType="Ack",clientId="B")
+(202;outSide; pktType="Rel",clientId="A",ressourceId="D")
+ALARM @ 212: Many external messages ignored!
+(218;inSide; pktType="Ack",clientId="A")
+(324;outSide; pktType="Disc",clientId="F")
