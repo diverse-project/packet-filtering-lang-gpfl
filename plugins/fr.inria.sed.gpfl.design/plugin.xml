@@ -2,8 +2,8 @@
 <?eclipse version="3.0"?>
 <plugin>
   <extension point="org.eclipse.sirius.componentization">
-    <component class="fr.inria.sed.gpfl.design.Activator"
-               id="fr.inria.sed.gpfl.design"
+    <component class="fr.inria.diverse.gpfl.design.Activator"
+               id="fr.inria.diverse.gpfl.design"
 	       name="gpfl">
     </component>
   </extension>

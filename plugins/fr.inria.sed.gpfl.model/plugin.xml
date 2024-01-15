@@ -10,10 +10,8 @@
       <!-- @generated Gpfl -->
       <package
             uri="http://www.inria.fr/sed/gpfl"
-            class="fr.inria.sed.gpfl.GpflPackage"
+            class="fr.inria.diverse.gpfl.GpflPackage"
             genModel="model/Gpfl.genmodel"/>
    </extension>
-   
-   
 
 </plugin>

@@ -1,0 +1,126 @@
+grammar fr.inria.diverse.gpfl.xtext.Gpfl with org.eclipse.xtext.common.Terminals
+
+//generate gpfl "http://www.inria.fr/sed/gpfl/xtext/Gpfl"
+import "platform:/resource/fr.inria.diverse.gpfl.model/model/Gpfl.ecore"
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+// -------------------------- STRUCTURE -------------------------- //
+
+Program:
+	{Program}  prologue=Prologue? filter=Filter?
+;
+	
+Prologue:
+	{Prologue} "PROLOGUE" automataDefinition+=Automata* init=InitSeq?
+;
+
+InitSeq:
+	{InitSeq} "INIT" block=Block?
+;
+
+Filter:
+	"FILTER" block=Block
+;
+
+// -------------------------- AUTOMATA -------------------------- //
+
+Automata:
+	"AUTOMATA" name=STRING "init" "=" initialState=[State|STRING]? transitions+=Transition*
+;
+
+Transition:
+	from=[State|STRING] "-" event=[Event|STRING] "->" to=[State|STRING]
+;
+
+// -------------------------- BLOCK -------------------------- //
+
+Block:
+	firstStmt=Stmt
+;
+
+Stmt:
+	StmtAtomic next=Stmt?
+;
+
+StmtAtomic returns Stmt:
+	Cmd
+	// if *checkCond* then do *statementCond* else do nothing
+	| {Condition}"cond" "(" if=Expression "," then=Block ")"
+	// loop on *statementIter* until *checkIter* is false
+	| {Iteration} "iter" "(" while=Expression "," then=Block ")"
+	// create an interruption every (if *loop* else once) *time* and execute *statement*
+	| {NewInterruption} "newInterrupt" "(" time=INT "," loop=EBoolean "," block=Block ")"
+	// go trough a step of *NewAutomata* on the *transition* and execute *block*
+	| {StepAutomata} "step" "(" idAutomata=[NewAutomata|AUTOMATA_ID] "," eventOccurence=[EventOccurence|ID] "," block=Block ")"
+;
+
+Cmd:
+	// does nothing
+	{Nop} "nop" 
+	// accept a packet
+	| {Accept} "accept"
+	// drop a packet 
+	| {Drop} "drop" 
+	// send the *fields* on *port*
+	| {Send} "send" "(" port=[Port|ID] "," packet=Packet ")"
+	// A PRECISER
+	| {Alarm} "alarm" "(" (type=STRING",")? message=Expression ")"
+	// set a (new) variable with a new state
+	| {SetVariable} "set" "(" declaration=[SetType|SetType] "," value=Expression ")"
+	// associate an ID with an Automata previously created and designated by a name
+	| {NewAutomata} "newAutomaton" "(" value=[Automata|STRING] "," name=AUTOMATA_ID ")"
+	// create a new instance *name* for an event *value*
+	| {NewEventOccurence} "newEventOccurence" "(" occurence=[EventOccurence|ID] "," value=[Event|ID] ")"
+;
+
+Packet:
+	"("(fields+=Field",")* fields+=Field")"
+;
+
+Field:
+	"("name=STRING","value=STRING")"
+;
+
+// -------------------------- Expressions -------------------------- //
+
+Expression: Or; 
+Or returns Expression:
+	And ({Or.left=current} "|" right=And)* 
+;
+And returns Expression: 
+	Equality ({And.left=current} "&" right=Equality)*
+; 
+Equality returns Expression: 
+	Comparison ( ({Equality.left=current} "==" | {Inequality.left=current} "!=") right=Comparison )*
+; 
+Comparison returns Expression: 
+	PlusOrMinus ( ({GreaterOrEqual.left=current} ">="| {LowerOrEqual.left=current} "<="| {Greater.left=current} ">"| {Lower.left=current} "<") right=PlusOrMinus )*
+; 
+PlusOrMinus returns Expression: 
+	MulOrDiv ( ({Plus.left=current} '+' | {Minus.left=current} '-') right=MulOrDiv )*
+; 
+MulOrDiv returns Expression: 
+	Primary ( ({Mult.left=current} '*' | {Div.left=current} '/') right=Primary )*
+; 
+Primary returns Expression: 
+	'(' Expression ')' 
+	| {Not} "!" expression=Primary
+	| {Neg} "--" expression=Primary
+	| Atomic
+;
+
+Atomic returns Expression:
+	{IntLiteral} value=INT
+	| {StringLiteral} value=STRING
+	| {BooleanLiteral}isTrue=EBoolean
+	| {VariableRef} variable=[VariableDeclaration|ID]
+	| {PortRef} "_inPort" "==" port=[Port|ID]
+	| {FieldRef} field=[Field|FIELD_ID]
+;
+EBoolean returns ecore::EBoolean: 'true'|'false';
+SetType returns ecore::EString: FIELD_ID | ID;
+@Override
+terminal INT returns ecore::EInt: "0" | "-"?('1'..'9')('0'..'9')*;
+terminal AUTOMATA_ID returns ecore::EString: '#'ID;
+terminal FIELD_ID returns ecore::EString: '$'ID;
