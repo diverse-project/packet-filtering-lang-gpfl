@@ -27,6 +27,7 @@ import fr.inria.diverse.gpfl.InitSeq
 import fr.inria.diverse.gpfl.Program
 import org.eclipse.xtext.validation.Check
 import org.eclipse.xtext.EcoreUtil2
+import fr.inria.diverse.gpfl.Automata
 
 /**
  * This class contains custom validation rules. 
@@ -34,7 +35,35 @@ import org.eclipse.xtext.EcoreUtil2
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 class GpflValidator extends AbstractGpflValidator {
-
+	
+	// ------------------------ AUTOMATA ------------------------ //
+	
+	public static val MISSING_INIT_STATE = "missinginitstate"
+	
+	@Check
+	def checkInitState(Automata automata) {
+		if (automata.transitions.filter[t | t.from.equals(automata.initialState)].empty) {
+			error("This automata can't start because there is no outgoing transitions from the initial state",
+				GpflPackage.Literals.AUTOMATA__TRANSITIONS,
+				MISSING_INIT_STATE
+			)
+		}
+	}
+	
+	public static val EMPTY_NAME_AUTOMATA =  "emptynameautomata"
+	
+	@Check
+	def checkEmptyNameAutomata(Automata automata) {
+		if (automata.name.isEmpty) {
+			error("An automata can't have an empty name",
+				GpflPackage.Literals.AUTOMATA__NAME,
+				EMPTY_NAME_AUTOMATA
+			)
+		}
+	}
+	
+	// ------------------------ INIT SEQ ------------------------ //
+	
 	public static val NEG_TIME_INTERRUPT = "negtimeinterrupt"
 	
 	@Check
@@ -58,6 +87,44 @@ class GpflValidator extends AbstractGpflValidator {
 			)
 		}
 	}
+	
+	// ------------------------ FILTER ------------------------ //
+	
+	public static val USELESS_CMD_IN_INIT = "uselesscmdininit"
+	
+	@Check
+	def checkCommandInInit(InitSeq init) {
+		var cmd = init.block.firstStmt
+		while(cmd !== null) {
+			if (cmd instanceof Accept || cmd instanceof Drop || cmd instanceof Nop) {				
+				warning('There is useless command in this initialization (accept, drop or nop)',
+					GpflPackage.Literals.INIT_SEQ__BLOCK,
+					USELESS_CMD_IN_INIT
+				)
+			}
+			cmd = cmd.next
+		} 
+	}
+	
+	public static val FILTER_STARTS_WITH_DROP_OR_ACCEPT = "filterstartswithdroporaccept"
+	
+	@Check
+	def checkStartsOfFilter(Filter filter) {
+		if(filter.block.firstStmt instanceof Accept) {
+			warning('This filter will only accept every packets',
+				GpflPackage.Literals.FILTER__BLOCK,
+				FILTER_STARTS_WITH_DROP_OR_ACCEPT
+			)
+		}
+		if(filter.block.firstStmt instanceof Drop) {
+			warning('This filter will only drop every packets',
+				GpflPackage.Literals.FILTER__BLOCK,
+				FILTER_STARTS_WITH_DROP_OR_ACCEPT
+			)
+		}
+	}
+	
+	// ------------------------ EXPRESSION ------------------------ //
 	
 	public static val CONSTANT_COMPARISON = "constantcomparison"
 	
@@ -91,31 +158,5 @@ class GpflValidator extends AbstractGpflValidator {
 		}
 	}
 	
-//	public static val FILTER_STRATS_WITH_DROP_OR_ACCEPT = "filterstartswithdroporaccept"
-//	
-//	@Check
-//	def checkStartsOfFilter(Filter filter) {
-//		if(filter.block.firstStmt instanceof Drop || filter.block.firstStmt instanceof Accept) {
-//			warning('this instruction will stop the filter, so the rest of the filter will never be executed',
-//				filter.block.firstStmt.eContainingFeature,
-//				FILTER_STRATS_WITH_DROP_OR_ACCEPT
-//			)
-//		}
-//	}
-//	
-//	public static val USELESS_CMD_IN_INIT = "uselesscmdininit"
-//	
-//	@Check
-//	def checkCommandInInit(InitSeq init) {
-//		var cmd = init.block.firstStmt
-//		while(cmd !== null) {
-//			if (cmd instanceof Accept || cmd instanceof Drop || cmd instanceof Nop) {				
-//				warning('This command is useless in the initaialisation sequence',
-//					cmd.eContainingFeature,
-//					USELESS_CMD_IN_INIT
-//				)
-//			}
-//			cmd = cmd.next
-//		} 
-//	}
+	
 }

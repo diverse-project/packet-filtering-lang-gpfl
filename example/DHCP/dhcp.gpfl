@@ -20,7 +20,7 @@ FILTER
 		cond(($pktType == "Ack") & ($clientId == currentClient),
 			step(#A, Ack, nop)
 			set(currentClient, "") 
-		) 
+		)
 		accept
 	) 
 	cond( _inPort == outSide,
