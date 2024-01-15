@@ -12,7 +12,7 @@ PROLOGUE
 		set(ignoredPktCnt, 0)
 		set(ignoredPktThreshold, 5)
 		newInterrupt(60, true, 
-			set(ignoredPktThreshold, 0)
+			set(ignoredPktCnt, 0)
 		) 
 
 FILTER
@@ -20,7 +20,7 @@ FILTER
 		cond(($pktType == "Ack") & ($clientId == currentClient),
 			step(#A, Ack, nop)
 			set(currentClient, "") 
-		) 
+		)
 		accept
 	) 
 	cond( _inPort == outSide,
@@ -29,7 +29,7 @@ FILTER
 				set(ignoredPktCnt, ignoredPktCnt+1) 
 				cond(ignoredPktCnt >= ignoredPktThreshold,
 					alarm("Many external messages ignored!") 
-					set(ignoredPktThreshold, 0)
+					set(ignoredPktCnt, 0)
 				)
 				drop 
 			) 
@@ -41,7 +41,7 @@ FILTER
 				set(ignoredPktCnt, ignoredPktCnt+1)
 				cond(ignoredPktCnt >= ignoredPktThreshold,
 					alarm("Many external messages ignored!")
-					set(ignoredPktThreshold, 0)
+					set(ignoredPktCnt, 0)
 				)
 				drop
 			) 
@@ -62,7 +62,7 @@ FILTER
 				set(ignoredPktCnt, ignoredPktCnt+1) 
 				cond(ignoredPktCnt >= ignoredPktThreshold,
 					alarm("Many external messages ignored!")
-					set(ignoredPktThreshold, 0)
+					set(ignoredPktCnt, 0)
 				)
 				drop
 			)

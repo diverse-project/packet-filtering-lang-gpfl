@@ -4,3 +4,4 @@ xtend-gen/
 bin/
 generated/
 src-gen/
+gemoc-gen/
