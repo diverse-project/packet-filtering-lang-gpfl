@@ -31,7 +31,6 @@ class GpflLinkingService extends DefaultLinkingService {
 		
 		// if the node does not has any linked object
 		if (referencesResolved.isEmpty()) {
-			
 			if (context instanceof Transition) {
 				var transition = context as Transition;
 				val automata = transition.eContainer() as Automata;
@@ -74,9 +73,6 @@ class GpflLinkingService extends DefaultLinkingService {
 			//------------------- VARIABLE DECLARATION CREATION AND REFERENCE -------------------//
 		
 			else if (context instanceof SetVariable && ref == GpflPackage.Literals.SET_VARIABLE__DECLARATION) {
-				var actualvarname = node.text
-				var rootRes = root.eResource
-				var rootResSet = root.eResource.resourceSet
 				var set = context as SetVariable
 				if (node.text.startsWith("$")) { // if we set a field
 					var field = root.packets.get(0).fields.findFirst[p | p.name.equals(node.text)]
@@ -124,7 +120,7 @@ class GpflLinkingService extends DefaultLinkingService {
 				var eventOcc = null as EventOccurence
 				if (ref == GpflPackage.Literals.NEW_EVENT_OCCURENCE__VALUE) {
 					eventOcc = root.prologue.eventPool.findFirst[e | e.name.equals(node.text)]
-					if (eventOcc.event !== null) {						
+					if (eventOcc !== null && eventOcc.event !== null) {						
 						newEventOccurence.occurence.event = eventOcc.event
 						referencesResolved = Collections.singletonList(eventOcc.event)
 					}
@@ -137,6 +133,7 @@ class GpflLinkingService extends DefaultLinkingService {
 			}
 			
 			//------------------- FIELD REFERENCE -------------------//
+			
 			else if (context instanceof FieldRef) {
 				val Field field = GpflFactory.eINSTANCE.createField;
 				field.name = node.text

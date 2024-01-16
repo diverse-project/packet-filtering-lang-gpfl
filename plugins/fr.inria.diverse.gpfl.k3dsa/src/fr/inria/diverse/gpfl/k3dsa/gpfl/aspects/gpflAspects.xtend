@@ -112,30 +112,21 @@ import fr.inria.diverse.k3.al.annotationprocessor.Main
 import fr.inria.diverse.k3.al.annotationprocessor.InitializeModel
 import org.eclipse.emf.common.util.EList
 import fr.inria.diverse.gpfl.GpflFactory
-import java.io.File
-import java.util.Scanner
 import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.core.resources.IWorkspace
 import org.eclipse.gemoc.commons.eclipse.messagingsystem.api.MessagingSystem
-import org.eclipse.gemoc.commons.eclipse.messagingsystem.api.MessagingSystemManager
 import fr.inria.diverse.k3.al.annotationprocessor.Step
-import java.io.FileWriter
-import java.io.FileOutputStream
+import fr.inria.diverse.gpfl.k3dsa.gpfl.modules.GpflMessagingModule
+import fr.inria.diverse.gpfl.k3dsa.gpfl.modules.IOModule
 
 @Aspect(className=Program)
 class ProgramAspect {
-	var MessagingSystem internalLogger  
-	def MessagingSystem logger(){
-		if (_self.internalLogger === null) { 
-			val MessagingSystemManager msManager = new MessagingSystemManager
-			_self.internalLogger = msManager.createBestPlatformMessagingSystem("Gpfl","Simple Gpfl interpreter")
-			
-		} 
-		return _self.internalLogger
+	def MessagingSystem logger() {
+		GpflMessagingModule.logger
 	}
 	
 	public static var endOfFilter = false
-	public static var FileOutputStream output = null
+	
 	
 	@InitializeModel
 	def void initializeModel(EList<String> args) {
@@ -144,37 +135,8 @@ class ProgramAspect {
 		_self.packets.clear
 		_self.currentTime = 0
 		val IWorkspace workspace = ResourcesPlugin.getWorkspace()
-		
-		try {
-			output = new FileOutputStream((new File(workspace.root.findMember(args.get(1)).locationURI.path)))
-			output.write(''.getBytes)
-		} catch(NullPointerException e) {
-			_self.logger.error("Input file " + args.get(1) + " not found\nGo check run configurations", "Gpfl")
-			e.printStackTrace
-		}
-		
-		try {
-			val input = new Scanner(new File(workspace.root.findMember(args.get(0)).locationURI.path))
-			
-			while (input.hasNextLine) {
-				val line = input.nextLine
-				var packet = GpflFactory.eINSTANCE.createPacket
-				val String[] packet_data = line.substring(1, line.length-1).split(";")
-				packet.time = Integer.valueOf(packet_data.get(0))
-				packet.inPort = _self.inPorts.findFirst[p | p.name.equals(packet_data.get(1))]
-				for (field_data : packet_data.get(2).split(",")) {
-					val field = GpflFactory.eINSTANCE.createField
-					field.name = "$"+field_data.substring(0, field_data.indexOf("="))
-					field.value = field_data.split('"').get(1)
-					packet.fields.add(field)
-				}
-				_self.packets.add(packet)
-			}
-			input.close
-		} catch(NullPointerException e) {
-			_self.logger.error("Input file " + args.get(0) + " not found\nGo check run configurations", "Gpfl")
-			e.printStackTrace
-		}
+		IOModule.createPacketsFromFile(_self, workspace.root.findMember(args.get(0)).locationURI.path)
+		IOModule.createOutputFile(workspace.root.findMember(args.get(1)).locationURI.path)
 	}
 	
 	@Main
@@ -186,7 +148,6 @@ class ProgramAspect {
 	 		_self.filter.run(_self)
 		}
 		_self.logger.debug("finish", "Gpfl")
-		output.close()
 	}
 }
 
@@ -330,20 +291,15 @@ class NewAutomataAspect extends CmdAspect {
 class AlarmAspect extends CmdAspect {
 	def void run(Program root) {
 		root.logger.error("ALARM @ "+ root.currentTime+ ": " + _self.message.eval(root) as String, "Gpfl")
-		output.write(("ALARM @ "+ root.currentTime+ ": " + _self.message.eval(root) as String + "\n").getBytes)
 	}
 }
 
 @Aspect(className=Send)
 class SendAspect extends CmdAspect {
 	def void run(Program root) {
-		var packet = "("+root.currentTime+";"+ _self.port.name+"; "
-		packet+=_self.packet.fields.get(0).name.substring(1)+'="'+_self.packet.fields.get(0).value+'"'
-		for (var i=1; i<_self.packet.fields.length; i++) {
-			packet+=","+_self.packet.fields.get(i).name.substring(1)+'="'+_self.packet.fields.get(i).value+'"'
-		}
-		packet+=")\n"
-		output.write(packet.getBytes)
+		root.currentPacket = _self.packet
+		IOModule.writePacket(root)
+		endOfFilter = true
 	}
 }
 
@@ -400,13 +356,7 @@ class NopAspect extends CmdAspect {
 @Aspect(className=Accept)
 class AcceptAspect extends CmdAspect {
 	def void run(Program root) {
-		var packet = "("+root.currentPacket.time+";"+ root.currentPacket.inPort.name+"; "
-		packet+=root.currentPacket.fields.get(0).name.substring(1)+'="'+root.currentPacket.fields.get(0).value+'"'
-		for (var i=1; i<root.currentPacket.fields.length; i++) {
-			packet+=","+root.currentPacket.fields.get(i).name.substring(1)+'="'+root.currentPacket.fields.get(i).value+'"'
-		}
-		packet+=")\n"
-		output.write(packet.getBytes)
+		IOModule.writePacket(root)
 		endOfFilter = true
 	}
 }

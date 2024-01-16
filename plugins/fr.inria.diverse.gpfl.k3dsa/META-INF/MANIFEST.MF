@@ -17,4 +17,5 @@ Require-Bundle: fr.inria.diverse.k3.al.annotationprocessor.plugin;bundle-version
  org.eclipse.core.runtime;bundle-version="3.25.0"
 Bundle-ClassPath: .
 Bundle-RequiredExecutionEnvironment: JavaSE-17
-Export-Package: fr.inria.diverse.gpfl.k3dsa.gpfl.aspects
+Export-Package: fr.inria.diverse.gpfl.k3dsa.gpfl.aspects,
+ fr.inria.diverse.gpfl.k3dsa.gpfl.modules
