@@ -129,14 +129,8 @@
     <genClasses ecoreClass="Gpfl.ecore#//VariableRef">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gpfl.ecore#//VariableRef/variable"/>
     </genClasses>
-    <genClasses ecoreClass="Gpfl.ecore#//FieldRef">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gpfl.ecore#//FieldRef/field"/>
-    </genClasses>
     <genClasses ecoreClass="Gpfl.ecore#//Event">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//Event/name"/>
-    </genClasses>
-    <genClasses ecoreClass="Gpfl.ecore#//SetType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//SetType/name"/>
     </genClasses>
     <genClasses ecoreClass="Gpfl.ecore#//NewEventOccurence">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gpfl.ecore#//NewEventOccurence/value"/>
@@ -158,14 +152,23 @@
     <genClasses ecoreClass="Gpfl.ecore#//IntegerDec">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//IntegerDec/value"/>
     </genClasses>
-    <genClasses ecoreClass="Gpfl.ecore#//VariableDeclaration"/>
+    <genClasses ecoreClass="Gpfl.ecore#//VariableDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//VariableDeclaration/name"/>
+    </genClasses>
     <genClasses ecoreClass="Gpfl.ecore#//Packet">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//Packet/time"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Gpfl.ecore#//Packet/inPort"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Packet/fields"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//Packet/content"/>
     </genClasses>
-    <genClasses ecoreClass="Gpfl.ecore#//Field">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//Field/value"/>
+    <genClasses ecoreClass="Gpfl.ecore#//BytesLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//BytesLiteral/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//BytesDec">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//BytesDec/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//Read">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//Read/offset"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//Read/length"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

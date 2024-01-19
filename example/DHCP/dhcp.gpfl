@@ -6,47 +6,65 @@ PROLOGUE
 		"1" -"Rej" -> "2" 
 		"2" -"Ack" -> "0" 
 		"0" -"Rel" -> "3"
-		"3" -"Ack" -> "0"  
+		"3" -"Ack" -> "0" 
 	INIT  
 		newAutomaton("DHCP incoming controller", #A)
-		set(ignoredPktCnt, 0)
+		set(ignoredPktCnt, 0) 
 		set(ignoredPktThreshold, 5)
-		newInterrupt(60, true, 
+		newInterrupt(60, true,  
 			set(ignoredPktCnt, 0)
-		)  
+		) 
+
+// DHCP Packet Format
+//
+// 0---------3-4---------7-8------------11
+// | Pkt Type | Client Id | Ressource Id |
+// +----------+-----------+--------------+
+//
+// Packet Type:
+// +------------+--------+---------------+----------------+------------+
+// |   Packet   |   MSC  | Type encoding | Ressource part | Pkt length |
+// +------------+--------+---------------+----------------+------------+
+// | Discover   | Disc   |       0       |       NO       | 8 bits     |
+// | Offer      | Off(R) |       1       |       YES      | 12 bits    |
+// | Request    | Req(R) |       2       |       YES      | 12 bits    |
+// | Reject     | Rej(R) |       3       |       YES      | 12 bits    |
+// | Realease   | Rel(R) |       4       |       YES      | 12 bits    |
+// | Ackowledge | Ack    |       5       |       NO       | 8 bits     |
+// +------------+--------+---------------+----------------+------------+
  
 FILTER
 	cond(_inPort == inSide,  
-		cond(($pktType == "Ack") & ($clientId == currentClient),
+		cond((read(0, 4) == 0b0101) & (read(4, 4) == currentClient),
 			step(#A, Ack, nop)
 			set(currentClient, "") 
 		)
-		accept
+		accept 
 	) 
 	cond( _inPort == outSide,
-		cond($pktType == "Disc", 
+		cond(read(0, 4) == 0b0000, 
 			step(#A, Disc, 
 				set(ignoredPktCnt, ignoredPktCnt+1) 
 				cond(ignoredPktCnt >= ignoredPktThreshold,
 					alarm("Many external messages ignored!") 
 					set(ignoredPktCnt, 0)
-				)
+				) 
 				drop 
 			) 
-			set(currentClient, $clientId)
+			set(currentClient, read(4, 4)) 
 			accept
 		)
-		cond(($pktType == "Req") | ($pktType=="Rej"),
-			cond(!($clientId == currentClient),
+		cond((read(0, 4) == 0b0010) | (read(0, 4)== 0b0011),
+			cond(!(read(4, 4) == currentClient),
 				set(ignoredPktCnt, ignoredPktCnt+1)
 				cond(ignoredPktCnt >= ignoredPktThreshold,
 					alarm("Many external messages ignored!")
 					set(ignoredPktCnt, 0) 
 				)
-				drop
+				drop 
 			) 
-			cond ($pktType == "Req",newEventOccurence(evt,Req))
-			cond ($pktType == "Rej",newEventOccurence(evt,Rej)) 
+			cond (read(0, 4) == 0b0010,newEventOccurence(evt,Req))
+			cond (read(0, 4) == 0b0011,newEventOccurence(evt,Rej)) 
 			step(#A, evt, 
 				set(ignoredPktCnt, ignoredPktCnt+1)
 				cond(ignoredPktCnt >= ignoredPktThreshold,
@@ -57,7 +75,7 @@ FILTER
 			) 
 			accept
 		)
-		cond($pktType == "Rel",
+		cond(read(0, 4) == 0b0100,
 			step(#A, Rel,
 				set(ignoredPktCnt, ignoredPktCnt+1) 
 				cond(ignoredPktCnt >= ignoredPktThreshold,
@@ -66,7 +84,7 @@ FILTER
 				)
 				drop
 			)
-			set(currentClient, $clientId)
+			set(currentClient, read(4, 4))
 			accept
 		)
 		drop

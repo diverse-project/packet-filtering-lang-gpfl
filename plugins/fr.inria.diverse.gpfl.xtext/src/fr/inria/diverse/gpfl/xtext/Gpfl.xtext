@@ -67,7 +67,7 @@ Cmd:
 	// A PRECISER
 	| {Alarm} "alarm" "(" (type=STRING",")? message=Expression ")"
 	// set a (new) variable with a new state
-	| {SetVariable} "set" "(" declaration=[SetType|SetType] "," value=Expression ")"
+	| {SetVariable} "set" "(" declaration=[VariableDeclaration|ID] "," value=Expression ")"
 	// associate an ID with an Automata previously created and designated by a name
 	| {NewAutomata} "newAutomaton" "(" value=[Automata|STRING] "," name=AUTOMATA_ID ")"
 	// create a new instance *name* for an event *value*
@@ -75,12 +75,9 @@ Cmd:
 ;
 
 Packet:
-	"("(fields+=Field",")* fields+=Field")"
+	"(" content=BYTES ")"
 ;
 
-Field:
-	"("name=STRING","value=STRING")"
-;
 
 // -------------------------- Expressions -------------------------- //
 
@@ -114,13 +111,16 @@ Atomic returns Expression:
 	{IntLiteral} value=INT
 	| {StringLiteral} value=STRING
 	| {BooleanLiteral}isTrue=EBoolean
+	| {BytesLiteral} value=(BYTES|HEXA)
 	| {VariableRef} variable=[VariableDeclaration|ID]
 	| {PortRef} "_inPort" "==" port=[Port|ID]
-	| {FieldRef} field=[Field|FIELD_ID]
+	| {Read} "read(" offset=INT "," length=INT ")"
 ;
+
+
 EBoolean returns ecore::EBoolean: 'true'|'false';
-SetType returns ecore::EString: FIELD_ID | ID;
+terminal BYTES returns ecore::EString: "0b"("0" | "1")+;
+terminal HEXA returns ecore::EString: "0x" ('0'..'9'|'a'..'f'|'A'..'F')*;
 @Override
 terminal INT returns ecore::EInt: "0" | "-"?('1'..'9')('0'..'9')*;
 terminal AUTOMATA_ID returns ecore::EString: '#'ID;
-terminal FIELD_ID returns ecore::EString: '$'ID;

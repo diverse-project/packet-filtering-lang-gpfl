@@ -1,8 +1,3 @@
-	// BeginInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.SetTypeAspect#Object eval(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.IntegerDecAspect
-		if (_self instanceof fr.inria.diverse.gpfl.IntegerDec){
-			result = fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.IntegerDecAspect.eval((fr.inria.diverse.gpfl.IntegerDec)_self,root);
-		} else
-		// EndInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.SetTypeAspect#Object eval(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.IntegerDecAspect
 	// BeginInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.AcceptAspect
 		if (_self instanceof fr.inria.diverse.gpfl.Accept){
 			fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.AcceptAspect.run((fr.inria.diverse.gpfl.Accept)_self,root);
@@ -43,11 +38,6 @@
 			result = fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.OrAspect.eval((fr.inria.diverse.gpfl.Or)_self,root);
 		} else
 		// EndInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Object eval(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.OrAspect
-	// BeginInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Object eval(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.FieldRefAspect
-		if (_self instanceof fr.inria.diverse.gpfl.FieldRef){
-			result = fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.FieldRefAspect.eval((fr.inria.diverse.gpfl.FieldRef)_self,root);
-		} else
-		// EndInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Object eval(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.FieldRefAspect
 	// BeginInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BinaryOpAspect#Object eval(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.GreaterOrEqualAspect
 		if (_self instanceof fr.inria.diverse.gpfl.GreaterOrEqual){
 			result = fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.GreaterOrEqualAspect.eval((fr.inria.diverse.gpfl.GreaterOrEqual)_self,root);
@@ -113,11 +103,6 @@
 			fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NewAutomataAspect.run((fr.inria.diverse.gpfl.NewAutomata)_self,root);
 		} else
 		// EndInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.CmdAspect#void run(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NewAutomataAspect
-	// BeginInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.SetTypeAspect#Object eval(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.StringDecAspect
-		if (_self instanceof fr.inria.diverse.gpfl.StringDec){
-			result = fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.StringDecAspect.eval((fr.inria.diverse.gpfl.StringDec)_self,root);
-		} else
-		// EndInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.SetTypeAspect#Object eval(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.StringDecAspect
 	// BeginInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.UnaryOpAspect#Object eval(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NegAspect
 		if (_self instanceof fr.inria.diverse.gpfl.Neg){
 			result = fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NegAspect.eval((fr.inria.diverse.gpfl.Neg)_self,root);
@@ -143,11 +128,21 @@
 			fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.AlarmAspect.run((fr.inria.diverse.gpfl.Alarm)_self,root);
 		} else
 		// EndInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.CmdAspect#void run(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.AlarmAspect
+	// BeginInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.VariableDeclarationAspect#Object eval(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BytesDecAspect
+		if (_self instanceof fr.inria.diverse.gpfl.BytesDec){
+			result = fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BytesDecAspect.eval((fr.inria.diverse.gpfl.BytesDec)_self,root);
+		} else
+		// EndInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.VariableDeclarationAspect#Object eval(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BytesDecAspect
 	// BeginInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BinaryOpAspect#Object eval(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.AndAspect
 		if (_self instanceof fr.inria.diverse.gpfl.And){
 			result = fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.AndAspect.eval((fr.inria.diverse.gpfl.And)_self,root);
 		} else
 		// EndInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BinaryOpAspect#Object eval(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.AndAspect
+	// BeginInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Object eval(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ReadAspect
+		if (_self instanceof fr.inria.diverse.gpfl.Read){
+			result = fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ReadAspect.eval((fr.inria.diverse.gpfl.Read)_self,root);
+		} else
+		// EndInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Object eval(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ReadAspect
 	// BeginInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NewEventOccurenceAspect
 		if (_self instanceof fr.inria.diverse.gpfl.NewEventOccurence){
 			fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NewEventOccurenceAspect.run((fr.inria.diverse.gpfl.NewEventOccurence)_self,root);
@@ -163,6 +158,11 @@
 			result = fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BooleanLiteralAspect.eval((fr.inria.diverse.gpfl.BooleanLiteral)_self,root);
 		} else
 		// EndInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Object eval(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BooleanLiteralAspect
+	// BeginInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Object eval(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BytesLiteralAspect
+		if (_self instanceof fr.inria.diverse.gpfl.BytesLiteral){
+			result = fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BytesLiteralAspect.eval((fr.inria.diverse.gpfl.BytesLiteral)_self,root);
+		} else
+		// EndInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Object eval(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BytesLiteralAspect
 	// BeginInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ExpressionAspect#Object eval(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.LowerOrEqualAspect
 		if (_self instanceof fr.inria.diverse.gpfl.LowerOrEqual){
 			result = fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.LowerOrEqualAspect.eval((fr.inria.diverse.gpfl.LowerOrEqual)_self,root);
@@ -193,11 +193,6 @@
 			fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NopAspect.run((fr.inria.diverse.gpfl.Nop)_self,root);
 		} else
 		// EndInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.CmdAspect#void run(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NopAspect
-	// BeginInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.SetTypeAspect#Object eval(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BooleanDecAspect
-		if (_self instanceof fr.inria.diverse.gpfl.BooleanDec){
-			result = fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BooleanDecAspect.eval((fr.inria.diverse.gpfl.BooleanDec)_self,root);
-		} else
-		// EndInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.SetTypeAspect#Object eval(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BooleanDecAspect
 	// BeginInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.CmdAspect#void run(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NewEventOccurenceAspect
 		if (_self instanceof fr.inria.diverse.gpfl.NewEventOccurence){
 			fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NewEventOccurenceAspect.run((fr.inria.diverse.gpfl.NewEventOccurence)_self,root);
@@ -283,11 +278,6 @@
 			fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.IterationAspect.run((fr.inria.diverse.gpfl.Iteration)_self,root);
 		} else
 		// EndInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.IterationAspect
-	// BeginInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.SetTypeAspect#Object eval(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.VariableDeclarationAspect
-		if (_self instanceof fr.inria.diverse.gpfl.VariableDeclaration){
-			result = fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.VariableDeclarationAspect.eval((fr.inria.diverse.gpfl.VariableDeclaration)_self,root);
-		} else
-		// EndInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.SetTypeAspect#Object eval(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.VariableDeclarationAspect
 	// BeginInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.SendAspect
 		if (_self instanceof fr.inria.diverse.gpfl.Send){
 			fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.SendAspect.run((fr.inria.diverse.gpfl.Send)_self,root);

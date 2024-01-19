@@ -50,10 +50,7 @@ import fr.inria.diverse.gpfl.BooleanDec
 import fr.inria.diverse.gpfl.IntegerDec
 import fr.inria.diverse.gpfl.StringDec
 import fr.inria.diverse.gpfl.Port
-import fr.inria.diverse.gpfl.Field
-import fr.inria.diverse.gpfl.FieldRef
 import fr.inria.diverse.gpfl.Event
-import fr.inria.diverse.gpfl.SetType
 import fr.inria.diverse.gpfl.NewEventOccurence
 
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ProgramAspect.*
@@ -104,9 +101,11 @@ import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.VariableDeclara
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.StringDecAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BooleanDecAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.IntegerDecAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.FieldRefAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.EventAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NewEventOccurenceAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ReadAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BytesDecAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BytesLiteralAspect.*
 
 import fr.inria.diverse.k3.al.annotationprocessor.Main
 import fr.inria.diverse.k3.al.annotationprocessor.InitializeModel
@@ -118,6 +117,10 @@ import org.eclipse.gemoc.commons.eclipse.messagingsystem.api.MessagingSystem
 import fr.inria.diverse.k3.al.annotationprocessor.Step
 import fr.inria.diverse.gpfl.k3dsa.gpfl.modules.GpflMessagingModule
 import fr.inria.diverse.gpfl.k3dsa.gpfl.modules.IOModule
+import fr.inria.diverse.gpfl.Read
+import fr.inria.diverse.gpfl.BytesLiteral
+import fr.inria.diverse.gpfl.BytesDec
+import fr.inria.diverse.gpfl.k3dsa.gpfl.modules.GpflPortsModule
 
 @Aspect(className=Program)
 class ProgramAspect {
@@ -135,8 +138,13 @@ class ProgramAspect {
 		_self.packets.clear
 		_self.currentTime = 0
 		val IWorkspace workspace = ResourcesPlugin.getWorkspace()
-		IOModule.createPacketsFromFile(_self, workspace.root.findMember(args.get(0)).locationURI.path)
-		IOModule.createOutputFile(workspace.root.findMember(args.get(1)).locationURI.path)
+		try {			
+			IOModule.createPacketsFromFile(_self, workspace.root.findMember(args.get(0)).locationURI.path)
+			IOModule.createOutputFile(workspace.root.findMember(args.get(1)).locationURI.path)
+		} catch(NullPointerException e) {
+			GpflMessagingModule.logger.error("File not found\nGo check run configurations", "Gpfl")
+			e.printStackTrace
+		}
 	}
 	
 	@Main
@@ -147,7 +155,6 @@ class ProgramAspect {
 			_self.currentPacket = packet			
 	 		_self.filter.run(_self)
 		}
-		_self.logger.debug("finish", "Gpfl")
 	}
 }
 
@@ -197,16 +204,18 @@ class FilterAspect {
 		root.currentTime = root.currentPacket.time
 		// handle interruptions
 		for (interrupt : root.interruptions) {
+			val nextInterrupt = Math.floor((oldTime+interrupt.time)/interrupt.time)*interrupt.time
 			if ((!interrupt.loop && root.currentTime >= interrupt.time && interrupt.time > oldTime)
-			|| (interrupt.loop 
-				&& Math.floor(root.currentTime/interrupt.time)*interrupt.time > oldTime 
-				&& Math.floor(root.currentTime/interrupt.time)*interrupt.time <= root.currentTime
-			)) {				
-				interrupt.block.run(root)
-				root.logger.debug("Interruption at "+interrupt.time, "Gpfl")
+				|| (interrupt.loop && nextInterrupt > oldTime && nextInterrupt <= root.currentTime)
+			) {			
+				var i = 0
+				do {
+					interrupt.block.run(root)
+					root.logger.debug("Interruption @ "+(nextInterrupt+(interrupt.time*i)), "Gpfl")
+					i++
+				}while(nextInterrupt+(interrupt.time*i) <= root.currentTime)
 			}
 		}
-		root.logger.debug("Beginning of filtering for packet "+root.currentPacket.time, "Gpfl")
 		_self.block.run(root)
 		endOfFilter = false
 	}
@@ -297,8 +306,12 @@ class AlarmAspect extends CmdAspect {
 @Aspect(className=Send)
 class SendAspect extends CmdAspect {
 	def void run(Program root) {
-		root.currentPacket = _self.packet
-		IOModule.writePacket(root)
+		var packet = "("+root.currentTime+";"
+			+ GpflPortsModule.oppositePort(root.inPorts, _self.packet.inPort).name+";" 
+			+ _self.packet.content + ")"
+		root.logger.debug("SEND " + packet, "Gpfl")
+		
+		IOModule.writePacket(root.inPorts, _self.packet)
 		endOfFilter = true
 	}
 }
@@ -337,13 +350,6 @@ class SetVariableAspect extends CmdAspect {
 					root.variables.add(newVar)
 				}
 			}
-		} else if (_self.declaration instanceof Field) {
-			var field = root.currentPacket.fields.findFirst[f | f.name.equals(_self.declaration.name)]
-			if (field === null) {
-				field = GpflFactory.eINSTANCE.createField
-				field.name = _self.declaration.name
-			}
-			field.value = _self.value.eval(root) as String
 		}
 	}
 }
@@ -356,7 +362,12 @@ class NopAspect extends CmdAspect {
 @Aspect(className=Accept)
 class AcceptAspect extends CmdAspect {
 	def void run(Program root) {
-		IOModule.writePacket(root)
+		var packet = "("+root.currentTime+";"
+			+ GpflPortsModule.oppositePort(root.inPorts, root.currentPacket.inPort).name+";" 
+			+ root.currentPacket.content + ")"
+		root.logger.debug("ACCEPT " + packet, "Gpfl")
+		
+		IOModule.writePacket(root.inPorts, root.currentPacket)
 		endOfFilter = true
 	}
 }
@@ -364,6 +375,10 @@ class AcceptAspect extends CmdAspect {
 @Aspect(className=Drop)
 class DropAspect extends CmdAspect {
 	def void run(Program root) {
+		var packet = "("+root.currentTime+";"
+			+ root.currentPacket.inPort.name
+			+";"+root.currentPacket.content+")"
+		root.logger.error("DROP " + packet, "Gpfl")
 		endOfFilter = true
 	}
 }
@@ -396,14 +411,6 @@ class VariableRefAspect extends ExpressionAspect {
 	}
 }
 
-
-@Aspect(className=FieldRef)
-class FieldRefAspect extends ExpressionAspect {
-	def Object eval(Program root) {
-		return root.currentPacket.fields.findFirst[f | f.name.equals(_self.field.name)].value
-	}
-}
-
 @Aspect(className=PortRef)
 class PortRefAspect extends ExpressionAspect {
 	// a port ref can be called only to check if it's the current port, so it's a boolean
@@ -430,6 +437,22 @@ class IntLiteralAspect extends ExpressionAspect {
 class BooleanLiteralAspect extends ExpressionAspect {
 	def Object eval(Program root) {
 		return _self.isIsTrue
+	}
+}
+
+@Aspect(className=BytesLiteral)
+class BytesLiteralAspect extends ExpressionAspect {
+	//TODO
+	def Object eval(Program root) {
+		return _self.value
+	}
+}
+
+@Aspect(className=Read)
+class ReadAspect extends ExpressionAspect {
+	//TODO
+	def Object eval(Program root) {
+		return root.currentPacket.content.toString.substring(_self.offset, _self.offset+_self.length)
 	}
 }
 
@@ -602,7 +625,7 @@ class PlusAspect extends BinaryOpAspect {
 class MinusAspect extends BinaryOpAspect {
 	def Object eval(Program root) {
 		val left = _self.left.eval(root)
-		val right = _self.left.eval(root)
+		val right = _self.right.eval(root)
 		if (left instanceof Integer && right instanceof Integer) {
 			return (left as Integer) - (right as Integer)
 		}
@@ -615,11 +638,11 @@ class MinusAspect extends BinaryOpAspect {
 class MultAspect extends BinaryOpAspect {
 	def Object eval(Program root) {
 		val left = _self.left.eval(root)
-		val right = _self.left.eval(root)
-		if (_self.left.eval(root) instanceof Integer && _self.right.eval(root) instanceof Integer) {
-			return (_self.left.eval(root) as Integer) * (_self.right.eval(root) as Integer)
+		val right = _self.right.eval(root)
+		if (left instanceof Integer && right instanceof Integer) {
+			return (left as Integer) * (right as Integer)
 		}
-		root.logger.error("Type mismatch: Cannot multiply " + _self.left.eval(root) + " by " + _self.right.eval(root), "Gpfl")
+		root.logger.error("Type mismatch: Cannot multiply " + left + " by " + right, "Gpfl")
 		return null
 	}
 }
@@ -628,29 +651,21 @@ class MultAspect extends BinaryOpAspect {
 class DivAspect extends BinaryOpAspect {
 	def Object eval(Program root) {
 		val left = _self.left.eval(root)
-		val right = _self.left.eval(root)
-		if (_self.left.eval(root) instanceof Integer && _self.right.eval(root) instanceof Integer) {
-			if (_self.right.eval(root) == 0) {
+		val right = _self.right.eval(root)
+		if (left instanceof Integer && right instanceof Integer) {
+			if (right == 0) {
 				root.logger.error("You cannot divide by 0", "Gpfl")
 				return null
 			}
-			return (_self.left.eval(root) as Integer) - (_self.right.eval(root) as Integer)
+			return (left as Integer) - (right as Integer)
 		}
-		root.logger.error("Type mismatch: Cannot divide " + _self.left.eval(root) + " by " + _self.right.eval(root), "Gpfl")
-		return null
-	}
-}
-
-@Aspect(className=SetType)
-class SetTypeAspect {
-	def Object eval(Program root) {
-		root.logger.error("Set type: eval of " + _self + " should never occur, please tell the developer to write a method run for this class", "Gpfl")
+		root.logger.error("Type mismatch: Cannot divide " + left + " by " + right, "Gpfl")
 		return null
 	}
 }
 
 @Aspect(className=VariableDeclaration)
-class VariableDeclarationAspect extends SetTypeAspect {
+class VariableDeclarationAspect {
 	def Object eval(Program root) {
 		var variable = root.variables.findFirst[v | v.name.equals(_self.name)]
 		if (variable instanceof IntegerDec) {
@@ -686,6 +701,14 @@ class IntegerDecAspect extends VariableDeclarationAspect {
 	}
 }
 
+@Aspect(className=BytesDec)
+class BytesDecAspect extends VariableDeclarationAspect {
+	//TODO
+	def Object eval(Program root) {
+		return _self.value
+	}
+}
+
 @Aspect(className=Port)
 class PortAspect {
 
@@ -693,10 +716,5 @@ class PortAspect {
 
 @Aspect(className=Packet)
 class PacketAspect {
-
-}
-
-@Aspect(className=Field)
-class FieldAspect extends SetTypeAspect{
 
 }

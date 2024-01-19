@@ -1,8 +1,6 @@
 package fr.inria.diverse.gpfl.xtext.linking;
 
 import fr.inria.diverse.gpfl.Automata
-import fr.inria.diverse.gpfl.Field
-import fr.inria.diverse.gpfl.FieldRef
 import fr.inria.diverse.gpfl.GpflFactory
 import fr.inria.diverse.gpfl.GpflPackage
 import fr.inria.diverse.gpfl.PortRef
@@ -72,36 +70,30 @@ class GpflLinkingService extends DefaultLinkingService {
 			
 			//------------------- VARIABLE DECLARATION CREATION AND REFERENCE -------------------//
 		
-			else if (context instanceof SetVariable && ref == GpflPackage.Literals.SET_VARIABLE__DECLARATION) {
+			else if (ref == GpflPackage.Literals.SET_VARIABLE__DECLARATION) {
 				var set = context as SetVariable
-				if (node.text.startsWith("$")) { // if we set a field
-					var field = root.packets.get(0).fields.findFirst[p | p.name.equals(node.text)]
-					if (field === null) {
-						field = GpflFactory.eINSTANCE.createField()
-						field.name = node.text
-						field.value = ""
-						root.packets.get(0).fields.add(field)
-					}
-				} else {// if we set a variable
-					var vardec = root.variables.findFirst[v | v.name.equals(node.text)]
-					if (vardec === null) {
-						vardec = GpflFactory.eINSTANCE.createVariableDeclaration
-						vardec.name = node.text
-						set.declaration = vardec
-						root.variables.add(vardec)
-					}
-					referencesResolved = Collections.singletonList(vardec)
+				var vardec = root.variables.findFirst[v | v.name.equals(node.text)]
+				if (vardec === null) {
+					vardec = GpflFactory.eINSTANCE.createVariableDeclaration
+					vardec.name = node.text
+					set.declaration = vardec
+					root.variables.add(vardec)
 				}
+				referencesResolved = Collections.singletonList(vardec)
+			}
+			
+			else if (context instanceof SetVariable) {
+				var set = context as SetVariable
 			}
 			
 			//------------------- PORT REFERENCE -------------------//
 			
 			else if (context instanceof PortRef) {
-				var portRef = context as PortRef
 				var port = root.inPorts.findFirst[p | p.name.equals(node.text)]
-				if (port !== null) {
-					portRef.port = port
-					referencesResolved = Collections.singletonList(port)
+				if (port === null) {
+					port = GpflFactory.eINSTANCE.createPort
+					port.name = node.text
+					root.inPorts.add(port)
 				}
 			}
 			
@@ -130,15 +122,6 @@ class GpflLinkingService extends DefaultLinkingService {
 					eventOcc.name = node.text
 					root.prologue.eventPool.add(eventOcc)
 				}
-			}
-			
-			//------------------- FIELD REFERENCE -------------------//
-			
-			else if (context instanceof FieldRef) {
-				val Field field = GpflFactory.eINSTANCE.createField;
-				field.name = node.text
-				field.value = ""
-				root.packets.get(0).fields.add(field)
 			}
 		}
 		

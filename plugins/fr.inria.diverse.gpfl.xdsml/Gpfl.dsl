@@ -49,9 +49,9 @@ k3 = fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ProgramAspect, \
   fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.IntegerDecAspect, \
   fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.StringDecAspect, \
   fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.PortAspect, \
-  fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.FieldAspect, \
-  fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.FieldRefAspect, \
   fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.EventAspect, \
-  fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.SetTypeAspect, \
-  fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NewEventOccurenceAspect
+  fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NewEventOccurenceAspect, \
+  fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ReadAspect, \
+  fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BytesDecAspect, \
+  fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BytesLiteralAspect
 metaprog=org.eclipse.gemoc.metaprog.kermeta3

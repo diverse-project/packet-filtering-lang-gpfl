@@ -9,12 +9,12 @@ import org.eclipse.xtext.parser.DefaultEcoreElementFactory
 
 class GpflAstFactory extends DefaultEcoreElementFactory {
 	override set(EObject object, String feature, Object value, String ruleName, INode node) {
-		super.set(object, feature, value, ruleName, node)
+		super.set(object, feature, value, ruleName, node) 
 		
 		if (object instanceof Program) {
 			val root = object as Program
 			
-			//------------------- PORT CREATION -------------------//
+			//------------------- DEFAULT PORT CREATION -------------------//
 		
 			if (root.inPorts.length !==  2) {
 				root.inPorts.clear()
@@ -23,14 +23,6 @@ class GpflAstFactory extends DefaultEcoreElementFactory {
 				var portOut = GpflFactory.eINSTANCE.createPort()
 				portOut.setName("outSide")
 				Collections.addAll(root.inPorts, portIn, portOut)
-			}
-			
-			//------------------- EMPTY PACKET CREATION -------------------//
-			if (root.packets.isEmpty) {
-				var emptyPacket = GpflFactory.eINSTANCE.createPacket
-				emptyPacket.time = -1
-				emptyPacket.inPort = root.inPorts.get(0)
-				root.packets.add(emptyPacket)
 			}
 		}
 	}
