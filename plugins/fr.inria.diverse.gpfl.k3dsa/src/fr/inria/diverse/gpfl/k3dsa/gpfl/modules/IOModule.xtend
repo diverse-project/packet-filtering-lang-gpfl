@@ -5,6 +5,8 @@ import java.util.Scanner
 import fr.inria.diverse.gpfl.GpflFactory
 import fr.inria.diverse.gpfl.Program
 import java.io.FileOutputStream
+import fr.inria.diverse.gpfl.Port
+import fr.inria.diverse.gpfl.Packet
 
 class IOModule {
 	def static createPacketsFromFile(Program root, String path) {
@@ -27,7 +29,7 @@ class IOModule {
 			}
 			input.close
 		} catch(NullPointerException e) {
-			GpflMessagingModule.logger.error("Input file " + path + " not found\nGo check run configurations", "Gpfl")
+			GpflMessagingModule.logger.error("Input file " + path + " not found. Go check run configurations", "Gpfl")
 			e.printStackTrace
 		}
 	}
@@ -39,18 +41,18 @@ class IOModule {
 			output = new FileOutputStream((new File(path)))
 			output.write(''.getBytes)
 		} catch(NullPointerException e) {
-			GpflMessagingModule.logger.error("Input file " + path + " not found\nGo check run configurations", "Gpfl")
+			GpflMessagingModule.logger.error("Output file " + path + " not found. Go check run configurations", "Gpfl")
 			e.printStackTrace
 		}
 	}
 	
-	def static writePacket(Program root) {
-		var packet = "("+root.currentTime+";"+ GpflPortsModule.oppositePort(root).name+"; "
-		packet+=root.currentPacket.fields.get(0).name.substring(1)+'="'+root.currentPacket.fields.get(0).value+'"'
-		for (var i=1; i<root.currentPacket.fields.length; i++) {
-			packet+=","+root.currentPacket.fields.get(i).name.substring(1)+'="'+root.currentPacket.fields.get(i).value+'"'
+	def static writePacket(Port[] inPorts, Packet packet) {
+		var outPacket = "("+packet.time+";"+ GpflPortsModule.oppositePort(inPorts, packet.inPort).name+"; "
+		outPacket+=packet.fields.get(0).name.substring(1)+'="'+packet.fields.get(0).value+'"'
+		for (var i=1; i<packet.fields.length; i++) {
+			outPacket+=","+packet.fields.get(i).name.substring(1)+'="'+packet.fields.get(i).value+'"'
 		}
-		packet+=")\n"
-		output.write(packet.getBytes)
+		outPacket+=")\n"
+		output.write(outPacket.getBytes)
 	}
 }

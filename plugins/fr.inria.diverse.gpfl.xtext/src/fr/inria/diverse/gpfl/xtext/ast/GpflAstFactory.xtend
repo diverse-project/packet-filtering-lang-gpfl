@@ -14,7 +14,7 @@ class GpflAstFactory extends DefaultEcoreElementFactory {
 		if (object instanceof Program) {
 			val root = object as Program
 			
-			//------------------- PORT CREATION -------------------//
+			//------------------- DEFAULT PORT CREATION -------------------//
 		
 			if (root.inPorts.length !==  2) {
 				root.inPorts.clear()

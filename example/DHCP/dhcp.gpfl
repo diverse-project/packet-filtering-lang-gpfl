@@ -13,7 +13,7 @@ PROLOGUE
 		set(ignoredPktThreshold, 5)
 		newInterrupt(60, true, 
 			set(ignoredPktCnt, 0)
-		)  
+		)
  
 FILTER
 	cond(_inPort == inSide,  
