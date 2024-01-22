@@ -52,6 +52,9 @@ import fr.inria.diverse.gpfl.StringDec
 import fr.inria.diverse.gpfl.Port
 import fr.inria.diverse.gpfl.Event
 import fr.inria.diverse.gpfl.NewEventOccurence
+import fr.inria.diverse.gpfl.Read
+import fr.inria.diverse.gpfl.BytesLiteral
+import fr.inria.diverse.gpfl.BytesDec
 
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ProgramAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.PrologueAspect.*
@@ -117,10 +120,8 @@ import org.eclipse.gemoc.commons.eclipse.messagingsystem.api.MessagingSystem
 import fr.inria.diverse.k3.al.annotationprocessor.Step
 import fr.inria.diverse.gpfl.k3dsa.gpfl.modules.GpflMessagingModule
 import fr.inria.diverse.gpfl.k3dsa.gpfl.modules.IOModule
-import fr.inria.diverse.gpfl.Read
-import fr.inria.diverse.gpfl.BytesLiteral
-import fr.inria.diverse.gpfl.BytesDec
 import fr.inria.diverse.gpfl.k3dsa.gpfl.modules.GpflPortsModule
+import java.math.BigInteger
 
 @Aspect(className=Program)
 class ProgramAspect {
@@ -140,9 +141,14 @@ class ProgramAspect {
 		val IWorkspace workspace = ResourcesPlugin.getWorkspace()
 		try {			
 			IOModule.createPacketsFromFile(_self, workspace.root.findMember(args.get(0)).locationURI.path)
+		} catch(NullPointerException e) {
+			GpflMessagingModule.logger.error("Input file " + args.get(0) + " not found. Go check run configurations", "Gpfl")
+			e.printStackTrace
+		}
+		try {
 			IOModule.createOutputFile(workspace.root.findMember(args.get(1)).locationURI.path)
 		} catch(NullPointerException e) {
-			GpflMessagingModule.logger.error("File not found\nGo check run configurations", "Gpfl")
+			GpflMessagingModule.logger.error("Output file " + args.get(1) + " not found. Go check run configurations", "Gpfl")
 			e.printStackTrace
 		}
 	}
@@ -339,10 +345,19 @@ class SetVariableAspect extends CmdAspect {
 					newVar.value = value
 					root.variables.add(newVar)
 				} else if (value instanceof String) {
-					var newVar = GpflFactory.eINSTANCE.createStringDec
-					newVar.name = _self.declaration.name
-					newVar.value = value
-					root.variables.add(newVar)
+					if(value.startsWith("0b") || value.startsWith("0x")) {
+						var newVar = GpflFactory.eINSTANCE.createBytesDec
+						newVar.name = _self.declaration.name
+						newVar.value = value.startsWith("0x") ? 
+							new BigInteger(value.substring(2), 16).toString(2) 
+							: value.substring(2)
+						root.variables.add(newVar)
+					} else {
+						var newVar = GpflFactory.eINSTANCE.createStringDec
+						newVar.name = _self.declaration.name
+						newVar.value = value
+						root.variables.add(newVar)
+					}
 				} else if (value instanceof Boolean) {
 					var newVar = GpflFactory.eINSTANCE.createBooleanDec
 					newVar.name = _self.declaration.name
@@ -378,7 +393,7 @@ class DropAspect extends CmdAspect {
 		var packet = "("+root.currentTime+";"
 			+ root.currentPacket.inPort.name
 			+";"+root.currentPacket.content+")"
-		root.logger.error("DROP " + packet, "Gpfl")
+		root.logger.debug("DROP " + packet, "Gpfl")
 		endOfFilter = true
 	}
 }
@@ -442,7 +457,6 @@ class BooleanLiteralAspect extends ExpressionAspect {
 
 @Aspect(className=BytesLiteral)
 class BytesLiteralAspect extends ExpressionAspect {
-	//TODO
 	def Object eval(Program root) {
 		return _self.value
 	}
@@ -450,7 +464,6 @@ class BytesLiteralAspect extends ExpressionAspect {
 
 @Aspect(className=Read)
 class ReadAspect extends ExpressionAspect {
-	//TODO
 	def Object eval(Program root) {
 		return root.currentPacket.content.toString.substring(_self.offset, _self.offset+_self.length)
 	}
@@ -504,7 +517,7 @@ class OrAspect extends BinaryOpAspect {
 		try {
 			return (_self.left.eval(root) as Boolean) || (_self.right.eval(root) as Boolean)
 		} catch (ClassCastException e) {
-			root.logger.error("Type mismatch: Cannot evaluate " + _self.left.eval(root) + " and " + _self.right.eval(root) + " because they don't have the same type", "Gpfl")
+			root.logger.error("Type mismatch: Cannot evaluate " + _self.left.eval(root) + "(" + _self.left.eval(root).class + ")" + " and " + _self.right.eval(root) + "(" + _self.right.eval(root).class + ")" + " because they don't have the same type", "Gpfl")
 			e.printStackTrace
 			return null
 		}
@@ -517,7 +530,7 @@ class AndAspect extends BinaryOpAspect {
 		try {
 			return (_self.left.eval(root) as Boolean) && (_self.right.eval(root) as Boolean)
 		} catch (ClassCastException e) {
-			root.logger.error("Type mismatch: Cannot evaluate " + _self.left.eval(root) + " and " + _self.right.eval(root) + " because they don't have the same type", "Gpfl")
+			root.logger.error("Type mismatch: Cannot evaluate " + _self.left.eval(root) + "(" + _self.left.eval(root).class + ")" + " and " + _self.right.eval(root) + "(" + _self.right.eval(root).class + ")" + " because they don't have the same type", "Gpfl")
 			e.printStackTrace
 			return null
 		}
@@ -530,7 +543,7 @@ class EqualityAspect extends BinaryOpAspect {
 		try {
 			return _self.left.eval(root).equals(_self.right.eval(root))
 		} catch (ClassCastException e) {
-			root.logger.error("Type mismatch: Cannot compare " + _self.left.eval(root) + " and " + _self.right.eval(root) + " because they don't have the same type", "Gpfl")
+			root.logger.error("Type mismatch: Cannot evaluate " + _self.left.eval(root) + "(" + _self.left.eval(root).class + ")" + " and " + _self.right.eval(root) + "(" + _self.right.eval(root).class + ")" + " because they don't have the same type", "Gpfl")
 			e.printStackTrace
 			return null
 		}
@@ -543,7 +556,7 @@ class InequalityAspect extends BinaryOpAspect {
 		try {
 			return !_self.left.eval(root).equals(_self.right.eval(root))
 		} catch (ClassCastException e) {
-			root.logger.error("Type mismatch: Cannot compare " + _self.left.eval(root) + " and " + _self.right.eval(root) + " because they don't have the same type", "Gpfl")
+			root.logger.error("Type mismatch: Cannot evaluate " + _self.left.eval(root) + "(" + _self.left.eval(root).class + ")" + " and " + _self.right.eval(root) + "(" + _self.right.eval(root).class + ")" + " because they don't have the same type", "Gpfl")
 			e.printStackTrace
 			return null
 		}
@@ -553,11 +566,14 @@ class InequalityAspect extends BinaryOpAspect {
 @Aspect(className=GreaterOrEqual)
 class GreaterOrEqualAspect extends BinaryOpAspect {
 	def Object eval(Program root) {
-		try {
+		val left = _self.left.eval(root)
+		val right = _self.right.eval(root)
+		if (left instanceof String && right instanceof String) {
+			return (left as String).compareTo(right as String) >= 0 ? true : false
+		} else if (left instanceof Integer && right instanceof Integer) {
 			return (_self.left.eval(root) as Integer) >= (_self.right.eval(root) as Integer)
-		} catch (ClassCastException e) {
-			root.logger.error("Type mismatch: Cannot compare " + _self.left.eval(root) + "and" + _self.right.eval(root) + " because they don't have the same type", "Gpfl")
-			e.printStackTrace
+		} else {
+			root.logger.error("Type mismatch: Cannot compare " + _self.left.eval(root) + "(" + _self.left.eval(root).class + ")" + " and " + _self.right.eval(root) + "(" + _self.right.eval(root).class + ")", "Gpfl")
 			return null
 		}
 	}
@@ -566,11 +582,14 @@ class GreaterOrEqualAspect extends BinaryOpAspect {
 @Aspect(className=LowerOrEqual)
 class LowerOrEqualAspect extends BinaryOpAspect {
 	def Object eval(Program root) {
-		try {
-			return (_self.left.eval(root) as Integer) <= (_self.right.eval(root) as Integer)
-		} catch (ClassCastException e) {
-			root.logger.error("Type mismatch: Cannot compare " + _self.left.eval(root) + " and " + _self.right.eval(root) + " because they don't have the same type", "Gpfl")
-			e.printStackTrace
+		val left = _self.left.eval(root)
+		val right = _self.right.eval(root)
+		if (left instanceof String && right instanceof String) {
+			return (left as String).compareTo(right as String) <= 0 ? true : false
+		} else if (left instanceof Integer && right instanceof Integer) {
+			return (_self.left.eval(root) as Integer) >= (_self.right.eval(root) as Integer)
+		} else {
+			root.logger.error("Type mismatch: Cannot compare " + _self.left.eval(root) + "(" + _self.left.eval(root).class + ")" + " and " + _self.right.eval(root) + "(" + _self.right.eval(root).class + ")", "Gpfl")
 			return null
 		}
 	}
@@ -579,11 +598,14 @@ class LowerOrEqualAspect extends BinaryOpAspect {
 @Aspect(className=Greater)
 class GreaterAspect extends BinaryOpAspect {
 	def Object eval(Program root) {
-		try {
-			return (_self.left.eval(root) as Integer) > (_self.right.eval(root) as Integer)
-		} catch (ClassCastException e) {
-			root.logger.error("Type mismatch: Cannot compare " + _self.left.eval(root) + " and " + _self.right.eval(root) + " because they don't have the same type", "Gpfl")
-			e.printStackTrace
+		val left = _self.left.eval(root)
+		val right = _self.right.eval(root)
+		if (left instanceof String && right instanceof String) {
+			return (left as String).compareTo(right as String) > 0 ? true : false
+		} else if (left instanceof Integer && right instanceof Integer) {
+			return (_self.left.eval(root) as Integer) >= (_self.right.eval(root) as Integer)
+		} else {
+			root.logger.error("Type mismatch: Cannot compare " + _self.left.eval(root) + "(" + _self.left.eval(root).class + ")" + " and " + _self.right.eval(root) + "(" + _self.right.eval(root).class + ")", "Gpfl")
 			return null
 		}
 	}
@@ -592,11 +614,14 @@ class GreaterAspect extends BinaryOpAspect {
 @Aspect(className=Lower)
 class LowerAspect extends BinaryOpAspect {
 	def Object eval(Program root) {
-		try {
-			return (_self.left.eval(root) as Integer) < (_self.right.eval(root) as Integer)
-		} catch (ClassCastException e) {
-			root.logger.error("Type mismatch: Cannot compare " + _self.left.eval(root) + " and " + _self.right.eval(root) + " because they don't have the same type", "Gpfl")
-			e.printStackTrace
+		val left = _self.left.eval(root)
+		val right = _self.right.eval(root)
+		if (left instanceof String && right instanceof String) {
+			return (left as String).compareTo(right as String) < 0 ? true : false
+		} else if (left instanceof Integer && right instanceof Integer) {
+			return (_self.left.eval(root) as Integer) >= (_self.right.eval(root) as Integer)
+		} else {
+			root.logger.error("Type mismatch: Cannot compare " + _self.left.eval(root) + "(" + _self.left.eval(root).class + ")" + " and " + _self.right.eval(root) + "(" + _self.right.eval(root).class + ")", "Gpfl")
 			return null
 		}
 	}
@@ -674,6 +699,8 @@ class VariableDeclarationAspect {
 			return variable.value
 		} else if (variable instanceof BooleanDec) {
 			return variable.isTrue
+		} else if (variable instanceof BytesDec){
+			return variable.value
 		} else {
 			return null
 		}
@@ -703,7 +730,6 @@ class IntegerDecAspect extends VariableDeclarationAspect {
 
 @Aspect(className=BytesDec)
 class BytesDecAspect extends VariableDeclarationAspect {
-	//TODO
 	def Object eval(Program root) {
 		return _self.value
 	}

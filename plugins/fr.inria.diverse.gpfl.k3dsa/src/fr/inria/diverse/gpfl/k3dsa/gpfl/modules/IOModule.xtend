@@ -18,13 +18,19 @@ class IOModule {
 				var packet = GpflFactory.eINSTANCE.createPacket
 				val String[] packet_data = line.substring(1, line.length-1).split(";")
 				packet.time = Integer.valueOf(packet_data.get(0))
-				packet.inPort = root.inPorts.findFirst[p | p.name.equals(packet_data.get(1))]
+				var port = root.inPorts.findFirst[p | p.name.equals(packet_data.get(1))]
+				if (port === null) {
+					port = GpflFactory.eINSTANCE.createPort
+					port.name = packet_data.get(1)
+					root.inPorts.add(port)
+				}
+				packet.inPort = port
 				packet.content = packet_data.get(2)
 				root.packets.add(packet)
 			}
 			input.close
 		} catch(NullPointerException e) {
-			GpflMessagingModule.logger.error("Input file " + path + " not found\nGo check run configurations", "Gpfl")
+			GpflMessagingModule.logger.error("Input file " + path + " not found. Go check run configurations", "Gpfl")
 			e.printStackTrace
 		}
 	}
@@ -36,7 +42,7 @@ class IOModule {
 			output = new FileOutputStream((new File(path)))
 			output.write(''.getBytes)
 		} catch(NullPointerException e) {
-			GpflMessagingModule.logger.error("Output file " + path + " not found\nGo check run configurations", "Gpfl")
+			GpflMessagingModule.logger.error("Output file " + path + " not found. Go check run configurations", "Gpfl")
 			e.printStackTrace
 		}
 	}

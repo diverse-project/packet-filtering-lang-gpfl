@@ -19,78 +19,105 @@ class GpflParsingTest {
 	ParseHelper<Program> parseHelper
 	
 	@Test
-	def void loadModel() {
+	def void dhcp() {
 		val result = parseHelper.parse('''
 			PROLOGUE
-				AUTOMATA "DHCP incoming controller" 
+				AUTOMATA "DHCP incoming controller"
 					init = "0"
-					"0" -"Disc"-> "1"
-					"1" -"Req"-> "2"
-					"1" -"Rej"-> "2"
-					"2" -"Ack"-> "0"
-					"0" -"Rel"-> "3"
-					"3" -"Ack"-> "0"
-				INIT 
+					"0" -"Disc" -> "1" 
+					"1" -"Req" -> "2" 
+					"1" -"Rej" -> "2" 
+					"2" -"Ack" -> "0" 
+					"0" -"Rel" -> "3"
+					"3" -"Ack" -> "0" 
+				INIT  
 					newAutomaton("DHCP incoming controller", #A)
-					set( ignoredPktCnt , 0)
-					set( ignoredPktThreshold , 5) 
-					newInterrupt(60, true , set(ignoredPktCnt , 0))
-				 
-				FILTER
-					cond(_inPort == inSide ,
-						cond( ($pktType == "Ack") & ($clientId == currentClient),
-							step (#A , "Ack" , nop ) 
-							set(currentClient , "")
-						)
+					set(ignoredPktCnt, 0) 
+					set(ignoredPktThreshold, 5)
+					newInterrupt(60, true,  
+						set(ignoredPktCnt, 0)
+					)
+			 
+			FILTER
+				cond(_inPort == "inSide",  
+					cond((read(0, 4) == 0b0101) & (read(4, 4) == currentClient),
+						step(#A, Ack, nop)
+						set(currentClient, "") 
+					)
+					accept 
+				) 
+				cond( _inPort == "outSide",
+					cond(read(0, 4) == 0b0000, 
+						step(#A, Disc, 
+							set(ignoredPktCnt, ignoredPktCnt+1) 
+							cond(ignoredPktCnt >= ignoredPktThreshold,
+								alarm("Many external messages ignored!") 
+								set(ignoredPktCnt, 0)
+							) 
+							drop 
+						) 
+						set(currentClient, read(4, 4)) 
 						accept
 					)
-					cond(_inPort == outSide ,
-						cond ( $pktType == "Disc", 
-							step(#A, "Disc",
-								set (ignoredPktCnt , ignoredPktCnt + 1) 
-								cond(ignoredPktCnt >= ignoredPktThreshold ,
-									alarm ( " Many external messages ignored ! " )
-									set(ignoredPktCnt , 0)
-								)
-								drop
+					cond((read(0, 4) == 0b0010) | (read(0, 4)== 0b0011),
+						cond(!(read(4, 4) == currentClient),
+							set(ignoredPktCnt, ignoredPktCnt+1)
+							cond(ignoredPktCnt >= ignoredPktThreshold,
+								alarm("Many external messages ignored!")
+								set(ignoredPktCnt, 0) 
 							)
-							set(currentClient , $clientId)
-							accept
-						)
-						cond ( ( $pktType == " Req " ) | ( $pktType == " Rej " ) ,
-							cond(! ($clientId == currentClient),
-								set (ignoredPktCnt , ignoredPktCnt + 1)
-								cond(ignoredPktCnt >= ignoredPktThreshold ,
-									alarm ( " Many external messages ignored ! " )
-									set(ignoredPktCnt , 0)
-								)
-								drop
-							)
-							step(#A, $pktType ,
-								set ( ignoredPktCnt , ignoredPktCnt + 1) 
-								cond(ignoredPktCnt >= ignoredPktThreshold , 
-									alarm ( " Many external messages ignored ! " ) 
-									set(ignoredPktCnt , 0)
-								) 
-								drop
-							) 
-							accept
-						)
-						cond($pktType == "Rel",
-							step (#A , " Rel ",
-								set(ignoredPktCnt , ignoredPktCnt + 1)
-								cond ( ignoredPktCnt >= ignoredPktThreshold , 
-									alarm("Many external messages ignored!")
-									set ( ignoredPktCnt , 0)
-								)
-								drop
-							) 
-							set ( currentClient , $clientId ) 
-							accept
+							drop 
 						) 
-						drop 
-					) 
-					alarm("Unhandled message") drop
+						cond (read(0, 4) == 0b0010,newEventOccurence(evt,Req))
+						cond (read(0, 4) == 0b0011,newEventOccurence(evt,Rej)) 
+						step(#A, evt, 
+							set(ignoredPktCnt, ignoredPktCnt+1)
+							cond(ignoredPktCnt >= ignoredPktThreshold,
+								alarm("Many external messages ignored!")
+								set(ignoredPktCnt, 0)
+							)
+							drop 
+						) 
+						accept
+					)
+					cond(read(0, 4) == 0b0100,
+						step(#A, Rel,
+							set(ignoredPktCnt, ignoredPktCnt+1) 
+							cond(ignoredPktCnt >= ignoredPktThreshold,
+								alarm("Many external messages ignored!")
+								set(ignoredPktCnt, 0)
+							)
+							drop
+						)
+						set(currentClient, read(4, 4))
+						accept
+					)
+					drop
+				)
+				alarm("Unhandled message")
+
+		''')
+		Assertions.assertNotNull(result)
+		val errors = result.eResource.errors
+		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
+	}
+	
+	@Test
+	def void ipv4() {
+		val result = parseHelper.parse('''
+			PROLOGUE
+				INIT
+					set(minIpAllowed, 0xc0a80001) // 192.168.0.1 
+					set(maxIpAllowed, 0xc0a800ff) // 192.168.0.255 
+			
+			FILTER
+				cond((_inPort == "80") | (_inPort == "443"),
+					set(sourceIp, read(97, 32)) 
+					cond((sourceIp >= minIpAllowed) & (sourceIp <= maxIpAllowed),
+						accept
+					)
+				)
+				drop
 		''')
 		Assertions.assertNotNull(result)
 		val errors = result.eResource.errors

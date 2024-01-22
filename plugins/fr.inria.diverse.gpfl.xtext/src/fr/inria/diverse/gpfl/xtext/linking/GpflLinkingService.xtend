@@ -82,17 +82,13 @@ class GpflLinkingService extends DefaultLinkingService {
 				referencesResolved = Collections.singletonList(vardec)
 			}
 			
-			else if (context instanceof SetVariable) {
-				var set = context as SetVariable
-			}
-			
 			//------------------- PORT REFERENCE -------------------//
 			
 			else if (context instanceof PortRef) {
 				var port = root.inPorts.findFirst[p | p.name.equals(node.text)]
 				if (port === null) {
 					port = GpflFactory.eINSTANCE.createPort
-					port.name = node.text
+					port.name = node.text.stringValue
 					root.inPorts.add(port)
 				}
 			}

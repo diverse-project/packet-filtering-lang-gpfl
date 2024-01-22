@@ -113,8 +113,8 @@ Atomic returns Expression:
 	| {BooleanLiteral}isTrue=EBoolean
 	| {BytesLiteral} value=(BYTES|HEXA)
 	| {VariableRef} variable=[VariableDeclaration|ID]
-	| {PortRef} "_inPort" "==" port=[Port|ID]
-	| {Read} "read(" offset=INT "," length=INT ")"
+	| {PortRef} "_inPort" "==" port=[Port|STRING]
+	| {Read} "read""(" offset=INT "," length=INT ")"
 ;
 
 

@@ -1,9 +1,9 @@
 PROLOGUE
 	INIT
-		set(minIpAllowed, 0xc0a80001) // 192.168.0.1
+		set(minIpAllowed, 0xc0a80001) // 192.168.0.1 
 		set(maxIpAllowed, 0xc0a800ff) // 192.168.0.255 
 
-// https://datatracker.ietf.org/doc/html/rfc791
+// https://datatracker.ietf.org/doc/html/rfc791#section-3.1
 // IPv4 Header
 //  0                   1                   2                   3
 //  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 
@@ -22,8 +22,8 @@ PROLOGUE
 // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 FILTER
-	cond((_inPort == _80) | (_inPort == _443),
-		set(sourceIp, read(129, 32))
+	cond((_inPort == "80") | (_inPort == "443"),
+		set(sourceIp, read(96, 32)) 
 		cond((sourceIp >= minIpAllowed) & (sourceIp <= maxIpAllowed),
 			accept
 		)
