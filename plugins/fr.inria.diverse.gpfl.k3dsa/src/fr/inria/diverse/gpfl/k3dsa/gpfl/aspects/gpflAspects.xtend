@@ -158,7 +158,6 @@ class ProgramAspect {
 			_self.currentPacket = packet			
 	 		_self.filter.run(_self)
 		}
-		_self.logger.debug("finish", "Gpfl")
 	}
 }
 
