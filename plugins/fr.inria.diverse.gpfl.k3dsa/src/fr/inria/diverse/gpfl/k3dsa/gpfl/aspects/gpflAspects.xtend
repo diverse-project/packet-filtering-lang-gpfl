@@ -427,7 +427,7 @@ abstract class ExpressionAspect {
 @Aspect(className=VariableRef)
 class VariableRefAspect extends ExpressionAspect {
 	def Object eval(Program root) {
-		return _self.variable.eval(root)
+		return root.variables.findFirst[v | v.name.equals(_self.variable.name)].eval(root)
 	}
 }
 
@@ -479,10 +479,11 @@ abstract class UnaryOpAspect extends ExpressionAspect {
 @Aspect(className=Not)
 class NotAspect extends UnaryOpAspect {
 	def Object eval(Program root) {
+		val expr = _self.expression.eval(root)
 		try {
-			return !(_self.expression.eval(root) as Boolean)
+			return !(expr as Boolean)
 		} catch (ClassCastException e) {
-			root.logger.error("Type mismatch: Cannot invert " + _self.expression.eval(root) + " because it's not a boolean", "Gpfl")
+			root.logger.error("Type mismatch: Cannot invert " + expr + " because it's not a boolean", "Gpfl")
 			e.printStackTrace
 			return null
 		}
@@ -492,10 +493,11 @@ class NotAspect extends UnaryOpAspect {
 @Aspect(className=Neg)
 class NegAspect extends UnaryOpAspect {
 	def Object eval(Program root) {
+		val expr = _self.expression.eval(root)
 		try {
-			return -(_self.expression.eval(root) as Integer)
+			return -(expr as Integer)
 		} catch (ClassCastException e) {
-			root.logger.error("Type mismatch: Cannot neg " + _self.expression.eval(root) + " because it's not an integer", "Gpfl")
+			root.logger.error("Type mismatch: Cannot neg " + expr + " because it's not an integer", "Gpfl")
 			e.printStackTrace
 			return null
 		}
@@ -513,10 +515,14 @@ abstract class BinaryOpAspect extends ExpressionAspect {
 @Aspect(className=Or)
 class OrAspect extends BinaryOpAspect {
 	def Object eval(Program root) {
+		val left = _self.left.eval(root)
+		val right = _self.right.eval(root)
 		try {
-			return (_self.left.eval(root) as Boolean) || (_self.right.eval(root) as Boolean)
+			return (left as Boolean) || (right as Boolean)
 		} catch (ClassCastException e) {
-			root.logger.error("Type mismatch: Cannot evaluate " + _self.left.eval(root) + "(" + _self.left.eval(root).class + ")" + " and " + _self.right.eval(root) + "(" + _self.right.eval(root).class + ")" + " because they don't have the same type", "Gpfl")
+			root.logger.error("Type mismatch: Cannot compare (|) " + left + (left===null?"":"(" + left.class + ")")
+				+ " and " + right + (right===null?"":"(" + right.class + ")"), "Gpfl"
+			)
 			e.printStackTrace
 			return null
 		}
@@ -526,10 +532,14 @@ class OrAspect extends BinaryOpAspect {
 @Aspect(className=And)
 class AndAspect extends BinaryOpAspect {
 	def Object eval(Program root) {
+		val left = _self.left.eval(root)
+		val right = _self.right.eval(root)
 		try {
-			return (_self.left.eval(root) as Boolean) && (_self.right.eval(root) as Boolean)
+			return (left as Boolean) && (right as Boolean)
 		} catch (ClassCastException e) {
-			root.logger.error("Type mismatch: Cannot evaluate " + _self.left.eval(root) + "(" + _self.left.eval(root).class + ")" + " and " + _self.right.eval(root) + "(" + _self.right.eval(root).class + ")" + " because they don't have the same type", "Gpfl")
+			root.logger.error("Type mismatch: Cannot compare (&) " + left + (left===null?"":"(" + left.class + ")")
+				+ " and " + right + (right===null?"":"(" + right.class + ")"), "Gpfl"
+			)
 			e.printStackTrace
 			return null
 		}
@@ -539,10 +549,14 @@ class AndAspect extends BinaryOpAspect {
 @Aspect(className=Equality)
 class EqualityAspect extends BinaryOpAspect {
 	def Object eval(Program root) {
+		val left = _self.left.eval(root)
+		val right = _self.right.eval(root)
 		try {
-			return _self.left.eval(root).equals(_self.right.eval(root))
+			return left.equals(right)
 		} catch (ClassCastException e) {
-			root.logger.error("Type mismatch: Cannot evaluate " + _self.left.eval(root) + "(" + _self.left.eval(root).class + ")" + " and " + _self.right.eval(root) + "(" + _self.right.eval(root).class + ")" + " because they don't have the same type", "Gpfl")
+			root.logger.error("Type mismatch: Cannot compare (==) " + left + (left===null?"":"(" + left.class + ")")
+				+ " and " + right + (right===null?"":"(" + right.class + ")"), "Gpfl"
+			)
 			e.printStackTrace
 			return null
 		}
@@ -552,10 +566,14 @@ class EqualityAspect extends BinaryOpAspect {
 @Aspect(className=Inequality)
 class InequalityAspect extends BinaryOpAspect {
 	def Object eval(Program root) {
+		val left = _self.left.eval(root)
+		val right = _self.right.eval(root)
 		try {
-			return !_self.left.eval(root).equals(_self.right.eval(root))
+			return !left.equals(right)
 		} catch (ClassCastException e) {
-			root.logger.error("Type mismatch: Cannot compare " + _self.left.eval(root) + " and " + _self.right.eval(root) + " because they don't have the same type", "Gpfl")
+			root.logger.error("Type mismatch: Cannot compare (!=) " + left + (left===null?"":"(" + left.class + ")")
+				+ " and " + right + (right===null?"":"(" + right.class + ")"), "Gpfl"
+			)
 			e.printStackTrace
 			return null
 		}
@@ -570,9 +588,11 @@ class GreaterOrEqualAspect extends BinaryOpAspect {
 		if (left instanceof String && right instanceof String) {
 			return (left as String).compareTo(right as String) >= 0 ? true : false
 		} else if (left instanceof Integer && right instanceof Integer) {
-			return (_self.left.eval(root) as Integer) >= (_self.right.eval(root) as Integer)
+			return (left as Integer) >= (right as Integer)
 		} else {
-			root.logger.error("Type mismatch: Cannot compare " + _self.left.eval(root) + "(" + _self.left.eval(root).class + ")" + " and " + _self.right.eval(root) + "(" + _self.right.eval(root).class + ")", "Gpfl")
+			root.logger.error("Type mismatch: Cannot compare (>=) " + left + (left===null?"":"(" + left.class + ")")
+				+ " and " + right + (right===null?"":"(" + right.class + ")"), "Gpfl"
+			)
 			return null
 		}
 	}
@@ -586,9 +606,11 @@ class LowerOrEqualAspect extends BinaryOpAspect {
 		if (left instanceof String && right instanceof String) {
 			return (left as String).compareTo(right as String) <= 0 ? true : false
 		} else if (left instanceof Integer && right instanceof Integer) {
-			return (_self.left.eval(root) as Integer) >= (_self.right.eval(root) as Integer)
+			return (left as Integer) <= (right as Integer)
 		} else {
-			root.logger.error("Type mismatch: Cannot compare " + _self.left.eval(root) + "(" + _self.left.eval(root).class + ")" + " and " + _self.right.eval(root) + "(" + _self.right.eval(root).class + ")", "Gpfl")
+			root.logger.error("Type mismatch: Cannot compare (<=) " + left + (left===null?"":"(" + left.class + ")")
+				+ " and " + right + (right===null?"":"(" + right.class + ")"), "Gpfl"
+			)
 			return null
 		}
 	}
@@ -602,9 +624,11 @@ class GreaterAspect extends BinaryOpAspect {
 		if (left instanceof String && right instanceof String) {
 			return (left as String).compareTo(right as String) > 0 ? true : false
 		} else if (left instanceof Integer && right instanceof Integer) {
-			return (_self.left.eval(root) as Integer) >= (_self.right.eval(root) as Integer)
+			return (left as Integer) > (right as Integer)
 		} else {
-			root.logger.error("Type mismatch: Cannot compare " + _self.left.eval(root) + "(" + _self.left.eval(root).class + ")" + " and " + _self.right.eval(root) + "(" + _self.right.eval(root).class + ")", "Gpfl")
+			root.logger.error("Type mismatch: Cannot compare (>) " + left + (left===null?"":"(" + left.class + ")")
+				+ " and " + right + (right===null?"":"(" + right.class + ")"), "Gpfl"
+			)
 			return null
 		}
 	}
@@ -618,9 +642,11 @@ class LowerAspect extends BinaryOpAspect {
 		if (left instanceof String && right instanceof String) {
 			return (left as String).compareTo(right as String) < 0 ? true : false
 		} else if (left instanceof Integer && right instanceof Integer) {
-			return (_self.left.eval(root) as Integer) >= (_self.right.eval(root) as Integer)
+			return (left as Integer) < (right as Integer)
 		} else {
-			root.logger.error("Type mismatch: Cannot compare " + _self.left.eval(root) + "(" + _self.left.eval(root).class + ")" + " and " + _self.right.eval(root) + "(" + _self.right.eval(root).class + ")", "Gpfl")
+			root.logger.error("Type mismatch: Cannot compare (<) " + left + (left===null?"":"(" + left.class + ")")
+				+ " and " + right + (right===null?"":"(" + right.class + ")"), "Gpfl"
+			)
 			return null
 		}
 	}
