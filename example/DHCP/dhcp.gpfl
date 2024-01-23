@@ -9,6 +9,7 @@ PROLOGUE
 		"3" -"Ack" -> "0" 
 	INIT  
 		newAutomaton("DHCP incoming controller", #A)
+		set(prout, 0b0000)
 		set(ignoredPktCnt, 0) 
 		set(ignoredPktThreshold, 5)
 		newInterrupt(60, true,  
