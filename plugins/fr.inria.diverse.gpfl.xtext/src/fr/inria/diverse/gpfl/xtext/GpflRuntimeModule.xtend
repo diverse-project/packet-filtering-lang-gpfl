@@ -5,7 +5,6 @@ package fr.inria.diverse.gpfl.xtext
 
 import fr.inria.diverse.gpfl.xtext.linking.GpflLinkingService
 import fr.inria.diverse.gpfl.xtext.transientvariables.GpflTransientVariable
-import fr.inria.diverse.gpfl.xtext.ast.GpflAstFactory
 import org.eclipse.xtext.scoping.impl.ImportUriGlobalScopeProvider
 
 /**
@@ -18,10 +17,6 @@ class GpflRuntimeModule extends AbstractGpflRuntimeModule {
 	
 	override bindITransientValueService(){
 		return GpflTransientVariable
-	}
-	
-	override bindIAstFactory() {
-		return GpflAstFactory
 	}
 	
 	override bindIGlobalScopeProvider() {

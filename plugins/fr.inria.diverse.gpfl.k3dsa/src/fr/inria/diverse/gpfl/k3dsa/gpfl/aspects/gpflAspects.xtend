@@ -120,8 +120,10 @@ import org.eclipse.gemoc.commons.eclipse.messagingsystem.api.MessagingSystem
 import fr.inria.diverse.k3.al.annotationprocessor.Step
 import fr.inria.diverse.gpfl.k3dsa.gpfl.modules.GpflMessagingModule
 import fr.inria.diverse.gpfl.k3dsa.gpfl.modules.IOModule
-import fr.inria.diverse.gpfl.k3dsa.gpfl.modules.GpflPortsModule
 import java.math.BigInteger
+import java.io.File
+import java.util.HashMap
+import java.util.Scanner
 
 @Aspect(className=Program)
 class ProgramAspect {
@@ -130,7 +132,7 @@ class ProgramAspect {
 	}
 	
 	public static var endOfFilter = false
-	
+	public static var correspondingPort = new HashMap<Port, Port>()
 	
 	@InitializeModel
 	def void initializeModel(EList<String> args) {
@@ -140,15 +142,28 @@ class ProgramAspect {
 		_self.currentTime = 0
 		val IWorkspace workspace = ResourcesPlugin.getWorkspace()
 		try {			
-			IOModule.createPacketsFromFile(_self, workspace.root.findMember(args.get(0)).locationURI.path)
+			IOModule.createPacketsFromFile(_self, new File(workspace.root.findMember(args.get(0)).locationURI.path))
 		} catch(NullPointerException e) {
 			GpflMessagingModule.logger.error("Input file " + args.get(0) + " not found. Go check run configurations", "Gpfl")
 			e.printStackTrace
 		}
 		try {
-			IOModule.createOutputFile(workspace.root.findMember(args.get(1)).locationURI.path)
+			IOModule.createOutputFile(new File(workspace.root.findMember(args.get(1)).locationURI.path))
 		} catch(NullPointerException e) {
 			GpflMessagingModule.logger.error("Output file " + args.get(1) + " not found. Go check run configurations", "Gpfl")
+			e.printStackTrace
+		}
+		try {
+			val portOracle = new File(workspace.root.findMember(args.get(2)).locationURI.path)
+			val input = new Scanner(portOracle)
+			while (input.hasNextLine) {
+				val line = input.nextLine
+				var portIn = _self.inPorts.findFirst[p | p.name.equals(line.split("->").get(0).trim())]
+				var portOut = _self.inPorts.findFirst[p | p.name.equals(line.split("->").get(1).trim())]
+				correspondingPort.put(portIn, portOut)
+			}
+		} catch(NullPointerException e) {
+			GpflMessagingModule.logger.error("Output file " + args.get(2) + " not found. Go check run configurations", "Gpfl")
 			e.printStackTrace
 		}
 	}
@@ -313,11 +328,11 @@ class AlarmAspect extends CmdAspect {
 class SendAspect extends CmdAspect {
 	def void run(Program root) {
 		var packet = "("+root.currentTime+";"
-			+ GpflPortsModule.oppositePort(root.inPorts, _self.packet.inPort).name+";" 
+			+ _self.port.name+";" 
 			+ _self.packet.content + ")"
 		root.logger.debug("SEND " + packet, "Gpfl")
 		
-		IOModule.writePacket(root.inPorts, _self.packet)
+		IOModule.writePacket(_self.packet, _self.port)
 		endOfFilter = true
 	}
 }
@@ -376,11 +391,11 @@ class NopAspect extends CmdAspect {
 class AcceptAspect extends CmdAspect {
 	def void run(Program root) {
 		var packet = "("+root.currentTime+";"
-			+ GpflPortsModule.oppositePort(root.inPorts, root.currentPacket.inPort).name+";" 
+			+ correspondingPort.get(root.currentPacket.inPort).name+";" 
 			+ root.currentPacket.content + ")"
 		root.logger.debug("ACCEPT " + packet, "Gpfl")
 		
-		IOModule.writePacket(root.inPorts, root.currentPacket)
+		IOModule.writePacket(root.currentPacket, correspondingPort.get(root.currentPacket.inPort))
 		endOfFilter = true
 	}
 }

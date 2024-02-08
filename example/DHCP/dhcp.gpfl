@@ -9,12 +9,11 @@ PROLOGUE
 		"3" -"Ack" -> "0" 
 	INIT  
 		newAutomaton("DHCP incoming controller", #A)
-		set(prout, 0b0000)
 		set(ignoredPktCnt, 0) 
 		set(ignoredPktThreshold, 5)
-		newInterrupt(60, true,  
+		newInterrupt(60, true,
 			set(ignoredPktCnt, 0)
-		)
+		) 
 
 // DHCP Packet Format
 //
@@ -35,14 +34,14 @@ PROLOGUE
 // +------------+--------+---------------+----------------+------------+
  
 FILTER
-	cond(_inPort == "inSide",  
+	cond(_inPort == inSide,
 		cond((read(0, 4) == 0b0101) & (read(4, 4) == currentClient),
 			step(#A, Ack, nop)
-			set(currentClient, "") 
+			set(currentClient, "")
 		)
 		accept 
 	) 
-	cond( _inPort == "outSide",
+	cond( _inPort == outSide,
 		cond(read(0, 4) == 0b0000, 
 			step(#A, Disc, 
 				set(ignoredPktCnt, ignoredPktCnt+1) 

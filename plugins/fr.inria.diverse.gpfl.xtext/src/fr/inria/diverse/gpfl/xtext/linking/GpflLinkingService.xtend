@@ -88,7 +88,7 @@ class GpflLinkingService extends DefaultLinkingService {
 				var port = root.inPorts.findFirst[p | p.name.equals(node.text)]
 				if (port === null) {
 					port = GpflFactory.eINSTANCE.createPort
-					port.name = node.text.stringValue
+					port.name = node.text
 					root.inPorts.add(port)
 				}
 			}
