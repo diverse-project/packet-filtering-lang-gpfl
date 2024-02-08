@@ -167,8 +167,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//BytesDec/value"/>
     </genClasses>
     <genClasses ecoreClass="Gpfl.ecore#//Read">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//Read/offset"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpfl.ecore#//Read/length"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Read/offset"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Read/length"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

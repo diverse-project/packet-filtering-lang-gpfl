@@ -22,8 +22,8 @@
         eType="#//Packet" transient="true" containment="true">
       <eAnnotations source="aspect"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="inPorts" lowerBound="1"
-        upperBound="-1" eType="#//Port" transient="true" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inPorts" upperBound="-1"
+        eType="#//Port" transient="true" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="interruptions" upperBound="-1"
         eType="#//NewInterruption"/>
   </eClassifiers>
@@ -216,9 +216,9 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Read" eSuperTypes="#//Expression">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="offset" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="offset" lowerBound="1"
+        eType="#//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="length" lowerBound="1"
+        eType="#//Expression" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

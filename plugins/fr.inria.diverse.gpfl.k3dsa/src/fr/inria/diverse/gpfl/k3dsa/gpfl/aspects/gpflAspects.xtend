@@ -481,7 +481,9 @@ class BytesLiteralAspect extends ExpressionAspect {
 @Aspect(className=Read)
 class ReadAspect extends ExpressionAspect {
 	def Object eval(Program root) {
-		return root.currentPacket.content.toString.substring(_self.offset, _self.offset+_self.length)
+		val offset = _self.offset.eval(root) as Integer
+		val length = _self.length.eval(root) as Integer
+		return root.currentPacket.content.toString.substring(offset, offset+length)
 	}
 }
 
