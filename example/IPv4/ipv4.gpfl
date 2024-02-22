@@ -22,7 +22,7 @@ PROLOGUE
 // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 FILTER
-	cond((_inPort == "80") | (_inPort == "443"),
+	cond((_inPort == HTTP) | (_inPort == HTTPS),
 		set(sourceIp, read(96, 32)) 
 		cond((sourceIp >= minIpAllowed) & (sourceIp <= maxIpAllowed),
 			accept

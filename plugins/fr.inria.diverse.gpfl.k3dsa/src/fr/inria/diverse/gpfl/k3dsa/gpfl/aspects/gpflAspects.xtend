@@ -159,9 +159,22 @@ class ProgramAspect {
 			while (input.hasNextLine) {
 				val line = input.nextLine
 				var portIn = _self.inPorts.findFirst[p | p.name.equals(line.split("->").get(0).trim())]
+				if(portIn === null) {
+					val port = GpflFactory.eINSTANCE.createPort
+					port.name = line.split("->").get(0).trim()
+					_self.inPorts.add(port)
+					portIn = port
+				}
 				var portOut = _self.inPorts.findFirst[p | p.name.equals(line.split("->").get(1).trim())]
+				if(portOut === null) {
+					val port = GpflFactory.eINSTANCE.createPort
+					port.name = line.split("->").get(1).trim()
+					_self.inPorts.add(port)
+					portOut = port
+				}
 				correspondingPort.put(portIn, portOut)
 			}
+			input.close
 		} catch(NullPointerException e) {
 			GpflMessagingModule.logger.error("Output file " + args.get(2) + " not found. Go check run configurations", "Gpfl")
 			e.printStackTrace

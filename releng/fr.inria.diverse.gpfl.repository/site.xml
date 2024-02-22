@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/fr.inria.diverse.gpfl.feature_1.0.0.202402131457.jar" id="fr.inria.diverse.gpfl.feature" version="1.0.0.202402131457">
+      <category name="GPFL"/>
+   </feature>
+   <category-def name="GPFL" label="GPFL"/>
+</site>
