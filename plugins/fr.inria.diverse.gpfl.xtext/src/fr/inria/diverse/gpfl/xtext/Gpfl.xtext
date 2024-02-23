@@ -62,6 +62,8 @@ Cmd:
 	| {Accept} "accept"
 	// drop a packet 
 	| {Drop} "drop" 
+	// reject packet
+	| {Reject} "reject"
 	// send the *fields* on *port*
 	| {Send} "send" "(" port=[Port|ID] "," packet=Packet ")"
 	// A PRECISER

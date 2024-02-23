@@ -15,31 +15,58 @@ PROLOGUE
 //  0                   1                   2                   3
 //  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
 // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ 
-// |Version| Traffic Class |              Flow Label               | 
+// |Version| Traffic Class |              Flow Label               | 32
 // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ 
-// |          Payload Length       |  Next Header  |   Hop Limit   | 
+// |          Payload Length       |  Next Header  |   Hop Limit   | 64
 // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ 
-// |                                                               | 
+// |                                                               | 96
 // +                                                               + 
-// |                                                               | 
+// |                                                               | 128
 // +                        Source Address                         + 
-// |                                                               | 
+// |                                                               | 160
 // +                                                               + 
-// |                                                               | 
+// |                                                               | 192
 // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ 
-// |                                                               | 
+// |                                                               | 224
 // +                                                               + 
-// |                                                               |
+// |                                                               | 256
 // +                      Destination Address                      + 
-// |                                                               | 
+// |                                                               | 288
 // +                                                               + 
-// |                                                               | 
+// |                                                               | 320
 // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 // It is followed by the extension header that might contains options
 
 FILTER
 	set(nbPacket, nbPacket+1)
 	set(nextHeader, read(48, 8))
+	
+	// Hop by hop or Destination -> packets with options
+	cond(nextHeader == 0x0 | nextHeader == 0x3c,
+		// read from header offset + option beginning
+		set(option, read(320+16, 8))
+		// Pad1 PadN Tunnel-Encapsulation-Limit Quick-Start Home-Adress ILNP-Nonce Unkown-Options
+		cond(option == 0x0 | option == 0x1 | option == 0x4 | option == 0x26 | option == 0xc9 | option == 0x8b,
+			accept
+		)
+		
+		// Jumbo-payload RPL Endpoint-Identification Line-Identification-Option Deprecated 
+		cond(option == 0xc2 | option == 0x63 | option == 0x8a  | option ==0x8c| option == 0x4d | 
+			//RFC3962-Experiment
+			option == 0x1e | option == 0x3e | option == 0x5e | option == 0x7e | option == 0x9e | option == 0xbe | option == 0x3de | option == 0xfe,
+			reject
+		)
+		
+		// Router alert 
+		cond(option == 0x05,
+			// read from header offset + option beginning + value beginning
+			set(protocol, read(320+16+16, 16))
+			cond(protocol == 0x0 | protocol == 0x1,
+				accept
+			)
+			drop
+		)
+	)
 	
 	// Routing Header
 	cond(nextHeader == 0x2b,
@@ -50,39 +77,15 @@ FILTER
 		accept
 	)
 	
-	// Hop by hop Fragment-Header Encapsuling-Security-Payload Autentification-Header  
+	// Fragment-Header Encapsuling-Security-Payload Autentification-Header  
 	// Destination-Options Mobility-Header Host-Identity-Protocol Shim6-Protocol
-	cond(nextHeader == 0x0 | nextHeader == 0x2c | nextHeader == 0x32 | nextHeader == 0x33 | nextHeader == 0x3c | nextHeader == 0x87 | nextHeader == 0x8b | nextHeader == 0x8c,
+	cond(nextHeader == 0x2c | nextHeader == 0x32 | nextHeader == 0x33 | nextHeader == 0x3c | nextHeader == 0x87 | nextHeader == 0x8b | nextHeader == 0x8c,
 		accept
 	)
 	
-	// Hop by hop or Destination -> packets with options
-	cond(nextHeader == 0x0 | nextHeader == 0x3c,
-		// read from header offset + option beginning
-		set(option, read(320+16, 8))
-		alarm(option)
-		
-		// Pad1 PadN Tunnel-Encapsulation-Limit Quick-Start Home-Adress ILNP-Nonce Unkown-Options
-		cond(option == 0x0 | option == 0x1 | option == 0x4 | option == 0x26 | option == 0xc9 | option == 0x8b,
-			accept
-		)
-		
-		// Jumbo-payload RPL Endpoint-Identification Line-Identification-Option Deprecated 
-		cond(option == 0xc2 | option == 0x63 | option == 0x8a  | option ==0x8c| option == 0x4d | 
-			//RFC3962-Experiment
-			option == 0x1e | option == 0x3e | option == 0x5e | option == 0x7e | option == 0x9e | option == 0xbe | option == 0x3de | option == 0xfe,
-			drop
-		)
-		
-		// Router alert
-		cond(option == 0x05,
-			// read from header offset + option beginning + value beginning
-			set(value, read(320+16+16, 16))
-			cond(value == 0x0 | value ==0x1,
-				accept
-			)
-			drop
-		)
+	// Experimentation testing
+	cond(nextHeader == 253 | nextHeader == 254,
+		reject
 	)
 	
 	alarm("Drop packet that has not been filtered")

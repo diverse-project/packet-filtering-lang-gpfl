@@ -221,4 +221,5 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="length" lowerBound="1"
         eType="#//Expression" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Reject" eSuperTypes="#//Cmd"/>
 </ecore:EPackage>

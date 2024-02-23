@@ -55,6 +55,7 @@ import fr.inria.diverse.gpfl.NewEventOccurence
 import fr.inria.diverse.gpfl.Read
 import fr.inria.diverse.gpfl.BytesLiteral
 import fr.inria.diverse.gpfl.BytesDec
+import fr.inria.diverse.gpfl.Reject
 
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ProgramAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.PrologueAspect.*
@@ -109,6 +110,7 @@ import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NewEventOccuren
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ReadAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BytesDecAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BytesLiteralAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.RejectAspect.*
 
 import fr.inria.diverse.k3.al.annotationprocessor.Main
 import fr.inria.diverse.k3.al.annotationprocessor.InitializeModel
@@ -123,7 +125,6 @@ import fr.inria.diverse.gpfl.k3dsa.gpfl.modules.IOModule
 import java.io.File
 import java.util.HashMap
 import java.util.Scanner
-import java.math.BigInteger
 
 @Aspect(className=Program)
 class ProgramAspect {
@@ -420,6 +421,19 @@ class DropAspect extends CmdAspect {
 			+ root.currentPacket.inPort.name
 			+";"+root.currentPacket.content+")"
 		root.logger.debug("DROP " + packet, "Gpfl")
+		endOfFilter = true
+	}
+}
+
+@Aspect(className=Reject)
+class RejectAspect extends CmdAspect {
+	def void run(Program root) {
+		var packet = "("+root.currentTime+";"
+			+ root.currentPacket.inPort.name
+			+";"+root.currentPacket.content+")"
+		root.logger.debug("REJECT " + packet, "Gpfl")
+		root.currentPacket.content = "000000110000010100000000000000000000000000000000000000000000000000000000000000000000000000000000"
+		IOModule.writePacket(root.currentPacket, root.currentPacket.inPort)
 		endOfFilter = true
 	}
 }

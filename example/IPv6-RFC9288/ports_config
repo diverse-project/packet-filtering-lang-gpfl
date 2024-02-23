@@ -1,1 +1,5 @@
 SMTP -> inSide
+SFTP -> inSide
+HTTP -> inSide
+HTTPS -> inSide
+FTP -> inSide

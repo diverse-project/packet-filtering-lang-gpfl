@@ -78,6 +78,11 @@
 			fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NewAutomataAspect.run((fr.inria.diverse.gpfl.NewAutomata)_self,root);
 		} else
 		// EndInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NewAutomataAspect
+	// BeginInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.RejectAspect
+		if (_self instanceof fr.inria.diverse.gpfl.Reject){
+			fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.RejectAspect.run((fr.inria.diverse.gpfl.Reject)_self,root);
+		} else
+		// EndInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.RejectAspect
 	// BeginInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.CmdAspect
 		if (_self instanceof fr.inria.diverse.gpfl.Cmd){
 			fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.CmdAspect.run((fr.inria.diverse.gpfl.Cmd)_self,root);
@@ -148,6 +153,11 @@
 			fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NewEventOccurenceAspect.run((fr.inria.diverse.gpfl.NewEventOccurence)_self,root);
 		} else
 		// EndInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.StmtAspect#void run(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NewEventOccurenceAspect
+	// BeginInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.CmdAspect#void run(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.RejectAspect
+		if (_self instanceof fr.inria.diverse.gpfl.Reject){
+			fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.RejectAspect.run((fr.inria.diverse.gpfl.Reject)_self,root);
+		} else
+		// EndInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.CmdAspect#void run(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.RejectAspect
 	// BeginInjectInto fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BinaryOpAspect#Object eval(Program) from fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.LowerOrEqualAspect
 		if (_self instanceof fr.inria.diverse.gpfl.LowerOrEqual){
 			result = fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.LowerOrEqualAspect.eval((fr.inria.diverse.gpfl.LowerOrEqual)_self,root);

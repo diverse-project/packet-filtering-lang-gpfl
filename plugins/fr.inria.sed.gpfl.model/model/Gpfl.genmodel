@@ -170,5 +170,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Read/offset"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpfl.ecore#//Read/length"/>
     </genClasses>
+    <genClasses ecoreClass="Gpfl.ecore#//Reject"/>
   </genPackages>
 </genmodel:GenModel>

@@ -2,12 +2,11 @@ package fr.inria.diverse.gpfl.k3dsa.gpfl.modules
 
 import fr.inria.diverse.gpfl.GpflFactory
 import fr.inria.diverse.gpfl.Packet
+import fr.inria.diverse.gpfl.Port
 import fr.inria.diverse.gpfl.Program
 import java.io.File
 import java.io.FileOutputStream
 import java.util.Scanner
-import java.util.HashMap
-import fr.inria.diverse.gpfl.Port
 
 class IOModule {
 	def static createPacketsFromFile(Program root, File inputData) {
