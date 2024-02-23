@@ -120,10 +120,10 @@ import org.eclipse.gemoc.commons.eclipse.messagingsystem.api.MessagingSystem
 import fr.inria.diverse.k3.al.annotationprocessor.Step
 import fr.inria.diverse.gpfl.k3dsa.gpfl.modules.GpflMessagingModule
 import fr.inria.diverse.gpfl.k3dsa.gpfl.modules.IOModule
-import java.math.BigInteger
 import java.io.File
 import java.util.HashMap
 import java.util.Scanner
+import java.math.BigInteger
 
 @Aspect(className=Program)
 class ProgramAspect {
@@ -358,7 +358,9 @@ class SetVariableAspect extends CmdAspect {
 			var variable = root.variables.findFirst[v | v.name.equals(_self.declaration.name)]
 			// If the variable already has been initialized
 			// just change the value
-			if (variable instanceof IntegerDec) {
+			if(variable instanceof BytesDec) {
+				variable.value = (value as Number).longValue()
+			} else if (variable instanceof IntegerDec) {
 				variable.value = value as Integer
 			} else if (variable instanceof StringDec) {
 				variable.value = value as String
@@ -372,18 +374,16 @@ class SetVariableAspect extends CmdAspect {
 					newVar.name = _self.declaration.name
 					newVar.value = value
 					root.variables.add(newVar)
+				} else if (value instanceof Long) {
+					var newVar = GpflFactory.eINSTANCE.createBytesDec
+					newVar.name = _self.declaration.name
+					newVar.value = value
+					root.variables.add(newVar)
 				} else if (value instanceof String) {
-					if(_self.value instanceof BytesLiteral) {
-						var newVar = GpflFactory.eINSTANCE.createBytesDec
-						newVar.name = _self.declaration.name
-						newVar.value = value
-						root.variables.add(newVar)
-					} else {
-						var newVar = GpflFactory.eINSTANCE.createStringDec
-						newVar.name = _self.declaration.name
-						newVar.value = value
-						root.variables.add(newVar)
-					}
+					var newVar = GpflFactory.eINSTANCE.createStringDec
+					newVar.name = _self.declaration.name
+					newVar.value = value
+					root.variables.add(newVar)
 				} else if (value instanceof Boolean) {
 					var newVar = GpflFactory.eINSTANCE.createBooleanDec
 					newVar.name = _self.declaration.name
@@ -486,8 +486,8 @@ class BytesLiteralAspect extends ExpressionAspect {
 	def Object eval(Program root) {
 		// if it's an hex convert to bin string
 		return _self.value.startsWith("0x") ?
-			new BigInteger(_self.value.substring(2), 16).toString(2) 
-			: _self.value.substring(2)
+			Long.parseLong(_self.value.substring(2), 16)
+			: Long.parseLong(_self.value.substring(2), 2)
 	}
 }
 
@@ -496,7 +496,7 @@ class ReadAspect extends ExpressionAspect {
 	def Object eval(Program root) {
 		val offset = _self.offset.eval(root) as Integer
 		val length = _self.length.eval(root) as Integer
-		return root.currentPacket.content.toString.substring(offset, offset+length)
+		return Long.parseLong(root.currentPacket.content.toString.substring(offset, offset+length), 2)
 	}
 }
 
@@ -615,12 +615,12 @@ class InequalityAspect extends BinaryOpAspect {
 @Aspect(className=GreaterOrEqual)
 class GreaterOrEqualAspect extends BinaryOpAspect {
 	def Object eval(Program root) {
-		val left = _self.left.eval(root)
-		val right = _self.right.eval(root)
+		var left = _self.left.eval(root)
+		var right = _self.right.eval(root)
 		if (left instanceof String && right instanceof String) {
 			return (left as String).compareTo(right as String) >= 0 ? true : false
-		} else if (left instanceof Integer && right instanceof Integer) {
-			return (left as Integer) >= (right as Integer)
+		} else if (left instanceof Number && left instanceof Number) {
+			return ((left as Number).longValue()) >= ((right as Number).longValue())
 		} else {
 			root.logger.error("Type mismatch: Cannot compare (>=) " + left + (left===null?"":"(" + left.class + ")")
 				+ " and " + right + (right===null?"":"(" + right.class + ")"), "Gpfl"
@@ -637,8 +637,8 @@ class LowerOrEqualAspect extends BinaryOpAspect {
 		val right = _self.right.eval(root)
 		if (left instanceof String && right instanceof String) {
 			return (left as String).compareTo(right as String) <= 0 ? true : false
-		} else if (left instanceof Integer && right instanceof Integer) {
-			return (left as Integer) <= (right as Integer)
+		} else if (left instanceof Number && left instanceof Number) {
+			return ((left as Number).longValue()) <= ((right as Number).longValue())
 		} else {
 			root.logger.error("Type mismatch: Cannot compare (<=) " + left + (left===null?"":"(" + left.class + ")")
 				+ " and " + right + (right===null?"":"(" + right.class + ")"), "Gpfl"
@@ -655,8 +655,8 @@ class GreaterAspect extends BinaryOpAspect {
 		val right = _self.right.eval(root)
 		if (left instanceof String && right instanceof String) {
 			return (left as String).compareTo(right as String) > 0 ? true : false
-		} else if (left instanceof Integer && right instanceof Integer) {
-			return (left as Integer) > (right as Integer)
+		} else if (left instanceof Number && left instanceof Number) {
+			return ((left as Number).longValue()) > ((right as Number).longValue())
 		} else {
 			root.logger.error("Type mismatch: Cannot compare (>) " + left + (left===null?"":"(" + left.class + ")")
 				+ " and " + right + (right===null?"":"(" + right.class + ")"), "Gpfl"
@@ -673,8 +673,8 @@ class LowerAspect extends BinaryOpAspect {
 		val right = _self.right.eval(root)
 		if (left instanceof String && right instanceof String) {
 			return (left as String).compareTo(right as String) < 0 ? true : false
-		} else if (left instanceof Integer && right instanceof Integer) {
-			return (left as Integer) < (right as Integer)
+		} else if (left instanceof Number && left instanceof Number) {
+			return ((left as Number).longValue()) < ((right as Number).longValue())
 		} else {
 			root.logger.error("Type mismatch: Cannot compare (<) " + left + (left===null?"":"(" + left.class + ")")
 				+ " and " + right + (right===null?"":"(" + right.class + ")"), "Gpfl"

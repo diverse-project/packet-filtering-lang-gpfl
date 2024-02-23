@@ -6,7 +6,7 @@
     <semanticResources>Xbase.ecore</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_cvu7cHQGEe6fnP_wBKWEiw">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_0KWLcI3TEe6b56wEsKlOmQ" name="gpfl" repPath="#_0KR6AI3TEe6b56wEsKlOmQ" changeId="5195255e-986c-4e01-9bfb-21c4590ebfdd">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_0KWLcI3TEe6b56wEsKlOmQ" name="gpfl" repPath="#_0KR6AI3TEe6b56wEsKlOmQ" changeId="ee1439bf-ee20-48bb-b63b-3071dbde332f">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="Gpfl.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -3876,7 +3876,7 @@
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_IWXXALUfEe6p7NLpDXDA5Q" name="value : EString" tooltipText="">
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_IWXXALUfEe6p7NLpDXDA5Q" name="value : ELong" tooltipText="">
         <target xmi:type="ecore:EAttribute" href="Gpfl.ecore#//BytesDec/value"/>
         <semanticElements xmi:type="ecore:EAttribute" href="Gpfl.ecore#//BytesDec/value"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_KfwsebUfEe6p7NLpDXDA5Q" labelColor="184,151,192" labelAlignment="LEFT" description="_0gEj4o3TEe6b56wEsKlOmQ">

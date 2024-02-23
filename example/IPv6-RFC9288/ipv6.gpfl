@@ -1,0 +1,90 @@
+PROLOGUE
+	INIT
+		set(discard, "reject")
+		set(nbPacket, 0)
+		// Limit rate to 5 packet by hour for hop by hop header
+		newInterrupt(3600, true,
+			cond(read(48, 8) == 0x0 & nbPacket > 5,
+				drop
+			)
+			set(nbPacket, 0)
+		)
+
+// Filtering policy based on the recommendation of [RFC9288](https://datatracker.ietf.org/doc/rfc9288/)
+// IPv6 Header: [RFC8200](https://www.rfc-editor.org/rfc/rfc8200)
+//  0                   1                   2                   3
+//  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+// +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ 
+// |Version| Traffic Class |              Flow Label               | 
+// +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ 
+// |          Payload Length       |  Next Header  |   Hop Limit   | 
+// +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ 
+// |                                                               | 
+// +                                                               + 
+// |                                                               | 
+// +                        Source Address                         + 
+// |                                                               | 
+// +                                                               + 
+// |                                                               | 
+// +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ 
+// |                                                               | 
+// +                                                               + 
+// |                                                               |
+// +                      Destination Address                      + 
+// |                                                               | 
+// +                                                               + 
+// |                                                               | 
+// +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+// It is followed by the extension header that might contains options
+
+FILTER
+	set(nbPacket, nbPacket+1)
+	set(nextHeader, read(48, 8))
+	
+	// Routing Header
+	cond(nextHeader == 0x2b,
+		set(type, read(320+16, 8))
+		cond(type == 0b0 | type == 0b1,
+			drop
+		)
+		accept
+	)
+	
+	// Hop by hop Fragment-Header Encapsuling-Security-Payload Autentification-Header  
+	// Destination-Options Mobility-Header Host-Identity-Protocol Shim6-Protocol
+	cond(nextHeader == 0x0 | nextHeader == 0x2c | nextHeader == 0x32 | nextHeader == 0x33 | nextHeader == 0x3c | nextHeader == 0x87 | nextHeader == 0x8b | nextHeader == 0x8c,
+		accept
+	)
+	
+	// Hop by hop or Destination -> packets with options
+	cond(nextHeader == 0x0 | nextHeader == 0x3c,
+		// read from header offset + option beginning
+		set(option, read(320+16, 8))
+		alarm(option)
+		
+		// Pad1 PadN Tunnel-Encapsulation-Limit Quick-Start Home-Adress ILNP-Nonce Unkown-Options
+		cond(option == 0x0 | option == 0x1 | option == 0x4 | option == 0x26 | option == 0xc9 | option == 0x8b,
+			accept
+		)
+		
+		// Jumbo-payload RPL Endpoint-Identification Line-Identification-Option Deprecated 
+		cond(option == 0xc2 | option == 0x63 | option == 0x8a  | option ==0x8c| option == 0x4d | 
+			//RFC3962-Experiment
+			option == 0x1e | option == 0x3e | option == 0x5e | option == 0x7e | option == 0x9e | option == 0xbe | option == 0x3de | option == 0xfe,
+			drop
+		)
+		
+		// Router alert
+		cond(option == 0x05,
+			// read from header offset + option beginning + value beginning
+			set(value, read(320+16+16, 16))
+			cond(value == 0x0 | value ==0x1,
+				accept
+			)
+			drop
+		)
+	)
+	
+	alarm("Drop packet that has not been filtered")
+	drop
+	
