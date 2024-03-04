@@ -4,7 +4,7 @@
 package fr.inria.diverse.gpfl.xtext.formatting2
 
 import com.google.inject.Inject
-import fr.inria.diverse.gpfl.Program
+import fr.inria.diverse.gpfl.Policy
 import fr.inria.diverse.gpfl.Prologue
 import fr.inria.diverse.gpfl.xtext.services.GpflGrammarAccess
 import org.eclipse.xtext.formatting2.AbstractFormatter2
@@ -14,10 +14,10 @@ class GpflFormatter extends AbstractFormatter2 {
 	
 	@Inject extension GpflGrammarAccess
 
-	def dispatch void format(Program program, extension IFormattableDocument document) {
+	def dispatch void format(Policy Policy, extension IFormattableDocument document) {
 		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		program.prologue.format
-		program.filter.format
+		Policy.prologue.format
+		Policy.filter.format
 	}
 
 	def dispatch void format(Prologue prologue, extension IFormattableDocument document) {

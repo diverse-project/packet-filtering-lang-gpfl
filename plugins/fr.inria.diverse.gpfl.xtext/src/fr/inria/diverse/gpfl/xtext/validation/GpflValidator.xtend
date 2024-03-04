@@ -3,31 +3,29 @@
  */
 package fr.inria.diverse.gpfl.xtext.validation
 
-import fr.inria.diverse.gpfl.GpflPackage
-import fr.inria.diverse.gpfl.NewInterruption
-import fr.inria.diverse.gpfl.Nop
+import fr.inria.diverse.gpfl.Accept
+import fr.inria.diverse.gpfl.Automata
 import fr.inria.diverse.gpfl.BinaryOp
-import fr.inria.diverse.gpfl.Inequality
+import fr.inria.diverse.gpfl.BooleanLiteral
+import fr.inria.diverse.gpfl.Div
+import fr.inria.diverse.gpfl.Drop
+import fr.inria.diverse.gpfl.Equality
+import fr.inria.diverse.gpfl.Filter
+import fr.inria.diverse.gpfl.GpflPackage
+import fr.inria.diverse.gpfl.Greater
 import fr.inria.diverse.gpfl.GreaterOrEqual
+import fr.inria.diverse.gpfl.Inequality
+import fr.inria.diverse.gpfl.InitSeq
+import fr.inria.diverse.gpfl.IntLiteral
 import fr.inria.diverse.gpfl.Lower
 import fr.inria.diverse.gpfl.LowerOrEqual
-import fr.inria.diverse.gpfl.Greater
-import fr.inria.diverse.gpfl.Equality
-import fr.inria.diverse.gpfl.BooleanLiteral
-import fr.inria.diverse.gpfl.IntLiteral
-import fr.inria.diverse.gpfl.StringLiteral
-import fr.inria.diverse.gpfl.Plus
 import fr.inria.diverse.gpfl.Minus
 import fr.inria.diverse.gpfl.Mult
-import fr.inria.diverse.gpfl.Div
-import fr.inria.diverse.gpfl.Filter
-import fr.inria.diverse.gpfl.Drop
-import fr.inria.diverse.gpfl.Accept
-import fr.inria.diverse.gpfl.InitSeq
-import fr.inria.diverse.gpfl.Program
+import fr.inria.diverse.gpfl.NewInterruption
+import fr.inria.diverse.gpfl.Nop
+import fr.inria.diverse.gpfl.Plus
+import fr.inria.diverse.gpfl.StringLiteral
 import org.eclipse.xtext.validation.Check
-import org.eclipse.xtext.EcoreUtil2
-import fr.inria.diverse.gpfl.Automata
 
 /**
  * This class contains custom validation rules. 

@@ -4,7 +4,7 @@ import fr.inria.diverse.gpfl.Automata
 import fr.inria.diverse.gpfl.GpflFactory
 import fr.inria.diverse.gpfl.GpflPackage
 import fr.inria.diverse.gpfl.PortRef
-import fr.inria.diverse.gpfl.Program
+import fr.inria.diverse.gpfl.Policy
 import fr.inria.diverse.gpfl.SetVariable
 import fr.inria.diverse.gpfl.Transition
 import java.util.Collections
@@ -25,7 +25,7 @@ class GpflLinkingService extends DefaultLinkingService {
 	
 	override getLinkedObjects(EObject context, EReference ref, INode node) throws IllegalNodeException {
 		var referencesResolved = super.getLinkedObjects(context, ref, node);
-		val root = EcoreUtil2.getRootContainer(context) as Program;
+		val root = EcoreUtil2.getRootContainer(context) as Policy;
 		
 		// if the node does not has any linked object
 		if (referencesResolved.isEmpty()) {

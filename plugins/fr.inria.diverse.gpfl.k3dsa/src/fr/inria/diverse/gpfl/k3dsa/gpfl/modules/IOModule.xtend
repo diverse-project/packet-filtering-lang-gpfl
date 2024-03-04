@@ -3,13 +3,13 @@ package fr.inria.diverse.gpfl.k3dsa.gpfl.modules
 import fr.inria.diverse.gpfl.GpflFactory
 import fr.inria.diverse.gpfl.Packet
 import fr.inria.diverse.gpfl.Port
-import fr.inria.diverse.gpfl.Program
+import fr.inria.diverse.gpfl.Policy
 import java.io.File
 import java.io.FileOutputStream
 import java.util.Scanner
 
 class IOModule {
-	def static createPacketsFromFile(Program root, File inputData) {
+	def static createPacketsFromFile(Policy root, File inputData) {
 		val input = new Scanner(inputData)
 		
 		while (input.hasNextLine) {

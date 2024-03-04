@@ -1,7 +1,7 @@
 package fr.inria.diverse.gpfl.k3dsa.gpfl.aspects
 
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
-import fr.inria.diverse.gpfl.Program
+import fr.inria.diverse.gpfl.Policy 
 import fr.inria.diverse.gpfl.Prologue
 import fr.inria.diverse.gpfl.InitSeq
 import fr.inria.diverse.gpfl.Automata
@@ -55,15 +55,17 @@ import fr.inria.diverse.gpfl.NewEventOccurence
 import fr.inria.diverse.gpfl.Read
 import fr.inria.diverse.gpfl.BytesLiteral
 import fr.inria.diverse.gpfl.BytesDec
-import fr.inria.diverse.gpfl.Reject
 
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ProgramAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.PolicyAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.PortAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.PacketAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.PrologueAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.InitSeqAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.FilterAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.AutomataAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.StmtAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.CmdAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ProgramAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.PolicyAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NewAutomataAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.AlarmAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.SendAspect.*
@@ -75,7 +77,6 @@ import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.DropAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ConditionAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.IterationAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NewInterruptionAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.FilterAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.StateAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.TransitionAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BlockAspect.*
@@ -110,7 +111,6 @@ import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NewEventOccuren
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ReadAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BytesDecAspect.*
 import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BytesLiteralAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.RejectAspect.*
 
 import fr.inria.diverse.k3.al.annotationprocessor.Main
 import fr.inria.diverse.k3.al.annotationprocessor.InitializeModel
@@ -126,8 +126,8 @@ import java.io.File
 import java.util.HashMap
 import java.util.Scanner
 
-@Aspect(className=Program)
-class ProgramAspect {
+@Aspect(className=Policy)
+class PolicyAspect {
 	def MessagingSystem logger() {
 		GpflMessagingModule.logger
 	}
@@ -220,21 +220,21 @@ class EventAspect {
 
 @Aspect(className=Prologue)
 class PrologueAspect {
-	def void run(Program root) {
+	def void run(Policy root) {
 		_self.init.run(root)
 	}
 }
 
 @Aspect(className=InitSeq)
 class InitSeqAspect {
-	def void run(Program root) {
+	def void run(Policy root) {
 		_self.block.run(root)
 	}
 }
 
 @Aspect(className=Filter)
 class FilterAspect {
-	def void run(Program root) {
+	def void run(Policy root) {
 		val oldTime = root.currentTime
 		root.currentTime = root.currentPacket.time
 		// handle interruptions
@@ -258,7 +258,7 @@ class FilterAspect {
 
 @Aspect(className=Block)
 class BlockAspect {
-	def void run(Program root) {
+	def void run(Policy root) {
 		_self.currentStmt = _self.firstStmt
 		while (_self.currentStmt !== null && !endOfFilter) {
 			_self.currentStmt.run(root)
@@ -271,14 +271,14 @@ class BlockAspect {
 
 @Aspect(className=Stmt)
 abstract class StmtAspect {
-	def void run(Program root) {
+	def void run(Policy root) {
 		root.logger.error("Statement: run of " +_self +" should never occur, please tell the developer to write a method run for this class", "Gpfl")
 	}
 }
 
 @Aspect(className=Condition)
 class ConditionAspect extends StmtAspect {
-	def void run(Program root) {
+	def void run(Policy root) {
 		if(_self.getIf.eval(root) as Boolean) {
 			_self.then.run(root)
 		}
@@ -287,7 +287,7 @@ class ConditionAspect extends StmtAspect {
 
 @Aspect(className=Iteration)
 class IterationAspect extends StmtAspect {
-	def void run(Program root) {
+	def void run(Policy root) {
 		while (_self.getWhile.eval(root) as Boolean) {
 			_self.then.run(root)
 		}
@@ -296,14 +296,14 @@ class IterationAspect extends StmtAspect {
 
 @Aspect(className=NewInterruption)
 class NewInterruptionAspect extends StmtAspect {
-	def void run(Program root) {
+	def void run(Policy root) {
 		root.interruptions.add(_self)
 	}
 }
 
 @Aspect(className=StepAutomata)
 class StepAutomataAspect extends StmtAspect {
-	def void run(Program root) {
+	def void run(Policy root) {
 		val activableTrans = _self.idAutomata.value.transitions.findFirst[t | 
 			t.from === _self.idAutomata.currentState && t.event === _self.eventOccurence.event
 		]
@@ -319,28 +319,28 @@ class StepAutomataAspect extends StmtAspect {
 
 @Aspect(className=Cmd)
 abstract class CmdAspect extends StmtAspect {
-	def void run(Program root) {
+	def void run(Policy root) {
 		root.logger.error("Command: run of " +_self +" should never occur, please tell the developer to write a method run for this class", "Gpfl")
 	}
 }
 
 @Aspect(className=NewAutomata)
 class NewAutomataAspect extends CmdAspect {
-	def void run(Program root) {
+	def void run(Policy root) {
 		_self.currentState = _self.value.initialState
 	}
 }
 
 @Aspect(className=Alarm)
 class AlarmAspect extends CmdAspect {
-	def void run(Program root) {
+	def void run(Policy root) {
 		root.logger.error("ALARM @ "+ root.currentTime+ ": " + _self.message.eval(root) as String, "Gpfl")
 	}
 }
 
 @Aspect(className=Send)
 class SendAspect extends CmdAspect {
-	def void run(Program root) {
+	def void run(Policy root) {
 		var packet = "("+root.currentTime+";"
 			+ _self.port.name+";" 
 			+ _self.packet.content + ")"
@@ -353,7 +353,7 @@ class SendAspect extends CmdAspect {
 
 @Aspect(className=SetVariable)
 class SetVariableAspect extends CmdAspect {
-	def void run(Program root) {
+	def void run(Policy root) {
 		val value = _self.value.eval(root)
 		if (_self.declaration instanceof VariableDeclaration){	
 			var variable = root.variables.findFirst[v | v.name.equals(_self.declaration.name)]
@@ -398,12 +398,12 @@ class SetVariableAspect extends CmdAspect {
 
 @Aspect(className=Nop)
 class NopAspect extends CmdAspect {
-	def void run(Program root) { }
+	def void run(Policy root) { }
 }
 
 @Aspect(className=Accept)
 class AcceptAspect extends CmdAspect {
-	def void run(Program root) {
+	def void run(Policy root) {
 		var packet = "("+root.currentTime+";"
 			+ correspondingPort.get(root.currentPacket.inPort).name+";" 
 			+ root.currentPacket.content + ")"
@@ -416,7 +416,7 @@ class AcceptAspect extends CmdAspect {
 
 @Aspect(className=Drop)
 class DropAspect extends CmdAspect {
-	def void run(Program root) {
+	def void run(Policy root) {
 		var packet = "("+root.currentTime+";"
 			+ root.currentPacket.inPort.name
 			+";"+root.currentPacket.content+")"
@@ -425,22 +425,9 @@ class DropAspect extends CmdAspect {
 	}
 }
 
-@Aspect(className=Reject)
-class RejectAspect extends CmdAspect {
-	def void run(Program root) {
-		var packet = "("+root.currentTime+";"
-			+ root.currentPacket.inPort.name
-			+";"+root.currentPacket.content+")"
-		root.logger.debug("REJECT " + packet, "Gpfl")
-		root.currentPacket.content = "000000110000010100000000000000000000000000000000000000000000000000000000000000000000000000000000"
-		IOModule.writePacket(root.currentPacket, root.currentPacket.inPort)
-		endOfFilter = true
-	}
-}
-
 @Aspect(className=NewEventOccurence)
 class NewEventOccurenceAspect extends CmdAspect {
-	def void run(Program root) {
+	def void run(Policy root) {
 		var eventOcc = GpflFactory.eINSTANCE.createEventOccurence
 		eventOcc.name = _self.occurence.name
 		eventOcc.event = _self.value
@@ -452,7 +439,7 @@ class NewEventOccurenceAspect extends CmdAspect {
 
 @Aspect(className=Expression)
 abstract class ExpressionAspect {
-	def Object eval(Program root) {
+	def Object eval(Policy root) {
 		root.logger.error("Expression: eval of " + _self + " should never occur, please tell the developer to write a method run for this class", "Gpfl")
 		return null;
 	}
@@ -461,7 +448,7 @@ abstract class ExpressionAspect {
 
 @Aspect(className=VariableRef)
 class VariableRefAspect extends ExpressionAspect {
-	def Object eval(Program root) {
+	def Object eval(Policy root) {
 		return root.variables.findFirst[v | v.name.equals(_self.variable.name)].eval(root)
 	}
 }
@@ -469,35 +456,35 @@ class VariableRefAspect extends ExpressionAspect {
 @Aspect(className=PortRef)
 class PortRefAspect extends ExpressionAspect {
 	// a port ref can be called only to check if it's the current port, so it's a boolean
-	def Object eval(Program root) {
+	def Object eval(Policy root) {
 		return root.currentPacket.inPort.equals(_self.port)
 	}
 }
 
 @Aspect(className=StringLiteral)
 class StringLiteralAspect extends ExpressionAspect {
-	def Object eval(Program root) {
+	def Object eval(Policy root) {
 		return _self.value
 	}
 }
 
 @Aspect(className=IntLiteral)
 class IntLiteralAspect extends ExpressionAspect {
-	def Object eval(Program root) {
+	def Object eval(Policy root) {
 		return _self.value
 	}
 }
 
 @Aspect(className=BooleanLiteral)
 class BooleanLiteralAspect extends ExpressionAspect {
-	def Object eval(Program root) {
+	def Object eval(Policy root) {
 		return _self.isIsTrue
 	}
 }
 
 @Aspect(className=BytesLiteral)
 class BytesLiteralAspect extends ExpressionAspect {
-	def Object eval(Program root) {
+	def Object eval(Policy root) {
 		// if it's an hex convert to bin string
 		return _self.value.startsWith("0x") ?
 			Long.parseLong(_self.value.substring(2), 16)
@@ -507,7 +494,7 @@ class BytesLiteralAspect extends ExpressionAspect {
 
 @Aspect(className=Read)
 class ReadAspect extends ExpressionAspect {
-	def Object eval(Program root) {
+	def Object eval(Policy root) {
 		val offset = _self.offset.eval(root) as Integer
 		val length = _self.length.eval(root) as Integer
 		return Long.parseLong(root.currentPacket.content.toString.substring(offset, offset+length), 2)
@@ -516,7 +503,7 @@ class ReadAspect extends ExpressionAspect {
 
 @Aspect(className=UnaryOp)
 abstract class UnaryOpAspect extends ExpressionAspect {
-	def Object eval(Program root) {
+	def Object eval(Policy root) {
 		root.logger.error("Unary op: eval of " + _self + " should never occur, please tell the developer to write a method run for this class", "Gpfl")
 		return null
 	}
@@ -524,7 +511,7 @@ abstract class UnaryOpAspect extends ExpressionAspect {
 
 @Aspect(className=Not)
 class NotAspect extends UnaryOpAspect {
-	def Object eval(Program root) {
+	def Object eval(Policy root) {
 		val expr = _self.expression.eval(root)
 		try {
 			return !(expr as Boolean)
@@ -538,7 +525,7 @@ class NotAspect extends UnaryOpAspect {
 
 @Aspect(className=Neg)
 class NegAspect extends UnaryOpAspect {
-	def Object eval(Program root) {
+	def Object eval(Policy root) {
 		val expr = _self.expression.eval(root)
 		try {
 			return -(expr as Integer)
@@ -552,7 +539,7 @@ class NegAspect extends UnaryOpAspect {
 
 @Aspect(className=BinaryOp)
 abstract class BinaryOpAspect extends ExpressionAspect {
-	def Object eval(Program root) {
+	def Object eval(Policy root) {
 		root.logger.error("Binary op: eval of " + _self + " should never occur, please tell the developer to write a method run for this class", "Gpfl")
 		return null
 	}
@@ -560,14 +547,14 @@ abstract class BinaryOpAspect extends ExpressionAspect {
 
 @Aspect(className=Or)
 class OrAspect extends BinaryOpAspect {
-	def Object eval(Program root) {
+	def Object eval(Policy root) {
 		val left = _self.left.eval(root)
 		val right = _self.right.eval(root)
 		try {
 			return (left as Boolean) || (right as Boolean)
 		} catch (ClassCastException e) {
-			root.logger.error("Type mismatch: Cannot compare (|) " + left + (left===null?"":"(" + left.class + ")")
-				+ " and " + right + (right===null?"":"(" + right.class + ")"), "Gpfl"
+			root.logger.error("Type mismatch: Cannot compare (|) " + left + "("+left?.class+")"
+				+ " and " + right + "("+right?.class+")", "Gpfl"
 			)
 			e.printStackTrace
 			return null
@@ -577,14 +564,14 @@ class OrAspect extends BinaryOpAspect {
 
 @Aspect(className=And)
 class AndAspect extends BinaryOpAspect {
-	def Object eval(Program root) {
+	def Object eval(Policy root) {
 		val left = _self.left.eval(root)
 		val right = _self.right.eval(root)
 		try {
 			return (left as Boolean) && (right as Boolean)
 		} catch (ClassCastException e) {
-			root.logger.error("Type mismatch: Cannot compare (&) " + left + (left===null?"":"(" + left.class + ")")
-				+ " and " + right + (right===null?"":"(" + right.class + ")"), "Gpfl"
+			root.logger.error("Type mismatch: Cannot compare (&) " + left + "("+left?.class+")"
+				+ " and " + right + "("+right?.class+")", "Gpfl"
 			)
 			e.printStackTrace
 			return null
@@ -594,14 +581,14 @@ class AndAspect extends BinaryOpAspect {
 
 @Aspect(className=Equality)
 class EqualityAspect extends BinaryOpAspect {
-	def Object eval(Program root) {
+	def Object eval(Policy root) {
 		val left = _self.left.eval(root)
 		val right = _self.right.eval(root)
 		try {
 			return left.equals(right)
 		} catch (ClassCastException e) {
-			root.logger.error("Type mismatch: Cannot compare (==) " + left + (left===null?"":"(" + left.class + ")")
-				+ " and " + right + (right===null?"":"(" + right.class + ")"), "Gpfl"
+			root.logger.error("Type mismatch: Cannot compare (==) " + left + "("+left?.class+")"
+				+ " and " + right + "("+right?.class+")", "Gpfl"
 			)
 			e.printStackTrace
 			return null
@@ -611,14 +598,14 @@ class EqualityAspect extends BinaryOpAspect {
 
 @Aspect(className=Inequality)
 class InequalityAspect extends BinaryOpAspect {
-	def Object eval(Program root) {
+	def Object eval(Policy root) {
 		val left = _self.left.eval(root)
 		val right = _self.right.eval(root)
 		try {
 			return !left.equals(right)
 		} catch (ClassCastException e) {
-			root.logger.error("Type mismatch: Cannot compare (!=) " + left + (left===null?"":"(" + left.class + ")")
-				+ " and " + right + (right===null?"":"(" + right.class + ")"), "Gpfl"
+			root.logger.error("Type mismatch: Cannot compare (!=) " + left + "("+left?.class+")"
+				+ " and " + right + "("+right?.class+")", "Gpfl"
 			)
 			e.printStackTrace
 			return null
@@ -628,7 +615,7 @@ class InequalityAspect extends BinaryOpAspect {
 
 @Aspect(className=GreaterOrEqual)
 class GreaterOrEqualAspect extends BinaryOpAspect {
-	def Object eval(Program root) {
+	def Object eval(Policy root) {
 		var left = _self.left.eval(root)
 		var right = _self.right.eval(root)
 		if (left instanceof String && right instanceof String) {
@@ -636,8 +623,8 @@ class GreaterOrEqualAspect extends BinaryOpAspect {
 		} else if (left instanceof Number && left instanceof Number) {
 			return ((left as Number).longValue()) >= ((right as Number).longValue())
 		} else {
-			root.logger.error("Type mismatch: Cannot compare (>=) " + left + (left===null?"":"(" + left.class + ")")
-				+ " and " + right + (right===null?"":"(" + right.class + ")"), "Gpfl"
+			root.logger.error("Type mismatch: Cannot compare (>=) " + left + "("+left?.class+")"
+				+ " and " + right + "("+right?.class+")", "Gpfl"
 			)
 			return null
 		}
@@ -646,7 +633,7 @@ class GreaterOrEqualAspect extends BinaryOpAspect {
 
 @Aspect(className=LowerOrEqual)
 class LowerOrEqualAspect extends BinaryOpAspect {
-	def Object eval(Program root) {
+	def Object eval(Policy root) {
 		val left = _self.left.eval(root)
 		val right = _self.right.eval(root)
 		if (left instanceof String && right instanceof String) {
@@ -654,8 +641,8 @@ class LowerOrEqualAspect extends BinaryOpAspect {
 		} else if (left instanceof Number && left instanceof Number) {
 			return ((left as Number).longValue()) <= ((right as Number).longValue())
 		} else {
-			root.logger.error("Type mismatch: Cannot compare (<=) " + left + (left===null?"":"(" + left.class + ")")
-				+ " and " + right + (right===null?"":"(" + right.class + ")"), "Gpfl"
+			root.logger.error("Type mismatch: Cannot compare (<=) " + left + "("+left?.class+")"
+				+ " and " + right + "("+right?.class+")", "Gpfl"
 			)
 			return null
 		}
@@ -664,7 +651,7 @@ class LowerOrEqualAspect extends BinaryOpAspect {
 
 @Aspect(className=Greater)
 class GreaterAspect extends BinaryOpAspect {
-	def Object eval(Program root) {
+	def Object eval(Policy root) {
 		val left = _self.left.eval(root)
 		val right = _self.right.eval(root)
 		if (left instanceof String && right instanceof String) {
@@ -672,8 +659,8 @@ class GreaterAspect extends BinaryOpAspect {
 		} else if (left instanceof Number && left instanceof Number) {
 			return ((left as Number).longValue()) > ((right as Number).longValue())
 		} else {
-			root.logger.error("Type mismatch: Cannot compare (>) " + left + (left===null?"":"(" + left.class + ")")
-				+ " and " + right + (right===null?"":"(" + right.class + ")"), "Gpfl"
+			root.logger.error("Type mismatch: Cannot compare (>) " + left + "("+left?.class+")"
+				+ " and " + right + "("+right?.class+")", "Gpfl"
 			)
 			return null
 		}
@@ -682,7 +669,7 @@ class GreaterAspect extends BinaryOpAspect {
 
 @Aspect(className=Lower)
 class LowerAspect extends BinaryOpAspect {
-	def Object eval(Program root) {
+	def Object eval(Policy root) {
 		val left = _self.left.eval(root)
 		val right = _self.right.eval(root)
 		if (left instanceof String && right instanceof String) {
@@ -690,8 +677,8 @@ class LowerAspect extends BinaryOpAspect {
 		} else if (left instanceof Number && left instanceof Number) {
 			return ((left as Number).longValue()) < ((right as Number).longValue())
 		} else {
-			root.logger.error("Type mismatch: Cannot compare (<) " + left + (left===null?"":"(" + left.class + ")")
-				+ " and " + right + (right===null?"":"(" + right.class + ")"), "Gpfl"
+			root.logger.error("Type mismatch: Cannot compare (<) " + left + "("+left?.class+")"
+				+ " and " + right + "("+right?.class+")", "Gpfl"
 			)
 			return null
 		}
@@ -701,7 +688,7 @@ class LowerAspect extends BinaryOpAspect {
 @Aspect(className=Plus)
 class PlusAspect extends BinaryOpAspect {
 	// we can add two numbers and concatenate two strings
-	def Object eval(Program root) {
+	def Object eval(Policy root) {
 		val left = _self.left.eval(root)
 		val right = _self.right.eval(root)
 		if ((left instanceof Integer && right instanceof Integer)
@@ -720,7 +707,7 @@ class PlusAspect extends BinaryOpAspect {
 
 @Aspect(className=Minus)
 class MinusAspect extends BinaryOpAspect {
-	def Object eval(Program root) {
+	def Object eval(Policy root) {
 		val left = _self.left.eval(root)
 		val right = _self.right.eval(root)
 		if (left instanceof Integer && right instanceof Integer) {
@@ -733,7 +720,7 @@ class MinusAspect extends BinaryOpAspect {
 
 @Aspect(className=Mult)
 class MultAspect extends BinaryOpAspect {
-	def Object eval(Program root) {
+	def Object eval(Policy root) {
 		val left = _self.left.eval(root)
 		val right = _self.right.eval(root)
 		if (left instanceof Integer && right instanceof Integer) {
@@ -746,7 +733,7 @@ class MultAspect extends BinaryOpAspect {
 
 @Aspect(className=Div)
 class DivAspect extends BinaryOpAspect {
-	def Object eval(Program root) {
+	def Object eval(Policy root) {
 		val left = _self.left.eval(root)
 		val right = _self.right.eval(root)
 		if (left instanceof Integer && right instanceof Integer) {
@@ -763,7 +750,7 @@ class DivAspect extends BinaryOpAspect {
 
 @Aspect(className=VariableDeclaration)
 class VariableDeclarationAspect {
-	def Object eval(Program root) {
+	def Object eval(Policy root) {
 		var variable = root.variables.findFirst[v | v.name.equals(_self.name)]
 		if (variable instanceof IntegerDec) {
 			return variable.value
@@ -779,28 +766,28 @@ class VariableDeclarationAspect {
 
 @Aspect(className=StringDec)
 class StringDecAspect extends VariableDeclarationAspect {
-	def Object eval(Program root) {
+	def Object eval(Policy root) {
 		return _self.value
 	}
 }
 
 @Aspect(className=BooleanDec)
 class BooleanDecAspect extends VariableDeclarationAspect {
-	def Object eval(Program root) {
+	def Object eval(Policy root) {
 		return _self.isTrue
 	}
 }
 
 @Aspect(className=IntegerDec)
 class IntegerDecAspect extends VariableDeclarationAspect {
-	def Object eval(Program root) {
+	def Object eval(Policy root) {
 		return _self.value
 	}
 }
 
 @Aspect(className=BytesDec)
 class BytesDecAspect extends VariableDeclarationAspect {
-	def Object eval(Program root) {
+	def Object eval(Policy root) {
 		return _self.value
 	}
 }

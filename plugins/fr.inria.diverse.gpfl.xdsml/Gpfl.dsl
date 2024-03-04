@@ -1,6 +1,6 @@
 name = fr.inria.diverse.gpfl.Gpfl
 ecore = platform:/resource/fr.inria.diverse.gpfl.model/model/Gpfl.ecore
-k3 = fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ProgramAspect, \
+k3 = fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.PolicyAspect, \
   fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.PrologueAspect, \
   fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.InitSeqAspect, \
   fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.AutomataAspect, \
