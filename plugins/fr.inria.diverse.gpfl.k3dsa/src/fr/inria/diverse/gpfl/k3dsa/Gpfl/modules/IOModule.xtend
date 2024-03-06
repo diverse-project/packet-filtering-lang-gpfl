@@ -1,9 +1,9 @@
-package fr.inria.diverse.gpfl.k3dsa.gpfl.modules
+package fr.inria.diverse.gpfl.k3dsa.Gpfl.modules
 
-import fr.inria.diverse.gpfl.GpflFactory
-import fr.inria.diverse.gpfl.Packet
-import fr.inria.diverse.gpfl.Port
-import fr.inria.diverse.gpfl.Policy
+import fr.inria.diverse.gpfl.model.Gpfl.GpflFactory
+import fr.inria.diverse.gpfl.model.Gpfl.Packet
+import fr.inria.diverse.gpfl.model.Gpfl.Policy
+import fr.inria.diverse.gpfl.model.Gpfl.Port
 import java.io.File
 import java.io.FileOutputStream
 import java.util.Scanner
@@ -17,14 +17,22 @@ class IOModule {
 			var packet = GpflFactory.eINSTANCE.createPacket
 			val String[] packet_data = line.substring(1, line.length-1).split(";")
 			packet.time = Integer.valueOf(packet_data.get(0))
-			var port = root.inPorts.findFirst[p | p.name.equals(packet_data.get(1))]
+			var interface = root.interfaces.findFirst[i | i.name.equals(packet_data.get(1))]
+			if (interface === null) {
+				interface = GpflFactory.eINSTANCE.createInterface
+				interface.name = packet_data.get(1)
+				root.interfaces.add(interface)
+			}
+			var port = root.inPorts.findFirst[p | p.number.equals(Integer.parseInt(packet_data.get(2)))]
 			if (port === null) {
 				port = GpflFactory.eINSTANCE.createPort
-				port.name = packet_data.get(1)
+				port.number = Integer.parseInt(packet_data.get(2))
 				root.inPorts.add(port)
 			}
+			port.interface = interface
+			interface.ports.add(port)
 			packet.inPort = port
-			packet.content = packet_data.get(2)
+			packet.content = packet_data.get(3)
 			root.packets.add(packet)
 		}
 		input.close
@@ -38,7 +46,7 @@ class IOModule {
 	}
 	
 	def static writePacket(Packet packet, Port port) {
-		var outPacket = "("+packet.time+";"+ port.name+";"+packet.content+")\n"
+		var outPacket = "("+packet.time+";"+ port.number+";"+packet.content+")\n"
 		output.write(outPacket.getBytes)
 	}
 }

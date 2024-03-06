@@ -1,11 +1,11 @@
 package fr.inria.diverse.gpfl.xtext.transientvariables
 
-import fr.inria.diverse.gpfl.Automata
-import fr.inria.diverse.gpfl.Policy
+import fr.inria.diverse.gpfl.model.Gpfl.Automata
+import fr.inria.diverse.gpfl.model.Gpfl.Policy
+import fr.inria.diverse.gpfl.model.Gpfl.Prologue
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.xtext.parsetree.reconstr.impl.DefaultTransientValueService
-import fr.inria.diverse.gpfl.Prologue
 
 class GpflTransientVariable extends DefaultTransientValueService {
 	override isCheckElementsIndividually(EObject owner, EStructuralFeature feature) {

@@ -113,12 +113,13 @@ Atomic returns Expression:
 	| {BooleanLiteral}isTrue=EBoolean
 	| {BytesLiteral} value=(BYTES|HEXA)
 	| {VariableRef} variable=[VariableDeclaration|ID]
-	| {PortRef} "_inPort" "==" port=[Port|ID]
+	| {PortRef} "_port" "==" port=[Port|PORT]
+	| {InterfaceRef} "_interface" "==" interface=[Interface|ID]
 	| {Read} "read""(" offset=Expression "," length=Expression ")"
 ;
 
-
 EBoolean returns ecore::EBoolean: 'true'|'false';
+terminal PORT returns ecore::EString: 'p'INT;
 terminal BYTES returns ecore::EString: "0b"("0" | "1")+;
 terminal HEXA returns ecore::EString: "0x" ('0'..'9'|'a'..'f'|'A'..'F')*;
 @Override

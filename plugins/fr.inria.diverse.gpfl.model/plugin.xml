@@ -9,8 +9,8 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated Gpfl -->
       <package
-            uri="http://www.inria.fr/sed/gpfl"
-            class="fr.inria.diverse.gpfl.GpflPackage"
+            uri="http://www.inria.fr/diverse/gpfl"
+            class="fr.inria.diverse.gpfl.model.Gpfl.GpflPackage"
             genModel="model/Gpfl.genmodel"/>
    </extension>
 

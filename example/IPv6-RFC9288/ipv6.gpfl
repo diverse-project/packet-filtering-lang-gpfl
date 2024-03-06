@@ -54,7 +54,7 @@ FILTER
 		cond(option == 0xc2 | option == 0x63 | option == 0x8a  | option ==0x8c| option == 0x4d | 
 			//RFC3962-Experiment
 			option == 0x1e | option == 0x3e | option == 0x5e | option == 0x7e | option == 0x9e | option == 0xbe | option == 0x3de | option == 0xfe,
-			reject
+			drop
 		)
 		
 		// Router alert 
@@ -85,7 +85,7 @@ FILTER
 	
 	// Experimentation testing
 	cond(nextHeader == 253 | nextHeader == 254,
-		reject
+		drop
 	)
 	
 	alarm("Drop packet that has not been filtered")

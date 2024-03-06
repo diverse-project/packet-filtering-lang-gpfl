@@ -1,12 +1,15 @@
 package fr.inria.diverse.gpfl.xtext.linking;
 
-import fr.inria.diverse.gpfl.Automata
-import fr.inria.diverse.gpfl.GpflFactory
-import fr.inria.diverse.gpfl.GpflPackage
-import fr.inria.diverse.gpfl.PortRef
-import fr.inria.diverse.gpfl.Policy
-import fr.inria.diverse.gpfl.SetVariable
-import fr.inria.diverse.gpfl.Transition
+import fr.inria.diverse.gpfl.model.Gpfl.Automata
+import fr.inria.diverse.gpfl.model.Gpfl.EventOccurence
+import fr.inria.diverse.gpfl.model.Gpfl.GpflFactory
+import fr.inria.diverse.gpfl.model.Gpfl.GpflPackage
+import fr.inria.diverse.gpfl.model.Gpfl.NewEventOccurence
+import fr.inria.diverse.gpfl.model.Gpfl.Policy
+import fr.inria.diverse.gpfl.model.Gpfl.PortRef
+import fr.inria.diverse.gpfl.model.Gpfl.SetVariable
+import fr.inria.diverse.gpfl.model.Gpfl.StepAutomata
+import fr.inria.diverse.gpfl.model.Gpfl.Transition
 import java.util.Collections
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
@@ -14,9 +17,7 @@ import org.eclipse.xtext.EcoreUtil2
 import org.eclipse.xtext.linking.impl.DefaultLinkingService
 import org.eclipse.xtext.linking.impl.IllegalNodeException
 import org.eclipse.xtext.nodemodel.INode
-import fr.inria.diverse.gpfl.StepAutomata
-import fr.inria.diverse.gpfl.EventOccurence
-import fr.inria.diverse.gpfl.NewEventOccurence
+import fr.inria.diverse.gpfl.model.Gpfl.InterfaceRef
 
 class GpflLinkingService extends DefaultLinkingService {
 	def getStringValue(String string) {
@@ -85,12 +86,26 @@ class GpflLinkingService extends DefaultLinkingService {
 			//------------------- PORT REFERENCE -------------------//
 			
 			else if (context instanceof PortRef) {
-				var port = root.inPorts.findFirst[p | p.name.equals(node.text)]
+				val portNumber = Integer.parseInt(node.text.substring(1))
+				var port = root.inPorts.findFirst[p | p.number.equals(portNumber)]
 				if (port === null) {
 					port = GpflFactory.eINSTANCE.createPort
-					port.name = node.text
+					port.number = portNumber
 					root.inPorts.add(port)
 				}
+				referencesResolved = Collections.singletonList(port)
+			}
+			
+			//------------------- INTERFACE REFERENCE -------------------//
+			
+			else if (context instanceof InterfaceRef) {
+				var port = root.interfaces.findFirst[p | p.name.equals(node.text)]
+				if (port === null) {
+					port = GpflFactory.eINSTANCE.createInterface
+					port.name = node.text
+					root.interfaces.add(port)
+				}
+				referencesResolved = Collections.singletonList(port)
 			}
 			
 			//------------------- EVENT REFERENCE -------------------//

@@ -1,5 +1,5 @@
-SMTP -> inSide
-SFTP -> inSide
-HTTP -> inSide
-HTTPS -> inSide
-FTP -> inSide
+25 -> 22
+22 -> 443
+80 -> 22
+443 -> 22
+989 -> 22

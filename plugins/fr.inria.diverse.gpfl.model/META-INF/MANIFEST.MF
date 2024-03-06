@@ -7,10 +7,13 @@ Bundle-Version: 0.1.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-17
-Export-Package: fr.inria.diverse.gpfl,
- fr.inria.diverse.gpfl.impl,
- fr.inria.diverse.gpfl.util
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: fr.inria.diverse.gpfl.model.Gpfl,
+ fr.inria.diverse.gpfl.model.Gpfl.impl,
+ fr.inria.diverse.gpfl.model.Gpfl.util,
+ fr.inria.diverse.gpfl.model.Gpfl,
+ fr.inria.diverse.gpfl.model.Gpfl.impl,
+ fr.inria.diverse.gpfl.model.Gpfl.util
 Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.core.runtime
 Bundle-ActivationPolicy: lazy

@@ -13,9 +13,10 @@ Require-Bundle: fr.inria.diverse.k3.al.annotationprocessor.plugin;bundle-version
  org.eclipse.emf.common;bundle-version="2.8.0";visibility:=reexport,
  fr.inria.diverse.gpfl.model;bundle-version="0.0.0";visibility:=private,
  org.eclipse.gemoc.commons.eclipse.messagingsystem.api;bundle-version="3.3.0",
+ fr.inria.diverse.gpfl.model;bundle-version="0.1.0",
  org.eclipse.core.resources;bundle-version="3.17.0",
  org.eclipse.core.runtime;bundle-version="3.25.0"
 Bundle-ClassPath: .
 Bundle-RequiredExecutionEnvironment: JavaSE-17
-Export-Package: fr.inria.diverse.gpfl.k3dsa.gpfl.aspects,
- fr.inria.diverse.gpfl.k3dsa.gpfl.modules
+Export-Package: fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects,
+ fr.inria.diverse.gpfl.k3dsa.Gpfl.modules

@@ -3,29 +3,29 @@
  */
 package fr.inria.diverse.gpfl.xtext.validation
 
-import fr.inria.diverse.gpfl.Accept
-import fr.inria.diverse.gpfl.Automata
-import fr.inria.diverse.gpfl.BinaryOp
-import fr.inria.diverse.gpfl.BooleanLiteral
-import fr.inria.diverse.gpfl.Div
-import fr.inria.diverse.gpfl.Drop
-import fr.inria.diverse.gpfl.Equality
-import fr.inria.diverse.gpfl.Filter
-import fr.inria.diverse.gpfl.GpflPackage
-import fr.inria.diverse.gpfl.Greater
-import fr.inria.diverse.gpfl.GreaterOrEqual
-import fr.inria.diverse.gpfl.Inequality
-import fr.inria.diverse.gpfl.InitSeq
-import fr.inria.diverse.gpfl.IntLiteral
-import fr.inria.diverse.gpfl.Lower
-import fr.inria.diverse.gpfl.LowerOrEqual
-import fr.inria.diverse.gpfl.Minus
-import fr.inria.diverse.gpfl.Mult
-import fr.inria.diverse.gpfl.NewInterruption
-import fr.inria.diverse.gpfl.Nop
-import fr.inria.diverse.gpfl.Plus
-import fr.inria.diverse.gpfl.StringLiteral
+import fr.inria.diverse.gpfl.model.Gpfl.Accept
+import fr.inria.diverse.gpfl.model.Gpfl.Automata
+import fr.inria.diverse.gpfl.model.Gpfl.BinaryOp
+import fr.inria.diverse.gpfl.model.Gpfl.BooleanLiteral
+import fr.inria.diverse.gpfl.model.Gpfl.Div
+import fr.inria.diverse.gpfl.model.Gpfl.Drop
+import fr.inria.diverse.gpfl.model.Gpfl.Equality
+import fr.inria.diverse.gpfl.model.Gpfl.GpflPackage
+import fr.inria.diverse.gpfl.model.Gpfl.Greater
+import fr.inria.diverse.gpfl.model.Gpfl.GreaterOrEqual
+import fr.inria.diverse.gpfl.model.Gpfl.Inequality
+import fr.inria.diverse.gpfl.model.Gpfl.InitSeq
+import fr.inria.diverse.gpfl.model.Gpfl.IntLiteral
+import fr.inria.diverse.gpfl.model.Gpfl.Lower
+import fr.inria.diverse.gpfl.model.Gpfl.LowerOrEqual
+import fr.inria.diverse.gpfl.model.Gpfl.Minus
+import fr.inria.diverse.gpfl.model.Gpfl.Mult
+import fr.inria.diverse.gpfl.model.Gpfl.NewInterruption
+import fr.inria.diverse.gpfl.model.Gpfl.Nop
+import fr.inria.diverse.gpfl.model.Gpfl.Plus
+import fr.inria.diverse.gpfl.model.Gpfl.StringLiteral
 import org.eclipse.xtext.validation.Check
+import fr.inria.diverse.gpfl.model.Gpfl.Filter
 
 /**
  * This class contains custom validation rules. 
