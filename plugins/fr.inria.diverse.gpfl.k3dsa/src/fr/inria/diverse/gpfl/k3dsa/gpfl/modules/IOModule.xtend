@@ -1,9 +1,9 @@
-package fr.inria.diverse.gpfl.k3dsa.Gpfl.modules
+package fr.inria.diverse.gpfl.k3dsa.gpfl.modules
 
-import fr.inria.diverse.gpfl.model.Gpfl.GpflFactory
-import fr.inria.diverse.gpfl.model.Gpfl.Packet
-import fr.inria.diverse.gpfl.model.Gpfl.Policy
-import fr.inria.diverse.gpfl.model.Gpfl.Port
+import fr.inria.diverse.gpfl.model.gpfl.GpflFactory
+import fr.inria.diverse.gpfl.model.gpfl.Packet
+import fr.inria.diverse.gpfl.model.gpfl.Policy
+import fr.inria.diverse.gpfl.model.gpfl.Port
 import java.io.File
 import java.io.FileOutputStream
 import java.util.Scanner

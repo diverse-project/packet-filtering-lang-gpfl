@@ -1,9 +1,9 @@
-package fr.inria.diverse.gpfl.k3dsa.Gpfl.modules
+package fr.inria.diverse.gpfl.k3dsa.gpfl.modules
 
 import org.eclipse.gemoc.commons.eclipse.messagingsystem.api.MessagingSystem
 import org.eclipse.gemoc.commons.eclipse.messagingsystem.api.MessagingSystemManager
 
-class GpflMessagingModule {
+class MessagingModule {
 	var static MessagingSystem internalLogger  
 	def static MessagingSystem logger(){
 		if (internalLogger === null) { 

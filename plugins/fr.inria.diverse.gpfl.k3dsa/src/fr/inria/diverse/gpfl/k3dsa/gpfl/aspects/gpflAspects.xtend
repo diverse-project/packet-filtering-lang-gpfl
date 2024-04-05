@@ -1,117 +1,116 @@
-package fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects
+package fr.inria.diverse.gpfl.k3dsa.gpfl.aspects
 
-import fr.inria.diverse.gpfl.k3dsa.Gpfl.modules.GpflMessagingModule
-import fr.inria.diverse.gpfl.k3dsa.Gpfl.modules.IOModule
-import fr.inria.diverse.gpfl.model.Gpfl.Accept
-import fr.inria.diverse.gpfl.model.Gpfl.Alarm
-import fr.inria.diverse.gpfl.model.Gpfl.And
-import fr.inria.diverse.gpfl.model.Gpfl.Automata
-import fr.inria.diverse.gpfl.model.Gpfl.BinaryOp
-import fr.inria.diverse.gpfl.model.Gpfl.Block
-import fr.inria.diverse.gpfl.model.Gpfl.BooleanDec
-import fr.inria.diverse.gpfl.model.Gpfl.BooleanLiteral
-import fr.inria.diverse.gpfl.model.Gpfl.BytesDec
-import fr.inria.diverse.gpfl.model.Gpfl.BytesLiteral
-import fr.inria.diverse.gpfl.model.Gpfl.Cmd
-import fr.inria.diverse.gpfl.model.Gpfl.Condition
-import fr.inria.diverse.gpfl.model.Gpfl.Div
-import fr.inria.diverse.gpfl.model.Gpfl.Drop
-import fr.inria.diverse.gpfl.model.Gpfl.Equality
-import fr.inria.diverse.gpfl.model.Gpfl.Event
-import fr.inria.diverse.gpfl.model.Gpfl.Expression
-import fr.inria.diverse.gpfl.model.Gpfl.Filter
-import fr.inria.diverse.gpfl.model.Gpfl.GpflFactory
-import fr.inria.diverse.gpfl.model.Gpfl.Greater
-import fr.inria.diverse.gpfl.model.Gpfl.GreaterOrEqual
-import fr.inria.diverse.gpfl.model.Gpfl.Inequality
-import fr.inria.diverse.gpfl.model.Gpfl.InitSeq
-import fr.inria.diverse.gpfl.model.Gpfl.IntLiteral
-import fr.inria.diverse.gpfl.model.Gpfl.IntegerDec
-import fr.inria.diverse.gpfl.model.Gpfl.Iteration
-import fr.inria.diverse.gpfl.model.Gpfl.Lower
-import fr.inria.diverse.gpfl.model.Gpfl.LowerOrEqual
-import fr.inria.diverse.gpfl.model.Gpfl.Minus
-import fr.inria.diverse.gpfl.model.Gpfl.Mult
-import fr.inria.diverse.gpfl.model.Gpfl.Neg
-import fr.inria.diverse.gpfl.model.Gpfl.NewAutomata
-import fr.inria.diverse.gpfl.model.Gpfl.NewEventOccurence
-import fr.inria.diverse.gpfl.model.Gpfl.NewInterruption
-import fr.inria.diverse.gpfl.model.Gpfl.Nop
-import fr.inria.diverse.gpfl.model.Gpfl.Not
-import fr.inria.diverse.gpfl.model.Gpfl.Or
-import fr.inria.diverse.gpfl.model.Gpfl.Packet
-import fr.inria.diverse.gpfl.model.Gpfl.Plus
-import fr.inria.diverse.gpfl.model.Gpfl.Policy
-import fr.inria.diverse.gpfl.model.Gpfl.Port
-import fr.inria.diverse.gpfl.model.Gpfl.PortRef
-import fr.inria.diverse.gpfl.model.Gpfl.Prologue
-import fr.inria.diverse.gpfl.model.Gpfl.Read
-import fr.inria.diverse.gpfl.model.Gpfl.Send
-import fr.inria.diverse.gpfl.model.Gpfl.SetVariable
-import fr.inria.diverse.gpfl.model.Gpfl.State
-import fr.inria.diverse.gpfl.model.Gpfl.StepAutomata
-import fr.inria.diverse.gpfl.model.Gpfl.Stmt
-import fr.inria.diverse.gpfl.model.Gpfl.StringDec
-import fr.inria.diverse.gpfl.model.Gpfl.StringLiteral
-import fr.inria.diverse.gpfl.model.Gpfl.Transition
-import fr.inria.diverse.gpfl.model.Gpfl.UnaryOp
-import fr.inria.diverse.gpfl.model.Gpfl.VariableDeclaration
-import fr.inria.diverse.gpfl.model.Gpfl.VariableRef
+import fr.inria.diverse.gpfl.k3dsa.gpfl.modules.IOModule
+import fr.inria.diverse.gpfl.model.gpfl.Accept
+import fr.inria.diverse.gpfl.model.gpfl.Alarm
+import fr.inria.diverse.gpfl.model.gpfl.And
+import fr.inria.diverse.gpfl.model.gpfl.Automata
+import fr.inria.diverse.gpfl.model.gpfl.BinaryOp
+import fr.inria.diverse.gpfl.model.gpfl.Block
+import fr.inria.diverse.gpfl.model.gpfl.BooleanDec
+import fr.inria.diverse.gpfl.model.gpfl.BooleanLiteral
+import fr.inria.diverse.gpfl.model.gpfl.BytesDec
+import fr.inria.diverse.gpfl.model.gpfl.BytesLiteral
+import fr.inria.diverse.gpfl.model.gpfl.Cmd
+import fr.inria.diverse.gpfl.model.gpfl.Condition
+import fr.inria.diverse.gpfl.model.gpfl.Div
+import fr.inria.diverse.gpfl.model.gpfl.Drop
+import fr.inria.diverse.gpfl.model.gpfl.Equality
+import fr.inria.diverse.gpfl.model.gpfl.Event
+import fr.inria.diverse.gpfl.model.gpfl.Expression
+import fr.inria.diverse.gpfl.model.gpfl.Filter
+import fr.inria.diverse.gpfl.model.gpfl.GpflFactory
+import fr.inria.diverse.gpfl.model.gpfl.Greater
+import fr.inria.diverse.gpfl.model.gpfl.GreaterOrEqual
+import fr.inria.diverse.gpfl.model.gpfl.Inequality
+import fr.inria.diverse.gpfl.model.gpfl.InitSeq
+import fr.inria.diverse.gpfl.model.gpfl.IntLiteral
+import fr.inria.diverse.gpfl.model.gpfl.IntegerDec
+import fr.inria.diverse.gpfl.model.gpfl.Iteration
+import fr.inria.diverse.gpfl.model.gpfl.Lower
+import fr.inria.diverse.gpfl.model.gpfl.LowerOrEqual
+import fr.inria.diverse.gpfl.model.gpfl.Minus
+import fr.inria.diverse.gpfl.model.gpfl.Mult
+import fr.inria.diverse.gpfl.model.gpfl.Neg
+import fr.inria.diverse.gpfl.model.gpfl.NewAutomata
+import fr.inria.diverse.gpfl.model.gpfl.NewEventOccurence
+import fr.inria.diverse.gpfl.model.gpfl.NewInterruption
+import fr.inria.diverse.gpfl.model.gpfl.Nop
+import fr.inria.diverse.gpfl.model.gpfl.Not
+import fr.inria.diverse.gpfl.model.gpfl.Or
+import fr.inria.diverse.gpfl.model.gpfl.Packet
+import fr.inria.diverse.gpfl.model.gpfl.Plus
+import fr.inria.diverse.gpfl.model.gpfl.Policy
+import fr.inria.diverse.gpfl.model.gpfl.Port
+import fr.inria.diverse.gpfl.model.gpfl.PortRef
+import fr.inria.diverse.gpfl.model.gpfl.Prologue
+import fr.inria.diverse.gpfl.model.gpfl.Read
+import fr.inria.diverse.gpfl.model.gpfl.Send
+import fr.inria.diverse.gpfl.model.gpfl.SetVariable
+import fr.inria.diverse.gpfl.model.gpfl.State
+import fr.inria.diverse.gpfl.model.gpfl.StepAutomata
+import fr.inria.diverse.gpfl.model.gpfl.Stmt
+import fr.inria.diverse.gpfl.model.gpfl.StringDec
+import fr.inria.diverse.gpfl.model.gpfl.StringLiteral
+import fr.inria.diverse.gpfl.model.gpfl.Transition
+import fr.inria.diverse.gpfl.model.gpfl.UnaryOp
+import fr.inria.diverse.gpfl.model.gpfl.VariableDeclaration
+import fr.inria.diverse.gpfl.model.gpfl.VariableRef
 
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.PolicyAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.PortAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.PacketAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.PrologueAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.InitSeqAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.FilterAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.AutomataAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.StmtAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.CmdAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.NewAutomataAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.AlarmAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.SendAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.SetVariableAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.StepAutomataAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.NopAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.AcceptAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.DropAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.ConditionAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.IterationAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.NewInterruptionAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.StateAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.TransitionAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.BlockAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.ExpressionAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.UnaryOpAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.BinaryOpAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.PortRefAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.StringLiteralAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.IntLiteralAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.BooleanLiteralAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.NotAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.OrAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.AndAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.EqualityAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.InequalityAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.GreaterOrEqualAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.LowerOrEqualAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.GreaterAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.LowerAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.PlusAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.MinusAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.MultAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.DivAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.NegAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.VariableRefAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.VariableDeclarationAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.StringDecAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.BooleanDecAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.IntegerDecAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.EventAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.NewEventOccurenceAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.ReadAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.BytesDecAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.BytesLiteralAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.PolicyAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.PortAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.PacketAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.PrologueAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.InitSeqAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.FilterAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.AutomataAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.StmtAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.CmdAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NewAutomataAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.AlarmAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.SendAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.SetVariableAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.StepAutomataAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NopAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.AcceptAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.DropAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ConditionAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.IterationAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NewInterruptionAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.StateAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.TransitionAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BlockAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ExpressionAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.UnaryOpAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BinaryOpAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.PortRefAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.StringLiteralAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.IntLiteralAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BooleanLiteralAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NotAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.OrAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.AndAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.EqualityAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.InequalityAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.GreaterOrEqualAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.LowerOrEqualAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.GreaterAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.LowerAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.PlusAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.MinusAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.MultAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.DivAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NegAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.VariableRefAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.VariableDeclarationAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.StringDecAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BooleanDecAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.IntegerDecAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.EventAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NewEventOccurenceAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ReadAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BytesDecAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BytesLiteralAspect.*
 
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import fr.inria.diverse.k3.al.annotationprocessor.InitializeModel
@@ -123,15 +122,12 @@ import java.util.Scanner
 import org.eclipse.core.resources.IWorkspace
 import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.emf.common.util.EList
-import org.eclipse.gemoc.commons.eclipse.messagingsystem.api.MessagingSystem
 import java.math.BigInteger
-import fr.inria.diverse.gpfl.model.Gpfl.InterfaceRef
+import fr.inria.diverse.gpfl.model.gpfl.InterfaceRef
+import fr.inria.diverse.gpfl.k3dsa.gpfl.modules.MessagingModule
 
 @Aspect(className=Policy)
 class PolicyAspect {
-	def MessagingSystem logger() {
-		GpflMessagingModule.logger
-	}
 	
 	public static var endOfFilter = false
 	public static var correspondingPort = new HashMap<Port, Port>()
@@ -146,13 +142,13 @@ class PolicyAspect {
 		try {			
 			IOModule.createPacketsFromFile(_self, new File(workspace.root.findMember(args.get(0)).locationURI.path))
 		} catch(NullPointerException e) {
-			GpflMessagingModule.logger.error("Input file " + args.get(0) + " not found. Go check run configurations", "Gpfl")
+			MessagingModule.logger.error("Input file " + args.get(0) + " not found. Go check run configurations", "Gpfl")
 			e.printStackTrace
 		}
 		try {
 			IOModule.createOutputFile(new File(workspace.root.findMember(args.get(1)).locationURI.path))
 		} catch(NullPointerException e) {
-			GpflMessagingModule.logger.error("Output file " + args.get(1) + " not found. Go check run configurations", "Gpfl")
+			MessagingModule.logger.error("Output file " + args.get(1) + " not found. Go check run configurations", "Gpfl")
 			e.printStackTrace
 		}
 		try {
@@ -180,7 +176,7 @@ class PolicyAspect {
 			}
 			input.close
 		} catch(NullPointerException e) {
-			GpflMessagingModule.logger.error("Output file " + args.get(2) + " not found. Go check run configurations", "Gpfl")
+			MessagingModule.logger.error("Output file " + args.get(2) + " not found. Go check run configurations", "Gpfl")
 			e.printStackTrace
 		}
 	}
@@ -249,7 +245,7 @@ class FilterAspect {
 				var i = 0
 				do {
 					interrupt.block.run(root)
-					root.logger.debug("Interruption @ "+(nextInterrupt+(interrupt.time*i)), "Gpfl")
+					MessagingModule.logger.debug("Interruption @ "+(nextInterrupt+(interrupt.time*i)), "Gpfl")
 					i++
 				}while(nextInterrupt+(interrupt.time*i) <= root.currentTime)
 			}
@@ -275,7 +271,7 @@ class BlockAspect {
 @Aspect(className=Stmt)
 abstract class StmtAspect {
 	def void run(Policy root) {
-		root.logger.error("Statement: run of " +_self +" should never occur, please tell the developer to write a method run for this class", "Gpfl")
+		MessagingModule.logger.error("Statement: run of " +_self +" should never occur, please tell the developer to write a method run for this class", "Gpfl")
 	}
 }
 
@@ -323,7 +319,7 @@ class StepAutomataAspect extends StmtAspect {
 @Aspect(className=Cmd)
 abstract class CmdAspect extends StmtAspect {
 	def void run(Policy root) {
-		root.logger.error("Command: run of " +_self +" should never occur, please tell the developer to write a method run for this class", "Gpfl")
+		MessagingModule.logger.error("Command: run of " +_self +" should never occur, please tell the developer to write a method run for this class", "Gpfl")
 	}
 }
 
@@ -337,7 +333,7 @@ class NewAutomataAspect extends CmdAspect {
 @Aspect(className=Alarm)
 class AlarmAspect extends CmdAspect {
 	def void run(Policy root) {
-		root.logger.error("ALARM @ "+ root.currentTime+ ": " + _self.message.eval(root) as String, "Gpfl")
+		MessagingModule.logger.error("ALARM @ "+ root.currentTime+ ": " + _self.message.eval(root) as String, "Gpfl")
 	}
 }
 
@@ -347,7 +343,7 @@ class SendAspect extends CmdAspect {
 		var packet = "("+root.currentTime+";"
 			+ _self.port.number+";" 
 			+ _self.packet.content + ")"
-		root.logger.debug("SEND " + packet, "Gpfl")
+		MessagingModule.logger.debug("SEND " + packet, "Gpfl")
 		
 		IOModule.writePacket(_self.packet, _self.port)
 		endOfFilter = true
@@ -410,7 +406,7 @@ class AcceptAspect extends CmdAspect {
 		var packet = "("+root.currentTime+";"
 			+ correspondingPort.get(root.currentPacket.inPort).number+";" 
 			+ root.currentPacket.content + ")"
-		root.logger.debug("ACCEPT " + packet, "Gpfl")
+		MessagingModule.logger.debug("ACCEPT " + packet, "Gpfl")
 		
 		IOModule.writePacket(root.currentPacket, correspondingPort.get(root.currentPacket.inPort))
 		endOfFilter = true
@@ -423,7 +419,7 @@ class DropAspect extends CmdAspect {
 		var packet = "("+root.currentTime+";"
 			+ root.currentPacket.inPort.number
 			+";"+root.currentPacket.content+")"
-		root.logger.debug("DROP " + packet, "Gpfl")
+		MessagingModule.logger.debug("DROP " + packet, "Gpfl")
 		endOfFilter = true
 	}
 }
@@ -443,7 +439,7 @@ class NewEventOccurenceAspect extends CmdAspect {
 @Aspect(className=Expression)
 abstract class ExpressionAspect {
 	def Object eval(Policy root) {
-		root.logger.error("Expression: eval of " + _self + " should never occur, please tell the developer to write a method run for this class", "Gpfl")
+		MessagingModule.logger.error("Expression: eval of " + _self + " should never occur, please tell the developer to write a method run for this class", "Gpfl")
 		return null;
 	}
 }
@@ -515,7 +511,7 @@ class ReadAspect extends ExpressionAspect {
 @Aspect(className=UnaryOp)
 abstract class UnaryOpAspect extends ExpressionAspect {
 	def Object eval(Policy root) {
-		root.logger.error("Unary op: eval of " + _self + " should never occur, please tell the developer to write a method run for this class", "Gpfl")
+		MessagingModule.logger.error("Unary op: eval of " + _self + " should never occur, please tell the developer to write a method run for this class", "Gpfl")
 		return null
 	}
 }
@@ -527,7 +523,7 @@ class NotAspect extends UnaryOpAspect {
 		try {
 			return !(expr as Boolean)
 		} catch (ClassCastException e) {
-			root.logger.error("Type mismatch: Cannot invert " + expr + " because it's not a boolean", "Gpfl")
+			MessagingModule.logger.error("Type mismatch: Cannot invert " + expr + " because it's not a boolean", "Gpfl")
 			e.printStackTrace
 			return null
 		}
@@ -541,7 +537,7 @@ class NegAspect extends UnaryOpAspect {
 		try {
 			return -(expr as Integer)
 		} catch (ClassCastException e) {
-			root.logger.error("Type mismatch: Cannot neg " + expr + " because it's not an integer", "Gpfl")
+			MessagingModule.logger.error("Type mismatch: Cannot neg " + expr + " because it's not an integer", "Gpfl")
 			e.printStackTrace
 			return null
 		}
@@ -551,7 +547,7 @@ class NegAspect extends UnaryOpAspect {
 @Aspect(className=BinaryOp)
 abstract class BinaryOpAspect extends ExpressionAspect {
 	def Object eval(Policy root) {
-		root.logger.error("Binary op: eval of " + _self + " should never occur, please tell the developer to write a method run for this class", "Gpfl")
+		MessagingModule.logger.error("Binary op: eval of " + _self + " should never occur, please tell the developer to write a method run for this class", "Gpfl")
 		return null
 	}
 }
@@ -564,9 +560,9 @@ class OrAspect extends BinaryOpAspect {
 		try {
 			return (left as Boolean) || (right as Boolean)
 		} catch (ClassCastException e) {
-			root.logger.error("Type mismatch: Cannot compare (|) " + left + "("+left?.class+")"
-				+ " and " + right + "("+right?.class+")", "Gpfl"
-			)
+			MessagingModule.logger.error("Type mismatch: Cannot compare (|) " + left + "("+left?.class+")"
+				+ " and " + right + "("+right?.class+")"
+			, "Gpfl")
 			e.printStackTrace
 			return null
 		}
@@ -581,9 +577,9 @@ class AndAspect extends BinaryOpAspect {
 		try {
 			return (left as Boolean) && (right as Boolean)
 		} catch (ClassCastException e) {
-			root.logger.error("Type mismatch: Cannot compare (&) " + left + "("+left?.class+")"
-				+ " and " + right + "("+right?.class+")", "Gpfl"
-			)
+			MessagingModule.logger.error("Type mismatch: Cannot compare (&) " + left + "("+left?.class+")"
+				+ " and " + right + "("+right?.class+")"
+			, "Gpfl")
 			e.printStackTrace
 			return null
 		}
@@ -598,9 +594,9 @@ class EqualityAspect extends BinaryOpAspect {
 		try {
 			return left.equals(right)
 		} catch (ClassCastException e) {
-			root.logger.error("Type mismatch: Cannot compare (==) " + left + "("+left?.class+")"
-				+ " and " + right + "("+right?.class+")", "Gpfl"
-			)
+			MessagingModule.logger.error("Type mismatch: Cannot compare (==) " + left + "("+left?.class+")"
+				+ " and " + right + "("+right?.class+")"
+			, "Gpfl")
 			e.printStackTrace
 			return null
 		}
@@ -615,9 +611,9 @@ class InequalityAspect extends BinaryOpAspect {
 		try {
 			return !left.equals(right)
 		} catch (ClassCastException e) {
-			root.logger.error("Type mismatch: Cannot compare (!=) " + left + "("+left?.class+")"
-				+ " and " + right + "("+right?.class+")", "Gpfl"
-			)
+			MessagingModule.logger.error("Type mismatch: Cannot compare (!=) " + left + "("+left?.class+")"
+				+ " and " + right + "("+right?.class+")"
+			, "Gpfl")
 			e.printStackTrace
 			return null
 		}
@@ -634,9 +630,9 @@ class GreaterOrEqualAspect extends BinaryOpAspect {
 		} else if (left instanceof Number && left instanceof Number) {
 			return ((left as Number).longValue()) >= ((right as Number).longValue())
 		} else {
-			root.logger.error("Type mismatch: Cannot compare (>=) " + left + "("+left?.class+")"
-				+ " and " + right + "("+right?.class+")", "Gpfl"
-			)
+			MessagingModule.logger.error("Type mismatch: Cannot compare (>=) " + left + "("+left?.class+")"
+				+ " and " + right + "("+right?.class+")"
+			, "Gpfl")
 			return null
 		}
 	}
@@ -652,9 +648,9 @@ class LowerOrEqualAspect extends BinaryOpAspect {
 		} else if (left instanceof Number && left instanceof Number) {
 			return ((left as Number).longValue()) <= ((right as Number).longValue())
 		} else {
-			root.logger.error("Type mismatch: Cannot compare (<=) " + left + "("+left?.class+")"
-				+ " and " + right + "("+right?.class+")", "Gpfl"
-			)
+			MessagingModule.logger.error("Type mismatch: Cannot compare (<=) " + left + "("+left?.class+")"
+				+ " and " + right + "("+right?.class+")"
+			, "Gpfl")
 			return null
 		}
 	}
@@ -670,9 +666,9 @@ class GreaterAspect extends BinaryOpAspect {
 		} else if (left instanceof Number && left instanceof Number) {
 			return ((left as Number).longValue()) > ((right as Number).longValue())
 		} else {
-			root.logger.error("Type mismatch: Cannot compare (>) " + left + "("+left?.class+")"
-				+ " and " + right + "("+right?.class+")", "Gpfl"
-			)
+			MessagingModule.logger.error("Type mismatch: Cannot compare (>) " + left + "("+left?.class+")"
+				+ " and " + right + "("+right?.class+")"
+			, "Gpfl")
 			return null
 		}
 	}
@@ -688,9 +684,9 @@ class LowerAspect extends BinaryOpAspect {
 		} else if (left instanceof Number && left instanceof Number) {
 			return ((left as Number).longValue()) < ((right as Number).longValue())
 		} else {
-			root.logger.error("Type mismatch: Cannot compare (<) " + left + "("+left?.class+")"
-				+ " and " + right + "("+right?.class+")", "Gpfl"
-			)
+			MessagingModule.logger.error("Type mismatch: Cannot compare (<) " + left + "("+left?.class+")"
+				+ " and " + right + "("+right?.class+")"
+			, "Gpfl")
 			return null
 		}
 	}
@@ -711,7 +707,7 @@ class PlusAspect extends BinaryOpAspect {
 		} else if (right instanceof String) {
 			return left + (right as String)
 		}
-		root.logger.error("Type mismatch: Cannot add " + left + " and " + right, "Gpfl")
+		MessagingModule.logger.error("Type mismatch: Cannot add " + left + " and " + right, "Gpfl")
 		return null
 	}
 }
@@ -724,7 +720,7 @@ class MinusAspect extends BinaryOpAspect {
 		if (left instanceof Integer && right instanceof Integer) {
 			return (left as Integer) - (right as Integer)
 		}
-		root.logger.error("Type mismatch: Cannot minus " + left + " by " + right, "Gpfl")
+		MessagingModule.logger.error("Type mismatch: Cannot minus " + left + " by " + right, "Gpfl")
 		return null
 	}
 }
@@ -737,7 +733,7 @@ class MultAspect extends BinaryOpAspect {
 		if (left instanceof Integer && right instanceof Integer) {
 			return (left as Integer) * (right as Integer)
 		}
-		root.logger.error("Type mismatch: Cannot multiply " + left + " by " + right, "Gpfl")
+		MessagingModule.logger.error("Type mismatch: Cannot multiply " + left + " by " + right, "Gpfl")
 		return null
 	}
 }
@@ -749,12 +745,12 @@ class DivAspect extends BinaryOpAspect {
 		val right = _self.right.eval(root)
 		if (left instanceof Integer && right instanceof Integer) {
 			if (right == 0) {
-				root.logger.error("You cannot divide by 0", "Gpfl")
+				MessagingModule.logger.error("You cannot divide by 0", "Gpfl")
 				return null
 			}
 			return (left as Integer) - (right as Integer)
 		}
-		root.logger.error("Type mismatch: Cannot divide " + left + " by " + right, "Gpfl")
+		MessagingModule.logger.error("Type mismatch: Cannot divide " + left + " by " + right, "Gpfl")
 		return null
 	}
 }

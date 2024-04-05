@@ -10,7 +10,7 @@ import org.eclipse.xtext.testing.util.ParseHelper
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.^extension.ExtendWith
-import fr.inria.diverse.gpfl.model.Gpfl.Policy
+import fr.inria.diverse.gpfl.model.gpfl.Policy
 
 @ExtendWith(InjectionExtension)
 @InjectWith(GpflInjectorProvider)

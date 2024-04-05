@@ -4,8 +4,8 @@
 package fr.inria.diverse.gpfl.xtext.formatting2
 
 import com.google.inject.Inject
-import fr.inria.diverse.gpfl.model.Gpfl.Policy
-import fr.inria.diverse.gpfl.model.Gpfl.Prologue
+import fr.inria.diverse.gpfl.model.gpfl.Policy
+import fr.inria.diverse.gpfl.model.gpfl.Prologue
 import fr.inria.diverse.gpfl.xtext.services.GpflGrammarAccess
 import org.eclipse.xtext.formatting2.AbstractFormatter2
 import org.eclipse.xtext.formatting2.IFormattableDocument

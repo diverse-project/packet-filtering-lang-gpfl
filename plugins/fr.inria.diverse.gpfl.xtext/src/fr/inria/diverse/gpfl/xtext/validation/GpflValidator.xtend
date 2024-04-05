@@ -3,29 +3,29 @@
  */
 package fr.inria.diverse.gpfl.xtext.validation
 
-import fr.inria.diverse.gpfl.model.Gpfl.Accept
-import fr.inria.diverse.gpfl.model.Gpfl.Automata
-import fr.inria.diverse.gpfl.model.Gpfl.BinaryOp
-import fr.inria.diverse.gpfl.model.Gpfl.BooleanLiteral
-import fr.inria.diverse.gpfl.model.Gpfl.Div
-import fr.inria.diverse.gpfl.model.Gpfl.Drop
-import fr.inria.diverse.gpfl.model.Gpfl.Equality
-import fr.inria.diverse.gpfl.model.Gpfl.GpflPackage
-import fr.inria.diverse.gpfl.model.Gpfl.Greater
-import fr.inria.diverse.gpfl.model.Gpfl.GreaterOrEqual
-import fr.inria.diverse.gpfl.model.Gpfl.Inequality
-import fr.inria.diverse.gpfl.model.Gpfl.InitSeq
-import fr.inria.diverse.gpfl.model.Gpfl.IntLiteral
-import fr.inria.diverse.gpfl.model.Gpfl.Lower
-import fr.inria.diverse.gpfl.model.Gpfl.LowerOrEqual
-import fr.inria.diverse.gpfl.model.Gpfl.Minus
-import fr.inria.diverse.gpfl.model.Gpfl.Mult
-import fr.inria.diverse.gpfl.model.Gpfl.NewInterruption
-import fr.inria.diverse.gpfl.model.Gpfl.Nop
-import fr.inria.diverse.gpfl.model.Gpfl.Plus
-import fr.inria.diverse.gpfl.model.Gpfl.StringLiteral
+import fr.inria.diverse.gpfl.model.gpfl.Accept
+import fr.inria.diverse.gpfl.model.gpfl.Automata
+import fr.inria.diverse.gpfl.model.gpfl.BinaryOp
+import fr.inria.diverse.gpfl.model.gpfl.BooleanLiteral
+import fr.inria.diverse.gpfl.model.gpfl.Div
+import fr.inria.diverse.gpfl.model.gpfl.Drop
+import fr.inria.diverse.gpfl.model.gpfl.Equality
+import fr.inria.diverse.gpfl.model.gpfl.GpflPackage
+import fr.inria.diverse.gpfl.model.gpfl.Greater
+import fr.inria.diverse.gpfl.model.gpfl.GreaterOrEqual
+import fr.inria.diverse.gpfl.model.gpfl.Inequality
+import fr.inria.diverse.gpfl.model.gpfl.InitSeq
+import fr.inria.diverse.gpfl.model.gpfl.IntLiteral
+import fr.inria.diverse.gpfl.model.gpfl.Lower
+import fr.inria.diverse.gpfl.model.gpfl.LowerOrEqual
+import fr.inria.diverse.gpfl.model.gpfl.Minus
+import fr.inria.diverse.gpfl.model.gpfl.Mult
+import fr.inria.diverse.gpfl.model.gpfl.NewInterruption
+import fr.inria.diverse.gpfl.model.gpfl.Nop
+import fr.inria.diverse.gpfl.model.gpfl.Plus
+import fr.inria.diverse.gpfl.model.gpfl.StringLiteral
 import org.eclipse.xtext.validation.Check
-import fr.inria.diverse.gpfl.model.Gpfl.Filter
+import fr.inria.diverse.gpfl.model.gpfl.Filter
 
 /**
  * This class contains custom validation rules. 

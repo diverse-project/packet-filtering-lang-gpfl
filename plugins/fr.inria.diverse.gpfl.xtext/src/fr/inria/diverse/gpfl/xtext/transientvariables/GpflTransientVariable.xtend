@@ -1,8 +1,8 @@
 package fr.inria.diverse.gpfl.xtext.transientvariables
 
-import fr.inria.diverse.gpfl.model.Gpfl.Automata
-import fr.inria.diverse.gpfl.model.Gpfl.Policy
-import fr.inria.diverse.gpfl.model.Gpfl.Prologue
+import fr.inria.diverse.gpfl.model.gpfl.Automata
+import fr.inria.diverse.gpfl.model.gpfl.Policy
+import fr.inria.diverse.gpfl.model.gpfl.Prologue
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.xtext.parsetree.reconstr.impl.DefaultTransientValueService

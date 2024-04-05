@@ -33,7 +33,7 @@ Workflow {
 		language = StandardLanguage {
 			name = "fr.inria.diverse.gpfl.xtext.Gpfl"
 			fileExtensions = "gpfl"
-			referencedResource = "platform:/resource/fr.inria.diverse.gpfl.model/model/Gpfl.genmodel"
+			referencedResource = "platform:/resource/fr.inria.diverse.gpfl.model/model/gpfl.genmodel"
 
 			serializer = {
 				generateStub = false

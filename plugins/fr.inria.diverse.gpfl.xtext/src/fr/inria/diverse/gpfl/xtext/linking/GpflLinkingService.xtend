@@ -1,15 +1,15 @@
 package fr.inria.diverse.gpfl.xtext.linking;
 
-import fr.inria.diverse.gpfl.model.Gpfl.Automata
-import fr.inria.diverse.gpfl.model.Gpfl.EventOccurence
-import fr.inria.diverse.gpfl.model.Gpfl.GpflFactory
-import fr.inria.diverse.gpfl.model.Gpfl.GpflPackage
-import fr.inria.diverse.gpfl.model.Gpfl.NewEventOccurence
-import fr.inria.diverse.gpfl.model.Gpfl.Policy
-import fr.inria.diverse.gpfl.model.Gpfl.PortRef
-import fr.inria.diverse.gpfl.model.Gpfl.SetVariable
-import fr.inria.diverse.gpfl.model.Gpfl.StepAutomata
-import fr.inria.diverse.gpfl.model.Gpfl.Transition
+import fr.inria.diverse.gpfl.model.gpfl.Automata
+import fr.inria.diverse.gpfl.model.gpfl.EventOccurence
+import fr.inria.diverse.gpfl.model.gpfl.GpflFactory
+import fr.inria.diverse.gpfl.model.gpfl.GpflPackage
+import fr.inria.diverse.gpfl.model.gpfl.NewEventOccurence
+import fr.inria.diverse.gpfl.model.gpfl.Policy
+import fr.inria.diverse.gpfl.model.gpfl.PortRef
+import fr.inria.diverse.gpfl.model.gpfl.SetVariable
+import fr.inria.diverse.gpfl.model.gpfl.StepAutomata
+import fr.inria.diverse.gpfl.model.gpfl.Transition
 import java.util.Collections
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
@@ -17,7 +17,7 @@ import org.eclipse.xtext.EcoreUtil2
 import org.eclipse.xtext.linking.impl.DefaultLinkingService
 import org.eclipse.xtext.linking.impl.IllegalNodeException
 import org.eclipse.xtext.nodemodel.INode
-import fr.inria.diverse.gpfl.model.Gpfl.InterfaceRef
+import fr.inria.diverse.gpfl.model.gpfl.InterfaceRef
 
 class GpflLinkingService extends DefaultLinkingService {
 	def getStringValue(String string) {
