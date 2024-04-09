@@ -39,115 +39,59 @@ PROLOGUE
 
 FILTER
 	set(nbPacket, nbPacket+1)
+	set(nextHeader, read(48, 8))
 	cond(read(0, 4) == 6,
-		set(nextHeader, read(nextHeader, 8))
-		set(nextEhStart, 320)
+		set(ehStart, 320)
 		set(optDataLen, 0)
-		
-		// While there is another eh
-		iter(nextHeader != 59,
-			// Hop by hop
-			cond(nextHeader == 0x0,
-				set(nextHeader, read(nextEhStart, 8))
-				set(nextEhStart, nextEhStart+64+read(nextEhStart+8, 8)*64)
-				set(optDataLen, 0)
-				iter(true,
-					set(optionType, read(nextEhStart+optDataLen+16, 8))
-					set(optDataLen, read(nextEhStart+16+8, 8))
-					// Pad1 | PadN | Tunnel Encapsulation Limit | | Home Adress | ILNP Nonce
-					cond(optionType == 0x00 | optionType == 0x01 | optionType == 0x04 | optionType == 0xc9 | optionType == 0x01 | optionType == 0x8b,
-						accept
-					)
-					// Jumbo Payload | RPL Option | Endpoint Identification | Line Identification Option | Deprecated | RFC3962 Experiment
-					cond(optionType == 0xc2 | optionType == 0x23 | optionType == 0x63 | optionType == 0x8a | optionType == 0x8c | optionType == 0x4d 
-						| optionType == 0x1e | optionType == 0x3e | optionType == 0x5e | optionType == 0x7e | optionType == 0x9e | optionType == 0xbe | optionType == 0xde | optionType == 0xfe,
-						drop
-					)
-				)
-				drop
-			)
-			
-			// Routing
-			cond(nextHeader == 0x2b,
-				set(nextHeader, read(nextEhStart, 8))
-				set(nextEhStart, nextEhStart+64+read(nextEhStart+8, 8)*64)
-				set(type, read(nextEhStart+16, 8))
-				cond(type == 0b0 | type == 0b1,
-					drop
-				)
+		cond(nextHeader == 0x0,
+			set(optionType, read(ehStart+optDataLen+16, 8))
+			// Pad1 | PadN | Tunnel Encapsulation Limit | Home Adress | ILNP Nonce
+			cond(optionType == 0x00 | optionType == 0x01 | optionType == 0x04 | optionType == 0xc9 | optionType == 0x01 | optionType == 0x8b,
 				accept
 			)
-			
-			// Fragment
-			cond(nextHeader == 0x2c,
-				set(nextHeader, read(nextEhStart, 8))
-				set(nextEhStart, nextEhStart+64)
-				accept
-			)
-			
-			// Encapsuling Security Payload
-			cond(nextHeader == 0x32,
-				set(nextHeader, 59)
-				accept
-			)
-			
-			// Authentification Header
-			cond(nextHeader == 0x33,
-				set(nextHeader, read(nextEhStart, 8))
-				set(nextEhStart, nextEhStart+64+(read(nextEhStart+8, 8)*32))
-				accept
-			)
-			
-			// Destination Opts
-			cond(nextHeader == 0x3c,
-				set(nextHeader, read(nextEhStart, 8))
-				set(nextEhStart, nextEhStart+64+read(nextEhStart+8, 8)*64)
-				set(optDataLen, 0)
-				iter(true,
-					set(optionType, read(nextEhStart+optDataLen+16, 8))
-					set(optDataLen, read(nextEhStart+16+8, 8))
-					// Endpoint Identification | Line Identification Option | RFC3962 Experiment
-					cond(optionType == 0x8a | optionType == 0x8c
-						| optionType == 0x1e | optionType == 0x3e | optionType == 0x5e | optionType == 0x7e | optionType == 0x9e | optionType == 0xbe | optionType == 0xde | optionType == 0xfe,
-						drop
-					)
-				)
-			)
-			
-			// Mobility Header
-			cond(nextHeader == 0x87,
-				set(nextHeader, read(nextEhStart, 8))
-				set(nextEhStart, nextEhStart+64+read(nextEhStart+8, 8)*64)
-				accept
-			)
-			
-			// Host Identity Protocol 
-			cond(nextHeader == 0x8b,
-				set(nextHeader, read(nextEhStart, 8))
-				set(nextEhStart, nextEhStart+64+read(nextEhStart+8, 8)*8)
-				accept
-			)
-			
-			// Shim 6 Protocol
-			cond(nextHeader == 0x8c,
-				set(nextHeader, read(nextEhStart, 8))
-				set(nextEhStart, nextEhStart+64+read(nextEhStart+8, 8)*64)
-				accept
-			)
-			
-			// Experimentation and testing
-			cond(nextHeader == 253 | nextHeader == 254,
-				set(nextHeader, read(nextEhStart, 59))
-				drop
-			)
-			
-			// Unkown EH
-			cond(nextHeader == 0 | nextHeader == 43 | nextHeader == 44 | nextHeader == 50 | nextHeader == 51 
-				| nextHeader == 60 | nextHeader == 135 | nextHeader == 139 | nextHeader == 140,
-				set(nextHeader, read(nextEhStart, 8))
+			// Jumbo Payload | RPL Option | Endpoint Identification | Line Identification Option | Deprecated 
+			// | RFC3962 Experiment
+			cond(optionType == 0xc2 | optionType == 0x23 | optionType == 0x63 | optionType == 0x8a | optionType == 0x8c | optionType == 0x4d 
+				| optionType == 0x1e | optionType == 0x3e | optionType == 0x5e | optionType == 0x7e | optionType == 0x9e | optionType == 0xbe | optionType == 0xde | optionType == 0xfe,
 				drop
 			)
 		)
+			
+		// Destination Opts
+		cond(nextHeader == 0x3c,
+			set(optionType, read(ehStart+optDataLen+16, 8))
+			// Endpoint Identification | Line Identification Option | RFC3962 Experiment
+			cond(optionType == 0x8a | optionType == 0x8c
+				| optionType == 0x1e | optionType == 0x3e | optionType == 0x5e | optionType == 0x7e | optionType == 0x9e | optionType == 0xbe | optionType == 0xde | optionType == 0xfe,
+				drop
+			)
+		)
+		
+		// Routing
+		cond(nextHeader == 0x2b,
+			set(type, read(ehStart+16, 8))
+			cond(type == 0b0 | type == 0b1,
+				drop
+			)
+			accept
+		)
+			
+		// Fragment | Encapsuling Security Payload | Authentification Header | Mobility Header | Host Identity Protocol 
+		// | Shim 6 Protocol
+		cond(nextHeader == 0x2c | nextHeader == 0x32 | nextHeader == 0x33 | nextHeader == 0x87 | nextHeader == 0x8b
+			| nextHeader == 0x8c,
+			accept
+		)
+			
+		// Experimentation and testing
+		// Unkown EH
+		cond(nextHeader == 253 | nextHeader == 254 |
+			nextHeader == 0 | nextHeader == 43 | nextHeader == 44 | nextHeader == 50 | nextHeader == 51 
+			| nextHeader == 60 | nextHeader == 135 | nextHeader == 139 | nextHeader == 140,
+			set(nextHeader, read(ehStart, 8))
+			drop
+		)
+		drop
 	)
 	
 	alarm("Not an IPv6 packet")

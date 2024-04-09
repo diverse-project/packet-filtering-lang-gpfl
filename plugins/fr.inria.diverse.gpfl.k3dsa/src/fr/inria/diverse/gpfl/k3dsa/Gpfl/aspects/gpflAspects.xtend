@@ -1,6 +1,6 @@
-package fr.inria.diverse.gpfl.k3dsa.gpfl.aspects
+package fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects
 
-import fr.inria.diverse.gpfl.k3dsa.gpfl.modules.IOModule
+import fr.inria.diverse.gpfl.k3dsa.Gpfl.modules.IOModule
 import fr.inria.diverse.gpfl.model.gpfl.Accept
 import fr.inria.diverse.gpfl.model.gpfl.Alarm
 import fr.inria.diverse.gpfl.model.gpfl.And
@@ -57,60 +57,60 @@ import fr.inria.diverse.gpfl.model.gpfl.UnaryOp
 import fr.inria.diverse.gpfl.model.gpfl.VariableDeclaration
 import fr.inria.diverse.gpfl.model.gpfl.VariableRef
 
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.PolicyAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.PortAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.PacketAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.PrologueAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.InitSeqAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.FilterAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.AutomataAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.StmtAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.CmdAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NewAutomataAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.AlarmAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.SendAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.SetVariableAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.StepAutomataAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NopAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.AcceptAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.DropAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ConditionAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.IterationAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NewInterruptionAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.StateAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.TransitionAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BlockAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ExpressionAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.UnaryOpAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BinaryOpAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.PortRefAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.StringLiteralAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.IntLiteralAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BooleanLiteralAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NotAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.OrAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.AndAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.EqualityAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.InequalityAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.GreaterOrEqualAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.LowerOrEqualAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.GreaterAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.LowerAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.PlusAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.MinusAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.MultAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.DivAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NegAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.VariableRefAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.VariableDeclarationAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.StringDecAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BooleanDecAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.IntegerDecAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.EventAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.NewEventOccurenceAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.ReadAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BytesDecAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.gpfl.aspects.BytesLiteralAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.PolicyAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.PortAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.PacketAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.PrologueAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.InitSeqAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.FilterAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.AutomataAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.StmtAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.CmdAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.NewAutomataAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.AlarmAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.SendAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.SetVariableAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.StepAutomataAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.NopAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.AcceptAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.DropAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.ConditionAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.IterationAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.NewInterruptionAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.StateAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.TransitionAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.BlockAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.ExpressionAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.UnaryOpAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.BinaryOpAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.PortRefAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.StringLiteralAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.IntLiteralAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.BooleanLiteralAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.NotAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.OrAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.AndAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.EqualityAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.InequalityAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.GreaterOrEqualAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.LowerOrEqualAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.GreaterAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.LowerAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.PlusAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.MinusAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.MultAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.DivAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.NegAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.VariableRefAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.VariableDeclarationAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.StringDecAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.BooleanDecAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.IntegerDecAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.EventAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.NewEventOccurenceAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.ReadAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.BytesDecAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.BytesLiteralAspect.*
 
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import fr.inria.diverse.k3.al.annotationprocessor.InitializeModel
@@ -124,7 +124,7 @@ import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.emf.common.util.EList
 import java.math.BigInteger
 import fr.inria.diverse.gpfl.model.gpfl.InterfaceRef
-import fr.inria.diverse.gpfl.k3dsa.gpfl.modules.MessagingModule
+import fr.inria.diverse.gpfl.k3dsa.Gpfl.modules.MessagingModule
 
 @Aspect(className=Policy)
 class PolicyAspect {
@@ -132,6 +132,7 @@ class PolicyAspect {
 	public static var endOfFilter = false
 	public static var correspondingPort = new HashMap<Port, Port>()
 	
+	@Step
 	@InitializeModel
 	def void initializeModel(EList<String> args) {
 		endOfFilter = false
@@ -219,6 +220,7 @@ class EventAspect {
 
 @Aspect(className=Prologue)
 class PrologueAspect {
+	@Step
 	def void run(Policy root) {
 		_self.init.run(root)
 	}
@@ -226,6 +228,7 @@ class PrologueAspect {
 
 @Aspect(className=InitSeq)
 class InitSeqAspect {
+	@Step
 	def void run(Policy root) {
 		_self.block.run(root)
 	}
@@ -233,9 +236,13 @@ class InitSeqAspect {
 
 @Aspect(className=Filter)
 class FilterAspect {
+	@Step
 	def void run(Policy root) {
 		val oldTime = root.currentTime
 		root.currentTime = root.currentPacket.time
+		MessagingModule.logger.debug("Treatment of packet " +"("+root.currentPacket.time+";"
+			+ root.currentPacket.inPort.number+";" 
+			+ root.currentPacket.content + ")", "Gpfl")
 		// handle interruptions
 		for (interrupt : root.interruptions) {
 			val nextInterrupt = Math.floor((oldTime+interrupt.time)/interrupt.time)*interrupt.time
@@ -257,6 +264,7 @@ class FilterAspect {
 
 @Aspect(className=Block)
 class BlockAspect {
+	@Step
 	def void run(Policy root) {
 		_self.currentStmt = _self.firstStmt
 		while (_self.currentStmt !== null && !endOfFilter) {
@@ -270,6 +278,7 @@ class BlockAspect {
 
 @Aspect(className=Stmt)
 abstract class StmtAspect {
+	@Step
 	def void run(Policy root) {
 		MessagingModule.logger.error("Statement: run of " +_self +" should never occur, please tell the developer to write a method run for this class", "Gpfl")
 	}
@@ -277,6 +286,7 @@ abstract class StmtAspect {
 
 @Aspect(className=Condition)
 class ConditionAspect extends StmtAspect {
+	@Step
 	def void run(Policy root) {
 		if(_self.getIf.eval(root) as Boolean) {
 			_self.then.run(root)
@@ -286,6 +296,7 @@ class ConditionAspect extends StmtAspect {
 
 @Aspect(className=Iteration)
 class IterationAspect extends StmtAspect {
+	@Step
 	def void run(Policy root) {
 		while (_self.getWhile.eval(root) as Boolean) {
 			_self.then.run(root)
@@ -295,6 +306,7 @@ class IterationAspect extends StmtAspect {
 
 @Aspect(className=NewInterruption)
 class NewInterruptionAspect extends StmtAspect {
+	@Step
 	def void run(Policy root) {
 		root.interruptions.add(_self)
 	}
@@ -302,6 +314,7 @@ class NewInterruptionAspect extends StmtAspect {
 
 @Aspect(className=StepAutomata)
 class StepAutomataAspect extends StmtAspect {
+	@Step
 	def void run(Policy root) {
 		val activableTrans = _self.idAutomata.value.transitions.findFirst[t | 
 			t.from === _self.idAutomata.currentState && t.event === _self.eventOccurence.event
@@ -318,6 +331,7 @@ class StepAutomataAspect extends StmtAspect {
 
 @Aspect(className=Cmd)
 abstract class CmdAspect extends StmtAspect {
+	@Step
 	def void run(Policy root) {
 		MessagingModule.logger.error("Command: run of " +_self +" should never occur, please tell the developer to write a method run for this class", "Gpfl")
 	}
@@ -325,6 +339,7 @@ abstract class CmdAspect extends StmtAspect {
 
 @Aspect(className=NewAutomata)
 class NewAutomataAspect extends CmdAspect {
+	@Step
 	def void run(Policy root) {
 		_self.currentState = _self.value.initialState
 	}
@@ -332,6 +347,7 @@ class NewAutomataAspect extends CmdAspect {
 
 @Aspect(className=Alarm)
 class AlarmAspect extends CmdAspect {
+	@Step
 	def void run(Policy root) {
 		MessagingModule.logger.error("ALARM @ "+ root.currentTime+ ": " + _self.message.eval(root) as String, "Gpfl")
 	}
@@ -339,6 +355,7 @@ class AlarmAspect extends CmdAspect {
 
 @Aspect(className=Send)
 class SendAspect extends CmdAspect {
+	@Step
 	def void run(Policy root) {
 		var packet = "("+root.currentTime+";"
 			+ _self.port.number+";" 
@@ -352,6 +369,7 @@ class SendAspect extends CmdAspect {
 
 @Aspect(className=SetVariable)
 class SetVariableAspect extends CmdAspect {
+	@Step
 	def void run(Policy root) {
 		val value = _self.value.eval(root)
 		if (_self.declaration instanceof VariableDeclaration){	
@@ -361,7 +379,15 @@ class SetVariableAspect extends CmdAspect {
 			if(variable instanceof BytesDec) {
 				variable.value = value as BigInteger
 			} else if (variable instanceof IntegerDec) {
-				variable.value = value as Integer
+				// if there is an implicit cast from int to bits
+				if (value instanceof BigInteger) {
+					root.variables.remove(variable)
+					var newVar = GpflFactory.eINSTANCE.createBytesDec
+					newVar.name = _self.declaration.name
+					newVar.value = value
+					root.variables.add(newVar)
+				} else
+					variable.value = value as Integer
 			} else if (variable instanceof StringDec) {
 				variable.value = value as String
 			} else if (variable instanceof BooleanDec) {
@@ -397,16 +423,15 @@ class SetVariableAspect extends CmdAspect {
 
 @Aspect(className=Nop)
 class NopAspect extends CmdAspect {
+	@Step
 	def void run(Policy root) { }
 }
 
 @Aspect(className=Accept)
 class AcceptAspect extends CmdAspect {
+	@Step
 	def void run(Policy root) {
-		var packet = "("+root.currentTime+";"
-			+ correspondingPort.get(root.currentPacket.inPort).number+";" 
-			+ root.currentPacket.content + ")"
-		MessagingModule.logger.debug("ACCEPT " + packet, "Gpfl")
+		MessagingModule.logger.debug("ACCEPT\n", "Gpfl")
 		
 		IOModule.writePacket(root.currentPacket, correspondingPort.get(root.currentPacket.inPort))
 		endOfFilter = true
@@ -415,17 +440,16 @@ class AcceptAspect extends CmdAspect {
 
 @Aspect(className=Drop)
 class DropAspect extends CmdAspect {
+	@Step
 	def void run(Policy root) {
-		var packet = "("+root.currentTime+";"
-			+ root.currentPacket.inPort.number
-			+";"+root.currentPacket.content+")"
-		MessagingModule.logger.debug("DROP " + packet, "Gpfl")
+		MessagingModule.logger.debug("DROP\n", "Gpfl")
 		endOfFilter = true
 	}
 }
 
 @Aspect(className=NewEventOccurence)
 class NewEventOccurenceAspect extends CmdAspect {
+	@Step
 	def void run(Policy root) {
 		var eventOcc = GpflFactory.eINSTANCE.createEventOccurence
 		eventOcc.name = _self.occurence.name
@@ -502,9 +526,20 @@ class BytesLiteralAspect extends ExpressionAspect {
 @Aspect(className=Read)
 class ReadAspect extends ExpressionAspect {
 	def Object eval(Policy root) {
-		val offset = _self.offset.eval(root) as Integer
-		val length = _self.length.eval(root) as Integer
-		return new BigInteger(root.currentPacket.content.toString.substring(offset, offset+length), 2)
+		var offset = _self.offset.eval(root)
+		var length = _self.length.eval(root)
+		try {
+			if (offset instanceof BigInteger) offset = offset.intValue();
+			if (length instanceof BigInteger) length = length.intValue();
+			return new BigInteger(root.currentPacket.content.toString.substring(offset as Integer, offset as Integer + length as Integer), 2)
+		} catch(StringIndexOutOfBoundsException e) {
+			MessagingModule.logger.error("Trying to read from " + offset 
+				+ " to " + (offset as Integer + length as Integer) 
+				+ " on a packet of size " + root.currentPacket.content.length
+				, "Gpfl"
+			)
+			return null
+		}
 	}
 }
 
@@ -589,9 +624,11 @@ class AndAspect extends BinaryOpAspect {
 @Aspect(className=Equality)
 class EqualityAspect extends BinaryOpAspect {
 	def Object eval(Policy root) {
-		val left = _self.left.eval(root)
-		val right = _self.right.eval(root)
+		var left = _self.left.eval(root)
+		var right = _self.right.eval(root)
 		try {
+			if(left instanceof BigInteger && right instanceof Integer) right = BigInteger.valueOf(right as Integer)
+			else if(right instanceof BigInteger && left instanceof Integer) left = BigInteger.valueOf(left as Integer)
 			return left.equals(right)
 		} catch (ClassCastException e) {
 			MessagingModule.logger.error("Type mismatch: Cannot compare (==) " + left + "("+left?.class+")"
@@ -606,9 +643,11 @@ class EqualityAspect extends BinaryOpAspect {
 @Aspect(className=Inequality)
 class InequalityAspect extends BinaryOpAspect {
 	def Object eval(Policy root) {
-		val left = _self.left.eval(root)
-		val right = _self.right.eval(root)
+		var left = _self.left.eval(root)
+		var right = _self.right.eval(root)
 		try {
+			if(left instanceof BigInteger && right instanceof Integer) right = BigInteger.valueOf(right as Integer)
+			else if(right instanceof BigInteger && left instanceof Integer) left = BigInteger.valueOf(left as Integer)
 			return !left.equals(right)
 		} catch (ClassCastException e) {
 			MessagingModule.logger.error("Type mismatch: Cannot compare (!=) " + left + "("+left?.class+")"
@@ -698,6 +737,8 @@ class PlusAspect extends BinaryOpAspect {
 	def Object eval(Policy root) {
 		val left = _self.left.eval(root)
 		val right = _self.right.eval(root)
+		if(left instanceof BigInteger && right instanceof Integer) return (left as BigInteger) + (BigInteger.valueOf(right as Integer))
+		else if(right instanceof BigInteger && left instanceof Integer) return (BigInteger.valueOf(left as Integer)) + (right as BigInteger) 
 		if ((left instanceof Integer && right instanceof Integer)
 			|| (left instanceof String && right instanceof String)
 		) {
@@ -707,7 +748,9 @@ class PlusAspect extends BinaryOpAspect {
 		} else if (right instanceof String) {
 			return left + (right as String)
 		}
-		MessagingModule.logger.error("Type mismatch: Cannot add " + left + " and " + right, "Gpfl")
+		MessagingModule.logger.error("Type mismatch: Cannot add " + left + "("+left?.class+")"
+				+ " and " + right + "("+right?.class+")"
+			, "Gpfl")
 		return null
 	}
 }
@@ -717,10 +760,11 @@ class MinusAspect extends BinaryOpAspect {
 	def Object eval(Policy root) {
 		val left = _self.left.eval(root)
 		val right = _self.right.eval(root)
-		if (left instanceof Integer && right instanceof Integer) {
-			return (left as Integer) - (right as Integer)
-		}
-		MessagingModule.logger.error("Type mismatch: Cannot minus " + left + " by " + right, "Gpfl")
+		if(left instanceof BigInteger && right instanceof Integer) return (left as BigInteger) - (BigInteger.valueOf(right as Integer))
+		else if(right instanceof BigInteger && left instanceof Integer) return (BigInteger.valueOf(left as Integer)) - (right as BigInteger) 
+		MessagingModule.logger.error("Type mismatch: Cannot minus " + left + "("+left?.class+")"
+				+ " and " + right + "("+right?.class+")"
+			, "Gpfl")
 		return null
 	}
 }
@@ -728,12 +772,13 @@ class MinusAspect extends BinaryOpAspect {
 @Aspect(className=Mult)
 class MultAspect extends BinaryOpAspect {
 	def Object eval(Policy root) {
-		val left = _self.left.eval(root)
-		val right = _self.right.eval(root)
-		if (left instanceof Integer && right instanceof Integer) {
-			return (left as Integer) * (right as Integer)
-		}
-		MessagingModule.logger.error("Type mismatch: Cannot multiply " + left + " by " + right, "Gpfl")
+		var left = _self.left.eval(root)
+		var right = _self.right.eval(root)
+		if(left instanceof BigInteger && right instanceof Integer) return (left as BigInteger) * (BigInteger.valueOf(right as Integer))
+		else if(right instanceof BigInteger && left instanceof Integer) return (right as BigInteger) * (BigInteger.valueOf(left as Integer))
+		MessagingModule.logger.error("Type mismatch: Cannot multiply " + left + "("+left?.class+")"
+				+ " and " + right + "("+right?.class+")"
+			, "Gpfl")
 		return null
 	}
 }
@@ -743,14 +788,15 @@ class DivAspect extends BinaryOpAspect {
 	def Object eval(Policy root) {
 		val left = _self.left.eval(root)
 		val right = _self.right.eval(root)
-		if (left instanceof Integer && right instanceof Integer) {
-			if (right == 0) {
-				MessagingModule.logger.error("You cannot divide by 0", "Gpfl")
-				return null
-			}
-			return (left as Integer) - (right as Integer)
+		if (right == 0) {
+			MessagingModule.logger.error("You cannot divide by 0", "Gpfl")
+			return null
 		}
-		MessagingModule.logger.error("Type mismatch: Cannot divide " + left + " by " + right, "Gpfl")
+		if(left instanceof BigInteger && right instanceof Integer) return (left as BigInteger) / (BigInteger.valueOf(right as Integer))
+		else if(right instanceof BigInteger && left instanceof Integer) return (BigInteger.valueOf(left as Integer)) / (right as BigInteger) 
+		MessagingModule.logger.error("Type mismatch: Cannot divide " + left + "("+left?.class+")"
+				+ " and " + right + "("+right?.class+")"
+			, "Gpfl")
 		return null
 	}
 }

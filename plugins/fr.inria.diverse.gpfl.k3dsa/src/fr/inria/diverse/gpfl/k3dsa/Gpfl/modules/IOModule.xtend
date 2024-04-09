@@ -1,4 +1,4 @@
-package fr.inria.diverse.gpfl.k3dsa.gpfl.modules
+package fr.inria.diverse.gpfl.k3dsa.Gpfl.modules
 
 import fr.inria.diverse.gpfl.model.gpfl.GpflFactory
 import fr.inria.diverse.gpfl.model.gpfl.Packet

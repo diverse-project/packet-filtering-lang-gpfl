@@ -2,7 +2,7 @@
 ### Input Packets
 | Time | Extension header | Option | Specific Field | ACCEPT/DROP |
 |------|------------------|--------|----------------|-------------|
-|001 | Hop by hop | Pad1 || ACCEPT |
+|001 | Hop by hop | Tunnel Encapsulation Limit || ACCEPT |
 |015 | Hop by hop | PadN || ACCEPT |
 |016 | Hop by hop | Router-Alert | protocol = RSVP | ACCEPT |
 |018 | Hop by hop | Router-Alert | protocol = MLD | ACCEPT |

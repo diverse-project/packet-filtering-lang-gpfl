@@ -1,4 +1,4 @@
-package fr.inria.diverse.gpfl.k3dsa.gpfl.modules
+package fr.inria.diverse.gpfl.k3dsa.Gpfl.modules
 
 import org.eclipse.gemoc.commons.eclipse.messagingsystem.api.MessagingSystem
 import org.eclipse.gemoc.commons.eclipse.messagingsystem.api.MessagingSystemManager
