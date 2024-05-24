@@ -138,7 +138,6 @@ class PolicyAspect {
 		endOfFilter = false
 		// ------------ Read input file and create the packets ------------ //
 		_self.packets.clear
-		_self.currentTime = 0
 		val IWorkspace workspace = ResourcesPlugin.getWorkspace()
 		try {			
 			IOModule.createPacketsFromFile(_self, new File(workspace.root.findMember(args.get(0)).locationURI.path))
@@ -186,8 +185,9 @@ class PolicyAspect {
 	@Step
 	def void run() {
  		_self.prologue.run(_self)
- 		for (packet : _self.packets) {
-			_self.currentPacket = packet			
+ 		_self.filter.currentTime = 0
+ 		for (packet : _self.packets) {		
+ 			_self.filter.currentPacket = packet
 	 		_self.filter.run(_self)
 		}
 	}
@@ -238,23 +238,23 @@ class InitSeqAspect {
 class FilterAspect {
 	@Step
 	def void run(Policy root) {
-		val oldTime = root.currentTime
-		root.currentTime = root.currentPacket.time
-		MessagingModule.logger.debug("Treatment of packet " +"("+root.currentPacket.time+";"
-			+ root.currentPacket.inPort.number+";" 
-			+ root.currentPacket.content + ")", "Gpfl")
+		val oldTime = _self.currentTime
+		_self.currentTime = _self.currentPacket.time
+		MessagingModule.logger.debug("Treatment of packet " +"("+_self.currentPacket.time+";"
+			+ _self.currentPacket.inPort.number+";" 
+			+ _self.currentPacket.content + ")", "Gpfl")
 		// handle interruptions
 		for (interrupt : root.interruptions) {
 			val nextInterrupt = Math.floor((oldTime+interrupt.time)/interrupt.time)*interrupt.time
-			if ((!interrupt.loop && root.currentTime >= interrupt.time && interrupt.time > oldTime)
-				|| (interrupt.loop && nextInterrupt > oldTime && nextInterrupt <= root.currentTime)
+			if ((!interrupt.loop && _self.currentTime >= interrupt.time && interrupt.time > oldTime)
+				|| (interrupt.loop && nextInterrupt > oldTime && nextInterrupt <= _self.currentTime)
 			) {			
 				var i = 0
 				do {
 					interrupt.block.run(root)
 					MessagingModule.logger.debug("Interruption @ "+(nextInterrupt+(interrupt.time*i)), "Gpfl")
 					i++
-				}while(nextInterrupt+(interrupt.time*i) <= root.currentTime)
+				}while(nextInterrupt+(interrupt.time*i) <= _self.currentTime)
 			}
 		}
 		_self.block.run(root)
@@ -349,7 +349,7 @@ class NewAutomataAspect extends CmdAspect {
 class AlarmAspect extends CmdAspect {
 	@Step
 	def void run(Policy root) {
-		MessagingModule.logger.error("ALARM @ "+ root.currentTime+ ": " + _self.message.eval(root) as String, "Gpfl")
+		MessagingModule.logger.error("ALARM @ "+ root.filter.currentTime+ ": " + _self.message.eval(root) as String, "Gpfl")
 	}
 }
 
@@ -357,7 +357,7 @@ class AlarmAspect extends CmdAspect {
 class SendAspect extends CmdAspect {
 	@Step
 	def void run(Policy root) {
-		var packet = "("+root.currentTime+";"
+		var packet = "("+root.filter.currentTime+";"
 			+ _self.port.number+";" 
 			+ _self.packet.content + ")"
 		MessagingModule.logger.debug("SEND " + packet, "Gpfl")
@@ -433,7 +433,7 @@ class AcceptAspect extends CmdAspect {
 	def void run(Policy root) {
 		MessagingModule.logger.debug("ACCEPT\n", "Gpfl")
 		
-		IOModule.writePacket(root.currentPacket, correspondingPort.get(root.currentPacket.inPort))
+		IOModule.writePacket(root.filter.currentPacket, correspondingPort.get(root.filter.currentPacket.inPort))
 		endOfFilter = true
 	}
 }
@@ -480,7 +480,7 @@ class VariableRefAspect extends ExpressionAspect {
 class PortRefAspect extends ExpressionAspect {
 	// a port ref can be called only to check if it's the current port, so it's a boolean
 	def Object eval(Policy root) {
-		return root.currentPacket.inPort.equals(_self.port)
+		return root.filter.currentPacket.inPort.equals(_self.port)
 	}
 }
 
@@ -488,7 +488,7 @@ class PortRefAspect extends ExpressionAspect {
 class InterfaceRefAspect extends ExpressionAspect {
 	// a port ref can be called only to check if it's the current port, so it's a boolean
 	def Object eval(Policy root) {
-		return root.currentPacket.inPort.interface.equals(_self.interface)
+		return root.filter.currentPacket.inPort.interface.equals(_self.interface)
 	}
 }
 
@@ -531,11 +531,11 @@ class ReadAspect extends ExpressionAspect {
 		try {
 			if (offset instanceof BigInteger) offset = offset.intValue();
 			if (length instanceof BigInteger) length = length.intValue();
-			return new BigInteger(root.currentPacket.content.toString.substring(offset as Integer, offset as Integer + length as Integer), 2)
+			return new BigInteger(root.filter.currentPacket.content.toString.substring(offset as Integer, offset as Integer + length as Integer), 2)
 		} catch(StringIndexOutOfBoundsException e) {
 			MessagingModule.logger.error("Trying to read from " + offset 
 				+ " to " + (offset as Integer + length as Integer) 
-				+ " on a packet of size " + root.currentPacket.content.length
+				+ " on a packet of size " + root.filter.currentPacket.content.length
 				, "Gpfl"
 			)
 			return null
