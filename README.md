@@ -1,7 +1,7 @@
 # Global Packet Filtering Language
 
 # The language
-You can find the model in the [plugins/model](./plugins/fr.inria.diverse.gpfl.model/model/gpfl_class_diagram.svg).  
+You can find the model in the [plugins/model](./plugins/fr.inria.diverse.gpfl.model/model/gpfl_class_diagram.jpg).  
 For example of filtering policy go to [example](./example/).
 ## Structure
 This language is divided in two parts, the prologue and the filter.
