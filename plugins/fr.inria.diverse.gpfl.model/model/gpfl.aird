@@ -6,7 +6,7 @@
     <semanticResources>Xbase.ecore</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_cvu7cHQGEe6fnP_wBKWEiw">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_0KWLcI3TEe6b56wEsKlOmQ" name="gpfl" repPath="#_0KR6AI3TEe6b56wEsKlOmQ" changeId="8590111f-98e5-451e-9ff0-e5aea8cea5c7">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_0KWLcI3TEe6b56wEsKlOmQ" name="gpfl" repPath="#_0KR6AI3TEe6b56wEsKlOmQ" changeId="381245b2-2d31-4ad7-a7a1-00fd722fdecd">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="gpfl.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -987,7 +987,7 @@
         </edges>
         <edges xmi:type="notation:Edge" xmi:id="_0gnWYI3TEe6b56wEsKlOmQ" type="4001" element="_0gOU3o3TEe6b56wEsKlOmQ" source="_0gZ7AI3TEe6b56wEsKlOmQ" target="_0gXezo3TEe6b56wEsKlOmQ">
           <children xmi:type="notation:Node" xmi:id="_0gnWZI3TEe6b56wEsKlOmQ" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0gnWZY3TEe6b56wEsKlOmQ" x="-10"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0gnWZY3TEe6b56wEsKlOmQ" x="-11" y="-54"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_0gnWZo3TEe6b56wEsKlOmQ" type="6002">
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0gnWZ43TEe6b56wEsKlOmQ" x="102" y="-10"/>
@@ -997,7 +997,7 @@
           </children>
           <styles xmi:type="notation:ConnectorStyle" xmi:id="_0gnWYY3TEe6b56wEsKlOmQ" routing="Rectilinear" lineColor="0"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_0gnWYo3TEe6b56wEsKlOmQ" fontColor="7490599" fontName="Noto Sans" fontHeight="8"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_0gnWY43TEe6b56wEsKlOmQ" points="[33, 98, 45, -225]$[33, 225, 45, -98]"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_0gnWY43TEe6b56wEsKlOmQ" points="[9, 98, 21, -225]$[9, 225, 21, -98]"/>
           <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_0gnWao3TEe6b56wEsKlOmQ" id="(0.5084745762711864,0.0)"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_0gnWa43TEe6b56wEsKlOmQ" id="(0.5084745762711864,1.0)"/>
         </edges>
