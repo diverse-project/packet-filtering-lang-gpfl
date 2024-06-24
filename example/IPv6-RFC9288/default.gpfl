@@ -52,7 +52,7 @@ FILTER
 			cond(nextHeader == 0x0,
 				set(nextHeader, read(nextEhStart, 8))
 				set(hdrExtLen, read(nextEhStart+8, 8))
-				set(nextEhStart, nextEhStart+64+hdrExtLen, 8)*64)
+				set(nextEhStart, nextEhStart+64+hdrExtLen*64)
 				set(optDataLen, 0)
 				set(totalEhLen, 0)
 				iter(totalEhLen < hdrExtLen,
