@@ -79,7 +79,7 @@ class GpflValidator extends AbstractGpflValidator {
 	@Check
 	def checkBlockInterrupt(NewInterruption interupt) {
 		if (interupt.block.firstStmt instanceof Nop && interupt.block.firstStmt.next === null) {
-			warning('This interupt will not execute anything',
+			warning('This interuption will not execute anything',
 				GpflPackage.Literals.NEW_INTERRUPTION__BLOCK,
 				EMPTY_INTERRUPT
 			)

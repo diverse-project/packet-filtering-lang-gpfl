@@ -2,10 +2,10 @@
 
 $GPFL$ is a language  that allows to express policies that accept or drop packets at the entry of a network depending on generic conditions related to the packet content or external information.
 
-You can find the model in the [plugins/model](./plugins/fr.inria.diverse.gpfl.model/model/gpfl_class_diagram.jpg).  
+The model is in [plugins/model](./plugins/fr.inria.diverse.gpfl.model/model/gpfl_class_diagram.jpg).  
 For example of filtering policy go to [example](./example/).
 
-## The simulator
+## Simulator
 ### Packets
 Packets are read from a text input file and the accepted one are written in a text output file.
 Each line of the file corresponds to a packet and has this form:
@@ -29,7 +29,7 @@ The clock is set at 0 while the filtering policy hasn't begun. Then it is update
 ### Interruptions
 At every arriving packet the time is updated. Before handling the packet the interruptions are executed if needed.
 
-## The language
+## Language
 Terminals are shown in bold font and nonterminals in italics. Literal characters are given in single quotes. Parentheses `(` and `)` indicate grouping when needed. Square brackets `[` and `]` enclose optional items. Vertical bars `|` separate alternatives.
 
 ||||
@@ -124,10 +124,24 @@ Expressions are too numerous to be listed in the grammar. They include all the b
 
 Literals of type `INT`, `STRING`, `BOOLEAN`, `BYTES` (written following the pattern `"0b"("0" | "1")+`), `HEXA` (written following the pattern `"0x" ('0'..'9'|'a'..'f'|'A'..'F')*`), as well as variable ID can be manipulated by operators.
 
-There is three extra operators that are added in $GPFL$:
+There is three extra operators that are specific to $GPFL$:
 - An operator for ports id comparison (`_port==`);
 - An operator for interfaces id comparison (`_interface==`);
 - An operator to read a sequence of bits from a packet (`read(offset:expression, length:expression)`)
 
-## The tooling
-TODO
+## Tooling
+
+- interpretor
+- debugger (WIP)
+- syntax highlighting 
+- auto completion
+- validation
+  - no outgoing transition form the initial state of an automaton
+  - empty name for an automaton
+  - interruption with a time < 1
+  - interruption with only a `nop` to execute
+  - presence of a `accept`, `drop` or `nop` in the initialisation sequence
+  - filter starting with an `accept` or a `drop`
+  - comparison of constants 
+  - boolean used in calculus
+- formatting (WIP)
