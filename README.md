@@ -2,11 +2,23 @@
 
 $GPFL$ is a language  that allows to express policies that accept or drop packets at the entry of a network depending on generic conditions related to the packet content or external information.
 
-The model is in [plugins/model](./plugins/fr.inria.diverse.gpfl.model/model/gpfl_class_diagram.jpg).  
 For example of filtering policy go to [example](./example/).
 
+## Usage and Development
+This language is developed with the [GEMOC Studio](https://gemoc.org/studio.html).  
+
+**Setup the environement**  
+Once the repo is cloned you have to import into the workspaces of GEMOC all the projects of the folder [plugins](./plugins/) (`File -> Import... -> General -> Existing Projects into Workspace`). 
+Then generate the model classes by opening [fr.inria.diverse.gpfl.model/model/gpfl.genmodel](./plugins/fr.inria.diverse.gpfl.model/model/gpfl.genmodel) then `right click on GPfl -> Generate model code`.  
+And finally in [fr.inria.diverse.gpfl.xtext](./plugins/fr.inria.diverse.gpfl.xtext/src/fr/inria/diverse/gpfl/xtext/) `right click on GenerateGpfl.mwe2 -> Run as -> MWE2 Workflow`.
+
+**Run the project**  
+`Run -> Launch Runtime Eclipse`
+
 ## Language
-Terminals are shown in bold font and nonterminals in italics. Literal characters are given in single quotes. Parentheses `(` and `)` indicate grouping when needed. Square brackets `[` and `]` enclose optional items. Vertical bars `|` separate alternatives.
+This language has been designed model first. Its model can found in  [plugins/model](./plugins/fr.inria.diverse.gpfl.model/model/gpfl.svg).
+
+The grammar is detailed bellow. Terminals are shown in bold font and nonterminals in italics. Literal characters are given in single quotes. Parentheses `(` and `)` indicate grouping when needed. Square brackets `[` and `]` enclose optional items. Vertical bars `|` separate alternatives.
 
 ||||
 |-|-|-|
