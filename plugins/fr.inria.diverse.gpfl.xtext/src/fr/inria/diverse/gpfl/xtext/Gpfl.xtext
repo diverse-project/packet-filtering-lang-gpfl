@@ -114,8 +114,13 @@ Atomic returns Expression:
 	| {BytesLiteral} value=(BYTES|HEXA)
 	| {VariableRef} variable=[VariableDeclaration|ID]
 	| {PortRef} "_port" "==" port=[Port|PORT]
-	| {InterfaceRef} "_interface" "==" interface=[Interface|ID]
+	| {InterfaceRef} "_side" "==" interface=Side
 	| {Read} "read""(" offset=Expression "," length=Expression ")"
+;
+
+Side:
+	{Inside} "inside"
+	|{Outside} "outside"
 ;
 
 EBoolean returns ecore::EBoolean: 'true'|'false';

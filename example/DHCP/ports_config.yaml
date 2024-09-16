@@ -1,2 +1,8 @@
-40 -> 80
-80 -> 40
+---
+number: 80
+out: 40
+side: inside
+---
+number: 40
+out: 80
+side: outside

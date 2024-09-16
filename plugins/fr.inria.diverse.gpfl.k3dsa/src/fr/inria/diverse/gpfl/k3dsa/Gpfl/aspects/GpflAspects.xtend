@@ -1,6 +1,10 @@
 package fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import fr.inria.diverse.gpfl.k3dsa.Gpfl.modules.IOModule
+import fr.inria.diverse.gpfl.k3dsa.Gpfl.modules.MessagingModule
+import fr.inria.diverse.gpfl.k3dsa.Gpfl.src.ConfigPort
 import fr.inria.diverse.gpfl.model.gpfl.Accept
 import fr.inria.diverse.gpfl.model.gpfl.Alarm
 import fr.inria.diverse.gpfl.model.gpfl.And
@@ -26,6 +30,7 @@ import fr.inria.diverse.gpfl.model.gpfl.Inequality
 import fr.inria.diverse.gpfl.model.gpfl.InitSeq
 import fr.inria.diverse.gpfl.model.gpfl.IntLiteral
 import fr.inria.diverse.gpfl.model.gpfl.IntegerDec
+import fr.inria.diverse.gpfl.model.gpfl.InterfaceRef
 import fr.inria.diverse.gpfl.model.gpfl.Iteration
 import fr.inria.diverse.gpfl.model.gpfl.Lower
 import fr.inria.diverse.gpfl.model.gpfl.LowerOrEqual
@@ -56,127 +61,88 @@ import fr.inria.diverse.gpfl.model.gpfl.Transition
 import fr.inria.diverse.gpfl.model.gpfl.UnaryOp
 import fr.inria.diverse.gpfl.model.gpfl.VariableDeclaration
 import fr.inria.diverse.gpfl.model.gpfl.VariableRef
-
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.PolicyAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.PortAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.PacketAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.PrologueAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.InitSeqAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.FilterAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.AutomataAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.StmtAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.CmdAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.NewAutomataAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.AlarmAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.SendAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.SetVariableAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.StepAutomataAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.NopAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.AcceptAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.DropAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.ConditionAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.IterationAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.NewInterruptionAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.StateAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.TransitionAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.BlockAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.ExpressionAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.UnaryOpAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.BinaryOpAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.PortRefAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.StringLiteralAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.IntLiteralAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.BooleanLiteralAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.NotAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.OrAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.AndAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.EqualityAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.InequalityAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.GreaterOrEqualAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.LowerOrEqualAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.GreaterAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.LowerAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.PlusAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.MinusAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.MultAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.DivAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.NegAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.VariableRefAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.VariableDeclarationAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.StringDecAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.BooleanDecAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.IntegerDecAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.EventAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.NewEventOccurenceAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.ReadAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.BytesDecAspect.*
-import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.BytesLiteralAspect.*
-
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import fr.inria.diverse.k3.al.annotationprocessor.InitializeModel
 import fr.inria.diverse.k3.al.annotationprocessor.Main
 import fr.inria.diverse.k3.al.annotationprocessor.Step
 import java.io.File
-import java.util.HashMap
+import java.io.FileOutputStream
+import java.math.BigInteger
+import java.util.ArrayList
 import java.util.Scanner
 import org.eclipse.core.resources.IWorkspace
 import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.emf.common.util.EList
-import java.math.BigInteger
-import fr.inria.diverse.gpfl.model.gpfl.InterfaceRef
-import fr.inria.diverse.gpfl.k3dsa.Gpfl.modules.MessagingModule
+
+import static fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.PolicyAspect.*
+
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.BlockAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.ExpressionAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.FilterAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.InitSeqAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.PrologueAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.StmtAspect.*
+import static extension fr.inria.diverse.gpfl.k3dsa.Gpfl.aspects.VariableDeclarationAspect.*
 
 @Aspect(className=Policy)
 class PolicyAspect {
 	
-	public static var endOfFilter = false
-	public static var correspondingPort = new HashMap<Port, Port>()
+	public static var boolean endOfFilter
+	public static FileOutputStream outputFile
 	
 	@Step
 	@InitializeModel
 	def void initializeModel(EList<String> args) {
 		endOfFilter = false
-		// ------------ Read input file and create the packets ------------ //
-		_self.packets.clear
 		val IWorkspace workspace = ResourcesPlugin.getWorkspace()
-		try {			
-			IOModule.createPacketsFromFile(_self, new File(workspace.root.findMember(args.get(0)).locationURI.path))
-		} catch(NullPointerException e) {
-			MessagingModule.logger.error("Input file " + args.get(0) + " not found. Go check run configurations", "Gpfl")
-			e.printStackTrace
-		}
 		try {
-			IOModule.createOutputFile(new File(workspace.root.findMember(args.get(1)).locationURI.path))
-		} catch(NullPointerException e) {
-			MessagingModule.logger.error("Output file " + args.get(1) + " not found. Go check run configurations", "Gpfl")
-			e.printStackTrace
-		}
-		try {
+			_self.inside = GpflFactory.eINSTANCE.createInside
+			_self.outside = GpflFactory.eINSTANCE.createOutside
+			
+			var mapper = new ObjectMapper(new YAMLFactory())
+			
 			val portOracle = new File(workspace.root.findMember(args.get(2)).locationURI.path)
 			val input = new Scanner(portOracle)
+			val configs = new ArrayList<ConfigPort>
 			while (input.hasNextLine) {
-				val line = input.nextLine
-				val sourcePort = Integer.parseInt(line.split("->").get(0).trim())
-				var portIn = _self.inPorts.findFirst[p | p.number == sourcePort]
-				if(portIn === null) {
-					val port = GpflFactory.eINSTANCE.createPort
-					port.number = sourcePort
-					_self.inPorts.add(port)
-					portIn = port
+				var line = input.nextLine
+				for (var i=0; i<3; i++) {
+					line += "\n" + input.nextLine
 				}
-				val destPort = Integer.parseInt(line.split("->").get(1).trim())
-				var portOut = _self.inPorts.findFirst[p | p.number == destPort]
-				if(portOut === null) {
-					val port = GpflFactory.eINSTANCE.createPort
-					port.number = destPort
-					_self.inPorts.add(port)
-					portOut = port
+				var configPort = mapper.readValue(line, typeof(ConfigPort))
+				configs.add(configPort)
+				var port = GpflFactory.eINSTANCE.createPort
+				port.number = configPort.number
+				if (configPort.side.toLowerCase.equals("inside") || configPort.side.toLowerCase.equals("inbound"))
+					port.interface = _self.inside
+				else if (configPort.side.toLowerCase.equals("outside") || configPort.side.toLowerCase.equals("outbound"))
+					port.interface = _self.outside
+				else {
+					MessagingModule.error("Configuration of ports: Wrong side, a side must be desiganted by terms \"inside\" \"inbound\" \"outside\" or \"outbound\". Go check port_config.yaml.")
+					throw new Exception("Wrong side name") 
 				}
-				correspondingPort.put(portIn, portOut)
+				_self.inPorts.add(port)
+			}
+			for (port: _self.inPorts) {
+				port.mappedOut = _self.inPorts.findFirst[p | p.number == configs.findFirst[c | c.number == port.number].out]
 			}
 			input.close
 		} catch(NullPointerException e) {
-			MessagingModule.logger.error("Output file " + args.get(2) + " not found. Go check run configurations", "Gpfl")
+			MessagingModule.error("Port file " + args.get(2) + " not found. Go check run configurations")
+			e.printStackTrace
+		}
+		// ------------ Read input file and create the packets ------------ //
+		_self.packets.clear
+		try {			
+			IOModule.createPacketsFromFile(_self, new File(workspace.root.findMember(args.get(0)).locationURI.path))
+		} catch(NullPointerException e) {
+			MessagingModule.error("Input file " + args.get(0) + " not found. Go check run configurations")
+			e.printStackTrace
+		}
+		try {
+			outputFile = new FileOutputStream(new File(workspace.root.findMember(args.get(1)).locationURI.path))
+		} catch(NullPointerException e) {
+			MessagingModule.error("Output file " + args.get(1) + "not found. Go check run configurations")
 			e.printStackTrace
 		}
 	}
@@ -240,9 +206,9 @@ class FilterAspect {
 	def void run(Policy root) {
 		val oldTime = _self.currentTime
 		_self.currentTime = _self.currentPacket.time
-		MessagingModule.logger.debug("Treatment of packet " +"("+_self.currentPacket.time+";"
+		MessagingModule.debug("Treatment of packet "+"("+_self.currentPacket.time+";"
 			+ _self.currentPacket.inPort.number+";" 
-			+ _self.currentPacket.content + ")", "Gpfl")
+			+ _self.currentPacket.content + ")")
 		// handle interruptions
 		for (interrupt : root.interruptions) {
 			val nextInterrupt = Math.floor((oldTime+interrupt.time)/interrupt.time)*interrupt.time
@@ -252,9 +218,9 @@ class FilterAspect {
 				var i = 0
 				do {
 					interrupt.block.run(root)
-					MessagingModule.logger.debug("Interruption @ "+(nextInterrupt+(interrupt.time*i)), "Gpfl")
+					MessagingModule.debug("Interruption @ "+(nextInterrupt+(interrupt.time*i)))
 					i++
-				}while(nextInterrupt+(interrupt.time*i) <= _self.currentTime)
+				} while(nextInterrupt+(interrupt.time*i) <= _self.currentTime)
 			}
 		}
 		_self.block.run(root)
@@ -280,7 +246,7 @@ class BlockAspect {
 abstract class StmtAspect {
 	@Step
 	def void run(Policy root) {
-		MessagingModule.logger.error("Statement: run of " +_self +" should never occur, please tell the developer to write a method run for this class", "Gpfl")
+		MessagingModule.error("Statement: run of " +_self +" should never occur, please tell the developer to write a method run for this class")
 	}
 }
 
@@ -298,8 +264,8 @@ class ConditionAspect extends StmtAspect {
 class IterationAspect extends StmtAspect {
 	@Step
 	def void run(Policy root) {
-		while (_self.getWhile.eval(root) as Boolean) {
-			_self.then.run(root)
+		while (_self.getWhile.eval(root) as Boolean && !endOfFilter) {
+			_self.then.run(root) 
 		}
 	}
 }
@@ -333,7 +299,7 @@ class StepAutomataAspect extends StmtAspect {
 abstract class CmdAspect extends StmtAspect {
 	@Step
 	def void run(Policy root) {
-		MessagingModule.logger.error("Command: run of " +_self +" should never occur, please tell the developer to write a method run for this class", "Gpfl")
+		MessagingModule.error("Command: run of " +_self +" should never occur, please tell the developer to write a method run for this class")
 	}
 }
 
@@ -349,7 +315,7 @@ class NewAutomataAspect extends CmdAspect {
 class AlarmAspect extends CmdAspect {
 	@Step
 	def void run(Policy root) {
-		MessagingModule.logger.error("ALARM @ "+ root.filter.currentTime+ ": " + _self.message.eval(root) as String, "Gpfl")
+		MessagingModule.error("ALARM @ "+ root.filter.currentTime+ ": " + _self.message.eval(root) as String)
 	}
 }
 
@@ -360,9 +326,9 @@ class SendAspect extends CmdAspect {
 		var packet = "("+root.filter.currentTime+";"
 			+ _self.port.number+";" 
 			+ _self.packet.content + ")"
-		MessagingModule.logger.debug("SEND " + packet, "Gpfl")
+		MessagingModule.debug("SEND " + packet)
 		
-		IOModule.writePacket(_self.packet, _self.port)
+		IOModule.writePacket(_self.packet, _self.port, outputFile)
 		endOfFilter = true
 	}
 }
@@ -372,12 +338,16 @@ class SetVariableAspect extends CmdAspect {
 	@Step
 	def void run(Policy root) {
 		val value = _self.value.eval(root)
-		if (_self.declaration instanceof VariableDeclaration){	
+		if (value === null) {
+			MessagingModule.error("Error, skipping packet")
+			endOfFilter = true
+		}
+		else if (_self.declaration instanceof VariableDeclaration){	
 			var variable = root.variables.findFirst[v | v.name.equals(_self.declaration.name)]
 			// If the variable already has been initialized
 			// just change the value
 			if(variable instanceof BytesDec) {
-				variable.value = value as BigInteger
+				variable.value = value instanceof Integer ? BigInteger.valueOf(value as Integer): value as BigInteger
 			} else if (variable instanceof IntegerDec) {
 				// if there is an implicit cast from int to bits
 				if (value instanceof BigInteger) {
@@ -431,9 +401,9 @@ class NopAspect extends CmdAspect {
 class AcceptAspect extends CmdAspect {
 	@Step
 	def void run(Policy root) {
-		MessagingModule.logger.debug("ACCEPT\n", "Gpfl")
+		MessagingModule.debug("ACCEPT\n")
 		
-		IOModule.writePacket(root.filter.currentPacket, correspondingPort.get(root.filter.currentPacket.inPort))
+		IOModule.writePacket(root.filter.currentPacket, root.filter.currentPacket.inPort.mappedOut, outputFile)
 		endOfFilter = true
 	}
 }
@@ -442,7 +412,7 @@ class AcceptAspect extends CmdAspect {
 class DropAspect extends CmdAspect {
 	@Step
 	def void run(Policy root) {
-		MessagingModule.logger.debug("DROP\n", "Gpfl")
+		MessagingModule.debug("DROP\n")
 		endOfFilter = true
 	}
 }
@@ -463,7 +433,7 @@ class NewEventOccurenceAspect extends CmdAspect {
 @Aspect(className=Expression)
 abstract class ExpressionAspect {
 	def Object eval(Policy root) {
-		MessagingModule.logger.error("Expression: eval of " + _self + " should never occur, please tell the developer to write a method run for this class", "Gpfl")
+		MessagingModule.error("Expression: eval of " + _self + " should never occur, please tell the developer to write a method run for this class")
 		return null;
 	}
 }
@@ -533,10 +503,9 @@ class ReadAspect extends ExpressionAspect {
 			if (length instanceof BigInteger) length = length.intValue();
 			return new BigInteger(root.filter.currentPacket.content.toString.substring(offset as Integer, offset as Integer + length as Integer), 2)
 		} catch(StringIndexOutOfBoundsException e) {
-			MessagingModule.logger.error("Trying to read from " + offset 
+			MessagingModule.error("Trying to read from " + offset 
 				+ " to " + (offset as Integer + length as Integer) 
 				+ " on a packet of size " + root.filter.currentPacket.content.length
-				, "Gpfl"
 			)
 			return null
 		}
@@ -546,7 +515,7 @@ class ReadAspect extends ExpressionAspect {
 @Aspect(className=UnaryOp)
 abstract class UnaryOpAspect extends ExpressionAspect {
 	def Object eval(Policy root) {
-		MessagingModule.logger.error("Unary op: eval of " + _self + " should never occur, please tell the developer to write a method run for this class", "Gpfl")
+		MessagingModule.error("Unary op: eval of " + _self + " should never occur, please tell the developer to write a method run for this class")
 		return null
 	}
 }
@@ -558,7 +527,7 @@ class NotAspect extends UnaryOpAspect {
 		try {
 			return !(expr as Boolean)
 		} catch (ClassCastException e) {
-			MessagingModule.logger.error("Type mismatch: Cannot invert " + expr + " because it's not a boolean", "Gpfl")
+			MessagingModule.error("Type mismatch: Cannot invert " + expr + " because it's not a boolean")
 			e.printStackTrace
 			return null
 		}
@@ -572,7 +541,7 @@ class NegAspect extends UnaryOpAspect {
 		try {
 			return -(expr as Integer)
 		} catch (ClassCastException e) {
-			MessagingModule.logger.error("Type mismatch: Cannot neg " + expr + " because it's not an integer", "Gpfl")
+			MessagingModule.error("Type mismatch: Cannot neg " + expr + " because it's not an integer")
 			e.printStackTrace
 			return null
 		}
@@ -582,7 +551,7 @@ class NegAspect extends UnaryOpAspect {
 @Aspect(className=BinaryOp)
 abstract class BinaryOpAspect extends ExpressionAspect {
 	def Object eval(Policy root) {
-		MessagingModule.logger.error("Binary op: eval of " + _self + " should never occur, please tell the developer to write a method run for this class", "Gpfl")
+		MessagingModule.error("Binary op: eval of " + _self + " should never occur, please tell the developer to write a method run for this class")
 		return null
 	}
 }
@@ -595,9 +564,9 @@ class OrAspect extends BinaryOpAspect {
 		try {
 			return (left as Boolean) || (right as Boolean)
 		} catch (ClassCastException e) {
-			MessagingModule.logger.error("Type mismatch: Cannot compare (|) " + left + "("+left?.class+")"
+			MessagingModule.error("Type mismatch: Cannot compare (|) " + left + "("+left?.class+")"
 				+ " and " + right + "("+right?.class+")"
-			, "Gpfl")
+			)
 			e.printStackTrace
 			return null
 		}
@@ -612,9 +581,9 @@ class AndAspect extends BinaryOpAspect {
 		try {
 			return (left as Boolean) && (right as Boolean)
 		} catch (ClassCastException e) {
-			MessagingModule.logger.error("Type mismatch: Cannot compare (&) " + left + "("+left?.class+")"
+			MessagingModule.error("Type mismatch: Cannot compare (&) " + left + "("+left?.class+")"
 				+ " and " + right + "("+right?.class+")"
-			, "Gpfl")
+			)
 			e.printStackTrace
 			return null
 		}
@@ -631,9 +600,9 @@ class EqualityAspect extends BinaryOpAspect {
 			else if(right instanceof BigInteger && left instanceof Integer) left = BigInteger.valueOf(left as Integer)
 			return left.equals(right)
 		} catch (ClassCastException e) {
-			MessagingModule.logger.error("Type mismatch: Cannot compare (==) " + left + "("+left?.class+")"
+			MessagingModule.error("Type mismatch: Cannot compare (==) " + left + "("+left?.class+")"
 				+ " and " + right + "("+right?.class+")"
-			, "Gpfl")
+			)
 			e.printStackTrace
 			return null
 		}
@@ -650,9 +619,9 @@ class InequalityAspect extends BinaryOpAspect {
 			else if(right instanceof BigInteger && left instanceof Integer) left = BigInteger.valueOf(left as Integer)
 			return !left.equals(right)
 		} catch (ClassCastException e) {
-			MessagingModule.logger.error("Type mismatch: Cannot compare (!=) " + left + "("+left?.class+")"
+			MessagingModule.error("Type mismatch: Cannot compare (!=) " + left + "("+left?.class+")"
 				+ " and " + right + "("+right?.class+")"
-			, "Gpfl")
+			)
 			e.printStackTrace
 			return null
 		}
@@ -669,9 +638,9 @@ class GreaterOrEqualAspect extends BinaryOpAspect {
 		} else if (left instanceof Number && left instanceof Number) {
 			return ((left as Number).longValue()) >= ((right as Number).longValue())
 		} else {
-			MessagingModule.logger.error("Type mismatch: Cannot compare (>=) " + left + "("+left?.class+")"
+			MessagingModule.error("Type mismatch: Cannot compare (>=) " + left + "("+left?.class+")"
 				+ " and " + right + "("+right?.class+")"
-			, "Gpfl")
+			)
 			return null
 		}
 	}
@@ -687,9 +656,9 @@ class LowerOrEqualAspect extends BinaryOpAspect {
 		} else if (left instanceof Number && left instanceof Number) {
 			return ((left as Number).longValue()) <= ((right as Number).longValue())
 		} else {
-			MessagingModule.logger.error("Type mismatch: Cannot compare (<=) " + left + "("+left?.class+")"
+			MessagingModule.error("Type mismatch: Cannot compare (<=) " + left + "("+left?.class+")"
 				+ " and " + right + "("+right?.class+")"
-			, "Gpfl")
+			)
 			return null
 		}
 	}
@@ -705,9 +674,9 @@ class GreaterAspect extends BinaryOpAspect {
 		} else if (left instanceof Number && left instanceof Number) {
 			return ((left as Number).longValue()) > ((right as Number).longValue())
 		} else {
-			MessagingModule.logger.error("Type mismatch: Cannot compare (>) " + left + "("+left?.class+")"
+			MessagingModule.error("Type mismatch: Cannot compare (>) " + left + "("+left?.class+")"
 				+ " and " + right + "("+right?.class+")"
-			, "Gpfl")
+			)
 			return null
 		}
 	}
@@ -723,9 +692,9 @@ class LowerAspect extends BinaryOpAspect {
 		} else if (left instanceof Number && left instanceof Number) {
 			return ((left as Number).longValue()) < ((right as Number).longValue())
 		} else {
-			MessagingModule.logger.error("Type mismatch: Cannot compare (<) " + left + "("+left?.class+")"
+			MessagingModule.error("Type mismatch: Cannot compare (<) " + left + "("+left?.class+")"
 				+ " and " + right + "("+right?.class+")"
-			, "Gpfl")
+			)
 			return null
 		}
 	}
@@ -739,18 +708,18 @@ class PlusAspect extends BinaryOpAspect {
 		val right = _self.right.eval(root)
 		if(left instanceof BigInteger && right instanceof Integer) return (left as BigInteger) + (BigInteger.valueOf(right as Integer))
 		else if(right instanceof BigInteger && left instanceof Integer) return (BigInteger.valueOf(left as Integer)) + (right as BigInteger) 
-		if ((left instanceof Integer && right instanceof Integer)
-			|| (left instanceof String && right instanceof String)
-		) {
-			return (left as Integer) + (right as Integer)
+		if (left instanceof String && right instanceof String) {
+			return (left as String) + (right as String)
 		} else if (left instanceof String) {
 			return (left as String) + right
 		} else if (right instanceof String) {
 			return left + (right as String)
 		}
-		MessagingModule.logger.error("Type mismatch: Cannot add " + left + "("+left?.class+")"
+		if(left instanceof Integer && right instanceof Integer) return (left as Integer) + (right as Integer)
+		if(left instanceof BigInteger && right instanceof BigInteger) return (left as BigInteger) + (right as BigInteger)
+		MessagingModule.error("Type mismatch: Cannot add " + left + "("+left?.class+")"
 				+ " and " + right + "("+right?.class+")"
-			, "Gpfl")
+			)
 		return null
 	}
 }
@@ -762,9 +731,9 @@ class MinusAspect extends BinaryOpAspect {
 		val right = _self.right.eval(root)
 		if(left instanceof BigInteger && right instanceof Integer) return (left as BigInteger) - (BigInteger.valueOf(right as Integer))
 		else if(right instanceof BigInteger && left instanceof Integer) return (BigInteger.valueOf(left as Integer)) - (right as BigInteger) 
-		MessagingModule.logger.error("Type mismatch: Cannot minus " + left + "("+left?.class+")"
+		MessagingModule.error("Type mismatch: Cannot minus " + left + "("+left?.class+")"
 				+ " and " + right + "("+right?.class+")"
-			, "Gpfl")
+			)
 		return null
 	}
 }
@@ -776,9 +745,9 @@ class MultAspect extends BinaryOpAspect {
 		var right = _self.right.eval(root)
 		if(left instanceof BigInteger && right instanceof Integer) return (left as BigInteger) * (BigInteger.valueOf(right as Integer))
 		else if(right instanceof BigInteger && left instanceof Integer) return (right as BigInteger) * (BigInteger.valueOf(left as Integer))
-		MessagingModule.logger.error("Type mismatch: Cannot multiply " + left + "("+left?.class+")"
+		MessagingModule.error("Type mismatch: Cannot multiply " + left + "("+left?.class+")"
 				+ " and " + right + "("+right?.class+")"
-			, "Gpfl")
+			)
 		return null
 	}
 }
@@ -789,14 +758,13 @@ class DivAspect extends BinaryOpAspect {
 		val left = _self.left.eval(root)
 		val right = _self.right.eval(root)
 		if (right == 0) {
-			MessagingModule.logger.error("You cannot divide by 0", "Gpfl")
+			MessagingModule.error("You cannot divide by 0")
 			return null
 		}
 		if(left instanceof BigInteger && right instanceof Integer) return (left as BigInteger) / (BigInteger.valueOf(right as Integer))
 		else if(right instanceof BigInteger && left instanceof Integer) return (BigInteger.valueOf(left as Integer)) / (right as BigInteger) 
-		MessagingModule.logger.error("Type mismatch: Cannot divide " + left + "("+left?.class+")"
-				+ " and " + right + "("+right?.class+")"
-			, "Gpfl")
+		MessagingModule.error("Type mismatch: Cannot divide " + left + "("+left?.class+")"
+				+ " and " + right + "("+right?.class+")")
 		return null
 	}
 }

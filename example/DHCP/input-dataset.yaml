@@ -1,31 +1,124 @@
-(002;outbound;80;00001010)
-(005;inbound;40;000110101101)
-(006;outbound;80;00000111)
-(009;outbound;80;000101110101)
-(012;outbound;80;001001110101)
-(014;outbound;80;00001111)
-(015;outbound;80;001010101101)
-(017;outbound;80;01010111)
-(018;inbound;40;01011010)
-(102;outbound;80;00001011)
-(105;inbound;40;000110111110)
-(106;outbound;80;00000111)
-(109;outbound;80;000101110101)
-(112;outbound;80;001001110101)
-(114;outbound;80;00001110)
-(115;outbound;80;001110111110)
-(117;outbound;80;01010111)
-(124;outbound;80;00001110)
-(138;inbound;40;01011011)
-(202;outbound;80;010010101101)
-(205;outbound;80;00001110)
-(206;outbound;80;00000111)
-(207;outbound;80;00001110)
-(209;outbound;80;000101110101)
-(211;outbound;80;00001110)
-(212;outbound;80;001101110101)
-(214;outbound;80;00001110)
-(216;outbound;80;01010111)
-(217;outbound;80;00001110)
-(218;inbound;40;01011010)
-(324;outbound;80;00001110)
+---
+time: 2
+port: 80
+content: 00001010
+---
+time: 5
+port: 40
+content: 000110101101
+---
+time: 6
+port: 80
+content: 00000111
+---
+time: 9
+port: 80
+content: 000101110101
+---
+time: 12
+port: 80
+content: 001001110101
+---
+time: 14
+port: 80
+content: 00001111
+---
+time: 15
+port: 80
+content: 001010101101
+---
+time: 17
+port: 80
+content: 01010111
+---
+time: 18
+port: 40
+content: 01011010
+---
+time: 102
+port: 80
+content: 00001011
+---
+time: 105
+port: 40
+content: 000110111110
+---
+time: 106
+port: 80
+content: 00000111
+---
+time: 109
+port: 80
+content: 000101110101
+---
+time: 112
+port: 80
+content: 001001110101
+---
+time: 114
+port: 80
+content: 00001110
+---
+time: 115
+port: 80
+content: 001110111110
+---
+time: 117
+port: 80
+content: 01010111
+---
+time: 124
+port: 80
+content: 00001110
+---
+time: 138
+port: 40
+content: 01011011
+---
+time: 202
+port: 80
+content: 010010101101
+---
+time: 205
+port: 80
+content: 00001110
+---
+time: 206
+port: 80
+content: 00000111
+---
+time: 207
+port: 80
+content: 00001110
+---
+time: 209
+port: 80
+content: 000101110101
+---
+time: 211
+port: 80
+content: 00001110
+---
+time: 212
+port: 80
+content: 001101110101
+---
+time: 214
+port: 80
+content: 00001110
+---
+time: 216
+port: 80
+content: 01010111
+---
+time: 217
+port: 80
+content: 00001110
+---
+time: 218
+port: 40
+content: 01011010
+---
+time: 324
+port: 80
+content: 00001110

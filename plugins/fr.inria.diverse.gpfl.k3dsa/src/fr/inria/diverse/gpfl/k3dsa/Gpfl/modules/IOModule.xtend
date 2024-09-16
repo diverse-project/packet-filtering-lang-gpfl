@@ -1,5 +1,7 @@
 package fr.inria.diverse.gpfl.k3dsa.Gpfl.modules
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import fr.inria.diverse.gpfl.model.gpfl.GpflFactory
 import fr.inria.diverse.gpfl.model.gpfl.Packet
 import fr.inria.diverse.gpfl.model.gpfl.Policy
@@ -7,46 +9,37 @@ import fr.inria.diverse.gpfl.model.gpfl.Port
 import java.io.File
 import java.io.FileOutputStream
 import java.util.Scanner
+import fr.inria.diverse.gpfl.k3dsa.Gpfl.src.RawPacket
 
 class IOModule {
 	def static createPacketsFromFile(Policy root, File inputData) {
 		val input = new Scanner(inputData)
+		var mapper = new ObjectMapper(new YAMLFactory())
 		
 		while (input.hasNextLine) {
-			val line = input.nextLine
+			var line = input.nextLine
+			for (var i=0; i<3; i++) {
+				line += "\n" + input.nextLine
+			}
 			var packet = GpflFactory.eINSTANCE.createPacket
-			val String[] packet_data = line.substring(1, line.length-1).split(";")
-			packet.time = Integer.valueOf(packet_data.get(0))
-			var interface = root.interfaces.findFirst[i | i.name.equals(packet_data.get(1))]
-			if (interface === null) {
-				interface = GpflFactory.eINSTANCE.createInterface
-				interface.name = packet_data.get(1)
-				root.interfaces.add(interface)
-			}
-			var port = root.inPorts.findFirst[p | p.number.equals(Integer.parseInt(packet_data.get(2)))]
+			val rawPacket = mapper.readValue(line, typeof(RawPacket))
+			packet.time = rawPacket.time
+			// port
+			var port = root.inPorts.findFirst[p | p.number.equals(rawPacket.port)]
 			if (port === null) {
-				port = GpflFactory.eINSTANCE.createPort
-				port.number = Integer.parseInt(packet_data.get(2))
-				root.inPorts.add(port)
+				MessagingModule.error("Unknown entry port for packet " + packet.time + ".\nPlease change port number or add it port configuration.")
+				throw new Exception("Unkown port")
 			}
-			port.interface = interface
-			interface.ports.add(port)
 			packet.inPort = port
-			packet.content = packet_data.get(3)
+			packet.content = rawPacket.content
 			root.packets.add(packet)
 		}
 		input.close
 	}
 	
-	static var FileOutputStream output = null
 	
-	def static createOutputFile(File outputData) {
-		output = new FileOutputStream(outputData)
-		output.write(''.getBytes)
-	}
-	
-	def static writePacket(Packet packet, Port port) {
-		var outPacket = "("+packet.time+";"+ port.number+";"+packet.content+")\n"
-		output.write(outPacket.getBytes)
+	def static writePacket(Packet packet, Port port, FileOutputStream outputFile) {
+		var mapper = new ObjectMapper(new YAMLFactory())
+		outputFile.write(mapper.writeValueAsString(new RawPacket(packet.time, port.number, packet.content)).getBytes)
 	}
 }

@@ -19,8 +19,10 @@
         eType="#//Port" transient="true" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="interruptions" upperBound="-1"
         eType="#//NewInterruption"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="interfaces" upperBound="-1"
-        eType="#//Interface" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inside" eType="#//Inside"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outside" eType="#//Outside"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Prologue">
     <eStructuralFeatures xsi:type="ecore:EReference" name="automataDefinition" upperBound="-1"
@@ -184,7 +186,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="Port">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="interface" eType="#//Interface"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interface" eType="#//Side"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mappedOut" eType="#//Port"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StringDec" eSuperTypes="#//VariableDeclaration">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
@@ -207,7 +210,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Packet">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="time" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="inPort" eType="#//Port"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inPort" lowerBound="1"
+        eType="#//Port"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="content" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -225,13 +229,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="length" lowerBound="1"
         eType="#//Expression" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Interface">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Side" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ports" upperBound="-1"
         eType="#//Port"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InterfaceRef" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="interface" lowerBound="1"
-        eType="#//Interface"/>
+        eType="#//Side" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Inside" eSuperTypes="#//Side"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Outside" eSuperTypes="#//Side"/>
 </ecore:EPackage>

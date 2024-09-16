@@ -119,7 +119,7 @@ FILTER
 				set(nextEhStart, nextEhStart+64+read(nextEhStart+8, 8)*64)
 			)
 
-			// Host Identity Protocol
+			// Host Identity Protocol 
 			cond(nextHeader == 0x8b,
 				set(nextHeader, read(nextEhStart, 8))
 				set(nextEhStart, nextEhStart+64+read(nextEhStart+8, 8)*8)

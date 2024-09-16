@@ -99,13 +99,14 @@ class GpflLinkingService extends DefaultLinkingService {
 			//------------------- INTERFACE REFERENCE -------------------//
 			
 			else if (context instanceof InterfaceRef) {
-				var port = root.interfaces.findFirst[p | p.name.equals(node.text)]
-				if (port === null) {
-					port = GpflFactory.eINSTANCE.createInterface
-					port.name = node.text
-					root.interfaces.add(port)
-				}
-				referencesResolved = Collections.singletonList(port)
+				if(node.text.toLowerCase.equals("inside"))
+					if(root.inside === null)
+						root.inside = GpflFactory.eINSTANCE.createInside
+					referencesResolved = Collections.singletonList(root.inside)
+				if(node.text.toLowerCase.equals("outside"))
+					if(root.outside === null)
+						root.outside = GpflFactory.eINSTANCE.createOutside
+					referencesResolved = Collections.singletonList(root.outside)
 			}
 			
 			//------------------- EVENT REFERENCE -------------------//

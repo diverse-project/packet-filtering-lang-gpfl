@@ -1,5 +1,20 @@
-25 -> 22
-22 -> 443
-80 -> 22
-443 -> 22
-989 -> 22
+---
+number: 80
+out: 22
+side: inside
+---  
+number: 443
+out: 514
+side: inside
+---
+number: 25
+out: 514
+side: inside
+---
+number: 514
+out: 22
+side: outside
+---
+number: 22
+out: 443
+side: outside

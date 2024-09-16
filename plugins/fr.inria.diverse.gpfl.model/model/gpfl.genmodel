@@ -17,7 +17,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gpfl.ecore#//Policy/packets"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gpfl.ecore#//Policy/inPorts"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gpfl.ecore#//Policy/interruptions"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gpfl.ecore#//Policy/interfaces"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gpfl.ecore#//Policy/inside"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gpfl.ecore#//Policy/outside"/>
     </genClasses>
     <genClasses ecoreClass="gpfl.ecore#//Prologue">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gpfl.ecore#//Prologue/automataDefinition"/>
@@ -144,6 +145,7 @@
     <genClasses ecoreClass="gpfl.ecore#//Port">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gpfl.ecore#//Port/number"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gpfl.ecore#//Port/interface"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gpfl.ecore#//Port/mappedOut"/>
     </genClasses>
     <genClasses ecoreClass="gpfl.ecore#//StringDec">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gpfl.ecore#//StringDec/value"/>
@@ -172,12 +174,13 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gpfl.ecore#//Read/offset"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gpfl.ecore#//Read/length"/>
     </genClasses>
-    <genClasses ecoreClass="gpfl.ecore#//Interface">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gpfl.ecore#//Interface/name"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gpfl.ecore#//Interface/ports"/>
+    <genClasses ecoreClass="gpfl.ecore#//Side">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gpfl.ecore#//Side/ports"/>
     </genClasses>
     <genClasses ecoreClass="gpfl.ecore#//InterfaceRef">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gpfl.ecore#//InterfaceRef/interface"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference gpfl.ecore#//InterfaceRef/interface"/>
     </genClasses>
+    <genClasses ecoreClass="gpfl.ecore#//Inside"/>
+    <genClasses ecoreClass="gpfl.ecore#//Outside"/>
   </genPackages>
 </genmodel:GenModel>
