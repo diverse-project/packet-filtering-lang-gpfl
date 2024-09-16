@@ -5,30 +5,6 @@ $GPFL$ is a language  that allows to express policies that accept or drop packet
 The model is in [plugins/model](./plugins/fr.inria.diverse.gpfl.model/model/gpfl_class_diagram.jpg).  
 For example of filtering policy go to [example](./example/).
 
-## Simulator
-### Packets
-Packets are read from a text input file and the accepted one are written in a text output file.
-Each line of the file corresponds to a packet and has this form:
-```
-(time;port;packet_binary)
-```
-The input file while be first argument of run configurations.  
-The output file while be second argument of run configurations.
-
-### Ports
-Ports are read from a text input file that play the role of the port oracle. It must be written this way:
-```
-inside_port -> output_file
-```
-one rule per line.  
-The port oracle file will be the third argument of run configurations.
-
-### Clock management 
-The clock is set at 0 while the filtering policy hasn't begun. Then it is updated with the time of each arriving packet.
-
-### Interruptions
-At every arriving packet the time is updated. Before handling the packet the interruptions are executed if needed.
-
 ## Language
 Terminals are shown in bold font and nonterminals in italics. Literal characters are given in single quotes. Parentheses `(` and `)` indicate grouping when needed. Square brackets `[` and `]` enclose optional items. Vertical bars `|` separate alternatives.
 
@@ -126,12 +102,48 @@ Literals of type `INT`, `STRING`, `BOOLEAN`, `BYTES` (written following the patt
 
 There is three extra operators that are specific to $GPFL$:
 - An operator for ports id comparison (`_port==`);
-- An operator for interfaces id comparison (`_interface==`);
+- An operator for side comparison (`_side_==`);
 - An operator to read a sequence of bits from a packet (`read(offset:expression, length:expression)`)
+
+## Simulator
+The simulator use three configurations file to emulate the incoming packets, outgoing packets and the configuration of the port on the transit router.
+It also simulate the clock of a transit router.
+
+### Packets
+The flow of packet is simulated thanks to a yaml file named `input-dataset.yaml` that described the properties of each packets arriving on the transit router. Each packet is described by three fields:
+- `time` the time it arrived in the transit router
+- `port` the port by which it arrived
+- `content` it's content as a string of bits
+It takes this format:
+```
+---
+time: 2
+port: 80
+content: 00001010
+```
+
+### Ports
+Ports are created from a yaml configuration file named `ports_config.yaml`. A transit router is composed of two sides, the inside of the local network and the outside. Each side is composed of ports that transmit packets to another specific port if the packet is accepted. In the configuration file a port is designated by:
+- `number` its number 
+- `port` the port where it will redirect packet if accepted
+- `side` the side on which the port is physically on the transit router
+It takes this format:
+```
+---
+number: 80
+out: 40
+side: inside
+```
+
+### Clock management 
+To simulate the clock, packets are defined with their arrival time. Before the start of the simulation the is set to 0, it is then updated with the arrival of each packets.
+
+### Interruptions
+At every arriving packet the time is updated. Before handling the packet the interruptions are executed if needed.
 
 ## Tooling
 
-- interpretor
+- interpretor/simulator
 - debugger (WIP)
 - syntax highlighting 
 - auto completion
