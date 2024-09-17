@@ -1,6 +1,6 @@
 
 ---
-This repository is part of a set of network DSLs taht allow to filter packet at transit router: 
+This repository is part of a set of network DSLs that allow packet filtering at transit routers: 
 - [Root repository](https://github.com/diverse-project/packet-filtering-lang) with wiki of the overall project
 - $GPFL$ [Generic Packet Filtering Language](https://github.com/diverse-project/packet-filtering-lang-gpfl) 
 - $L^{EHO}$ [Packet filtering Language based on Extension Header and Options](https://github.com/diverse-project/packet-filtering-lang-leho)
